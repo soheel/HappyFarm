@@ -1,6 +1,7 @@
 package spring.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -23,15 +24,21 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public ProductDTO showProductDetail(String productNo) {
+	public ProducerDTO showProducerInfo(String producerNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ProducerDTO showProducerInfo(String producerNo) {
+	public Map<String, Object> showProductDetail(String productNo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int addCart(String productNo, int num, String email) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
