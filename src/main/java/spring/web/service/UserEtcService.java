@@ -28,4 +28,6 @@ public interface UserEtcService {
 
 	ProducerDTO producerDetail();
 
+	List<CommunityDTO> communityIngList();
+
 }

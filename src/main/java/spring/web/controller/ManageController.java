@@ -1,19 +1,42 @@
 package spring.web.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import spring.web.dto.ProductDTO;
+import spring.web.service.ManageService;
 
 @Controller
-public class ManagerController {
+public class ManageController {
 
+	@Autowired
+	ManageService managerService;
 	/**
 	 * 개별상품관리 클릭했을 때
 	 * 상품범호 순서대로 (category_subcategory_no가 null이 아닌것만 가져오기)
 	 * 리스트로
 	 * */
 	@RequestMapping("productManage")
-	public void productMagane() {
+	public ModelAndView productManage() {
+		/**
+		 * 1. 개별 상품 관리를 누르면
+		 * 2. proudctDTO에 있는 정보를 다 받아와서 (productlist)
+		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
+		 * 
+		 */
+		List<ProductDTO> productlist = managerService.selectAllProududct();
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("productlist", productlist);
+		
+		mv.setViewName("productManage");
+		return mv;
 	}
 	
 	/**
@@ -21,8 +44,15 @@ public class ManagerController {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productRegisterManage")
-	public void productRegisterManage() {
-		
+	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO ) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div
+		 */
+		int result = managerService.productRegisterManage(productDTO);
+		if(result==0){
+			request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		}
+		return "productManage";
 	}
 	
 	/**
@@ -30,8 +60,13 @@ public class ManagerController {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productModifyManage")
-	public void productModifyManage() {
-		
+	public String productModifyManage(HttpServletRequest request, String productno) {
+		int result = managerService.productModifyManage(productno);
+		if(result==0){
+			request.setAttribute("errorMsg", "수정되지 않았습니다.");
+			
+		}
+		return "forward:productManage";
 	}
 	
 	/**
@@ -39,8 +74,11 @@ public class ManagerController {
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("productDeleteManage")
-	public void productDeleteManage() {
-		
+	public String productDeleteManage(HttpServletRequest request, ProductDTO productdto) {
+		int result =0;
+		result = managerService.productDeleteManage(productdto);
+		System.out.println(result);
+		return "redirect:productManage";
 	}
 	
 	/**
