@@ -1,34 +1,76 @@
 package spring.web.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import spring.web.dto.MemberDTO;
+import spring.web.service.UserInfoService;
 
 @Controller("userinfo")
 @RequestMapping("/user")
 public class UserInfoController {
 	
+	@Autowired
+	UserInfoService userService;
+	
 	/**
 	 * 로고 눌렀을 때
 	 * */
 	@RequestMapping("logo")
-	public void logo() {
+	public String logo() {
 		
+		/**
+		 * 페이지 상단에 로고를 눌렀을 때
+		 * 항상 메인 페이지로 이동
+		 * */
+		
+		return "";
 	}
 	
+	
 	/**
-	 * 회원가입
+	 * 회원가입 //insert
 	 * */
 	@RequestMapping("register")
-	public void register(){
+	@ResponseBody
+	public int register(MemberDTO memberDto){
+		/**
+		 * 회원가입 버튼을 눌렀을 때
+		 * 인수로 들어오는  값들을 MemberDTO에 저장한다.
+		 * 그리고 그 값들을 
+		 * service -> dao를 거쳐서 db까지 이동후
+		 * 가지고 나온 리턴(int형)을 뷰로 보내준다.
+		 * 뷰에서 성공/실패의 여부에 따라 alert으로 알려준다.
+		 * */
+		int result = userService.registerMember(memberDto);
 		
+		return result;
 	}
 	
 	/**
 	 * 계정찾기(id)
 	 * */
 	@RequestMapping("searchId")
-	public void searchId() {
-		
+	@ResponseBody
+	public String searchId(MemberDTO memeberDto) {
+		/**
+		 * 로그인을 시도-> 계정을 모를 경우,계정찾기 누르기.
+		 * form의 이름과 연락처를 받음 그리고 이 값들을 
+		 * MemberDto의 형식으로 받아서 service로 값을 넘겨줌
+		 * service에서 나오는 리턴값을 String 형태로 받아서
+		 * 뷰로 넘겨준다
+		 * */
+		String result = userService.searchId(memeberDto);
+		return result;
 	}
 	
 	/**
@@ -36,8 +78,15 @@ public class UserInfoController {
 	 * 지정된 메일로 인증코드 보내기(ajax)
 	 * */
 	@RequestMapping("searchPwdSendCode")
-	public void searchPwdSendCode() {
-		
+	@ResponseBody
+	public String searchPwdSendCode(String email) {
+		/**
+		 * 사용자가 비밀번호를 찾을 때,
+		 * 아이디를 입력한 후 해당 아이디가 존재하는 지 체크 후
+		 * 존재할 경우 본인인증코드를 이메일로 발송
+		 * */
+		String result = userService.searchPwdSendCode(email);
+		return result;
 	}
 	
 	/**
@@ -46,8 +95,17 @@ public class UserInfoController {
 	 * 인증코드 맞으면 아래에 비밀번호 띄워주기(ajax)
 	 * */
 	@RequestMapping("searchPwdConfirm")
-	public void searchPwdConfirm() {
-		
+	@ResponseBody
+	public String searchPwdConfirm(String code) {
+		/**
+		 * 사용자가 비밀번호를 찾을 수 있도록 이메일로 발송된
+		 * 코드를 확인후 입력한 경우
+		 * service를 거쳐서 dao로 이동한 후 
+		 * 해당 회원의 비밀번호를 리턴해서 
+		 * view로 가지고 이동 -> 뿌려진다.
+		 * */
+		String result =  userService.searchPwd(code);
+		return result;
 	}
 	
 	/**
@@ -55,32 +113,85 @@ public class UserInfoController {
 	 * 만약 아이디가 admin이면 관리자 페이지 로딩
 	 * */
 	@RequestMapping("login")
-	public void login() {
+	public ModelAndView login(String email, String pwd) {
+		/**
+		 * 로그인하기 - 본인의 아이디나 비밀번호를 입력한 후
+		 * db에 존재하면 해당 아이디를 리턴해옴
+		 * 존재하지 않을 경우 errorPage로 이동
+		 * 
+		 * 존재할 경우
+		 * -> 아이디가 'admin'일 경우 ,admin-main page로 이동
+		 *    일반 회원일 경우, user-main page로 이동
+		 * */
 		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDto = userService.login(email, pwd);
+		if(memberDto!=null){
+			if(memberDto.getName().equals("admin")){
+				/**
+				 * 관리자 메인창으로 이동
+				 *	ModelAndView의 setViewName으로 이동페이지 지정
+				 **/
+				mv.setViewName("관리자 메인 페이지");
+				return mv;
+				
+			}else{
+				//user메인 창으로 이동
+				/**
+				 * user-main page : 생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 
+				 * 기부정보(저번달 총 모금액,이번달 총 모금액)
+				 * 해당 user에 대한 정보를 session에 저장해서
+				 * ModelAndView에 저장한 후 view로 이동
+				 */
+				Map<String, Object> map = userService.userMainLoading();
+				mv.addObject("map", map);
+				mv.setViewName("회원 메인 페이지");
+			}
+		}
+		return mv;
 	}
 	
 	/**
 	 * 로그아웃
 	 * */
 	@RequestMapping("logout")
-	public void logout() {
+	public String logout(HttpSession session) {
+		/**
+		 * 회원/관리자 -> 로그아웃 눌렀을 때
+		 * session의 정보를 비워주고 
+		 * main페이지로 이동
+		 * (관리자일 경우도 user의 main페이지로 이동)
+		 * */
+		session.invalidate();
 		
+		return "메인창으로 이동";
 	}
 	
 	 /**
 	  * id 중복확인 (ajax)
 	  * */
 	@RequestMapping("idCheck")
-	public void idCheck() {
+	public ResponseEntity<Boolean> idCheck(String email) {
+		/**
+		 * 회원이 회원가입을 할 때, 아이디 중복확인
+		 * 해당 아이디가 존재할 경우 ResponseEntity<boolean> -> true
+		 * 해당 아이디가 존재하지 않을 경우 ResponseEntity<boolean> -> false
+		 * */
+		boolean exist = userService.checkId(email);
+		ResponseEntity<Boolean> result = new ResponseEntity<Boolean>(exist, HttpStatus.OK);
 		
+		return result;
 	}
 	
 	/**
 	  * 추천인 id 중복확인 (ajax)
 	  * */
 	@RequestMapping("recommandIdCheck")
-	public void recommandIdCheck() {
+	public ResponseEntity<Boolean> recommandIdCheck(String email) {
+		boolean exist = userService.checkId(email);
+		ResponseEntity<Boolean> result = new ResponseEntity<Boolean>(exist, HttpStatus.OK);
 		
+		return result;
 	}
 	
 	// 내정보
@@ -90,8 +201,26 @@ public class UserInfoController {
 	 * 마일리지, 진행중인주문내역 가져오기
 	 * */
 	@RequestMapping("myPageLoading")
-	public void myPageLoading() {
+	public ModelAndView myPageLoading(HttpSession session) {
+		/**
+		 * 로그인을 한 후이기 때문에 session에 회원에 대한 개별 정보가 담겨있음
+		 * session을 인수로 받아서 session에서 id를 꺼낸 후,
+		 * service로 넘겨준다.
+		 * 
+		 * -> 개별 회원에 해당하는 마일리지와 주문내역의 상품 주문상태를 확인해서
+		 *    현재 진행중인 상품만 리턴함(map에 저장한 후 )
+		 *    
+		 *    리턴한 정보들을 ModelAndView에 담아서 view로 이동
+		 * */
 		
+		ModelAndView mv = new ModelAndView();
+		String email = (String)session.getAttribute("email");
+		
+		Map<String, Integer>map = userService.myPageLoading(email);
+		mv.addObject("map", map);
+		mv.setViewName("마이페이지 로딩시 이동할 페이지");
+		
+		return mv;
 	}
 	
 	/**
