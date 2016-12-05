@@ -58,4 +58,5 @@ public class UserEtcServiceImpl implements UserEtcService{
 		return null;
 	}
 
+	
 }
