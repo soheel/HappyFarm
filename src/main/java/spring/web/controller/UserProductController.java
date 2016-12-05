@@ -1,12 +1,18 @@
 package spring.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import spring.web.service.UserProductService;
 
 @Controller
 @RequestMapping("/user")
 public class UserProductController {
 
+	@Autowired
+	UserProductService service;
+	
 	/**
 	 * shop에 마우스 올렸을 때 메뉴 불러오기
 	 * 대분류 3개 불러오기
