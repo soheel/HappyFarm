@@ -1,21 +1,49 @@
 package spring.web.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import spring.web.dto.CommunityDTO;
+import spring.web.dto.DonationDTO;
+import spring.web.dto.InfomationDTO;
+import spring.web.dto.ProducerDTO;
+import spring.web.dto.QnaDTO;
+import spring.web.service.UserEtcService;
 
 @Controller
 @RequestMapping("/user")
 public class UserEtcController {
 	
+	@Autowired
+	UserEtcService userEtcService;
 	// 모임
 	
 	/**
-	 * 모임목록 불러오기
+	 * 모임목록 불러오기 
 	 * 모임DTO 리스트
+	 * select + 페이징
 	 * */
 	@RequestMapping("communityLoading")
-	public void communityLoading() {
-		
+	public ModelAndView communityLoading() {
+		/**
+		 * 1. commuity를 누르면, 
+		 * 6개의 현재 진행하는 행사와 지난 3개행사를 보여줘서 총 9개를 담아서
+		 * 뷰로 보내준다.
+		 * 6개의 진행행사 / 3개의 지난 행사를 뽑아주는 dao 두 개의 메소드와 
+		 * 페이지 기능 메소드가 필요. 
+		 */
+		List<CommunityDTO> communitylist = null;
+		ModelAndView mv = new ModelAndView();
+		communitylist = userEtcService.communityLoading();
+		mv.addObject("communitylist",communitylist);
+		mv.setViewName("showCommunity");
+		return mv;
 	}
 	
 	/**
@@ -23,9 +51,19 @@ public class UserEtcController {
 	 * 모임DTO, 오른쪽 사이드바에 진행중인 행사 목록 가져오기
 	 * */
 	@RequestMapping("communityDetail")
-	public void communityDetail() {
+	public ModelAndView communityDetail(String communityNo) {
+		/**
+		 * 1. 사용자가 선택한 모임 번호를 받는다.
+		 * 2. 받은 인수(communityNo)를 dao로 놈겨서 CommunityDTO 정보를 받아 반환
+		 */
+		CommunityDTO communityDTO = userEtcService.communityDetail(communityNo);
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("community",communityDTO);
+		mv.setViewName("showCommunityDetail");
+		return mv;
 	}
+	
 	
 	// Q&A
 	
@@ -34,17 +72,36 @@ public class UserEtcController {
 	 * qna DTO 리스트
 	 * */
 	@RequestMapping("qnaLoading")
-	public void qnaLoaidng() {
+	public ModelAndView qnaLoading() {
+		/**
+		 * 1. Q&A게시판이 클릭하면, 사용자가 입력할 수 있는 Q&A등록 폼이 위에 뜨고
+		 * 2. 밑에는 Q&A목록을 dao로 가져와서 전체를 불러와서 페이징으로 처리한다.
+		 * 3. ajax로 질문을 누르면 답변을 불러온다.
+		 * 
+		 */
+		List<QnaDTO> qnaList = userEtcService.qnaLoading();
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("qnaList", qnaList);
+		
+		mv.setViewName("qnaLoading");
+		return mv;
 	}
 	
 	/**
 	 * Q&A 글쓰기
 	 * */
 	@RequestMapping("qnaWrite")
-	public void qnaWrite() {
+	public String qnaWrite(HttpServletRequest request, QnaDTO qnaDTO) throws Exception{
+		int result = userEtcService.registerQnA(qnaDTO);
+		if(result==0){
+			request.setAttribute("errorMsg","삽입하지 못했습니다.");
+			throw new Exception();
+		}
+		return "userEtc/qnaLoading";
 		
 	}
+	
 	
 	// 정보
 	
@@ -53,17 +110,36 @@ public class UserEtcController {
 	 * info DTO 리스트 가져오기
 	 * */
 	@RequestMapping("infoLoading")
-	public void infoLoading() {
-		
+	public ModelAndView infoLoading() {
+		/**
+		 * commuity를 누르면,9개의 정보를 담아서 뷰로 보내준다.
+		 * dao 소드와  페이지 기능 메소드가 필요. 
+		 */
+		List<InfomationDTO> infolist = null;
+		ModelAndView mv = new ModelAndView();
+		infolist = userEtcService.infoLoading();
+		mv.addObject("infolist",infolist);
+		mv.setViewName("infoLoading");
+		return mv;
 	}
 	
 	/**
 	 * info 상세보기
 	 * info DTO 가져오기
+	 * @return 
 	 * */
 	@RequestMapping("infoDetail")
-	public void infoDetail() {
+	public ModelAndView infoDetail(String qnano) {
+		/**
+		 * 1. 사용자가 선택한 모임 번호를 받는다.
+		 * 2. 받은 인수(communityNo)를 dao로 놈겨서 CommunityDTO 정보를 받아 반환
+		 */
+		InfomationDTO infomationDTO = userEtcService.infoDetail(qnano);
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("infomationDTO",infomationDTO);
+		mv.setViewName("showCommunityDetail");
+		return mv;
 	}
 	
 	// 기부
@@ -74,18 +150,39 @@ public class UserEtcController {
 	 * 차트
 	 * */
 	@RequestMapping("donationLoading")
-	public void donationLoading() {
-		
+	public ModelAndView donationLoading() {
+		/**
+		 * donate를 눌렀을 때 전체 기부 내역에서 최근에서 5달 정도만 뺴우고 나머지는 다운로드가 되도록 한다.
+		 * 밑에는 차트를 넣는다. dao로 하나로 받고, 표시하는 방법을 두 가지로 나누는 것이다?
+		 */
+		List<DonationDTO> donationlist = null;
+		ModelAndView mv = new ModelAndView();
+		donationlist = userEtcService.donationLoading();
+		mv.addObject("donationlist",donationlist);
+		mv.setViewName("donationLoading");
+		return mv;
 	}
 	
 	// 메인
-	
 	/**
 	 * 생산자 상세보기
 	 * 생산자 DTO, 지도
+	 * @return 
 	 * */
 	@RequestMapping("producerDetail")
-	public void producerDetail() {
+	public ModelAndView producerDetail() {
+		/**
+		 * 생산자 상세보기를 누르면,생산자 이름, 연락처, 주소, 생산자 이미지를 받아온다.producerDTO정보를 받는다.
+		 * 
+		 * 대표 상품은 producerDTO 정보에 맞는 productDTO를 받는다. 
+		 * 지도는 지도 api를 통해 삽입한다.
+		 */
+		ProducerDTO producer = userEtcService.producerDetail();
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("producer", producer);
+		
+		mv.setViewName("producerDetail");
+		return mv;
 	}
 }
