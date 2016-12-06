@@ -33,7 +33,15 @@ where purchase.purchase_no = purchase_product.purchase_no and purchase.purchase_
 </select>
 
 <!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 -->
-<select id="getProductByProductNo" resultMap="" parameterType="integer">
+<select id="getProductByProductNo" resultMap="productResultMap" parameterType="integer">
 select * from product where product_no = #{value}
+</select>
+
+<!-- 카테고리 눌렀을 때, 상품 리스트 가져오기 (개별상품) -->
+<select id="getProductByCategory" resultMap="productResultMap" parameterType="integer">
+select *
+from product
+where category_subcategory_no = #{value}
+order by product_no desc
 </select>
 </mapper>
