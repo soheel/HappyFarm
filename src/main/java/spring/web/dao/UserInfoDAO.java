@@ -1,4 +1,4 @@
-package spring.web.service;
+package spring.web.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,10 @@ import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
-public interface UserInfoService {
+public interface UserInfoDAO {
+
+
+
 
 	/**
 	 * 회원가입

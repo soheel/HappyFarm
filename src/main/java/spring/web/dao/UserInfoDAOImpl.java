@@ -1,23 +1,19 @@
-package spring.web.service;
+package spring.web.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import spring.web.dao.UserInfoDAO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
-@Service
-public class UserInfoServiceImpl implements UserInfoService {
+@Repository
+public class UserInfoDAOImpl implements UserInfoDAO {
 
-	@Autowired
-	private UserInfoDAO userInfoDao;
-	
 	
 	/**
 	 * 회원가입
@@ -25,7 +21,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public int registerMember(MemberDTO memberDto) {
 		
-		return userInfoDao.registerMember(memberDto);
+		return 0;
 	}
 	
 	/**
@@ -33,8 +29,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public String searchId(MemberDTO memeberDto) {
-		
-		return userInfoDao.searchId(memeberDto);
+		return null;
 	}
 	
 	/**
@@ -42,8 +37,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public String searchPwdSendCode(String email) {
-		
-		return userInfoDao.searchPwdSendCode(email);
+		return null;
 	}
 	
 	/**
@@ -51,8 +45,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public String searchPwd(String code) {
-		
-		return userInfoDao.searchPwd(code);
+		return null;
 	}
 	
 	/**
@@ -60,8 +53,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public MemberDTO login(String email, String pwd) {
-		
-		return userInfoDao.login(email, pwd);
+		return null;
 	}
 	
 	/**
@@ -69,8 +61,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public boolean checkId(String email) {
-		
-		return userInfoDao.checkId(email);
+		return false;
 	}
 	
 	/**
@@ -78,8 +69,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public Map<String, Integer> myPageLoading(String email) {
-		
-		return userInfoDao.myPageLoading(email);
+		return null;
 	}
 	
 	/**
@@ -88,8 +78,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public Map<String, Object> userMainLoading() {
-		
-		return userInfoDao.userMainLoading();
+		return null;
 	}
 	
 	/**
@@ -100,8 +89,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public List<ProductDTO> myPageOrderList(String email) {
-		
-		return userInfoDao.myPageOrderList(email);
+		return null;
 	}
 	
 	/**
@@ -111,7 +99,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public int deleteOrderProduct(String email) {
 		
-		return userInfoDao.deleteOrderProduct(email);
+		return 0;
 	}
 	
 	/**
@@ -120,7 +108,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public List<QnaDTO> myPageQna(String email) {
 		
-		return userInfoDao.myPageQna(email);
+		return null;
 	}
 	
 	/**
@@ -129,7 +117,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public String showAnswer(QnaDTO qnaDto) {
 		
-		return userInfoDao.showAnswer(qnaDto);
+		return null;
 	}
 	
 	/**
@@ -138,7 +126,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public List<DonationDTO> myPageDonation(String email) {
 		
-		return userInfoDao.myPageDonation(email);
+		return null;
 	}
 	
 	/**
@@ -147,7 +135,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public MemberDTO myPageInfoModify(String email) {
 		
-		return userInfoDao.myPageInfoModify(email);
+		return null;
 	}
 	
 	/**
@@ -155,7 +143,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	public Map<String,Object> myPageMileage(String email) {
 		
-		return userInfoDao.myPageMileage(email);
+		return null;
 	}
 	
 	/**
@@ -164,7 +152,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 @Override
 	public Map<String, Object> myCart(String email) {
 		
-		return userInfoDao.myCart(email);
+		return null;
 	}
 	 
 	 /**
@@ -173,7 +161,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 @Override
 	public List<ProductDTO> myCartOrder(String email) {
 		
-		return userInfoDao.myCartOrder(email);
+		return null;
 	}
 	 /**
 	  * 내정보  - 장바구니 -> 장바구니 안의 상품 삭제
@@ -181,9 +169,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 @Override
 	public int myCartDelete(int no) {
 		
-		return userInfoDao.myCartDelete(no);
+		return 0;
 	}
 	 
-	 
-	
 }

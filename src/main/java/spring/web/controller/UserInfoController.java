@@ -24,7 +24,7 @@ import spring.web.service.UserInfoService;
 public class UserInfoController {
 	
 	@Autowired
-	UserInfoService userService;
+	private UserInfoService userService;
 	
 	/**
 	 * 회원쪽이 아니라 관리자나 비회원쪽 Controller에 있어야하는 메소드
@@ -287,7 +287,7 @@ public class UserInfoController {
 	}
 	
 	/**
-	 * 환불/반품/교환 폼에서 사유적어서 신청하기
+	 * 환불/반품/교환 폼에서 사유 및 비밀번호 적어서 신청하기
 	 * */
 	@RequestMapping("requestRefund")
 	public void requestRefund() {
@@ -407,8 +407,20 @@ public class UserInfoController {
 	 * 마일리지 사용내역은 3개월까지 보여주기
 	 * */
 	@RequestMapping("myPageMileage")
-	public void myPageMileage() {
+	public Map<String, Object> myPageMileage(HttpSession session) {
+		/**
+		 * 내정보 - 마일리지 버튼을 누르자마자 바로
+		 * 추천인 아이디(5명)을 띄워주고 그 이외의 다른 추천인은 ~외 ~명으로 나타낸다
+		 * 또한 추천인 아이디 밑부분에는 마일리지 사용내역을 뿌려주는데
+		 * 현재일로부터 3개월이전의 데이터만 가지고 나온다.
+		 * 
+		 * 이 두 결과값을 map에 저장한 후 리턴한다.
+		 * 페이지는 이동할 필요없으므로 그냥 Controller에서 리턴을 map으로함 
+		 * */
+		String email = (String)session.getAttribute("email");
+		Map<String, Object> map = userService.myPageMileage(email);
 		
+		return map;
 	}
 	
 	/**
@@ -417,29 +429,40 @@ public class UserInfoController {
 	 * 총금액 띄워주기
 	 * */
 	@RequestMapping("myCart")
-	public List<ProductDTO> myCart(HttpSession session) {
+	public Map<String, Object> myCart(HttpSession session) {
 		/**
 		 * session에서 email을 뽑아와서
 		 * 해당 이메일을 아이디로 가지는 회원의
 		 * 장바구니에 담긴 상품목록을 가져온다
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<ProductDTO> list = userService.myCart(email);
+		Map<String, Object> map = userService.myCart(email);
 		
-		return list;
+		return map;
 	}
 	
 	/**
 	 * 장바구니에서 삭제
 	 * */
 	@RequestMapping("myCartDelete")
-	public void myCartDelete(int no) {
+	public int myCartDelete(int no) {
 		/**
 		 * 장바구니에서 상품 삭제를 누를 경우
-		 * 장바구니에 
+		 * 장바구니 리스트에서 해당 상품에 대한 정보 삭제
+		 * 
+		 * 먼저 장바구니안에 담긴 상품 목록들을 map에 저장을 해서
+		 * view로 가지고 나왔기 때문에 따로 session에 저장을 할 필요가 없다
+		 * 
+		 * 해당 상품코드가 인수로 들어오면 그 값을 service로 보내주어 dao까지 이동
+		 * dao에서는 해당 번호에 일치하는 상품의 정보를 삭제한 후 int형을 리턴
+		 * 
+		 * 1 => 삭제 성공
+		 * 0 => 삭제 실패
+		 * view로 int형 리턴값을 넘겨준다.
 		 * 
 		 * */
-		
+		int result = userService.myCartDelete(no);
+		return result;
 	}
 	
 	/**
