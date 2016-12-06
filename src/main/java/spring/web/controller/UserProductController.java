@@ -75,6 +75,8 @@ public class UserProductController {
 		 * 3. 생산자 정보도 가져온다.
 		 * 4. 이때 ProductDTO와 ProducerDTO를 서비스 영역에서 Map에 담아 컨트롤러에서 받은 후
 		 * 이를 ModelandView에 담아 뷰로 넘겨준다.
+		 * 
+		 * + CertificationDTO, ProductCommentDTO도 필요
 		 * */
 		Map<String, Object> map = service.showProductDetail(productNo);
 		ModelAndView mv = new ModelAndView();

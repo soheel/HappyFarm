@@ -1,5 +1,6 @@
 package spring.web.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,8 @@ import spring.web.dto.ProductDTO;
 
 @Service
 public class UserProductServiceImpl implements UserProductService{
+	
+	
 
 	@Override
 	public List<ProductDTO> shopMenuLoading() {
@@ -25,8 +28,21 @@ public class UserProductServiceImpl implements UserProductService{
 
 	@Override
 	public Map<String, Object> showProductDetail(String productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		/**
+		 * Map에 ProductDTO, ProductCommentDTO, CertificationDTO, ProducerDTO를 담아서 
+		 * 컨트롤러로 반환
+		 * */
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		// ProductDTO 가져오기
+		
+		// ProductCommentDTO 가져오기
+		
+		// CertificationDTO 가져오기
+		
+		// ProducerDTO 가져오기
+		
+		return map;
 	}
 
 	@Override
