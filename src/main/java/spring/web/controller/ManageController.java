@@ -173,7 +173,7 @@ public class ManageController {
 	@RequestMapping("packageSearchProduct")
 	public List<ProductDTO> packageSearchProduct(String productname) {
 		/**
-		 * 
+		 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 		 */
 		List<ProductDTO> list = null;
 		

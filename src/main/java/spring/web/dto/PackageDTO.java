@@ -3,6 +3,7 @@ package spring.web.dto;
 import java.util.List;
 
 public class PackageDTO {
+	private int no;
 	private String name;
 	private List<ProductDTO> list;
 	
@@ -10,12 +11,21 @@ public class PackageDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PackageDTO(String name, List<ProductDTO> list) {
+	public PackageDTO(int no, String name, List<ProductDTO> list) {
 		super();
+		this.no = no;
 		this.name = name;
 		this.list = list;
 	}
 
+	public int getNo() {
+		return no;
+	}
+	
+	public void setNo(int no) {
+		this.no = no;
+	}
+	
 	public String getName() {
 		return name;
 	}

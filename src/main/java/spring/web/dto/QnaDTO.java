@@ -1,13 +1,13 @@
 package spring.web.dto;
 
 public class QnaDTO {
-	int no;
-	String name;
-	String desc;
-	String pwd;
-	String registerdate;
-	String Email;
-	int qnaParent;
+	private int no;
+	private String name;
+	private String desc;
+	private String pwd;
+	private String registerdate;
+	private String email;
+	private int qnaParent;
 	
 	public QnaDTO() {
 		super();
@@ -20,7 +20,7 @@ public class QnaDTO {
 		this.desc = desc;
 		this.pwd = pwd;
 		this.registerdate = registerdate;
-		Email = email;
+		this.email = email;
 		this.qnaParent = qnaParent;
 	}
 
@@ -65,11 +65,11 @@ public class QnaDTO {
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public int getQnaParent() {

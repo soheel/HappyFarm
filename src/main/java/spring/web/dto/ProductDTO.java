@@ -1,6 +1,7 @@
 package spring.web.dto;
 
 public class ProductDTO {
+	private int no;
 	private String name;
 	private int price;
 	private String profile;
@@ -14,9 +15,10 @@ public class ProductDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDTO(String name, int price, String profile, String desc, double eval, String unit, int producerNo,
+	public ProductDTO(int no, String name, int price, String profile, String desc, double eval, String unit, int producerNo,
 			int categoryNo) {
 		super();
+		this.no = no;
 		this.name = name;
 		this.price = price;
 		this.profile = profile;
@@ -27,6 +29,14 @@ public class ProductDTO {
 		this.categoryNo = categoryNo;
 	}
 
+	public int getNo() {
+		return no;
+	}
+	
+	public void setNo(int no) {
+		this.no = no;
+	}
+	
 	public String getName() {
 		return name;
 	}

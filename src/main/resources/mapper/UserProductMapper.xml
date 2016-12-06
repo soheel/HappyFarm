@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserProductMapper">
+
+<!-- ResultMap -->
+<resultMap type="productDTO" id="productResultMap">
+	<id column="product_no" property="productNo"/>
+	<result column="product_name" property="productName"/>
+	<result column="product_price" property="productPrice"/>
+	<result column="product_profile" property="productProfile"/>
+	<result column="product_desc" property="productDesc"/>
+	<result column="product_eval" property="productEval"/>
+	<result column="product_unit" property="productUnit"/>
+	<result column="producer_no" property="producerNo"/>
+	<result column="category_subcategory_no" property="categoryNo"/>
+</resultMap>
+
+<!-- shopMenuLoading() 관련 쿼리문 -->
+
+<!-- 인기상품 가져오기 -->
+<select id="getBestProduct" resultType="integer">
+select purchase_product.product_no 
+from purchase, purchase_product 
+where purchase.purchase_no = purchase_product.purchase_no group by purchase_product.product_no order by count(purchase_product.product_no) desc
+</select>
+
+<!-- 최근구매내역 가져오기 -->
+<select id="getRecentPurchase" resultType="integer" parameterType="string">
+select purchase_product.product_no 
+from purchase, purchase_product
+where purchase.purchase_no = purchase_product.purchase_no and purchase.purchase_state_no = 2 and purchase.member_email = #{value} order by purchase.purchase_date desc
+</select>
+
+<!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 -->
+<select id="getProductByProductNo" resultMap="" parameterType="integer">
+select * from product where product_no = #{value}
+</select>
+</mapper>

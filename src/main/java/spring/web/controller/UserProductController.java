@@ -1,6 +1,9 @@
 package spring.web.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +43,7 @@ public class UserProductController {
 		list = service.shopMenuLoading();
 		return list;
 	}
-	
+	 
 	/**
 	 * shop 메뉴바에서 카테고리 눌렀을 때 9개 리스트 뿌려주기
 	 * 등록순(product 테이블에서 product_no 내림차순)
@@ -74,11 +77,13 @@ public class UserProductController {
 		/**
 		 * 1. 해당 상품 사진을 누르면 해당 상품의 productNo를 서버로 인수로 넘겨줌
 		 * 2. 받은 인수(productNo)를 dao로 넘겨서 해당 상품 DTO(ProductDTO)를 받아온다.
-		 * 3. 받아온 상품정보를 반환한다.
+		 * 3. 생산자 정보도 가져온다.
+		 * 4. 이때 ProductDTO와 ProducerDTO를 서비스 영역에서 Map에 담아 컨트롤러에서 받은 후
+		 * 이를 ModelandView에 담아 뷰로 넘겨준다.
 		 * */
-		ProductDTO productDTO = service.showProductDetail(productNo);
+		Map<String, Object> map = service.showProductDetail(productNo);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("product", productDTO);
+		mv.addObject("map", map);
 		mv.setViewName("productDetail");
 		return mv;
 	}
@@ -105,24 +110,33 @@ public class UserProductController {
 	 * 장바구니에 담기
 	 * */
 	@RequestMapping("addCart")
-	public void addCart() {
+	public int addCart(String productNo, int num, HttpSession session) {
+		/**
+		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
+		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품과 갯수를 insert한다.
+		 * */
 		
+		String email = (String)session.getAttribute("email");
+		int result = service.addCart(productNo, num, email);
+		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
 	}
-	
+
 	/**
-	 * 상품 상세정보에서 구매하기버튼 클릭했을 때
-	 * */
-	@RequestMapping("purchase")
-	public void purchase() {
-		
-	}
-	
-	/**
-	 * 주문화면
+	 * 주문화면에서 주문하기 버튼 눌렀을 때
 	 * */
 	@RequestMapping("order")
-	public void order() {
+	public ModelAndView order(Map<String, Object> map, String num) {
+		/**
+		 * 1. 제품 상세보기를 누른 상태라면 request에 이미 제품정보, 생산자정보를 담은 map가 있을 것이므로
+		 * 이 map을 다시 서버로 보내줘서 이를 ModelAndView에 담아 다시 view로 보내주면 된다.
+		 * 2. 이때 사용자가 구매하려고한 상품의 개수도 함께 보내주면 된다. 
+		 * */
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("map", map);
+		mv.addObject("num", num);
+		mv.setViewName("purchase");
+		return mv;
 	}
 	
 	/**
@@ -155,8 +169,16 @@ public class UserProductController {
 	 * package 메뉴바에서 카테고리 눌렀을 때 9개 리스트 뿌려주기
 	 * */
 	@RequestMapping("packageMenuListLoading")
-	public void packageMenuListLoading() {
+	public ModelAndView packageMenuListLoading() {
+		/**
+		 * 1. pacakage 테이블에서 등록순으로 List<ProductDTO>를 뷰로 전달
+		 * */
 		
+		List<ProductDTO> list = service.packageMenuListLoading();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("searchProduct");
+		return mv;
 	}
 	
 	/**

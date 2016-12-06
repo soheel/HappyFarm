@@ -24,13 +24,13 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public ProducerDTO showProducerInfo(String producerNo) {
+	public Map<String, Object> showProductDetail(String productNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Map<String, Object> showProductDetail(String productNo) {
+	public ProducerDTO showProducerInfo(String producerNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -39,6 +39,12 @@ public class UserProductServiceImpl implements UserProductService{
 	public int addCart(String productNo, int num, String email) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<ProductDTO> packageMenuListLoading() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
