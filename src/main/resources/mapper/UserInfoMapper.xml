@@ -7,72 +7,75 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="userInfoMapper">
-  
-     <!-- 일반 resultMap --> 
-   <resultMap type="MemberDTO" id="memberDto">
-      <id column="member_email" property="email" />
-      <result column="member_pwd" property="pwd" />
-      <result column="member_name" property="name" />
-      <result column="member_phone" property="phone" />
-      <result column="donation_org_no" property="donationOrgNo"/>
-      <result column="member_recommand" property="recommand" />
-   </resultMap>
-   
-  
 
-   <!-- 회원가입 
-      기부업체 번호는 어떻게 처리하지?
-   -->
-   <insert id="registerMember" parameterType="memberDTO">
-      insert into member 
-      values(#{email},#{pwd},#{name},#{phone},sysdate,1,0,#{recommand})
-   </insert>
-   
-   <!-- 계정찾기(id) / 중복확인 -->
-   <select id="searchId" parameterType="String" resultMap="memberDto">
-       select member_email 
-       from member 
-       where member_name=#{name} and member_phone=#{phone}
-   </select>
-   
-   <!-- 계정찾기(pwd-sendcode) -->
-   <select id="searchPwdSendCode" parameterType="String" resultMap="memberDto">
-      select member_email
-      from member
-      where member_email=#{email}
-   </select>
-   
-   <!-- 계정찾기(pwd) -->
-   <select id="searchPwd" parameterType="String" resultType="String">
-         select member_pwd
-         from member
-         where member_email=#{email}
-   </select>
-   
-   <!-- 로그인 -->
-   <select id="login" parameterType="memberDto" resultMap="memberDto">
-         select member_email,member_pwd
-         from member
-         where member_email=#{email} and member_pwd=#{pwd}
-   </select>
-   
-   <!-- id 중복확인 / 추천인 id 중복확인 -->
-   <select id="checkId" parameterType="String" resultMap="memberDto">
-         select member_email
-         from member
-         where member_email=#{mail}
-   </select>
-   
-   
-   <!-- 내정보(MyPage) -->
-   <!-- 마일리지 / 진행중인 주문내역 가져오기-->
-   <select id="getMileageAndOrderlist">
-         select m.member_mileage,p.purchase_state_no
-         from member m join purchase p
-         where m.member_email = p.member_email
-   </select>
-   
-   
-   
+	<!-- 일반 resultMap -->
+	<resultMap type="MemberDTO" id="memberDto">
+		<id column="member_email" property="email" />
+		<result column="member_pwd" property="pwd" />
+		<result column="member_name" property="name" />
+		<result column="member_phone" property="phone" />
+		<result column="donation_org_no" property="donationOrgNo" />
+		<result column="member_recommand" property="recommand" />
+	</resultMap>
+
+
+
+	<!-- 회원가입 기부업체 번호는 어떻게 처리하지? -->
+	<insert id="registerMember" parameterType="memberDTO">
+		insert into member
+		values(#{email},#{pwd},#{name},#{phone},sysdate,1,0,#{recommand})
+	</insert>
+
+	<!-- 계정찾기(id) / 중복확인 -->
+	<select id="searchId" parameterType="String" resultMap="memberDto">
+		select member_email
+		from member
+		where member_name=#{name} and member_phone=#{phone}
+	</select>
+
+	<!-- 계정찾기(pwd-sendcode) -->
+	<select id="searchPwdSendCode" parameterType="String" resultMap="memberDto">
+		select member_email
+		from member
+		where member_email=#{email}
+	</select>
+
+	<!-- 계정찾기(pwd) -->
+	<select id="searchPwd" parameterType="String" resultType="String">
+		select member_pwd
+		from member
+		where member_email=#{email}
+	</select>
+
+	<!-- 로그인 -->
+	<select id="login" parameterType="memberDto" resultMap="memberDto">
+		select member_email,member_pwd
+		from member
+		where member_email=#{email} and member_pwd=#{pwd}
+	</select>
+
+	<!-- id 중복확인 / 추천인 id 중복확인 -->
+	<select id="checkId" parameterType="String" resultMap="memberDto">
+		select member_email
+		from member
+		where member_email=#{mail}
+	</select>
+
+
+	<!-- 내정보(MyPage) -->
+	<!-- 마일리지 / 진행중인 주문내역 가져오기 -->
+	<select id="getMileageAndOrderlist">
+		select
+		m.member_mileage,pc.purchase_date,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
+		from member m, purchase pc, product pdt, purchase_product pp, producer pdc
+		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
+		m.member_email='김나리';
+
+
+	</select>
+
+
+
 
 </mapper>
