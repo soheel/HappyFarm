@@ -2,6 +2,8 @@ package spring.web.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -11,6 +13,7 @@ import spring.web.dto.QnaDTO;
 
 public class UserEtcDaoImpl implements UserEtcDao {
 
+	
 	@Override
 	public List<CommunityDTO> communityLoading() {
 		// TODO Auto-generated method stub
