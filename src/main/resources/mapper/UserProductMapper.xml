@@ -95,6 +95,11 @@ from product, producer
 where product.producer_no = producer.producer_no and product.product_no = #{value}
 </select>
 
+<!-- 생산자번호(producerNo)로 Producer DTO 가져오기 -->
+<select id="getProducerByProducerNo" resultMap="producerResultMap" parameterType="integer">
+select * from producer where producer_no = #{value}
+</select>
+
 <!-- 장바구니에 상품 담기(상품 상세보기에서 눌렀을 때) -->
 <insert id="registerProductToCart" parameterType="cartDTO">
 insert into cart values(cart_no.nextval, #{productNo}, #{num}, #{email})

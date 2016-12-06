@@ -2,6 +2,9 @@ package spring.web.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import spring.web.dto.CartDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
@@ -28,13 +31,13 @@ public interface UserProductDAO {
 	List<ProductDTO> getProductByCategory(int categoryNo);
 	
 	/**
-	 * showProductDetail(int productNo)
+	 * showProductDetail(int productNo) / order(int productNo, int num)
 	 * productNo로 ProductDTO 가져오기
 	 * */
 	ProductDTO getProductByProductNo(int productNo);
 
 	/**
-	 * showProductDetail(int productNo)
+	 * showProductDetail(int productNo) / order(int productNo, int num)
 	 * productNo로 ProducerDTO 가져오기
 	 * */
 	ProducerDTO getProducerByProductNo(int productNo);
@@ -50,4 +53,22 @@ public interface UserProductDAO {
 	 * productNo로 CertificationDTO 가져오기
 	 * */
 	CertificationDTO getCertificationByProductNo(int productNo);
+	
+	/**
+	 * showProducerInfo(int producerNo)
+	 * producerNo로 ProducerDTO 가져오기
+	 * */
+	ProducerDTO getProducerByProducerNo(int producerNo);
+	
+	/**
+	 * addCart(int productNo, int num, HttpSession session)
+	 * 상품상세보기에서 장바구니에 추가
+	 * */
+	int registerProductToCart(CartDTO cartDTO);
+	
+	/**
+	 * addCartDirect(int productNo, HttpSession session)
+	 * 상품리스트에서 장바구니에 추가
+	 * */
+	int registerProductToCartDirect(CartDTO cartDTO);
 }
