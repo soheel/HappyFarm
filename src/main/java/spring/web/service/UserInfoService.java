@@ -1,8 +1,12 @@
 package spring.web.service;
 
+import java.util.List;
 import java.util.Map;
 
+import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProductDTO;
+import spring.web.dto.QnaDTO;
 
 public interface UserInfoService {
 
@@ -48,6 +52,43 @@ public interface UserInfoService {
 	 * */
 	Map<String, Integer> myPageLoading(String email); 
 	
+	/**
+	 * MyPage의 쇼핑내역을 누를경우
+	 * 바로 주문/배송조회가 이루어지면서
+	 * 회원의 3개월간 주문조회 내역을 purchase테이블에서
+	 * 가져와서 view에 뿌려줌
+	 * */
+	List<ProductDTO> myPageOrderList(String email);
+	
+	/**
+	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
+	 * 해당 목록 삭제
+	 * */
+	int deleteOrderProduct(String email);
+	
+	/**
+	 * 해당 회원에 해당하는 qna 정보 가져오기
+	 * */
+	List<QnaDTO> myPageQna(String email);
+	
+	/**
+	 * 해당 qna에 달린 답글 가져오기
+	 * */
+	String showAnswer(QnaDTO qnaDto);
+	
+	/**
+	 * 내정보 - 기부버튼 눌렀을 때
+	 * */
+	List<DonationDTO> myPageDonation(String email);
+	
+	/**
+	 * 내정보 - 개인정보 관리
+	 * */
+	MemberDTO myPageInfoModify(String email);
+	
+	/**
+	 * 내정보 - 장바구니
+	 * */
 	
 	
 }
