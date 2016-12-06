@@ -60,17 +60,17 @@ from purchase, purchase_product
 where purchase.purchase_no = purchase_product.purchase_no and purchase.purchase_state_no = 2 and purchase.member_email = #{value} order by purchase.purchase_date desc
 </select>
 
-<!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 -->
-<select id="getProductByProductNo" resultMap="productResultMap" parameterType="integer">
-select * from product where product_no = #{value}
-</select>
-
 <!-- 카테고리 눌렀을 때, 상품 리스트 가져오기 (개별상품) -->
 <select id="getProductByCategory" resultMap="productResultMap" parameterType="integer">
 select *
 from product
 where category_subcategory_no = #{value}
 order by product_no desc
+</select>
+
+<!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 -->
+<select id="getProductByProductNo" resultMap="productResultMap" parameterType="integer">
+select * from product where product_no = #{value}
 </select>
 
 <!-- 상품 상세보기 -->
@@ -88,7 +88,7 @@ from certification, product_certification
 where certification.certification_no = product_certification.certification_no and product_certification.product_no = #{value}
 </select>
 
-<!-- productNo를 이용해 Certification DTO 가져오기 -->
+<!-- productNo를 이용해 Producer DTO 가져오기 -->
 <select id="getProducerByProductNo" resultMap="producerResultMap" parameterType="integer">
 select producer.producer_no, producer.producer_name, producer.producer_addr, producer.producer_phone, producer.producer_register_date
 from product, producer

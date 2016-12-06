@@ -1,3 +1,38 @@
+donation_org -> donation -> member -> producer -> category -> sub_category -> product -> package -> package_product -> certification -> product_certification
+-> purchase_state -> purchase -> purchase_order -> purchase_product -> cart -> product_comment -> commuinty -> community_comment -> qna -> information
+
+-- donation_org Å×ÀÌºí----------------------------------------------------------
+drop table donation_org;
+select * from donation_org;
+½ÃÄö½º
+drop sequence donation_org_no;
+create sequence donation_org_no nocache;
+
+create table donation_org (
+donation_org_no number(5) primary key,
+donation_org_name varchar2(20) not null,
+donation_org_phone varchar2(15) not null,
+donation_org_addr varchar2(50) not null,
+donation_org_desc varchar2(100) not null,
+donation_org_profile varchar2(100)
+)
+
+»ğÀÔ
+insert into donation_org values(donation_org_no.nextval, 'À¯´Ï¼¼ÇÁ','031-219-1542','°æ±âµµ','À¯´Ï¼¼ÇÁÀÔ´Ï´Ù',null);
+
+-- donation Å×ÀÌºí--------------------------------------------------------------
+drop table donation;
+select * from donation;
+
+create table donation (
+donation_date date primary key,
+donation_price number(10) not null,
+donation_org_no number(5) references donation_org(donation_org_no) on delete cascade
+)
+
+»ğÀÔ
+insert into donation values(sysdate, 90000000, 1);
+
 --member Å×ÀÌºí-----------------------------------------------------------------
 drop table member;
 select * from member;
@@ -19,37 +54,6 @@ insert into member values('ÀÌ¼ÒÈñ', '123', 'ÀÌ¼ÒÈñ', '012', sysdate, 9000, null,
 insert into member values('¹ÚÅÂÈì', '123', '¹ÚÅÂÈì', '013', sysdate, 2000, null, 1);
 insert into member values('±è³ª¸®', '123', '±è³ª¸®', '014', sysdate, 12000, null, 1);
 insert into member values('ÀÓ±Ù¹¬', '123', 'ÀÓ±Ù¹¬', '015', sysdate, 100000, null, 1);
-
--- product Å×ÀÌºí---------------------------------------------------------------
-drop table product;
-select * from product;
-½ÃÄö½º
-drop sequence product_no;
-create sequence product_no;
-
-create table product (
-product_no number(5) primary key,
-product_name varchar2(50) not null,
-product_price number(10) not null,
-product_profile varchar2(100) not null,
-product_desc varchar2(100) not null,
-product_eval number(3,1) default 0,
-product_unit varchar2(15),
-producer_no number(5) references producer(producer_no) on delete cascade,
-category_subcategory_no number(5) references category_subcategory(category_subcategory_no) on delete cascade
-)
-
-»ğÀÔ
-insert into product values(product_no.nextval, 'Á¦ÁÖ°¨±Ö', 20000, null, '½Ì½ÌÇÏ´Ù', 3.8, '»óÀÚ', 1, 5);
-insert into product values(product_no.nextval, '¼Õ¸À¹èÃß', 30000, null, '³ë¶ş´Ù', 4.8, 'Æ÷±â', 2, 14);
-insert into product values(product_no.nextval, '¸Å¿î°íÃå°¡·ç', 10000, null, '»õ»¡°²´Ù', 4.0, 'kg', 2, 23);
-insert into product values(product_no.nextval, 'ÀÇ¼º¸¶´Ã', 3000, null, '³ë¶ş´Ù', 4.5, 'g', 3, 13);
-insert into product values(product_no.nextval, '¸Å²öÇÑ¹«', 4000, null, '´Ü´ÜÇÏ´Ù', 4.5, 'kg', 5, 14);
-insert into product values(product_no.nextval, 'ÇŞ»ı°­', 8000, null, '¾Æ»èÇÏ´Ù', 3.6, 'kg', 6, 13);
-insert into product values(product_no.nextval, '¹ĞÅ°Äı', 8000, null, 'µüµüÇÏ´Ù', 3.0, 'kg', 2, 20);
-
-insert into product values(product_no.nextval, '±èÀå¼¼Æ®', 45000, null, '±èÀå¼¼Æ®ÀÔ´Ï´Ù', 3.9, '¼¼Æ®', 2, 14);
-
 
 -- producer Å×ÀÌºí--------------------------------------------------------------
 drop table producer;
@@ -131,6 +135,36 @@ insert into category_subcategory values(category_subcategory_no.nextval, 'Âı½Ò/È
 insert into category_subcategory values(category_subcategory_no.nextval, 'Àâ°î/Äá/±ú',3);
 insert into category_subcategory values(category_subcategory_no.nextval, '°íÃå°¡·ç/¹Ì¼ı°¡·ç/°î¹°°¡·ç',3);
 
+-- product Å×ÀÌºí---------------------------------------------------------------
+drop table product;
+select * from product;
+½ÃÄö½º
+drop sequence product_no;
+create sequence product_no;
+
+create table product (
+product_no number(5) primary key,
+product_name varchar2(50) not null,
+product_price number(10) not null,
+product_profile varchar2(100) not null,
+product_desc varchar2(100) not null,
+product_eval number(3,1) default 0,
+product_unit varchar2(15),
+producer_no number(5) references producer(producer_no) on delete cascade,
+category_subcategory_no number(5) references category_subcategory(category_subcategory_no) on delete cascade
+)
+
+»ğÀÔ
+insert into product values(product_no.nextval, 'Á¦ÁÖ°¨±Ö', 20000, null, '½Ì½ÌÇÏ´Ù', 3.8, '»óÀÚ', 1, 5);
+insert into product values(product_no.nextval, '¼Õ¸À¹èÃß', 30000, null, '³ë¶ş´Ù', 4.8, 'Æ÷±â', 2, 14);
+insert into product values(product_no.nextval, '¸Å¿î°íÃå°¡·ç', 10000, null, '»õ»¡°²´Ù', 4.0, 'kg', 2, 23);
+insert into product values(product_no.nextval, 'ÀÇ¼º¸¶´Ã', 3000, null, '³ë¶ş´Ù', 4.5, 'g', 3, 13);
+insert into product values(product_no.nextval, '¸Å²öÇÑ¹«', 4000, null, '´Ü´ÜÇÏ´Ù', 4.5, 'kg', 5, 14);
+insert into product values(product_no.nextval, 'ÇŞ»ı°­', 8000, null, '¾Æ»èÇÏ´Ù', 3.6, 'kg', 6, 13);
+insert into product values(product_no.nextval, '¹ĞÅ°Äı', 8000, null, 'µüµüÇÏ´Ù', 3.0, 'kg', 2, 20);
+
+insert into product values(product_no.nextval, '±èÀå¼¼Æ®', 45000, null, '±èÀå¼¼Æ®ÀÔ´Ï´Ù', 3.9, '¼¼Æ®', 2, 14);
+
 -- package Å×ÀÌºí---------------------------------------------------------------
 drop table package;
 select * from package;
@@ -206,6 +240,26 @@ insert into product_certification values (product_certification_no.nextval, 2,3)
 insert into product_certification values (product_certification_no.nextval, 2,4);
 insert into product_certification values (product_certification_no.nextval, 3,5);
 
+-- purchase_state Å×ÀÌºí--------------------------------------------------------
+drop table purchase_state;
+select * from purchase_state;
+½ÃÄö½º
+drop sequence purchase_state_no;
+create sequence purchase_state_no;
+
+create table purchase_state (
+purchase_state_no number(1) primary key,
+purchase_state_name varchar2(18) not null
+)
+
+»ğÀÔ
+insert into purchase_state values(purchase_no.nextval, 'ÁÖ¹®¿Ï·á');
+insert into purchase_state values(purchase_no.nextval, '°áÁ¦¿Ï·á');
+insert into purchase_state values(purchase_no.nextval, 'È¯ºÒ');
+insert into purchase_state values(purchase_no.nextval, '¹İÇ°');
+insert into purchase_state values(purchase_no.nextval, '±³È¯');
+insert into purchase_state values(purchase_no.nextval, 'Ãë¼Ò');
+
 -- purchase Å×ÀÌºí--------------------------------------------------------------
 drop table purchase;
 select * from purchase;
@@ -243,40 +297,21 @@ purchase_order_phone varchar2(15) not null
 »ğÀÔ
 insert into purchase_order values(1, '¹Ú¿ë¿ì', '¼ö¿ø', 'ÆÈ´Ş±¸', 15152, 'naver.com', '010');
 
--- purchase_product Å×ÀÌºí
+-- purchase_product Å×ÀÌºí------------------------------------------------------
 drop table purchase_product;
 select * from purchase_product;
 
 create table purchase_product (
 purchase_no number(5) primary key references purchase(purchase_no) on delete cascade,
-product_no number(5) references product(product_no) on delete cascade
+product_no number(5) references product(product_no) on delete cascade,
+purchase_product_num number(2) default 1
 )
 
 »ğÀÔ
-insert into purchase_product values(1, 1);
-insert into purchase_product values(1, 2);
+insert into purchase_product values(1, 1, 1);
+insert into purchase_product values(1, 2, 1);
 
--- purchase_state Å×ÀÌºí--------------------------------------------------------
-drop table purchase_state;
-select * from purchase_state;
-½ÃÄö½º
-drop sequence purchase_state_no;
-create sequence purchase_state_no;
-
-create table purchase_state (
-purchase_state_no number(1) primary key,
-purchase_state_name varchar2(18) not null
-)
-
-»ğÀÔ
-insert into purchase_state values(purchase_no.nextval, 'ÁÖ¹®¿Ï·á');
-insert into purchase_state values(purchase_no.nextval, '°áÁ¦¿Ï·á');
-insert into purchase_state values(purchase_no.nextval, 'È¯ºÒ');
-insert into purchase_state values(purchase_no.nextval, '¹İÇ°');
-insert into purchase_state values(purchase_no.nextval, '±³È¯');
-insert into purchase_state values(purchase_no.nextval, 'Ãë¼Ò');
-
--- cart Å×ÀÌºí
+-- cart Å×ÀÌºí------------------------------------------------------------------
 drop table cart;
 select * from cart;
 ½ÃÄö½º
@@ -295,8 +330,7 @@ primary key(cart_no, product_no)
 insert into cart values(cart_no.nextval, 1, 1, '¹Ú¿ë¿ì');
 insert into cart values(cart_no.nextval, 5, 2, '¹Ú¿ë¿ì');
 
-
--- product_comment Å×ÀÌºí
+-- product_comment Å×ÀÌºí-------------------------------------------------------
 drop table product_comment;
 select * from product_comment;
 ½ÃÄö½º
@@ -308,20 +342,21 @@ product_comment_no number(5) primary key,
 product_comment_content varchar2(300),
 product_comment_register_date date not null,
 member_email varchar2(50) references member(member_email) on delete cascade,
-product_no number(5) references product(product_no) on delete cascade
+product_no number(5) references product(product_no) on delete cascade,
+product_comment_parent number(5) references product_comment(product_comment_no) on delete cascade
 )
 
 »ğÀÔ
 insert into product_comment values(product_comment_no.nextval, 'Á¤¸» ÁÁÀº »óÇ°ÀÌ³×¿ä', sysdate, '¹Ú¿ë¿ì', 1);
 
--- community Å×ÀÌºí
+-- community Å×ÀÌºí-------------------------------------------------------------
 drop table community;
 select * from community;
 ½ÃÄö½º
 drop sequence community_no;
 create sequence community_no;
 
--- community_state°¡ 1ÀÌ¸é ÁøÇàÁß, 2¸é ÁøÇà¿Ï·á
+community_state°¡ 1ÀÌ¸é ÁøÇàÁß, 2¸é ÁøÇà¿Ï·á
 create table community (
 community_no number(5) primary key,
 community_name varchar2(30) not null,
@@ -334,7 +369,7 @@ community_state number(1) not null
 »ğÀÔ
 insert into community values(community_no.nextval, '±èÄ¡´ã±×±â¸ğÀÓ', null, '±èÀåÀ»ÇÏÀÚ', sysdate, 1);
 
--- community_comment Å×ÀÌºí
+-- community_comment Å×ÀÌºí-----------------------------------------------------
 drop table community_comment;
 select * from community_comment;
 ½ÃÄö½º
@@ -352,7 +387,7 @@ member_email varchar2(50) references member(member_email) on delete cascade
 »ğÀÔ
 insert into community_comment values(community_comment_no.nextval, sysdate, 'Âü¿©ÇÏ°í½Í¾î¿ä', 1, '¹Ú¿ë¿ì');
 
--- qna Å×ÀÌºí
+-- qna Å×ÀÌºí-------------------------------------------------------------------
 drop table qna;
 select * from qna;
 ½ÃÄö½º
@@ -372,39 +407,7 @@ qna_parent number(5) references qna(qna_no) on delete cascade
 »ğÀÔ
 insert into qna values(qna_no.nextval, '¹è¼Û³¯Â¥ ¹®ÀÇµå¸³´Ï´Ù~', '12¿ù 3ÀÏ¿¡ ÁÖ¹®Çß´Âµ¥ ¾ÆÁ÷±îÁö ¹è¼Û ÁØºñÁßÀÎµ¥ ¾ğÁ¦ ¹è¼ÛµÇ³ª¿ä', '123', sysdate, '¹Ú¿ë¿ì', null);
 
--- donation Å×ÀÌºí
-drop table donation;
-select * from donation;
-
-create table donation (
-donation_date date primary key,
-donation_price number(10) not null,
-donation_org_no number(5) references donation_org(donation_org_no) on delete cascade
-)
-
-»ğÀÔ
-insert into donation values(sysdate, 90000000, 1);
-
--- donation_org Å×ÀÌºí
-drop table donation_org;
-select * from donation_org;
-½ÃÄö½º
-drop sequence donation_org_no;
-create sequence donation_org_no nocache;
-
-create table donation_org (
-donation_org_no number(5) primary key,
-donation_org_name varchar2(20) not null,
-donation_org_phone varchar2(15) not null,
-donation_org_addr varchar2(50) not null,
-donation_org_desc varchar2(100) not null,
-donation_org_profile varchar2(100)
-)
-
-»ğÀÔ
-insert into donation_org values(donation_org_no.nextval, 'À¯´Ï¼¼ÇÁ','031-219-1542','°æ±âµµ','À¯´Ï¼¼ÇÁÀÔ´Ï´Ù',null);
-
--- information Å×ÀÌºí
+-- information Å×ÀÌºí-----------------------------------------------------------
 drop table information;
 select * from information;
 ½ÃÄö½º
