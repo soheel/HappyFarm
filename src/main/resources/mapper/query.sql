@@ -146,7 +146,7 @@ create table product (
 product_no number(5) primary key,
 product_name varchar2(50) not null,
 product_price number(10) not null,
-product_profile varchar2(100) not null,
+product_profile varchar2(100),
 product_desc varchar2(100) not null,
 product_eval number(3,1) default 0,
 product_unit varchar2(15),
@@ -186,7 +186,7 @@ drop table package_product;
 select * from package_product;
 시퀀스
 drop sequence package_product_no;
-create sequence packge_product_no;
+create sequence package_product_no;
 
 create table package_product (
 package_product_no number(5) primary key,
@@ -253,12 +253,12 @@ purchase_state_name varchar2(18) not null
 )
 
 삽입
-insert into purchase_state values(purchase_no.nextval, '주문완료');
-insert into purchase_state values(purchase_no.nextval, '결제완료');
-insert into purchase_state values(purchase_no.nextval, '환불');
-insert into purchase_state values(purchase_no.nextval, '반품');
-insert into purchase_state values(purchase_no.nextval, '교환');
-insert into purchase_state values(purchase_no.nextval, '취소');
+insert into purchase_state values(purchase_state_no.nextval, '주문완료');
+insert into purchase_state values(purchase_state_no.nextval, '결제완료');
+insert into purchase_state values(purchase_state_no.nextval, '환불');
+insert into purchase_state values(purchase_state_no.nextval, '반품');
+insert into purchase_state values(purchase_state_no.nextval, '교환');
+insert into purchase_state values(purchase_state_no.nextval, '취소');
 
 -- purchase 테이블--------------------------------------------------------------
 drop table purchase;
@@ -347,7 +347,7 @@ product_comment_parent number(5) references product_comment(product_comment_no) 
 )
 
 삽입
-insert into product_comment values(product_comment_no.nextval, '정말 좋은 상품이네요', sysdate, '박용우', 1);
+insert into product_comment values(product_comment_no.nextval, '정말 좋은 상품이네요', sysdate, '박용우', 1,null);
 
 -- community 테이블-------------------------------------------------------------
 drop table community;
@@ -360,7 +360,7 @@ community_state가 1이면 진행중, 2면 진행완료
 create table community (
 community_no number(5) primary key,
 community_name varchar2(30) not null,
-community_profile varchar2(100) not null,
+community_profile varchar2(100),
 community_desc varchar2(100),
 community_register_date date,
 community_state number(1) not null
