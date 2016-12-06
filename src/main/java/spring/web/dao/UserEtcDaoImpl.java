@@ -2,6 +2,7 @@ package spring.web.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import spring.web.dto.CommunityCommentDTO;
@@ -13,65 +14,58 @@ import spring.web.dto.QnaDTO;
 
 public class UserEtcDaoImpl implements UserEtcDao {
 
+	@Autowired
+	private SqlSession sqlsession;
 	
 	@Override
 	public List<CommunityDTO> communityLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlsession.selectList("userEtcMapper.communityLoading");
 	}
 
 	@Override
-	public CommunityDTO communityDetail(String communityNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public CommunityDTO communityDetail(String no) {
+		return sqlsession.selectOne("userEtcMapper.communityDetail",no);
 	}
 
 	@Override
 	public int registerQnA(QnaDTO qnaDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.insert("userEtcMapper.registerQnA",qnaDTO);
 	}
 
 	@Override
 	public List<QnaDTO> qnaLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.qnaLoading");
 	}
 
 	@Override
 	public List<InfomationDTO> infoLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.infoLoading");
 	}
 
 	@Override
-	public InfomationDTO infoDetail(String qnano) {
-		// TODO Auto-generated method stub
-		return null;
+	public InfomationDTO infoDetail(String no) {
+		return sqlsession.selectOne("userEtcMapper.infoDetail",no);
 	}
 
 	@Override
 	public List<DonationDTO> donationLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.donationLoadingg");
 	}
 
 	@Override
 	public ProducerDTO producerDetail() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectOne("userEtcMapper.producerDetail");
 	}
 
 	@Override
 	public List<CommunityDTO> communityIngList() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.communityIngList");
 	}
 
 	@Override
-	public List<CommunityCommentDTO> commmentList(String communityNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CommunityCommentDTO> commmentList(String no) {
+		return sqlsession.selectList("userEtcMapper.commmentList",no);
 	}
 
 }

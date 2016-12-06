@@ -26,19 +26,19 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public ProductDTO productInfoMangage(String productno) {
+	public ProductDTO productInfoMangage(String no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int productModifyManage(String productno) {
+	public int productModifyManage(String no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int productDeleteManage(String productno) {
+	public int productDeleteManage(String no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -50,19 +50,19 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public List<ProductDTO> packageShowManage(String packagename) {
+	public List<ProductDTO> packageShowManage(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ProductDTO> packageSearchProduct(String productname) {
+	public List<ProductDTO> packageSearchProduct(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ProductDTO packageInfoMangage(String productno) {
+	public ProductDTO packageInfoMangage(String no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -86,13 +86,13 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public ProducerDTO producerInfoMangage(String producerno) {
+	public ProducerDTO producerInfoMangage(String no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int producerModifyManage(String producerno) {
+	public int producerModifyManage(String no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -122,19 +122,19 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public CommunityDTO communityInfoMangage(String communityno) {
+	public CommunityDTO communityInfoMangage(String no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int communityModifyManage(String communityno) {
+	public int communityModifyManage(String no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int communityDeleteManage(String communityno) {
+	public int communityDeleteManage(String no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -152,19 +152,19 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public QnaDTO qnaInfoMangage(String qnano) {
+	public QnaDTO qnaInfoMangage(String no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int qnaModifyManage(String communitycommentno) {
+	public int qnaModifyManage(String no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int qnaDeleteManage(String communitycommentno) {
+	public int qnaDeleteManage(String no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

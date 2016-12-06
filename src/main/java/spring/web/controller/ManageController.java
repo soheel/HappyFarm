@@ -70,9 +70,9 @@ public class ManageController {
 	 * 해당하는 제품의 정보를 select한다.
 	 */
 	@RequestMapping("productInfoMangage")
-	public ProductDTO productInfoMangage(String productno){
+	public ProductDTO productInfoMangage(String no){
 		ProductDTO product = null;
-		product = manageService.productInfoMangage(productno);
+		product = manageService.productInfoMangage(no);
 		
 		return product;
 	}
@@ -81,13 +81,13 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productModifyManage")
-	public String productModifyManage(HttpServletRequest request, String productno) {
+	public String productModifyManage(HttpServletRequest request, String no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.productModifyManage(productno);
+		int result = manageService.productModifyManage(no);
 		if(result==0){
 			request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -100,14 +100,14 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("productDeleteManage")
-	public String productDeleteManage(HttpServletRequest request, String productno) {
+	public String productDeleteManage(HttpServletRequest request, String no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
 		int result =0;
-		result = manageService.productDeleteManage(productno);
+		result = manageService.productDeleteManage(no);
 		if(result==0){
 			request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
@@ -139,12 +139,12 @@ public class ManageController {
 	}
 	
 	/**
-	 * 세트상품 상세정보
+	 * 세트상품 상세정보 packagename을 인수로 받는다.
 	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
 	 * (새창)
 	 * */
 	@RequestMapping("packageShowManage")
-	public ModelAndView packageShowManage(String packagename) {
+	public ModelAndView packageShowManage(String name) {
 		/**
 		 * 1.세프 상품 정보 list에서 package이름을 누르면 해당하는 패키지 이름을 받아온다.
 		 * 2.package에 있는 package_no를 찾고 일치하는 package_product에 있는 product_no를 모두 찾는다.
@@ -152,7 +152,7 @@ public class ManageController {
 		 */
 		
 		//packagename에 일치하는 package_no를 찾고 package_product에 있는 product_no를 찾는다.
-		List<ProductDTO> packageproduct = manageService.packageShowManage(packagename);
+		List<ProductDTO> packageproduct = manageService.packageShowManage(name);
 		//다른 건 다 조인해서 받아올수있는건가...ㅎ
 		
 		ModelAndView mv = new ModelAndView();
@@ -168,7 +168,7 @@ public class ManageController {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("packageRegisterManage")
-	public String packageRegisterManage(ProductDTO productDTO, String packagename) {
+	public String packageRegisterManage(ProductDTO productDTO, String name) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
@@ -176,7 +176,7 @@ public class ManageController {
 		 * 상품검색 : product_name에 일치하는 product를 찾아준다
 		 * 밑에 상품이 productDTO들이 insert된다.
 		 */
-		packageSearchProduct(packagename);
+		packageSearchProduct(name);
 		int result = manageService.productRegisterManage(productDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
@@ -185,42 +185,42 @@ public class ManageController {
 	}
 	
 	/**
-	 * 세트상품 등록에서 개별상품 검색(ajax)
+	 * 세트상품 등록에서 개별상품 검색(ajax)- productname을 받는다.
 	 * 상품번호, 상품이름 아래에 추가
 	 * */
 	@RequestMapping("packageSearchProduct")
-	public List<ProductDTO> packageSearchProduct(String productname) {
+	public List<ProductDTO> packageSearchProduct(String name) {
 		/**
 		 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 		 */
 		List<ProductDTO> list = null;
 		
-		list = manageService.packageSearchProduct(productname);
+		list = manageService.packageSearchProduct(name);
 		
 		return list;
 	}
 	
-	/** div에 정보를 불러와서 ...
+	/** div에 정보를 불러와서 ...productno를 받는다.
 	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
 		ProductDTO product = manageService.selectByPackageName(productDTO)
 	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
 	 * 해당하는 제품의 정보를 select한다.
 	 */
 	@RequestMapping("packageInfoMangage")
-	public ProductDTO packageInfoMangage(String productno){
+	public ProductDTO packageInfoMangage(String no){
 		ProductDTO product = null;
-		product = manageService.packageInfoMangage(productno);
+		product = manageService.packageInfoMangage(no);
 		
 		return product;
 	}
 	
 	/**
-	 * 세트상품관리 수정
+	 * 세트상품관리 수정 (productname을 인수로 받음)
 	 * 수정폼을 div로 띄워줌
 	 * @return 
 	 * */
 	@RequestMapping("packageModifyManage")
-	public String packageModifyManage(ProductDTO productDTO, String productname) {
+	public String packageModifyManage(ProductDTO productDTO, String name) {
 		
 		Map<String, Object> modifyinfo = new HashMap<String, Object>();
 		/**
@@ -233,7 +233,7 @@ public class ManageController {
 		 */
 		
 		//수정폼에서 상품 검색하기 위해서 필요한 메소드
-		List<ProductDTO> searchlist = packageSearchProduct(productname);
+		List<ProductDTO> searchlist = packageSearchProduct(name);
 		
 		modifyinfo.put("productDTO", productDTO);
 		modifyinfo.put("searchlist", searchlist);
@@ -248,18 +248,18 @@ public class ManageController {
 	}
 	
 	/**
-	 * 세트상품관리 삭제
+	 * 세트상품관리 삭제(인수 : productname)
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("packageDeleteManage")
-	public String packageDeleteManage(String productname) {
+	public String packageDeleteManage(String name) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
 		int result =0;
-		result = manageService.productDeleteManage(productname);
+		result = manageService.productDeleteManage(name);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
@@ -308,11 +308,11 @@ public class ManageController {
 	
 	
 	/**
-	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.
+	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.producerno
 	 */
-	public ProducerDTO producerInfoMangage(String producerno){
+	public ProducerDTO producerInfoMangage(String no){
 		ProducerDTO producer = null;
-		producer = manageService.producerInfoMangage(producerno);
+		producer = manageService.producerInfoMangage(no);
 		
 		return producer;
 	}
@@ -320,14 +320,14 @@ public class ManageController {
 	 * 생산자 수정
 	 * */
 	@RequestMapping("producerModifyManage")
-	public String producerModifyManage(String producerno) {
+	public String producerModifyManage(String no) {
 		/**
-		 * 특정 생산자의 번호를 받아와 
+		 * 특정 생산자의 번호를 받아와 producerno
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
 
-		int result = manageService.producerModifyManage(producerno);
+		int result = manageService.producerModifyManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -340,14 +340,14 @@ public class ManageController {
 	 * (alert)
 	 * */
 	@RequestMapping("producerDeleteManage")
-	public String producerDeleteManage(String producerno) {
+	public String producerDeleteManage(String no) {
 		/**
-		 * 특정 상품의 번호를 받아와 
+		 * 특정 상품의 번호를 받아와  (인수 : producerno)
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * alert로 메시지 뜬다.
 		 */
 		int result =0;
-		result = manageService.productDeleteManage(producerno);
+		result = manageService.productDeleteManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
@@ -469,27 +469,27 @@ public class ManageController {
 		return "forward:communityManage";
 	}
 	/**
-	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.
+	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.(comunityno)
 	 */
-	public CommunityDTO communityInfoMangage(String communityno){
+	public CommunityDTO communityInfoMangage(String no){
 		CommunityDTO community = null;
-		community = manageService.communityInfoMangage(communityno);
+		community = manageService.communityInfoMangage(no);
 		
 		return community;
 	}
 	
 	/**
-	 * 모임관리(수정)
+	 * 모임관리(수정)(comunityno)
 	 * @return 
 	 * */
 	@RequestMapping("communityModifyManage")
-	public String communityModifyManage(String communityno) {
+	public String communityModifyManage(String no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 community를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.communityModifyManage(communityno);
+		int result = manageService.communityModifyManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -498,18 +498,18 @@ public class ManageController {
 	}
 	
 	/**
-	 * 모임관리(삭제)
+	 * 모임관리(삭제)(comunityno)
 	 * @return 
 	 * */
 	@RequestMapping("communityDeleteManage")
-	public String communityDeleteManage(String communityno) {
+	public String communityDeleteManage(String no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * 그 다음 div태그가 사라지고 다시 community관리를 보는 쪽으로 넘어간다.
 		 */
 		int result =0;
-		result = manageService.communityDeleteManage(communityno);
+		result = manageService.communityDeleteManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
@@ -557,25 +557,25 @@ public class ManageController {
 	}
 	
 	/**
-	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
+	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.(qnano)
 	 */
-	public QnaDTO qnaInfoMangage(String qnano){
+	public QnaDTO qnaInfoMangage(String no){
 		QnaDTO qna = null;
-		qna = manageService.qnaInfoMangage(qnano);
+		qna = manageService.qnaInfoMangage(no);
 		
 		return qna;
 	}
 	/**
-	 * Q&A 답변 수정
+	 * Q&A 답변 수정(communitycommentno)
 	 * */
 	@RequestMapping("qnaModifyManage")
-	public String qnaModifyManage(String communitycommentno) {
+	public String qnaModifyManage(String no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 qna를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.qnaModifyManage(communitycommentno);
+		int result = manageService.qnaModifyManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -584,18 +584,18 @@ public class ManageController {
 	}
 	
 	/**
-	 * Q&A 질문 삭제
+	 * Q&A 질문 삭제(communitycommentno)
 	 * @return 
 	 * */
 	@RequestMapping("qnaDeleteManage")
-	public String qnaDeleteManage(String communitycommentno) {
+	public String qnaDeleteManage(String no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * 그 다음 div태그가 사라지고 다시 qna를 보는 쪽으로 넘어간다.
 		 */
 		int result =0;
-		result = manageService.qnaDeleteManage(communitycommentno);
+		result = manageService.qnaDeleteManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			

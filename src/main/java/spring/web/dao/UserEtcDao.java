@@ -13,7 +13,7 @@ public interface UserEtcDao {
 
 	List<CommunityDTO> communityLoading();
 
-	CommunityDTO communityDetail(String communityNo);
+	CommunityDTO communityDetail(String no);
 
 	int registerQnA(QnaDTO qnaDTO);
 
@@ -21,7 +21,7 @@ public interface UserEtcDao {
 
 	List<InfomationDTO> infoLoading();
 
-	InfomationDTO infoDetail(String qnano);
+	InfomationDTO infoDetail(String no);
 
 	List<DonationDTO> donationLoading();
 
@@ -29,6 +29,6 @@ public interface UserEtcDao {
 
 	List<CommunityDTO> communityIngList();
 
-	List<CommunityCommentDTO> commmentList(String communityNo);
+	List<CommunityCommentDTO> commmentList(String no);
 
 }

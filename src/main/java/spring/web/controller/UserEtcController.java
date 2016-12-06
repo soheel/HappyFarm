@@ -55,10 +55,10 @@ public class UserEtcController {
 	
 	/**
 	 * 모임 상세보기
-	 * 모임DTO, 오른쪽 사이드바에 진행중인 행사 목록 가져오기
+	 * 모임DTO, 오른쪽 사이드바에 진행중인 행사 목록 가져오기( communityNo)
 	 * */
 	@RequestMapping("communityDetail")
-	public ModelAndView communityDetail(String communityNo) {
+	public ModelAndView communityDetail(String no) {
 		Map<String, Object> communityInfo=new HashMap<String, Object>();
 		/**
 		 * 1. 사용자가 선택한 모임 번호를 받는다.
@@ -70,9 +70,9 @@ public class UserEtcController {
 		 * community_state가 1인 것들을 뽑아와 List<CommunityDTO>해서 행사목록을 가져온다.
 		 * Map으로 받는다.
 		 */
-		CommunityDTO community = userEtcService.communityDetail(communityNo);
+		CommunityDTO community = userEtcService.communityDetail(no);
 		
-		List<CommunityCommentDTO> commentlist = userEtcService.commmentList(communityNo);
+		List<CommunityCommentDTO> commentlist = userEtcService.commmentList(no);
 		//현재 진행중인 행사를 가져온다.
 		List<CommunityDTO> communitylist = userEtcService.communityIngList();
 		
@@ -151,16 +151,16 @@ public class UserEtcController {
 	
 	/**
 	 * info 상세보기
-	 * info DTO 가져오기
+	 * info DTO 가져오기 (qnano) 
 	 * @return 
 	 * */
 	@RequestMapping("infoDetail")
-	public ModelAndView infoDetail(String qnano) {
+	public ModelAndView infoDetail(String no) {
 		/**
 		 * 1. 사용자가 선택한 모임 번호를 받는다.(hidden으로 정보를 숨겨 받아서???)
 		 * 2. 받은 인수(communityNo)를 dao로 넘겨서 CommunityDTO 정보를 받아 반환
 		 */
-		InfomationDTO infomationDTO = userEtcService.infoDetail(qnano);
+		InfomationDTO infomationDTO = userEtcService.infoDetail(no);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("infomationDTO",infomationDTO);
