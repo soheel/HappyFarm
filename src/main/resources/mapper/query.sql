@@ -278,6 +278,10 @@ insert into purchase_state values(purchase_no.nextval, '취소');
 
 -- cart 테이블
 drop table cart;
+select * from cart;
+시퀀스
+drop sequence cart_no;
+create sequence cart_no;
 
 create table cart (
 cart_no number(5),
@@ -287,8 +291,17 @@ member_email varchar2(50) references member(member_email) on delete cascade,
 primary key(cart_no, product_no)
 )
 
+삽입
+insert into cart values(cart_no.nextval, 1, 1, '박용우');
+insert into cart values(cart_no.nextval, 5, 2, '박용우');
+
+
 -- product_comment 테이블
 drop table product_comment;
+select * from product_comment;
+시퀀스
+drop sequence product_comment_no;
+create sequence product_comment_no;
 
 create table product_comment (
 product_comment_no number(5) primary key,
@@ -298,9 +311,17 @@ member_email varchar2(50) references member(member_email) on delete cascade,
 product_no number(5) references product(product_no) on delete cascade
 )
 
+삽입
+insert into product_comment values(product_comment_no.nextval, '정말 좋은 상품이네요', sysdate, '박용우', 1);
+
 -- community 테이블
 drop table community;
+select * from community;
+시퀀스
+drop sequence community_no;
+create sequence community_no;
 
+-- community_state가 1이면 진행중, 2면 진행완료
 create table community (
 community_no number(5) primary key,
 community_name varchar2(30) not null,
@@ -310,8 +331,15 @@ community_register_date date,
 community_state number(1) not null
 )
 
+삽입
+insert into community values(community_no.nextval, '김치담그기모임', null, '김장을하자', sysdate, 1);
+
 -- community_comment 테이블
 drop table community_comment;
+select * from community_comment;
+시퀀스
+drop sequence community_comment_no;
+create sequence community_comment_no;
 
 create table community_comment (
 community_comment_no number(5) primary key,
@@ -321,8 +349,15 @@ community_no number(5) references community(community_no) on delete cascade,
 member_email varchar2(50) references member(member_email) on delete cascade
 )
 
+삽입
+insert into community_comment values(community_comment_no.nextval, sysdate, '참여하고싶어요', 1, '박용우');
+
 -- qna 테이블
 drop table qna;
+select * from qna;
+시퀀스
+drop sequence qna_no;
+create sequence qna_no;
 
 create table qna (
 qna_no number(5) primary key,
@@ -334,14 +369,21 @@ member_email varchar2(50) references member(member_email) on delete cascade,
 qna_parent number(5) references qna(qna_no) on delete cascade
 )
 
+삽입
+insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '12월 3일에 주문했는데 아직까지 배송 준비중인데 언제 배송되나요', '123', sysdate, '박용우', null);
+
 -- donation 테이블
 drop table donation;
+select * from donation;
 
 create table donation (
 donation_date date primary key,
 donation_price number(10) not null,
 donation_org_no number(5) references donation_org(donation_org_no) on delete cascade
 )
+
+삽입
+insert into donation values(sysdate, 90000000, 1);
 
 -- donation_org 테이블
 drop table donation_org;
@@ -364,13 +406,21 @@ insert into donation_org values(donation_org_no.nextval, '유니세프','031-219-154
 
 -- information 테이블
 drop table information;
+select * from information;
+시퀀스
+drop sequence information_no;
+create sequence information_no;
 
 create table information (
 information_no number(5) primary key,
-information_name varchar2(30) not null,
+information_name varchar2(50) not null,
 information_desc varchar2(100) not null,
 information_register_date date
 )
+
+삽입
+insert into information values(information_no.nextval, '국산콩과 수입콩', '비교', sysdate);
+
 -- test
 
 
