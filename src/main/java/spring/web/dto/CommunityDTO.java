@@ -1,6 +1,7 @@
 package spring.web.dto;
 
 public class CommunityDTO {
+	private int no;
 	private String name;
 	private String profile;
 	private String desc;
@@ -11,8 +12,9 @@ public class CommunityDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommunityDTO(String name, String profile, String desc, String registerDate, String state) {
+	public CommunityDTO(int no, String name, String profile, String desc, String registerDate, String state) {
 		super();
+		this.no = no;
 		this.name = name;
 		this.profile = profile;
 		this.desc = desc;
@@ -20,6 +22,14 @@ public class CommunityDTO {
 		this.state = state;
 	}
 
+	public int getNo() {
+		return no;
+	}
+	
+	public void setNo(int no) {
+		this.no = no;
+	}
+	
 	public String getName() {
 		return name;
 	}

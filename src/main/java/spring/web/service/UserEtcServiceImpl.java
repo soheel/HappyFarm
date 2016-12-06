@@ -58,5 +58,11 @@ public class UserEtcServiceImpl implements UserEtcService{
 		return null;
 	}
 
+	@Override
+	public List<CommunityDTO> communityIngList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

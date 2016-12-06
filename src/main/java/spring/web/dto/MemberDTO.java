@@ -1,6 +1,7 @@
 package spring.web.dto;
 
 public class MemberDTO {
+	private int no;
 	private String email;
 	private String pwd;
 	private String name;
@@ -14,9 +15,10 @@ public class MemberDTO {
 
 	}
 
-	public MemberDTO(String email, String pwd, String name, String phone, String registerDate, int mileage,
+	public MemberDTO(int no, String email, String pwd, String name, String phone, String registerDate, int mileage,
 			String recommand, int donationOrgNo) {
 		super();
+		this.no = no;
 		this.email = email;
 		this.pwd = pwd;
 		this.name = name;
@@ -25,6 +27,14 @@ public class MemberDTO {
 		this.mileage = mileage;
 		this.recommand = recommand;
 		this.donationOrgNo = donationOrgNo;
+	}
+	
+	public int getNo() {
+		return no;
+	}
+	
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getEmail() {
