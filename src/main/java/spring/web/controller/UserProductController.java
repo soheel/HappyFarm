@@ -49,7 +49,7 @@ public class UserProductController {
 	 * 등록순(product 테이블에서 product_no 내림차순)
 	 * */
 	@RequestMapping("shopMenuListLoading")
-	public ModelAndView showMenuListLoading(String categoryNo) {
+	public ModelAndView showMenuListLoading(int categoryNo) {
 		/**
 		 * 1. 사용자가 선택한 카테고리를 인수로 받음
 		 * 2. 받은 카테고리를 이용해서 dao로 가서 등록순으로 List<ProductDTO>에 저장 후 뷰로 반환해줌
@@ -68,7 +68,7 @@ public class UserProductController {
 	 * 이름,가격,단위,카테고리,설명,프로필사진,댓글,평점,생산자, 해당 상품과 일치하는 인증마크정보
 	 * */
 	@RequestMapping("showProductDetail")
-	public ModelAndView showProductDetail(String productNo) {
+	public ModelAndView showProductDetail(int productNo) {
 		/**
 		 * 1. 해당 상품 사진을 누르면 해당 상품의 productNo를 서버로 인수로 넘겨줌
 		 * 2. 받은 인수(productNo)를 dao로 넘겨서 해당 상품 DTO(ProductDTO)를 받아온다.
@@ -90,7 +90,7 @@ public class UserProductController {
 	 * 새창에서 생산자 정보 알려주기
 	 * */
 	@RequestMapping("showProducerInfo")
-	public ModelAndView showProducerInfo(String producerNo) {
+	public ModelAndView showProducerInfo(int producerNo) {
 		/**
 		 * 1. 뷰에서 생산자 이름을 클릭했을 때, 생산자 번호가 함께 인수로 전달됨
 		 * 2. 인수를 dao로 보내어 생산자 DTO(ProducerDTO)를 받아 이를 뷰로 반환
@@ -107,7 +107,7 @@ public class UserProductController {
 	 * 장바구니에 담기(상품 상세보기 화면에서 장바구니에 담을 경우)
 	 * */
 	@RequestMapping("addCart")
-	public int addCart(String productNo, int num, HttpSession session) {
+	public int addCart(int productNo, int num, HttpSession session) {
 		/**
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품과 갯수를 insert한다.
@@ -122,7 +122,7 @@ public class UserProductController {
 	 * 장바구니에 담기(상품 리스트에서 바로 장바구니에 담을 경우)
 	 * */
 	@RequestMapping("addCartDirect")
-	public int addCartDirect(String productNo, HttpSession session) {
+	public int addCartDirect(int productNo, HttpSession session) {
 		/**
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품을 insert한다. (개수는 1)
@@ -134,17 +134,17 @@ public class UserProductController {
 	}
 
 	/**
-	 * 주문화면에서 주문하기 버튼 눌렀을 때
+	 * 상품 상세보기 화면에서 주문하기 버튼 눌렀을 때
 	 * */
 	@RequestMapping("order")
-	public ModelAndView order(Map<String, Object> map, String num) {
+	public ModelAndView order(int productNo, int num) {
 		/**
-		 * 1. 제품 상세보기를 누른 상태라면 request에 이미 제품정보, 생산자정보를 담은 map가 있을 것이므로
-		 * 이 map을 다시 서버로 보내줘서 이를 ModelAndView에 담아 다시 view로 보내주면 된다.
-		 * 2. 이때 사용자가 구매하려고한 상품의 개수도 함께 보내주면 된다. 
+		 * 1. 뷰에서 상품번호(product_no)와 구매하려는 개수를 받아온다.
+		 * 2. 상품번호를 이용해 상품DTO와 생산자DTO, 개수를 map에 담아 다시 뷰로 보낸다.
 		 * */
 		
 		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = service.order(productNo, num);
 		mv.addObject("map", map);
 		mv.addObject("num", num);
 		mv.setViewName("purchase");
@@ -178,7 +178,7 @@ public class UserProductController {
 	// 패키지
 	
 	/**
-	 * package 메뉴바에서 카테고리 눌렀을 때 9개 리스트 뿌려주기
+	 * package 메뉴바를 눌렀을 때 9개 리스트 뿌려주기
 	 * */
 	@RequestMapping("packageMenuListLoading")
 	public ModelAndView packageMenuListLoading() {

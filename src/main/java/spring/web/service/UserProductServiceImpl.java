@@ -21,13 +21,13 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public List<ProductDTO> showMenuListLoading(String categoryNo) {
+	public List<ProductDTO> showMenuListLoading(int categoryNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Map<String, Object> showProductDetail(String productNo) {
+	public Map<String, Object> showProductDetail(int productNo) {
 		/**
 		 * Map에 ProductDTO, ProductCommentDTO, CertificationDTO, ProducerDTO를 담아서 
 		 * 컨트롤러로 반환
@@ -46,21 +46,32 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public ProducerDTO showProducerInfo(String producerNo) {
+	public ProducerDTO showProducerInfo(int producerNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int addCart(String productNo, int num, String email) {
+	public int addCart(int productNo, int num, String email) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	@Override
-	public int addCartDirect(String productNo, String email) {
+	public int addCartDirect(int productNo, String email) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public Map<String, Object> order(int productNo, int num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// ProductDTO 가져오기
+		
+		// ProducerDTO 가져오기
+
+		return null;
 	}
 
 	@Override
@@ -68,5 +79,7 @@ public class UserProductServiceImpl implements UserProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

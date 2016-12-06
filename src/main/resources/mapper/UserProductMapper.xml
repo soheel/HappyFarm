@@ -104,4 +104,13 @@ insert into cart values(cart_no.nextval, #{productNo}, #{num}, #{email})
 <insert id="registerProductToCartDirect" parameterType="cartDTO">
 insert into cart values(cart_no.nextval, #{productNo}, 1, #{email})
 </insert>
+
+<!-- 패키지 메뉴 눌렀을 때 리스트 가져오기 -->
+<select id="getPackageList" resultMap="productResultMap">
+select product.product_no, product.product_name, product.product_price, product.product_profile, product.product_desc, product.product_eval,
+product.producer_no, product.product_unit, product.category_subcategory_no
+from product, package
+where product.prodct_no = package.product_no
+order by package.product_no desc
+</select>
 </mapper>

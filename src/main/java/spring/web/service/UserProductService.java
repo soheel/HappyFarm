@@ -12,15 +12,17 @@ public interface UserProductService {
 	
 	public List<ProductDTO> shopMenuLoading();
 	
-	public List<ProductDTO> showMenuListLoading(String categoryNo);
+	public List<ProductDTO> showMenuListLoading(int categoryNo);
 	
-	public Map<String, Object> showProductDetail(String productNo);
+	public Map<String, Object> showProductDetail(int productNo);
 	 
-	public ProducerDTO showProducerInfo(String producerNo);
+	public ProducerDTO showProducerInfo(int producerNo);
 	
-	public int addCart(String productNo, int num, String email);
+	public int addCart(int productNo, int num, String email);
 	
-	public int addCartDirect(String productNo, String email);
+	public int addCartDirect(int productNo, String email);
+	
+	public Map<String, Object> order(int productNo, int num);
 	
 	public List<ProductDTO> packageMenuListLoading();
 }
