@@ -2,6 +2,7 @@ package spring.web.service;
 
 import java.util.List;
 
+import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.InfomationDTO;
@@ -54,6 +55,18 @@ public class UserEtcServiceImpl implements UserEtcService{
 
 	@Override
 	public ProducerDTO producerDetail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CommunityDTO> communityIngList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CommunityCommentDTO> commmentList(String communityNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

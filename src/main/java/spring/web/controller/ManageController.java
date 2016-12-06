@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.PackageDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.service.ManageService;
 
@@ -16,7 +17,7 @@ import spring.web.service.ManageService;
 public class ManageController {
 
 	@Autowired
-	ManageService managerService;
+	ManageService manageService;
 	/**
 	 * 개별상품관리 클릭했을 때
 	 * 상품범호 순서대로 (category_subcategory_no가 null이 아닌것만 가져오기)
@@ -30,12 +31,12 @@ public class ManageController {
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 * 
 		 */
-		List<ProductDTO> productlist = managerService.selectAllProududct();
+		List<ProductDTO> productlist = manageService.selectAllProududct();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
 		
-		mv.setViewName("productManage");
+		mv.setViewName("productManage");  
 		return mv;
 	}
 	
@@ -46,13 +47,15 @@ public class ManageController {
 	@RequestMapping("productRegisterManage")
 	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO ) {
 		/**
-		 * 1. 등록을 누르면 jsp에 있는 div
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 productDTO 정보를 모두 받아, 
+		 * 3. product테이블에 추가한다(register)
 		 */
-		int result = managerService.productRegisterManage(productDTO);
+		int result = manageService.productRegisterManage(productDTO);
 		if(result==0){
 			request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
-		return "productManage";
+		return "forward:productManage";
 	}
 	
 	/**
@@ -61,7 +64,12 @@ public class ManageController {
 	 * */
 	@RequestMapping("productModifyManage")
 	public String productModifyManage(HttpServletRequest request, String productno) {
-		int result = managerService.productModifyManage(productno);
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 수정한다.
+		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
+		 */
+		int result = manageService.productModifyManage(productno);
 		if(result==0){
 			request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -74,20 +82,42 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("productDeleteManage")
-	public String productDeleteManage(HttpServletRequest request, ProductDTO productdto) {
+	public String productDeleteManage(HttpServletRequest request, String productno) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 수정한다.
+		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
+		 */
 		int result =0;
-		result = managerService.productDeleteManage(productdto);
-		System.out.println(result);
-		return "redirect:productManage";
+		result = manageService.productDeleteManage(productno);
+		if(result==0){
+			request.setAttribute("errorMsg", "삭제되지 않았습니다.");
+			
+		}
+		return "forward:productManage";
 	}
 	
 	/**
 	 * 세트상품관리 클릭했을 때
 	 * package DTO 리스트
+	 * @return 
 	 * */
 	@RequestMapping("packageManage")
-	public void packageManage() {
+	public ModelAndView packageManage() {
+		/**
+		 * 1. 세트 상품 관리를 누르면
+		 * 2. packageDTO에 있는 정보를 다 받아와서 (packagelist) 
+		 * * 정보 관련 :  package테이블의 package_name, 세트 가격은 product에 있는 price, 포함상품은package_product에 있는 product_no를 다 찾는다.
+		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
+		 * 
+		 */
+		List<PackageDTO> packagelist = manageService.selectAllPackage();
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("packagelist", packagelist);
+		
+		mv.setViewName("packageManage");  
+		return mv;
 	}
 	
 	/**
@@ -96,7 +126,22 @@ public class ManageController {
 	 * (새창)
 	 * */
 	@RequestMapping("packageShowManage")
-	public void packageShowManage() {
+	public ModelAndView packageShowManage(String packagename) {
+		/**
+		 * 1.세프 상품 정보 list에서 package이름을 누르면 해당하는 패키지 이름을 받아온다.
+		 * 2.package에 있는 package_no를 찾고 일치하는 package_product에 있는 product_no를 모두 찾는다.
+		 * 3.product에 있는 product_name, price, producer_no(no를 찾아 producer테이블의 name)을 찾고, product_no에 일치하는 certification_no를 찾는다.
+		 */
+		
+		//packagename에 일치하는 package_no를 찾고 package_product에 있는 product_no를 찾는다.
+		List<ProductDTO> packageproduct = manageService.selectAllPackageProduct(packagename);
+		//다른 건 다 조인해서 받아올수있는건가...ㅎ
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("packageproduct", packageproduct);
+		
+		mv.setViewName("packageproduct");  
+		return mv;
 		
 	}
 	
@@ -105,8 +150,20 @@ public class ManageController {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("packageRegisterManage")
-	public void packageRegisterManage() {
-		
+	public String packageRegisterManage(ProductDTO productDTO, String packagename) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
+		 * 가격,사진,설명 : product테이블에 있는 price, profile, desc
+		 * 상품검색 : product_name에 일치하는 product를 찾아준다
+		 * 밑에 상품이 productDTO들이 insert된다.
+		 */
+		packageSearchProduct(packagename);
+		int result = manageService.productRegisterManage(productDTO);
+		if(result==0){
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		}
+		return "forward:productManage";
 	}
 	
 	/**
@@ -114,8 +171,15 @@ public class ManageController {
 	 * 상품번호, 상품이름 아래에 추가
 	 * */
 	@RequestMapping("packageSearchProduct")
-	public void packageSearchProduct() {
+	public List<ProductDTO> packageSearchProduct(String productname) {
+		/**
+		 * 
+		 */
+		List<ProductDTO> list = null;
 		
+		list = manageService.packageSearchProduct(productname);
+		
+		return list;
 	}
 	
 	/**

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.InfomationDTO;
@@ -11,23 +12,53 @@ import spring.web.dto.ProducerDTO;
 import spring.web.dto.QnaDTO;
 
 public interface UserEtcService {
+	/**
+	 * 모임목록 불러오기 
+	 * 모임DTO 리스트(select + 페이징)
+	 */
+	List<CommunityDTO> communityLoading();	
 
-	List<CommunityDTO> communityLoading();
-
+	/**
+	 * 모임상세 정보 불러오기 
+	 */
 	CommunityDTO communityDetail(String communityNo);
-
+	/**
+	 * Q&A 등록
+	 */
 	int registerQnA(QnaDTO qnaDTO);
-
+	/**
+	 * Q&A 등록폼이 뜨고 + 목록 
+	 * @return
+	 */
 	List<QnaDTO> qnaLoading();
 
+	/**
+	 * 행사 정보 로딩
+	 * @return
+	 */
 	List<InfomationDTO> infoLoading();
-
+	/**
+	 * 행사 상세 정보 로딩
+	 */
 	InfomationDTO infoDetail(String qnano);
-
+	/**
+	 * 기부 목록 5개 + 차트 로딩
+	 */
 	List<DonationDTO> donationLoading();
-
+	/**
+	 * 생산자 정보 불러오기(이미지 + 정보 + 지도)
+	 * @return
+	 */
 	ProducerDTO producerDetail();
 
+	/**
+	 * 진행중인 행사만 모아서 불러오기)
+	 * @return
+	 */
 	List<CommunityDTO> communityIngList();
+	/**
+	 * 행사 참여 여부를 댓글에 입력하는 데, 그 댓글에 대한 정보들을 불러온다
+	 */
+	List<CommunityCommentDTO> commmentList(String communityNo);
 
 }

@@ -1,5 +1,6 @@
 package spring.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.InfomationDTO;
@@ -35,13 +37,17 @@ public class UserEtcController {
 		/**
 		 * 1. commuity를 누르면, 
 		 * 2. 6개의 현재 진행하는 행사와 지난 3개행사를 보여줘서 총 9개를 담아서
-		 * 뷰로 보내준다.
-		 * 3. 6개의 진행행사 / 3개의 지난 행사를 뽑아주는 dao 두 개의 메소드와 
+		 * 뷰로 보내준다. community_profile사진 / commuinty_name, community_register_date를 보여준다.
+		 * 3. 6개의 진행행사 / 3개의 지난 행사를 뽑아주는 dao 두 개의 메소드와 (community_state 상태를 확인 한 후)
 		 * 페이지 기능 메소드가 필요. 
+		 * 
 		 */
 		List<CommunityDTO> communitylist = null;
 		ModelAndView mv = new ModelAndView();
 		communitylist = userEtcService.communityLoading();
+		if(communitylist!=null){
+			//에러 처리 진행중인 행사가 없다.
+		}
 		mv.addObject("communitylist",communitylist);
 		mv.setViewName("showCommunity");
 		return mv;
@@ -53,7 +59,7 @@ public class UserEtcController {
 	 * */
 	@RequestMapping("communityDetail")
 	public ModelAndView communityDetail(String communityNo) {
-		Map<String, Object> communityInfo=null;
+		Map<String, Object> communityInfo=new HashMap<String, Object>();
 		/**
 		 * 1. 사용자가 선택한 모임 번호를 받는다.
 		 * 2. 받은 인수(communityNo)를 dao로 넘겨서 CommunityDTO 정보(대표사진, 이름, 날짜, 설명)를 받아 반환
@@ -66,12 +72,13 @@ public class UserEtcController {
 		 */
 		CommunityDTO community = userEtcService.communityDetail(communityNo);
 		
+		List<CommunityCommentDTO> commentlist = userEtcService.commmentList(communityNo);
 		//현재 진행중인 행사를 가져온다.
 		List<CommunityDTO> communitylist = userEtcService.communityIngList();
 		
 		communityInfo.put("community", community);
+		communityInfo.put("commentlist", commentlist);
 		communityInfo.put("communitylist", communitylist);
-		
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("communityInfo",communityInfo);
@@ -109,8 +116,8 @@ public class UserEtcController {
 	@RequestMapping("qnaWrite")
 	public String qnaWrite(HttpServletRequest request, QnaDTO qnaDTO) throws Exception{
 		/**
-		 * 1.Q&A write폼에서 정보를 받아와서
-		 * 2.정보를 insert한 후
+		 * 1.Q&A write폼에서 등록을 누르면 정보를 받아와서
+		 * 2.정보를 insert한 후 
 		 * 3.Q&A 로딩하는 화면으로 이동한다.
 		 */
 		int result = userEtcService.registerQnA(qnaDTO);
@@ -150,7 +157,7 @@ public class UserEtcController {
 	@RequestMapping("infoDetail")
 	public ModelAndView infoDetail(String qnano) {
 		/**
-		 * 1. 사용자가 선택한 모임 번호를 받는다.
+		 * 1. 사용자가 선택한 모임 번호를 받는다.(hidden으로 정보를 숨겨 받아서???)
 		 * 2. 받은 인수(communityNo)를 dao로 넘겨서 CommunityDTO 정보를 받아 반환
 		 */
 		InfomationDTO infomationDTO = userEtcService.infoDetail(qnano);
@@ -173,6 +180,7 @@ public class UserEtcController {
 		/**
 		 * donate를 눌렀을 때 전체 기부 내역에서 최근에서 5달 정도만 뺴우고 나머지는 다운로드가 되도록 한다.
 		 * 밑에는 차트를 넣는다. dao로 하나로 받고, 표시하는 방법을 두 가지(표와 차트)
+		 * 이떄 표는 페이징 필요 없음. 
 		 */
 		List<DonationDTO> donationlist = null;
 		ModelAndView mv = new ModelAndView();
@@ -191,10 +199,10 @@ public class UserEtcController {
 	@RequestMapping("producerDetail")
 	public ModelAndView producerDetail() {
 		/**
-		 * 생산자 상세보기를 누르면,생산자 이름, 연락처, 생산자 이미지 정보를 받아온다.producerDTO정보를 받는다.
-		 * producer의 addr주소를 통해 지도를 변환한다.
-		 * 대표 상품은 producerDTO 정보에 맞는 productDTO를 받는다. 
-		 * 지도는 지도 api를 통해 삽입한다.
+		 * 1.생산자 상세보기를 누르면,생산자 이름, 연락처, 생산자 이미지 정보를 받아온다.producerDTO정보를 받는다.
+		 * 2.producer의 addr주소를 통해 지도를 변환한다.
+		 * 3.대표 상품은 producerDTO 정보에 맞는 productDTO를 받는다. 
+		 * 4.지도는 지도 api를 통해 삽입한다.
 		 */
 		ProducerDTO producer = userEtcService.producerDetail();
 		
