@@ -56,6 +56,12 @@ public class UserProductServiceImpl implements UserProductService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public int addCartDirect(String productNo, String email) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public List<ProductDTO> packageMenuListLoading() {

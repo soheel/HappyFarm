@@ -20,5 +20,7 @@ public interface UserProductService {
 	
 	public int addCart(String productNo, int num, String email);
 	
+	public int addCartDirect(String productNo, String email);
+	
 	public List<ProductDTO> packageMenuListLoading();
 }

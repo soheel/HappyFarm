@@ -104,7 +104,7 @@ public class UserProductController {
 	}
 	
 	/**
-	 * 장바구니에 담기
+	 * 장바구니에 담기(상품 상세보기 화면에서 장바구니에 담을 경우)
 	 * */
 	@RequestMapping("addCart")
 	public int addCart(String productNo, int num, HttpSession session) {
@@ -115,6 +115,21 @@ public class UserProductController {
 		
 		String email = (String)session.getAttribute("email");
 		int result = service.addCart(productNo, num, email);
+		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
+	}
+	
+	/**
+	 * 장바구니에 담기(상품 리스트에서 바로 장바구니에 담을 경우)
+	 * */
+	@RequestMapping("addCartDirect")
+	public int addCartDirect(String productNo, HttpSession session) {
+		/**
+		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
+		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품을 insert한다. (개수는 1)
+		 * */
+		
+		String email = (String)session.getAttribute("email");
+		int result = service.addCartDirect(productNo, email);
 		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
 	}
 

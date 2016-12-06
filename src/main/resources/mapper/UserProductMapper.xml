@@ -94,4 +94,14 @@ select producer.producer_no, producer.producer_name, producer.producer_addr, pro
 from product, producer
 where product.producer_no = producer.producer_no and product.product_no = #{value}
 </select>
+
+<!-- 장바구니에 상품 담기(상품 상세보기에서 눌렀을 때) -->
+<insert id="registerProductToCart" parameterType="cartDTO">
+insert into cart values(cart_no.nextval, #{productNo}, #{num}, #{email})
+</insert>
+
+<!-- 장바구니에 상품 담기(상품 리스트에서 바로 눌렀을 때) -->
+<insert id="registerProductToCartDirect" parameterType="cartDTO">
+insert into cart values(cart_no.nextval, #{productNo}, 1, #{email})
+</insert>
 </mapper>
