@@ -1,8 +1,12 @@
 package spring.web.service;
 
+import java.util.List;
 import java.util.Map;
 
+import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProductDTO;
+import spring.web.dto.QnaDTO;
 
 public class UserInfoServiceImpl implements UserInfoService {
 
@@ -68,6 +72,63 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public Map<String, Object> userMainLoading() {
+		return null;
+	}
+	
+	/**
+	 * MyPage의 쇼핑내역을 누를경우
+	 * 바로 주문/배송조회가 이루어지면서
+	 * 회원의 3개월간 주문조회 내역을 purchase테이블에서
+	 * 가져와서 view에 뿌려줌
+	 * */
+	@Override
+	public List<ProductDTO> myPageOrderList(String email) {
+		return null;
+	}
+	
+	/**
+	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
+	 * 해당 목록 삭제
+	 * */
+	@Override
+	public int deleteOrderProduct(String email) {
+		
+		return 0;
+	}
+	
+	/**
+	 * 해당 회원에 해당하는 qna 정보 가져오기
+	 * */
+	@Override
+	public List<QnaDTO> myPageQna(String email) {
+		
+		return null;
+	}
+	
+	/**
+	 * 해당 질문글에 달린 답글 가져오기
+	 * */
+	@Override
+	public String showAnswer(QnaDTO qnaDto) {
+		
+		return null;
+	}
+	
+	/**
+	 * 내정보 - 기부페이지 눌렀을 때
+	 * */
+	@Override
+	public List<DonationDTO> myPageDonation(String email) {
+		
+		return null;
+	}
+	
+	/**
+	 * 내정보 - 개인정보관리
+	 * */
+	@Override
+	public MemberDTO myPageInfoModify(String email) {
+		
 		return null;
 	}
 	

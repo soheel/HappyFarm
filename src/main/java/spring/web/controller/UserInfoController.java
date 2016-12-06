@@ -1,5 +1,6 @@
 package spring.web.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProductDTO;
+import spring.web.dto.QnaDTO;
 import spring.web.service.UserInfoService;
 
 @Controller("userinfo")
@@ -23,17 +27,23 @@ public class UserInfoController {
 	UserInfoService userService;
 	
 	/**
+	 * 회원쪽이 아니라 관리자나 비회원쪽 Controller에 있어야하는 메소드
 	 * 로고 눌렀을 때
 	 * */
 	@RequestMapping("logo")
-	public String logo() {
+	public ModelAndView logo() {
 		
 		/**
 		 * 페이지 상단에 로고를 눌렀을 때
 		 * 항상 메인 페이지로 이동
+		 * 
+		 * 로그인했을 때 메인페이지에 뿌려져야하는 정보들
+		 * (생산자 정보 ,인기상품 3개, 기부액에 대한 정보)
+		 * -> ModelAndView에 담아서 메인화면 이동
 		 * */
-		
-		return "";
+		ModelAndView mv = new ModelAndView();
+
+		return mv;
 	}
 	
 	
@@ -225,48 +235,30 @@ public class UserInfoController {
 	
 	/**
 	 * 조회에관한 12가지 기능별 처리
-	 * */
+	 * *//*
 	@RequestMapping("showButton")
 	public void showButton(String value) {
 		
-	}
+	}*/
+	
+	
 	
 	/**
 	 * 내정보에서 쇼핑내역 눌렀을 때
-	 * 자도으로 주문/배송 조회 클릭됨
+	 * 자동으로 주문/배송 조회 클릭됨
 	 * 처음에는 3개월까지만 주문내역을 가져오기
 	 * */
 	@RequestMapping("myPageOrderList")
-	public void myPageOrderList() {
-		
+	public List<ProductDTO> myPageOrderList(HttpSession session) {
+		/**
+		 * Mypage 쇼핑내역을 누르자마자 개인의 주문/배송 내역이 나옴
+		 * purchase테이블에서 현시점으로부터 3개월전의 데이터들을 모두 가져와서
+		 * 테이블의 형태로 view에 뿌려준다.
+		 * */
+		String email = (String)session.getAttribute("email");
+		List<ProductDTO> list = userService.myPageOrderList(email);
+		return list;
 	}
-	
-	/**
-	 * 주문/배송 조회에서 환불/반품/교환 버튼 클릭했을 때
-	 * 새창으로 폼 띄워주기
-	 * */
-	@RequestMapping("requestRefundButton")
-	public void requestRefundButton() {
-		
-	}
-	
-	/**
-	 * 환불/반품/교환 폼에서 사유적어서 신청하기
-	 * */
-	@RequestMapping("requestRefund")
-	public void requestRefund() {
-		
-	}
-	
-	/**
-	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
-	 * 목록삭제(ajax)
-	 * */
-	@RequestMapping("requestCancelButton")
-	public void requestCancelButton() {
-		
-	}
-	
 	/**
 	 * 내정보에서 취소/반품/교환 버튼 클릭했을 때
 	 * 처음에는 3개월까지만 주문내역을 가져오기
@@ -286,12 +278,62 @@ public class UserInfoController {
 	}
 	
 	/**
+	 * 주문/배송 조회에서 환불/반품/교환 버튼 클릭했을 때
+	 * 새창으로 폼 띄워주기
+	 * */
+	@RequestMapping("requestRefundButton")
+	public String requestRefundButton() {
+		return "환불/반품/교환 form";
+	}
+	
+	/**
+	 * 환불/반품/교환 폼에서 사유적어서 신청하기
+	 * */
+	@RequestMapping("requestRefund")
+	public void requestRefund() {
+		
+	}
+	
+	/**
+	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
+	 * 목록삭제(ajax)
+	 * */
+	@RequestMapping("requestCancelButton")
+	public int requestCancelButton(HttpSession session) {
+		/**
+		 * 주문/배송 조회 시 나오는 데이터중에
+		 * 특정 데이터를 사용자가 지우기 원할 때
+		 * 해당데이터 앞의 체크박스 선택
+		 * 
+		 * 선택된 데이터에서 product_no(primary key)를
+		 * 전달받아서 service - dao로 전달
+		 * 그에 해당하는 데이터를 지운후 int형태로 리턴을 받아서
+		 * view로 전달 
+		 * */
+		String email = (String)session.getAttribute("email");
+		int result = userService.deleteOrderProduct(email);
+		return result;
+	}
+	
+	
+	/**
 	 * 내정보에서 Q&A 버튼 클릭했을 때
 	 * 전체 질문 내역 띄워주기
 	 * */
 	@RequestMapping("myPageQna")
-	public void myPageQna() {
-		
+	public List<QnaDTO> myPageQna(HttpSession session) {
+		/**
+		 * MyPage - Q&A를 눌렀을 때
+		 * 회원에 해당하는 질문글을 테이블의 형태로
+		 * view에 뿌려준다
+		 * 
+		 * session객체에 저장된 email을 꺼내서
+		 * 해당 email 회원의 Q&A정보를 꺼내서 List형태 리턴
+		 * 리턴받은 값을 바로 view로 보내준다.
+		 * */
+		String email = (String)session.getAttribute("email");
+		List<QnaDTO> list = userService.myPageQna(email);
+		return list;
 	}
 	
 	/**
@@ -299,8 +341,25 @@ public class UserInfoController {
 	 * 새창띄워서 답변내용 보여주기
 	 * */
 	@RequestMapping("showAnswer")
-	public void showAnswer() {
+	public String showAnswer(HttpSession session, int no) {
+		/**
+		 * session에 담긴 email과 view에서 인수로 qna글번호도 같이 받는다.
+		 * 아이디와 글번호를 Dto에 담아서 service로 보낸다
+		 * 
+		 * 질문글 답변이 올라왔을 경우
+		 * 글을 클릭하면 답변 form을 보여준다(화면이동x)
+		 * 질문에 해당하는 답변을 view로 보내준다.
+		 * 
+		 * view에서 ajax로 답변을 받아서 처리
+		 * */
+		String email = (String)session.getAttribute("email");
+		QnaDTO qnaDto = new QnaDTO();
+		qnaDto.setEmail(email);
+		qnaDto.setQnaParent(no);
 		
+		String result = userService.showAnswer(qnaDto);
+		
+		return result;
 	}
 	
 	/**
@@ -308,8 +367,20 @@ public class UserInfoController {
 	 * 3개월까지의 내역 보여주기
 	 * */
 	@RequestMapping("myPageDonation")
-	public void myPageDonation() {
+	public List<DonationDTO> myPageDonation(HttpSession session) {
+		/**
+		 * session에서 email(아이디)를 가져온다
+		 * 가져온 아이디에 해당하는 기부내역을 조회
+		 * 처음 기부버튼을 클릭하면
+		 * 무조건 현재날짜에서 3개월이전의 데이터만 보여준다.
+		 * 
+		 * 해당 데이터들을 가지고 나와서 List에 저장한후
+		 * view로 이동
+		 * */
+		String email = (String)session.getAttribute("email");
+		List<DonationDTO> list= userService.myPageDonation(email);
 		
+		return list;
 	}
 	
 	/**
@@ -317,8 +388,17 @@ public class UserInfoController {
 	 * 내 정보 가져와서 아이디, 이름, 연락처 띄워주기
 	 * */
 	@RequestMapping("myPageInfoModify")
-	public void myPageInfoModify() {
+	public MemberDTO myPageInfoModify(HttpSession session) {
+		/**
+		 * session에서 email 받음
+		 * email에 해당하는 회원의 정보를 꺼내서
+		 * MemberDTO 타입으로 리턴헤서
+		 * view로 넘김
+		 * */
+		String email = (String)session.getAttribute("email");
+		MemberDTO memberDto = userService.myPageInfoModify(email);
 		
+		return memberDtO;
 	}
 	
 	/**
@@ -337,7 +417,14 @@ public class UserInfoController {
 	 * 총금액 띄워주기
 	 * */
 	@RequestMapping("myCart")
-	public void myCart() {
+	public void myCart(HttpSession session) {
+		/**
+		 * session에서 email을 뽑아와서
+		 * 해당 이메일을 아이디로 가지는 회원의
+		 * 장바구니에 담긴 상품목록을 가져온다
+		 * */
+		String email = (String)session.getAttribute("email");
+		
 		
 	}
 	
@@ -345,12 +432,18 @@ public class UserInfoController {
 	 * 장바구니에서 삭제
 	 * */
 	@RequestMapping("myCartDelete")
-	public void myCartDelete() {
+	public void myCartDelete(int no) {
+		/**
+		 * 장바구니에서 상품 삭제를 누를 경우
+		 * 장바구니에 
+		 * 
+		 * */
 		
 	}
 	
 	/**
 	 * 장바구니에 주문버튼 클릭했을 때
+	 * 주문 페이지로 이동
 	 * */
 	@RequestMapping("myCartOrder")
 	public void myCartOrder() {
