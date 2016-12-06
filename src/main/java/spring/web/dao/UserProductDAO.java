@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import spring.web.dto.CartDTO;
 import spring.web.dto.CertificationDTO;
+import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
@@ -71,4 +72,10 @@ public interface UserProductDAO {
 	 * 상품리스트에서 장바구니에 추가
 	 * */
 	int registerProductToCartDirect(CartDTO cartDTO);
+	
+	/**
+	 * packageMenuListLoading()
+	 * 패키지 상품 리스트 가져오기
+	 * */
+	List<PackageDTO> getPackageList();
 }

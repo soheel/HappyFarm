@@ -4,19 +4,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import spring.web.dao.UserProductDAO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 
 @Service
 public class UserProductServiceImpl implements UserProductService{
 	
-	
+	@Autowired
+	UserProductDAO userProductDAO;
 
 	@Override
 	public List<ProductDTO> shopMenuLoading() {
-		// TODO Auto-generated method stub
+		// getBestProduct()를 통해 List<Integer> 받아오기
+		// 계절상품 담기
+		// getRecentPurchase()를 통해 List<Integer> 받아오기
+		
+		// getProductByProductNo(int productNo)를 통해 리스트에 있는 productNo들을 전달해줘서
+		// ProductDTO들을 저장하는 리스트를 만들어 컨트롤러로 반환하기
 		return null;
 	}
 
