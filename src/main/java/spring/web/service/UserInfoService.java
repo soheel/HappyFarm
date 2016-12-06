@@ -89,6 +89,12 @@ public interface UserInfoService {
 	/**
 	 * 내정보 - 장바구니
 	 * */
+	List<ProductDTO> myCart(String email);
 	
+	/**
+	 * 내정보 - 장바구니 -> 주문하기 버튼 클릭시
+	 * 				      주문페이지로 이동
+	 * */
+	List<ProductDTO> myCartOrder(String email);
 	
 }

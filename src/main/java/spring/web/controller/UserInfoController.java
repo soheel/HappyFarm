@@ -398,7 +398,7 @@ public class UserInfoController {
 		String email = (String)session.getAttribute("email");
 		MemberDTO memberDto = userService.myPageInfoModify(email);
 		
-		return memberDtO;
+		return memberDto;
 	}
 	
 	/**
@@ -417,15 +417,16 @@ public class UserInfoController {
 	 * 총금액 띄워주기
 	 * */
 	@RequestMapping("myCart")
-	public void myCart(HttpSession session) {
+	public List<ProductDTO> myCart(HttpSession session) {
 		/**
 		 * session에서 email을 뽑아와서
 		 * 해당 이메일을 아이디로 가지는 회원의
 		 * 장바구니에 담긴 상품목록을 가져온다
 		 * */
 		String email = (String)session.getAttribute("email");
+		List<ProductDTO> list = userService.myCart(email);
 		
-		
+		return list;
 	}
 	
 	/**
@@ -446,7 +447,21 @@ public class UserInfoController {
 	 * 주문 페이지로 이동
 	 * */
 	@RequestMapping("myCartOrder")
-	public void myCartOrder() {
+	public ModelAndView myCartOrder(HttpSession session) {
+		/**
+		 * 장바구니 페이지에서 구매버튼 클릭시
+		 * 회원의 장바구니에 담긴 상품들의 정보를 가지고 주문페이지로 이동을 해야하기 때문에
+		 * List<productDto>로 담아서 리턴
+		 * 리턴한 값을 ModelAndView에 저장을 한 후 
+		 * set view name으로 이동
+		 * */
+		String email = (String)session.getAttribute("email");
+		List<ProductDTO> list = userService.myCartOrder(email);
 		
+		ModelAndView mv =  new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("주문페이지 이동");
+		
+		return mv;
 	}
 }

@@ -132,4 +132,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return null;
 	}
 	
+	/**
+	 * 내정보 - 장바구니 로딩
+	 * */
+	 @Override
+	public List<ProductDTO> myCart(String email) {
+		
+		return null;
+	}
+	 
+	 /**
+	  * 내정보 - 장바구니 -> 주문하기 버튼을 눌렀을 때
+	  * */
+	 @Override
+	public List<ProductDTO> myCartOrder(String email) {
+		
+		return null;
+	}
+	
 }
