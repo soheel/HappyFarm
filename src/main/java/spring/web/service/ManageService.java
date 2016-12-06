@@ -1,6 +1,7 @@
 package spring.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProductDTO;
@@ -22,6 +23,8 @@ public interface ManageService {
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 	 */
 	public List<ProductDTO> packageSearchProduct(String productname);
+	public ProductDTO selectByPackageName(ProductDTO productDTO);
+	public int packageModifyManage(Map<String, Object> modifyinfo);
 	
 	
 

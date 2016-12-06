@@ -1,6 +1,8 @@
 package spring.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -163,7 +165,7 @@ public class ManageController {
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
-		return "forward:productManage";
+		return "forward:packageproduct";
 	}
 	
 	/**
@@ -185,10 +187,37 @@ public class ManageController {
 	/**
 	 * 세트상품관리 수정
 	 * 수정폼을 div로 띄워줌
+	 * @return 
 	 * */
 	@RequestMapping("packageModifyManage")
-	public void packageModifyManage() {
+	public String packageModifyManage(ProductDTO productDTO, String productname) {
 		
+		Map<String, Object> modifyinfo = new HashMap<String, Object>();
+		/**
+		 * 패키지 이름을 누르고 수정을 누르면 등록폼과 같은 div가 띄어진다.
+		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
+		 * 가격,사진,설명 : product테이블에 있는 price, profile, desc
+		 * 상품검색 : product_name에 일치하는 product를 찾아준다
+		 * 밑에 상품이 productDTO들이 modify된다.
+		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
+		 */
+		
+		//수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
+		ProductDTO product = manageService.selectByPackageName(productDTO);
+		
+		//수정폼에서 상품 검색하기 위해서 필요한 메소드
+		List<ProductDTO> searchlist = packageSearchProduct(productname);
+		
+		modifyinfo.put("product", product);
+		modifyinfo.put("searchlist", searchlist);
+		
+		int result = manageService.packageModifyManage(modifyinfo);
+		
+		if(result==0){
+			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
+			
+		}
+		return "forward:packageproduct";
 	}
 	
 	/**
