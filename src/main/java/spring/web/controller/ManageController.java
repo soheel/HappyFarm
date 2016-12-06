@@ -11,8 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.CommunityCommentDTO;
+import spring.web.dto.CommunityDTO;
+import spring.web.dto.DonationDTO;
 import spring.web.dto.PackageDTO;
+import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.QnaDTO;
 import spring.web.service.ManageService;
 
 @Controller
@@ -60,6 +65,17 @@ public class ManageController {
 		return "forward:productManage";
 	}
 	
+	/** div에 정보를 불러와서 ...
+	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
+	 * 해당하는 제품의 정보를 select한다.
+	 */
+	@RequestMapping("productInfoMangage")
+	public ProductDTO productInfoMangage(String productno){
+		ProductDTO product = null;
+		product = manageService.productInfoMangage(productno);
+		
+		return product;
+	}
 	/**
 	 * 개별상품관리 수정
 	 * 수정폼을 div로 띄워줌
@@ -184,6 +200,20 @@ public class ManageController {
 		return list;
 	}
 	
+	/** div에 정보를 불러와서 ...
+	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
+		ProductDTO product = manageService.selectByPackageName(productDTO)
+	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
+	 * 해당하는 제품의 정보를 select한다.
+	 */
+	@RequestMapping("packageInfoMangage")
+	public ProductDTO packageInfoMangage(String productno){
+		ProductDTO product = null;
+		product = manageService.packageInfoMangage(productno);
+		
+		return product;
+	}
+	
 	/**
 	 * 세트상품관리 수정
 	 * 수정폼을 div로 띄워줌
@@ -202,13 +232,10 @@ public class ManageController {
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
 		
-		//수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
-		ProductDTO product = manageService.selectByPackageName(productDTO);
-		
 		//수정폼에서 상품 검색하기 위해서 필요한 메소드
 		List<ProductDTO> searchlist = packageSearchProduct(productname);
 		
-		modifyinfo.put("product", product);
+		modifyinfo.put("productDTO", productDTO);
 		modifyinfo.put("searchlist", searchlist);
 		
 		int result = manageService.packageModifyManage(modifyinfo);
@@ -225,33 +252,87 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("packageDeleteManage")
-	public void packageDeleteManage() {
-		
+	public String packageDeleteManage(String productname) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 수정한다.
+		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
+		 */
+		int result =0;
+		result = manageService.productDeleteManage(productname);
+		if(result==0){
+			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
+			
+		}
+		return "forward:packageproduct";
 	}
 	
 	/**
 	 * 생산자관리 눌렀을 때
 	 * 생산자 DTO 리스트
+	 * @return 
 	 * */
 	@RequestMapping("producerManage")
-	public void producerManage() {
+	public ModelAndView producerManage() {
+		/**
+		 * 1. 생산자관리를 누르면
+		 * 2. proudcerDTO에 있는 정보를 다 받아와서 (producerlist)
+		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
+		 *  */
+		List<ProductDTO> producerlist = manageService.selectAllProududcer();
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("producerlist", producerlist);
+		
+		mv.setViewName("producerManage");  
+		return mv;
 	}
 	
 	/**
 	 * 생산자 등록
+	 * @return 
 	 * */
 	@RequestMapping("producerRegisterManage")
-	public void producerRegisterManage() {
-		
+	public String producerRegisterManage(ProducerDTO producerDTO) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 producerDTO 정보를 모두 받아, 
+		 * 3. producer테이블에 추가한다(register)
+		 */
+		int result = manageService.producerRegisterManage(producerDTO);
+		if(result==0){
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		}
+		return "forward:producerManage";
 	}
 	
+	
+	/**
+	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.
+	 */
+	public ProducerDTO producerInfoMangage(String producerno){
+		ProducerDTO producer = null;
+		producer = manageService.producerInfoMangage(producerno);
+		
+		return producer;
+	}
 	/**
 	 * 생산자 수정
 	 * */
 	@RequestMapping("producerModifyManage")
-	public void producerModifyManage() {
-		
+	public String producerModifyManage(String producerno) {
+		/**
+		 * 특정 생산자의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 수정한다.
+		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
+		 */
+
+		int result = manageService.producerModifyManage(producerno);
+		if(result==0){
+			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
+			
+		}
+		return "forward:producerManage";
 	}
 	
 	/**
@@ -259,8 +340,19 @@ public class ManageController {
 	 * (alert)
 	 * */
 	@RequestMapping("producerDeleteManage")
-	public void producerDeleteManage() {
-		
+	public String producerDeleteManage(String producerno) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 삭제한다.
+		 * alert로 메시지 뜬다.
+		 */
+		int result =0;
+		result = manageService.productDeleteManage(producerno);
+		if(result==0){
+			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
+			
+		}
+		return "forward:producerManage";
 	}
 	
 	/**
@@ -296,52 +388,133 @@ public class ManageController {
 	/**
 	 * 회원관리
 	 * 회원 DTO 리스트(오름차순)
+	 * @return 
 	 * */
 	@RequestMapping("memberManage")
-	public void memberManage() {
+	public ModelAndView memberManage() {
+		/**
+		 * 1. 회원관리를 누르면
+		 * 2. MemberDTO에 있는 정보를 다 받아와서 (memberlist)
+		 * 정보 : member_email, memeber_name, member_phone, member_register_date, 
+		 * select를 하는데 오름차순으로 해준다.
+		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
+		 *  */
+		List<ProductDTO> memberlist = manageService.selectAllMember();
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("memberlist", memberlist);
+		
+		mv.setViewName("memberManage");  
+		return mv;
 	}
 	
 	/**
 	 * 회원관리(삭제)
 	 * */
 	@RequestMapping("memberDeleteManage")
-	public void memberDeleteManage() {
-		
+	public String memberDeleteManage(String email) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 삭제한다.
+		 * alert로 메시지 뜬다.
+		 */
+		int result =0;
+		result = manageService.memberDeleteManage(email);
+		if(result==0){
+			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
+			
+		}
+		return "forward:memberManage";
 	}
 	
 	/**
 	 * 모임관리 클릭했을 때
 	 * (회원측에서의 뷰랑 다름)
 	 * 모임 DTO 리스트
+	 * @return 
 	 * */
 	@RequestMapping("communityManage")
-	public void communityManage() {
-		
+	public ModelAndView communityManage() {
+		/**
+		 * 1. commuity를 누르면, 
+		 * 2. 총 9개를 담아서 뷰로 보내준다. community_profile사진 / commuinty_name, community_register_date를 보여준다.
+		 * 3. 전체 행사를 뽑는 dao 두 개의 메소드와 (community_state 상태를 확인 한 후)
+		 * 페이지 기능 메소드가 필요. 
+		 */
+		List<CommunityDTO> communitylist = null;
+		ModelAndView mv = new ModelAndView();
+		communitylist = manageService.communityManage();
+		if(communitylist!=null){
+			//에러 처리 진행중인 행사가 없다.
+		}
+		mv.addObject("communitylist",communitylist);
+		mv.setViewName("communityManage");
+		return mv;
 	}
 	
 	/**
 	 * 모임관리(등록)
 	 * */
 	@RequestMapping("communityRegisterManage")
-	public void communityRegisterManage() {
+	public String communityRegisterManage(CommunityDTO communityDTO) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
+		 * 3. community테이블에 추가한다(register)
+		 */
+		int result = manageService.communityRegisterManage(communityDTO);
+		if(result==0){
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		}
+		return "forward:communityManage";
+	}
+	/**
+	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.
+	 */
+	public CommunityDTO communityInfoMangage(String communityno){
+		CommunityDTO community = null;
+		community = manageService.communityInfoMangage(communityno);
 		
+		return community;
 	}
 	
 	/**
 	 * 모임관리(수정)
+	 * @return 
 	 * */
 	@RequestMapping("communityModifyManage")
-	public void communityModifyManage() {
-		
+	public String communityModifyManage(String communityno) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 수정한다.
+		 * 그 다음 div태그가 사라지고 다시 community를 보는 쪽으로 넘어간다.
+		 */
+		int result = manageService.communityModifyManage(communityno);
+		if(result==0){
+			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
+			
+		}
+		return "forward:communityManage";
 	}
 	
 	/**
 	 * 모임관리(삭제)
+	 * @return 
 	 * */
 	@RequestMapping("communityDeleteManage")
-	public void communityDeleteManage() {
-		
+	public String communityDeleteManage(String communityno) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 삭제한다.
+		 * 그 다음 div태그가 사라지고 다시 community관리를 보는 쪽으로 넘어간다.
+		 */
+		int result =0;
+		result = manageService.communityDeleteManage(communityno);
+		if(result==0){
+			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
+			
+		}
+		return "forward:communityManage";
 	}
 	
 	/**
@@ -349,65 +522,172 @@ public class ManageController {
 	 * qna DTO 리스트
 	 * */
 	@RequestMapping("qnaManage")
-	public void qnaManage() {
-		
+	public ModelAndView qnaManage() {
+		/**
+		 * 1. Q&A관리를 누르면, 
+		 * 2. 전체 Q&A정보를 뽑는 dao 메소드/ 페이지 기능 메소드가 필요. 
+		 */
+		List<QnaDTO> qnalist = null;
+		ModelAndView mv = new ModelAndView();
+		qnalist = manageService.qnaManage();
+		if(qnalist!=null){
+			//에러 처리 진행중인 행사가 없다.
+		}
+		mv.addObject("qnalist",qnalist);
+		mv.setViewName("qnaManage");
+		return mv;
 	}
 	
 	/**
 	 * Q&A 답변 등록
+	 * @return 
 	 * */
 	@RequestMapping("qnaRegisterManage")
-	public void qnaRegisterManage() {
-		
+	public String qnaRegisterManage(CommunityCommentDTO communitycommentDTO) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communitycommentDTO 정보를 모두 받아, 
+		 * 3. community테이블에 추가한다(ajax)
+		 */
+		int result = manageService.qnaRegisterManage(communitycommentDTO);
+		if(result==0){
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		}
+		return "forward:qnaManage";
 	}
 	
+	/**
+	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
+	 */
+	public QnaDTO qnaInfoMangage(String qnano){
+		QnaDTO qna = null;
+		qna = manageService.qnaInfoMangage(qnano);
+		
+		return qna;
+	}
 	/**
 	 * Q&A 답변 수정
 	 * */
 	@RequestMapping("qnaModifyManage")
-	public void qnaModifyManage() {
-		
+	public String qnaModifyManage(String communitycommentno) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 수정한다.
+		 * 그 다음 div태그가 사라지고 다시 qna를 보는 쪽으로 넘어간다.
+		 */
+		int result = manageService.qnaModifyManage(communitycommentno);
+		if(result==0){
+			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
+			
+		}
+		return "forward:qnaManage";
 	}
 	
 	/**
 	 * Q&A 질문 삭제
+	 * @return 
 	 * */
 	@RequestMapping("qnaDeleteManage")
-	public void qnaDeleteManage() {
-		
+	public String qnaDeleteManage(String communitycommentno) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 삭제한다.
+		 * 그 다음 div태그가 사라지고 다시 qna를 보는 쪽으로 넘어간다.
+		 */
+		int result =0;
+		result = manageService.qnaDeleteManage(communitycommentno);
+		if(result==0){
+			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
+			
+		}
+		return "forward:qnaManage";
 	}
 	
 	/**
 	 * 기부업체 관리
 	 * 기부업체 DTO
+	 * @return 
 	 * */
 	@RequestMapping("donationOrgManage")
-	public void donationOrgManage() {
-		
+	public ModelAndView donationOrgManage() {
+		/**
+		 * 기부 업체 관리를 클리하면, 해당하는 기부업체 DTO의 정보를 받아서 (select) 뷰에 뿌려준다.
+		 */
+		List<DonationDTO> donationlist = null;
+		ModelAndView mv = new ModelAndView();
+		donationlist = manageService.donationOrgManage();
+		if(donationlist!=null){
+			//에러 처리 진행중인 행사가 없다.
+		}
+		mv.addObject("donationlist",donationlist);
+		mv.setViewName("donationOrgManage");
+		return mv;
 	}
 	
 	/**
 	 * 기부업체 관리(등록)
+	 * @return 
 	 * */
 	@RequestMapping("donationOrgRegisterManage")
-	public void donationOrgRegisterManage() {
+	public String donationOrgRegisterManage(DonationDTO donationDTO) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
+		 * 3. community테이블에 추가한다(register)
+		 */
+		int result = manageService.donationOrgRegisterManage(donationDTO);
+		if(result==0){
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		}
+		return "forward:donationOrgManage";
+	}
+	
+	/**
+	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
+	 */
+	public DonationDTO donationOrgInfoMangage(String donationOrgno){
+		DonationDTO donation = null;
+		donation = manageService.donationOrgInfoMangage(donationOrgno);
 		
+		return donation;
 	}
 	
 	/**
 	 * 기부업체 관리(수정)
+	 * @return 
 	 * */
 	@RequestMapping("donationOrgModifyManage")
-	public void donationOrgModifyManage() {
-		
+	public String donationOrgModifyManage(DonationDTO donationDTO) {
+		/**
+		 * 특정 상품의 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 삭제한다.
+		 * 그 다음 div태그가 사라지고 다시 community관리를 보는 쪽으로 넘어간다.
+		 */
+		int result = manageService.donationOrgModifyManage(donationDTO);
+			if(result==0){
+				//request.setAttribute("errorMsg", "수정되지 않았습니다.");	
+			}
+			return "forward:donationOrgManage";
 	}
 	
 	/**
 	 * 기부업체 관리(삭제)
 	 * 기부업체 DTO
+	 * @return 
 	 * */
 	@RequestMapping("donationOrgDeleteManage")
-	public void donationOrgDeleteManage() {
-		
+	public String donationOrgDeleteManage(String donationOrgNo) {
+		/**
+		 * 특정 기부업체 번호를 받아와 
+		 * 그 번호에 일치하는 정보를 삭제한다.
+		 * 그 다음 div태그가 사라지고 다시 donation관리를 보는 쪽으로 넘어간다.
+		 */
+		int result =0;
+		result = manageService.donationOrgDeleteManage(donationOrgNo);
+		if(result==0){
+			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
+			
+		}
+		return "forward:donationOrgManage";
 	}
 }
