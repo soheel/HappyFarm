@@ -18,7 +18,7 @@ public interface ManageService {
 	 * 상품범호 순서대로 (category_subcategory_no가 null이 아닌것만 가져오기)
 	 * 리스트로
 	 * */
-	public List<ProductDTO> selectAllProududct();
+	public List<ProductDTO> selectAllProduct();
 	
 	/**
 	 * 개별상품관리 등록
@@ -31,14 +31,31 @@ public interface ManageService {
 	 * 해당하는 제품의 정보를 select한다.
 	 */
 	public ProductDTO productInfoMangage(String productno);
-	
+	/**
+	 * 개별상품관리 수정
+	 * 수정폼을 div로 띄워줌
+	 * */
 	public int productModifyManage(String productno);
 
+	/**
+	 * 개별상품관리 삭제
+	 * 수정폼을 div로 띄워줌 (alert)
+	 * */
 	public int productDeleteManage(String productno);
 	
-	public List<ProductDTO> selectAllPackageProduct(String packagename);
+	/**
+	 * 세트상품관리 클릭했을 때
+	 * package DTO 리스트
+	 * @return 
+	 * */
+	public List<PackageDTO> packageManage();
+	/**
+	 * 세트상품 상세정보
+	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
+	 * (새창)
+	 * */
+	public List<ProductDTO> packageShowManage(String packagename);
 	
-	public List<PackageDTO> selectAllPackage();
 
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
@@ -56,16 +73,14 @@ public interface ManageService {
 	/**
 	 * 세트상품관리 수정
 	 * 수정폼을 div로 띄워줌
-	 * @return 
 	 * */
 	public int packageModifyManage(Map<String, Object> modifyinfo);
 	
 	/**
 	 * 생산자관리 눌렀을 때
 	 * 생산자 DTO 리스트
-	 * @return 
 	 * */
-	public List<ProductDTO> selectAllProududcer();
+	public List<ProductDTO> selectAllProducer();
 	/**
 	 * 생산자 등록
 	 * */
@@ -84,7 +99,6 @@ public interface ManageService {
 	/**
 	 * 회원관리
 	 * 회원 DTO 리스트(오름차순)
-	 * @return 
 	 * */
 	public List<ProductDTO> selectAllMember();
 	/**
@@ -177,13 +191,7 @@ public interface ManageService {
 	 * @return 
 	 * */
 	public int donationOrgDeleteManage(String donationOrgNo);
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 

@@ -38,7 +38,7 @@ public class ManageController {
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 * 
 		 */
-		List<ProductDTO> productlist = manageService.selectAllProududct();
+		List<ProductDTO> productlist = manageService.selectAllProduct();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
@@ -129,7 +129,7 @@ public class ManageController {
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 * 
 		 */
-		List<PackageDTO> packagelist = manageService.selectAllPackage();
+		List<PackageDTO> packagelist = manageService.packageManage();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("packagelist", packagelist);
@@ -152,7 +152,7 @@ public class ManageController {
 		 */
 		
 		//packagename에 일치하는 package_no를 찾고 package_product에 있는 product_no를 찾는다.
-		List<ProductDTO> packageproduct = manageService.selectAllPackageProduct(packagename);
+		List<ProductDTO> packageproduct = manageService.packageShowManage(packagename);
 		//다른 건 다 조인해서 받아올수있는건가...ㅎ
 		
 		ModelAndView mv = new ModelAndView();
@@ -279,7 +279,7 @@ public class ManageController {
 		 * 2. proudcerDTO에 있는 정보를 다 받아와서 (producerlist)
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 *  */
-		List<ProductDTO> producerlist = manageService.selectAllProududcer();
+		List<ProductDTO> producerlist = manageService.selectAllProducer();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("producerlist", producerlist);

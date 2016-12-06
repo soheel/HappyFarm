@@ -2,6 +2,9 @@ package spring.web.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import spring.web.dao.UserEtcDao;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -11,64 +14,82 @@ import spring.web.dto.QnaDTO;
 
 public class UserEtcServiceImpl implements UserEtcService{
 
+	@Autowired
+	private UserEtcDao userEtcDao;
+	/**
+	 * 모임목록 불러오기 
+	 * 모임DTO 리스트(select + 페이징)
+	 */
 	@Override
 	public List<CommunityDTO> communityLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.communityLoading();
 	}
-
+	/**
+	 * 모임상세 정보 불러오기 
+	 */
 	@Override
 	public CommunityDTO communityDetail(String communityNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.communityDetail(communityNo);
 	}
-
+	/**
+	 * Q&A 등록
+	 */
 	@Override
 	public int registerQnA(QnaDTO qnaDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userEtcDao.registerQnA(qnaDTO);
 	}
-
+	/**
+	 * Q&A 등록폼이 뜨고 + 목록 
+	 * @return
+	 */
 	@Override
 	public List<QnaDTO> qnaLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.qnaLoading();
 	}
-
+	/**
+	 * 행사 정보 로딩
+	 * @return
+	 */
 	@Override
 	public List<InfomationDTO> infoLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.infoLoading();
 	}
-
+	/**
+	 * 행사 상세 정보 로딩
+	 */
 	@Override
 	public InfomationDTO infoDetail(String qnano) {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.infoDetail(qnano);
 	}
-
+	/**
+	 * 기부 목록 5개 + 차트 로딩
+	 */
 	@Override
 	public List<DonationDTO> donationLoading() {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.donationLoading();
 	}
-
+	/**
+	 * 생산자 정보 불러오기(이미지 + 정보 + 지도)
+	 * @return
+	 */
 	@Override
 	public ProducerDTO producerDetail() {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.producerDetail();
 	}
-
+	/**
+	 * 진행중인 행사만 모아서 불러오기)
+	 * @return
+	 */
 	@Override
 	public List<CommunityDTO> communityIngList() {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.communityIngList();
 	}
-
+	/**
+	 * 행사 참여 여부를 댓글에 입력하는 데, 그 댓글에 대한 정보들을 불러온다
+	 */
 	@Override
 	public List<CommunityCommentDTO> commmentList(String communityNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return userEtcDao.commmentList(communityNo);
 	}
 
 }
