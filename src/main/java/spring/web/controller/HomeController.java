@@ -11,6 +11,7 @@ public class HomeController {
 	
 	@RequestMapping("")
 	public String home() {
+		System.out.println("¿©±â????");
 		return "main/index";
 	}
 }
