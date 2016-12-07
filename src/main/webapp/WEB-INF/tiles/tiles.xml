@@ -3,16 +3,113 @@
 	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<!-- user 폴더가 안에 있는 view 참조할 레이아웃 (이미 정해진 부분)-->
-	<definition name="layout" template="/WEB-INF/views/tiles/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	<!-- 메인 페이지 defintion-->
+	<definition name="index" template="/WEB-INF/views/tiles/main/mainPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
 	</definition>
 	
-	<!-- 컨트롤러에서 viewName을 */* 식으로 리턴하면 실행된다!! -->
+	<!-- shop 페이지 defintion -->
+	<definition name="shop" template="/WEB-INF/views/tiles/shop/shopPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/tiles/shop/shopSide.jsp"/>
+	</definition>
+	
+	<!-- package 페이지 defintion -->
+	<definition name="package" template="/WEB-INF/views/tiles/package/packagePage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+	</definition>
+	
+	<!-- community 페이지 defintion -->
+	<definition name="community" template="/WEB-INF/views/tiles/community/communityPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+	</definition>
+	
+	<!-- info 페이지 defintion -->
+	<definition name="info" template="/WEB-INF/views/tiles/info/infoPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+	</definition>
+	
+	<!-- qna 페이지 defintion -->
+	<definition name="qna" template="/WEB-INF/views/tiles/qna/qnaPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+	</definition>
+	
+	<!-- donate 페이지 defintion -->
+	<definition name="donate"  template="/WEB-INF/views/tiles/donate/donatePage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+	</definition>
+	
+	<!-- cart 페이지 defintion -->
+	<definition name="cart"  template="/WEB-INF/views/tiles/cart/cartPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+	</definition>
 
-	<definition name="*/*" extends="layout">
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
-	</definition> 
 
+	
+	
+	
+	
+	
+	<!-- 메인 페이지 -->
+	<definition name="main/*" extends="index">
+		<put-attribute name="content" value="/WEB-INF/views/main/{1}.jsp"/>
+	</definition>
+	
+	<!-- shop 페이지 -->
+	<definition name="shop/*" extends="shop">
+		<put-attribute name="content" value="/WEB-INF/views/shop/{1}.jsp"/>
+	</definition>
+	
+	<!-- package 페이지  메인 -->
+	<definition name="package/*Main" extends="package">
+		<put-attribute name="content" value="/WEB-INF/views/package/{1}.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/tiles/package/packageSide.jsp"/>
+	</definition>
+	
+	<!-- package 페이지  detail -->
+	<definition name="package/*Detail" extends="package">
+		<put-attribute name="content" value="/WEB-INF/views/package/{1}Detail.jsp"/>
+		<put-attribute name="side" value=""/>
+	</definition>
+	
+	<!-- community 페이지 main-->
+	<definition name="community/*Main" extends="community">
+		<put-attribute name="content" value="/WEB-INF/views/community/{1}.jsp"/>
+		<put-attribute name="side" value=""/>
+	</definition>
+	
+	<!-- community 페이지  detail-->
+	<definition name="community/*Detail" extends="community">
+		<put-attribute name="content" value="/WEB-INF/views/community/{1}Detail.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/tiles/community/communitySide.jsp"/>
+	</definition>
+	
+	<!-- info 페이지 -->
+	<definition name="info/*" extends="info">
+		<put-attribute name="content" value="/WEB-INF/views/info/{1}.jsp"/>
+	</definition>
+	
+	<!-- qna 페이지 -->
+	<definition name="qna/*" extends="qna">
+		<put-attribute name="content" value="/WEB-INF/views/qna/{1}.jsp"/>
+	</definition>
+	
+	<!-- donate 페이지 -->
+	<definition name="donate/*" extends="donate">
+		<put-attribute name="content" value="/WEB-INF/views/donate/{1}.jsp"/>
+	</definition>
+	
+	<!-- cart 페이지 -->
+	<definition name="cart/*" extends="cart">
+		<put-attribute name="content" value="/WEB-INF/views/cart/{1}.jsp"/>
+	</definition>
+	
 </tiles-definitions>
