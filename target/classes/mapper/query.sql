@@ -1,6 +1,29 @@
 donation_org -> donation -> member -> producer -> category -> sub_category -> product -> package -> package_product -> certification -> product_certification
 -> purchase_state -> purchase -> purchase_order -> purchase_product -> cart -> product_comment -> commuinty -> community_comment -> qna -> information
 
+테이블 삭제 순서
+drop table information;
+drop table qna;
+drop table community_comment;
+drop table community;
+drop table product_comment;
+drop table cart;
+drop table purchase_product;
+drop table purchase_order;
+drop table purchase;
+drop table purchase_state;
+drop table product_certification;
+drop table certification;
+drop table package_product;
+drop table package;
+drop table product;
+drop table sub_category;
+drop table category;
+drop table producer;
+drop table member;
+drop table donation;
+drop table donation_org;
+
 -- donation_org 테이블----------------------------------------------------------
 drop table donation_org;
 select * from donation_org;
@@ -54,6 +77,8 @@ insert into member values('이소희', '123', '이소희', '012', sysdate, 9000, null,
 insert into member values('박태흠', '123', '박태흠', '013', sysdate, 2000, null, 1);
 insert into member values('김나리', '123', '김나리', '014', sysdate, 12000, null, 1);
 insert into member values('임근묵', '123', '임근묵', '015', sysdate, 100000, null, 1);
+insert into member values('admin', '123', '관리자', '000', sysdate, 0, null, 1);
+
 
 -- producer 테이블--------------------------------------------------------------
 drop table producer;
@@ -238,6 +263,7 @@ insert into product_certification values (product_certification_no.nextval, 1,1)
 insert into product_certification values (product_certification_no.nextval, 1,2);
 insert into product_certification values (product_certification_no.nextval, 2,3);
 insert into product_certification values (product_certification_no.nextval, 2,4);
+insert into product_certification values (product_certification_no.nextval, 1,5);
 insert into product_certification values (product_certification_no.nextval, 3,5);
 
 -- purchase_state 테이블--------------------------------------------------------
@@ -279,6 +305,7 @@ member_email varchar2(50) references member(member_email) on delete cascade
 
 삽입
 insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박용우');
+insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박태흠');
 
 -- purchase_order 테이블--------------------------------------------------------
 drop table purchase_order;
@@ -296,6 +323,7 @@ purchase_order_phone varchar2(15) not null
 
 삽입
 insert into purchase_order values(1, '박용우', '수원', '팔달구', 15152, 'naver.com', '010');
+insert into purchase_order values(2, '박태흠', '수원', '장안구', 15152, 'google.com', '010');
 
 -- purchase_product 테이블------------------------------------------------------
 drop table purchase_product;
@@ -315,21 +343,23 @@ insert into purchase_product values(1, 2, 1);
 -- cart 테이블------------------------------------------------------------------
 drop table cart;
 select * from cart;
-시퀀스
-drop sequence cart_no;
-create sequence cart_no;
 
 create table cart (
-cart_no number(5),
+member_email varchar2(50) references member(member_email) on delete cascade,
 product_no number(5) references product(product_no) on delete cascade,
 cart_num number(2) default 1,
-member_email varchar2(50) references member(member_email) on delete cascade,
-primary key(cart_no, product_no)
+primary key(member_email, product_no)
 )
 
+
 삽입
-insert into cart values(cart_no.nextval, 1, 1, '박용우');
-insert into cart values(cart_no.nextval, 5, 2, '박용우');
+'박용우' 회원의 장바구니에는 1,5번 상품이 각각 1,2개씩 들어있음
+insert into cart values('박용우', 1, 1 );
+insert into cart values('박용우', 5, 2 );
+
+'임근묵' 회원의 장바구니에는 1,5번 상품이 각각 1,2개씩 들어있음
+insert into cart values('임근묵', 2, 1 );
+insert into cart values('임근묵', 3, 5 );
 
 -- product_comment 테이블-------------------------------------------------------
 drop table product_comment;
