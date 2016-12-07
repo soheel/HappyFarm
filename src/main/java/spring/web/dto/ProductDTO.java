@@ -9,9 +9,13 @@ public class ProductDTO {
 	private String desc;
 	private double eval;
 	private String unit;
+	
 	private ProducerDTO producerDto;
 	private CategorySubcategoryDTO subcategoryDto;
 	
+	public ProductDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	public ProductDTO(int no, String name, int price, String profile, String desc, double eval, String unit,
 			ProducerDTO producerDto, CategorySubcategoryDTO subcategoryDto) {
 		super();

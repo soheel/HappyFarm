@@ -3,30 +3,38 @@ package spring.web.dto;
 import java.util.List;
 
 public class CartDTO {
-	private int no;
+	private String email;
+	private int productNo;
 	private int num;
-	private MemberDTO memberDto;
 	
+	private MemberDTO memberDto;
 	private List<ProductDTO> productDto;
 	
 	public CartDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartDTO(int no, int num, MemberDTO memberDto, List<ProductDTO> productDto) {
+	public CartDTO(String email, int productNo, int num) {
 		super();
-		this.no = no;
+		this.email = email;
+		this.productNo = productNo;
 		this.num = num;
-		this.memberDto = memberDto;
-		this.productDto = productDto;
 	}
 
-	public int getNo() {
-		return no;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
 	}
 
 	public int getNum() {
@@ -52,7 +60,6 @@ public class CartDTO {
 	public void setProductDto(List<ProductDTO> productDto) {
 		this.productDto = productDto;
 	}
-	
 	
 	
 }

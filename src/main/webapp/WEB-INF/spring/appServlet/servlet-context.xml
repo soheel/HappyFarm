@@ -23,32 +23,6 @@
 	
 	<context:component-scan base-package="spring.web" />
 	
-	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Tiles~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-	<!-- tiles 등록 -->
-	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
-		<beans:property name="order" value="1"/>
-	</beans:bean>
 	
-	<!-- Tiles를 위한 ViewResolver 선언 -->
-	<!-- tiles xml문서 위치 설정 -->
-	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" id="tilesViewResolver"/>
-	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" id="tilesConfigurer"> 
-		<beans:property name="definitions">
-			<beans:list>
-				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
-			</beans:list>
-		</beans:property>
-	</beans:bean>
-
-	<!-- Exception등록 -->
-	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<beans:property name="exceptionMappings">
-			<beans:props>
-				<beans:prop key="java.lang.Exception">
-					error/errorMessage
-				</beans:prop>
-			</beans:props>
-		</beans:property>
-	</beans:bean>
+	
 </beans:beans>

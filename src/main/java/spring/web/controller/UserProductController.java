@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.CartDTO;
+import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.service.UserProductService;
@@ -107,14 +109,15 @@ public class UserProductController {
 	 * 장바구니에 담기(상품 상세보기 화면에서 장바구니에 담을 경우)
 	 * */
 	@RequestMapping("addCart")
-	public int addCart(int productNo, int num, HttpSession session) {
+	public int addCart(CartDTO cart, HttpSession session) {
 		/**
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품과 갯수를 insert한다.
 		 * */
 		
 		String email = (String)session.getAttribute("email");
-		int result = service.addCart(productNo, num, email);
+		cart.setEmail(email);
+		int result = service.addCart(cart);
 		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
 	}
 	
@@ -122,14 +125,16 @@ public class UserProductController {
 	 * 장바구니에 담기(상품 리스트에서 바로 장바구니에 담을 경우)
 	 * */
 	@RequestMapping("addCartDirect")
-	public int addCartDirect(int productNo, HttpSession session) {
+	public int addCartDirect(CartDTO cart, HttpSession session) {
 		/**
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품을 insert한다. (개수는 1)
 		 * */
 		
 		String email = (String)session.getAttribute("email");
-		int result = service.addCartDirect(productNo, email);
+		cart.setNum(1);
+		cart.setEmail(email);
+		int result = service.addCartDirect(cart);
 		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
 	}
 
@@ -186,7 +191,7 @@ public class UserProductController {
 		 * 1. pacakage 테이블에서 등록순으로 List<ProductDTO>를 뷰로 전달
 		 * */
 		
-		List<ProductDTO> list = service.packageMenuListLoading();
+		List<PackageDTO> list = service.packageMenuListLoading();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
 		mv.setViewName("searchProduct");

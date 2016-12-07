@@ -14,7 +14,10 @@
 	<result column="product_eval" property="eval"/>
 	<result column="product_unit" property="unit"/>
 	<result column="producer_no" property="producerNo"/>
-	<result column="category_subcategory_no" property="categoryNo"/>
+	
+	<!-- <association property="subcategoryDto" javaType="subCategoryDTO">
+		
+	</association> -->
 </resultMap>
 
 <!-- 기본 ProductCommentDTO ResultMap -->
@@ -22,8 +25,12 @@
 	<id column="product_comment_no" property="no"/>
 	<result column="product_comment_content" property="content"/>
 	<result column="product_comment_register_date" property="registerDate"/>
-	<result column="member_email" property="email"/>
-	<result column="product_no" property="productNo"/>
+	<association property="memberDto" javaType="memberDTO">
+		<id column="member_email" property="email"/>
+	</association>
+	<association property="productDto" javaType="productDTO">
+		<id column="product_no" property="no"/>
+	</association>
 </resultMap>
 
 <!-- 기본 CertificationDTO ResultMap -->
