@@ -427,7 +427,7 @@ select * from qna;
 ½ÃÄö½º
 drop sequence qna_no;
 create sequence qna_no;
-
+select * from qna order by product_no desc	
 create table qna (
 qna_no number(5) primary key,
 qna_name varchar2(100) not null,
@@ -454,9 +454,10 @@ information_name varchar2(50) not null,
 information_desc varchar2(100) not null,
 information_register_date date
 )
-
+	
 »ğÀÔ
 insert into information values(information_no.nextval, '±¹»êÄá°ú ¼öÀÔÄá', 'ºñ±³', sysdate);
+
 
 -- test
 

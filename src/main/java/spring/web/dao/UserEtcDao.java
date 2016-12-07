@@ -14,7 +14,7 @@ public interface UserEtcDao {
 
 	Map<String, Object> communityLoading();
 
-	Map<String, Object> communityDetail(String no);
+	Map<String, Object> communityDetail(int no);
 
 	int registerQnA(QnaDTO qnaDTO);
 
@@ -22,14 +22,14 @@ public interface UserEtcDao {
 
 	List<InfomationDTO> infoLoading();
 
-	InfomationDTO infoDetail(String no);
+	InfomationDTO infoDetail(int no);
 
 	List<DonationDTO> donationLoading();
 
 	ProducerDTO producerDetail();
-
+/*
 	List<CommunityDTO> communityIngList();
 
-	List<CommunityCommentDTO> commmentList(String no);
+	List<CommunityCommentDTO> commmentList(int no);*/
 
 }

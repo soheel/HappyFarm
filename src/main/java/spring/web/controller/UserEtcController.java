@@ -60,7 +60,7 @@ public class UserEtcController {
 	 * 모임DTO, 오른쪽 사이드바에 진행중인 행사 목록 가져오기( communityNo)
 	 * */
 	@RequestMapping("communityDetail")
-	public ModelAndView communityDetail(String no) {
+	public ModelAndView communityDetail(int no) {
 		Map<String, Object> communityInfo=new HashMap<String, Object>();
 		/**
 		 * 1. 사용자가 선택한 모임 번호를 받는다.
@@ -149,7 +149,7 @@ public class UserEtcController {
 	 * @return 
 	 * */
 	@RequestMapping("infoDetail")
-	public ModelAndView infoDetail(String no) {
+	public ModelAndView infoDetail(int no) {
 		/**
 		 * 1. 사용자가 선택한 모임 번호를 받는다.(hidden으로 정보를 숨겨 받아서???)
 		 * 2. 받은 인수(communityNo)를 dao로 넘겨서 CommunityDTO 정보를 받아 반환

@@ -22,7 +22,7 @@ public interface UserEtcService {
 	/**
 	 * 모임상세 정보 불러오기 
 	 */
-	Map<String, Object> communityDetail(String communityNo);
+	Map<String, Object> communityDetail(int no);
 	/**
 	 * Q&A 등록
 	 */
@@ -41,7 +41,7 @@ public interface UserEtcService {
 	/**
 	 * 행사 상세 정보 로딩
 	 */
-	InfomationDTO infoDetail(String qnano);
+	InfomationDTO infoDetail(int no);
 	/**
 	 * 기부 목록 5개 + 차트 로딩
 	 */
@@ -55,11 +55,12 @@ public interface UserEtcService {
 	/**
 	 * 진행중인 행사만 모아서 불러오기)
 	 * @return
-	 */
+	
 	List<CommunityDTO> communityIngList();
-	/**
+	
 	 * 행사 참여 여부를 댓글에 입력하는 데, 그 댓글에 대한 정보들을 불러온다
+	
+	List<CommunityCommentDTO> commmentList(int no);
 	 */
-	List<CommunityCommentDTO> commmentList(String communityNo);
 
 }

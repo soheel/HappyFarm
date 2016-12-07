@@ -31,8 +31,8 @@ public class UserEtcServiceImpl implements UserEtcService{
 	 * 모임상세 정보 불러오기 
 	 */
 	@Override
-	public Map<String, Object> communityDetail(String communityNo) {
-		return userEtcDao.communityDetail(communityNo);
+	public Map<String, Object> communityDetail(int no) {
+		return userEtcDao.communityDetail(no);
 	}
 	/**
 	 * Q&A 등록
@@ -61,8 +61,8 @@ public class UserEtcServiceImpl implements UserEtcService{
 	 * 행사 상세 정보 로딩
 	 */
 	@Override
-	public InfomationDTO infoDetail(String qnano) {
-		return userEtcDao.infoDetail(qnano);
+	public InfomationDTO infoDetail(int no) {
+		return userEtcDao.infoDetail(no);
 	}
 	/**
 	 * 기부 목록 5개 + 차트 로딩
@@ -82,17 +82,17 @@ public class UserEtcServiceImpl implements UserEtcService{
 	/**
 	 * 진행중인 행사만 모아서 불러오기)
 	 * @return
-	 */
+	
 	@Override
 	public List<CommunityDTO> communityIngList() {
 		return userEtcDao.communityIngList();
 	}
-	/**
+	
 	 * 행사 참여 여부를 댓글에 입력하는 데, 그 댓글에 대한 정보들을 불러온다
-	 */
+	 
 	@Override
-	public List<CommunityCommentDTO> commmentList(String communityNo) {
-		return userEtcDao.commmentList(communityNo);
-	}
+	public List<CommunityCommentDTO> commmentList(int no) {
+		return userEtcDao.commmentList(no);
+	} */
 
 }
