@@ -18,31 +18,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="member_recommand" property="recommand" />
 	</resultMap>
 
-	<resultMap type="memberDto" id="memberDtoJoin">
-		<id column="member_email" property="email"/>
-		<result column="member_mileage" property="mileage"/>
-		
-		<collection ofType="purchaseDto" property="purchaseDto">
-			<id column="purchase_no" property="no"/>
-			<result column="purchase_date" property="date"/>
-			<result column="purchase_price" property="price"/>
-			
-			<collection property="purchaseProductDto" javaType="purchaseProductDto">
-				<id column="purchase_no" property="purchaseNo"/>
-				<result column="purchase_product_no" property="productNum"/>
-					
-					<association javaType="productDto" property="productDto">
-						<id column="product_no" property="no"/>
-						<result column="product_name" property="name"/>
-						
-						<association javaType="producerDto" property="producerDto">
-							<id column="producer_no" property="no"/>
-							<result column="producer_name" property="name"/>
-						</association>
-					</association>
-			</collection>
-	 	</collection>	
-	</resultMap>
 
 	<!-- 회원가입 기부업체 번호는 어떻게 처리하지? 우선은 1로 직접입력 처리-->
 	<insert id="registerMember" parameterType="memberDTO">
@@ -88,13 +63,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 내정보(MyPage) -->
 	<!-- 마일리지 / 진행중인 주문내역 가져오기 -->
+	<resultMap type="memberDto" id="memberDtoJoin">
+		<id column="member_email" property="email"/>
+		<result column="member_mileage" property="mileage"/>
+		
+		<collection ofType="purchaseDto" property="purchaseDto">
+			<id column="purchase_no" property="no"/>
+			<result column="purchase_date" property="date"/>
+			<result column="purchase_price" property="price"/>
+			
+			<collection property="purchaseProductDto" javaType="purchaseProductDto">
+				<id column="purchase_no" property="purchaseNo"/>
+				<result column="purchase_product_no" property="productNum"/>
+					
+					<association javaType="productDto" property="productDto">
+						<id column="product_no" property="no"/>
+						<result column="product_name" property="name"/>
+						
+						<association javaType="producerDto" property="producerDto">
+							<id column="producer_no" property="no"/>
+							<result column="producer_name" property="name"/>
+						</association>
+					</association>
+			</collection>
+	 	</collection>	
+	</resultMap>
+	
 	<select id="getMileageAndOrderlist" resultMap="memberDtoJoin">
 		select m.member_mileage,pc.purchase_date,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
 		from member m, purchase pc, product pdt, purchase_product pp, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and
-		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
-		m.member_email=#{email};
-
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email}
+	</select>
+	
+	<!-- 내정보에서 쇼핑내역 눌렀을 때 자동으로 주문/배송 조회 클릭됨 처음에는 3개월까지만 주문내역을 가져오기(email이 인수로 들어옴)-->
+	<resultMap type="purchaseDto" id="UserOrderListMap">
+		<id column="purchase_no" property="no"/>
+		<result column="member_email" property="email"/>
+		<result column="purchase_date" property="date"/>
+		
+		<association javaType="purchaseStateDto" property="purchaseStateDto">
+			<id column="purchase_state_no" property="no"/>
+			<result column="purchase_state_name" property="name"/>
+		</association>
+		<association javaType="purchaseProductDto" property="purchaseProductDto">
+			<id column="purchase_no" property="purchaseNo"/>
+			<result column="product_num" property="productNum"/>
+			
+			<collection ofType="productDto" property="productDto">
+				<id column="product_no" property="no"/>
+				<result column="product_name" property="name"/>
+				<result column="product_price" property="price"/>
+				
+				<association javaType="producerDto" property="producerDto">
+					<id column="producer_no" property="no"/>
+					<result column="producer_name" property="name"/>
+				</association>
+			</collection>
+		</association>
+	</resultMap>
+	
+	<select id="getMypageOrderList" resultMap="UserOrderListMap" parameterType="String">
+		select pc.purchase_date,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
+		from purchase pc , product pdt, producer pdc, purchase_product pp, purchase_state ps
+		where pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
+		      pc.purchase_state_no=ps.purchase_state_no and member_email=#{email} and 
+		      pc.purchase_date  between (select sysdate -90 m_day from dual) and sysdate
 	</select>
 
 

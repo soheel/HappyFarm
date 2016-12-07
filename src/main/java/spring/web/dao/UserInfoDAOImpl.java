@@ -82,7 +82,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public Map<String, Object> userMainLoading() {
-		
 		return null;
 	}
 	
@@ -94,7 +93,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public List<ProductDTO> myPageOrderList(String email) {
-		return null;
+		return sqlSession.selectList("userInfoMapper.getMypageOrderList", email);
 	}
 	
 	/**
