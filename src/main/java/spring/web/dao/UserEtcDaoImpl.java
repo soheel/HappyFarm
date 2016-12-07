@@ -13,6 +13,7 @@ import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
 @Repository
@@ -81,12 +82,20 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	@Override
 	public List<DonationDTO> donationLoading() {
 		//donation테이블에있는donation정보들을 모두 받아온다.
-		return sqlsession.selectList("userEtcMapper.donationLoadingg");
+		return sqlsession.selectList("userEtcMapper.donationLoading");
 	}
 
 	@Override
-	public ProducerDTO producerDetail() {
-		return sqlsession.selectOne("userEtcMapper.producerDetail");
+	public Map<String, Object> producerDetail(int no) {
+		Map<String, Object> producerDetail = new HashMap<String, Object>();
+		
+		ProducerDTO producer = sqlsession.selectOne("userEtcMapper.producerDetail",no);
+		
+		/*ProductDTO product = sqlsession.selectList("userEtcMapper.producerBest", no, 1);*/
+		producerDetail.put("producer", producer);
+		/*producerDetail.put("product", product);*/
+		
+		return producerDetail;
 	}
 /*
 	@Override

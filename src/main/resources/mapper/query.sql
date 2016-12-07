@@ -79,7 +79,6 @@ insert into member values('김나리', '123', '김나리', '014', sysdate, 12000, null
 insert into member values('임근묵', '123', '임근묵', '015', sysdate, 100000, null, 1);
 insert into member values('admin', '123', '관리자', '000', sysdate, 0, null, 1);
 
-
 -- producer 테이블--------------------------------------------------------------
 drop table producer;
 select * from producer;
@@ -189,6 +188,7 @@ insert into product values(product_no.nextval, '햇생강', 8000, null, '아삭하다',
 insert into product values(product_no.nextval, '밀키퀸', 8000, null, '딱딱하다', 3.0, 'kg', 2, 20);
 
 insert into product values(product_no.nextval, '김장세트', 45000, null, '김장세트입니다', 3.9, '세트', 2, 14);
+insert into product values(product_no.nextval, '김장세트', 45000, null, '김장세트입니다', 3.9, '세트', 2, 14);
 
 -- package 테이블---------------------------------------------------------------
 drop table package;
@@ -205,7 +205,7 @@ product_no number(5) references product(product_no) on delete cascade
 
 삽입
 insert into package values(package_no.nextval, '김장세트', 8);
-
+insert into package values(1, '김장세트', 8);
 -- package_product 테이블-------------------------------------------------------
 drop table package_product;
 select * from package_product;

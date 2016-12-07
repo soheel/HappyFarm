@@ -69,26 +69,27 @@ public class ManageController {
 	/** div에 정보를 불러와서 ...
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
 	 * 해당하는 제품의 정보를 select한다.
-	 */
+	 
 	@RequestMapping("productInfoMangage")
 	public ProductDTO productInfoMangage(String no){
-		ProductDTO product = null;
-		product = manageService.productInfoMangage(no);
+		ProductDTO product = manageService.productInfoMangage(no);
 		
 		return product;
-	}
+	}*/
+	
+	
 	/**
 	 * 개별상품관리 수정
 	 * 수정폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productModifyManage")
-	public String productModifyManage(HttpServletRequest request, String no) {
+	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.productModifyManage(no);
+		int result = manageService.productModifyManage(productDTO);
 		if(result==0){
 			request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -101,7 +102,7 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("productDeleteManage")
-	public String productDeleteManage(HttpServletRequest request, String no) {
+	public String productDeleteManage(HttpServletRequest request, int no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
@@ -119,7 +120,6 @@ public class ManageController {
 	/**
 	 * 세트상품관리 클릭했을 때
 	 * package DTO 리스트
-	 * @return 
 	 * */
 	@RequestMapping("packageManage")
 	public ModelAndView packageManage() {
@@ -260,7 +260,7 @@ public class ManageController {
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
 		int result =0;
-		result = manageService.productDeleteManage(name);
+		result = manageService.packageDeleteManage(name);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
@@ -321,14 +321,14 @@ public class ManageController {
 	 * 생산자 수정
 	 * */
 	@RequestMapping("producerModifyManage")
-	public String producerModifyManage(String no) {
+	public String producerModifyManage(ProducerDTO producerDTO) {
 		/**
 		 * 특정 생산자의 번호를 받아와 producerno
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
 
-		int result = manageService.producerModifyManage(no);
+		int result = manageService.producerModifyManage(producerDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -341,14 +341,14 @@ public class ManageController {
 	 * (alert)
 	 * */
 	@RequestMapping("producerDeleteManage")
-	public String producerDeleteManage(String no) {
+	public String producerDeleteManage(int no) {
 		/**
 		 * 특정 상품의 번호를 받아와  (인수 : producerno)
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * alert로 메시지 뜬다.
 		 */
 		int result =0;
-		result = manageService.productDeleteManage(no);
+		result = manageService.producerDeleteManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			

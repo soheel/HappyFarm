@@ -26,7 +26,7 @@ public interface UserEtcDao {
 
 	List<DonationDTO> donationLoading();
 
-	ProducerDTO producerDetail();
+	Map<String, Object> producerDetail(int no);
 /*
 	List<CommunityDTO> communityIngList();
 

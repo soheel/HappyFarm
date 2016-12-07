@@ -191,14 +191,14 @@ public class UserEtcController {
 	 * @return 
 	 * */
 	@RequestMapping("producerDetail")
-	public ModelAndView producerDetail() {
+	public ModelAndView producerDetail(int no) {
 		/**
 		 * 1.생산자 상세보기를 누르면,생산자 이름, 연락처, 생산자 이미지 정보를 받아온다.producerDTO정보를 받는다.
 		 * 2.producer의 addr주소를 통해 지도를 변환한다.
 		 * 3.대표 상품은 producerDTO 정보에 맞는 productDTO를 받는다. 
 		 * 4.지도는 지도 api를 통해 삽입한다.
 		 */
-		ProducerDTO producer = userEtcService.producerDetail();
+		Map<String, Object> producer = userEtcService.producerDetail(no);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("producer", producer);

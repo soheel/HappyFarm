@@ -38,26 +38,26 @@ public class ManageServiceImpl implements ManageService {
 
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 해당하는 제품의 정보를 select한다.
-	 * */
+	 * 
 	@Override
 	public ProductDTO productInfoMangage(String productno) {
 		return manageDao.productInfoMangage(productno);
 	}
-
+*/
 	/**
 	 * 개별상품관리 수정 정폼을 div로 띄워줌
 	 * */
 	@Override
-	public int productModifyManage(String productno) {
-		return manageDao.productModifyManage(productno);
+	public int productModifyManage(ProductDTO productDTO) {
+		return manageDao.productModifyManage(productDTO);
 	}
 
 	/**
 	 * 개별상품관리 삭제  - 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@Override
-	public int productDeleteManage(String productno) {
-		return manageDao.productDeleteManage(productno);
+	public int productDeleteManage(int no) {
+		return manageDao.productDeleteManage(no);
 	}
 	/**
 	 * 세트상품관리 클릭했을 때  package DTO 리스트
@@ -101,7 +101,13 @@ public class ManageServiceImpl implements ManageService {
 	public int packageModifyManage(Map<String, Object> modifyinfo) {
 		return manageDao.packageModifyManage(modifyinfo);
 	}
-
+	/**
+	 * 세트상품관리 삭제
+	 * */
+	@Override
+	public int packageDeleteManage(String name) {
+		return manageDao.packageDeleteManage(name);
+	}
 	/**
 	 * 생산자관리 눌렀을 때
 	 * 생산자 DTO 리스트
@@ -131,8 +137,16 @@ public class ManageServiceImpl implements ManageService {
 	 * 생산자 수정
 	 * */
 	@Override
-	public int producerModifyManage(String producerno) {
-		return manageDao.producerModifyManage(producerno);
+	public int producerModifyManage(ProducerDTO producerDTO) {
+		return manageDao.producerModifyManage(producerDTO);
+	}
+	
+	/**
+	 * 생산자 삭제
+	 * */
+	@Override
+	public int producerDeleteManage(int no) {
+		return manageDao.producerDeleteManage(no);
 	}
 
 	/**
@@ -263,5 +277,7 @@ public class ManageServiceImpl implements ManageService {
 	public int donationOrgDeleteManage(String donationOrgNo) {
 		return manageDao.donationOrgDeleteManage(donationOrgNo);
 	}
+
+	
 
 }

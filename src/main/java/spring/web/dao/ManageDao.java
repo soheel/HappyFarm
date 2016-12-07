@@ -24,18 +24,19 @@ public interface ManageDao {
 	
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 해당하는 제품의 정보를 select한다.
-	 * */
+	 *
 	ProductDTO productInfoMangage(String productno);
+	 */
 	
 	/**
 	 * 개별상품관리 수정 정폼을 div로 띄워줌
 	 * */
-	int productModifyManage(String productno);
+	int productModifyManage(ProductDTO productDTO);
 	
 	/**
 	 * 개별상품관리 삭제  - 수정폼을 div로 띄워줌 (alert)
 	 * */
-	int productDeleteManage(String productno);
+	int productDeleteManage(int no);
 	
 	/**
 	 * 세트상품관리 클릭했을 때  package DTO 리스트
@@ -67,6 +68,12 @@ public interface ManageDao {
 	int packageModifyManage(Map<String, Object> modifyinfo);
 	
 	/**
+	 * 세트상품관리 삭제
+	 * 수정폼을 div로 띄워줌
+	 * */
+	int packageDeleteManage(String name);
+	
+	/**
 	 * 생산자관리 눌렀을 때
 	 * 생산자 DTO 리스트
 	 * */
@@ -85,7 +92,13 @@ public interface ManageDao {
 	/**
 	 * 생산자 수정
 	 * */
-	int producerModifyManage(String producerno);
+	int producerModifyManage(ProducerDTO producerDTO);
+	
+	/**
+	 * 생산자 삭제
+	 * */
+	int producerDeleteManage(int no);
+	
 	
 	/**
 	 * 회원관리
@@ -178,4 +191,8 @@ public interface ManageDao {
 	 * 기부업체 DTO
 	 * */
 	int donationOrgDeleteManage(String donationOrgNo);
+	
+	
+	
+	
 }

@@ -50,7 +50,7 @@ public interface UserEtcService {
 	 * 생산자 정보 불러오기(이미지 + 정보 + 지도)
 	 * @return
 	 */
-	ProducerDTO producerDetail();
+	Map<String, Object> producerDetail(int no);
 
 	/**
 	 * 진행중인 행사만 모아서 불러오기)

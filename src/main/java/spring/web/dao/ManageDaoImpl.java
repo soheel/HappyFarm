@@ -3,6 +3,8 @@ package spring.web.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import spring.web.dto.CommunityCommentDTO;
@@ -15,41 +17,39 @@ import spring.web.dto.QnaDTO;
 
 @Repository
 public class ManageDaoImpl implements ManageDao {
-
+	
+	@Autowired
+	private SqlSession sqlsession;
+	
 	@Override
 	public List<ProductDTO> selectAllProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.selectAllProduct");
 	}
 
 	@Override
 	public int productRegisterManage(ProductDTO productDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.insert("userEtcMapper.insertProduct",productDTO);
+		
 	}
 
-	@Override
+	/*@Override
 	public ProductDTO productInfoMangage(String no) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectOne("userEtcMapper.productInfoMangage", no);
+	}
+*/
+	@Override
+	public int productModifyManage(ProductDTO productDTO) {
+		return sqlsession.update("userEtcMapper.productModifyManage",productDTO);
 	}
 
 	@Override
-	public int productModifyManage(String no) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int productDeleteManage(String no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int productDeleteManage(int no) {
+		return sqlsession.delete("userEtcMapper.productDeleteManage",no);
 	}
 
 	@Override
 	public List<PackageDTO> packageManage() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.packageManage");
 	}
 
 	@Override
@@ -75,17 +75,21 @@ public class ManageDaoImpl implements ManageDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public int packageDeleteManage(String name) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public List<ProductDTO> selectAllProducer() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.selectAllProducer");
 	}
 
 	@Override
 	public int producerRegisterManage(ProducerDTO producerDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.insert("userEtcMapper.producerRegisterManage",producerDTO);
 	}
 
 	@Override
@@ -95,21 +99,23 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int producerModifyManage(String no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int producerModifyManage(ProducerDTO producerDTO) {
+		return sqlsession.update("userEtcMapper.producerModifyManage",producerDTO);
 	}
 
 	@Override
+	public int producerDeleteManage(int no) {
+		return sqlsession.delete("userEtcMapper.producerDeleteManage",no);
+	}
+	
+	@Override
 	public List<ProductDTO> selectAllMember() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.selectAllMember");
 	}
 
 	@Override
 	public int memberDeleteManage(String email) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.delete("userEtcMapper.memberDeleteManage",email);
 	}
 
 	@Override
@@ -201,5 +207,7 @@ public class ManageDaoImpl implements ManageDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 }

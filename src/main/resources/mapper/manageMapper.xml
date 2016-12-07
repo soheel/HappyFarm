@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="manageMapper">
+
+<resultMap type="productDTO" id="productResultMap">
+	<id column="product_no" property="no"/>
+	<result column="product_name" property="name"/>
+	<result column="product_price" property="price"/>
+	<result column="product_profile" property="profile"/>
+	<result column="product_desc" property="desc"/>
+	<result column="product_eval" property="eval"/>
+	<result column="product_unit" property="unit"/>
+	<result column="producer_no" property="producerNo"/>
+</resultMap>
+
+<resultMap type="producerDTO" id="producerResultMap">
+	<id column="producer_no" property="no"/>
+	<result column="producer_name" property="name"/>
+	<result column="producer_addr" property="addr"/>
+	<result column="producer_phone" property="phone"/>
+	<result column="producer_register_date" property="registerDate"/>
+</resultMap>
+
+	
+<resultMap type="memberDTO" id="memberResultMap">
+	<id column="member_no" property="no"/>
+	<result column="member_email" property="email"/>
+	<result column="member_pwd" property="pwd"/>
+	<result column="member_name" property="name"/>
+	<result column="member_phone" property="phone"/>
+	<result column="member_register_date" property="registerDate"/>
+	<result column="member_mileage" property="mileage"/>
+	<result column="member_reommand" property="recommand"/>
+	
+</resultMap>
+
+<!-- 1.개별상품관리 - 모든 상품들 정보를 불러온다. -->
+<select id="selectAllProduct" resultMap="productResultMap">
+	select * from product 
+</select>
+
+<!-- 2. 개별상품관리 - 등록  -->
+<insert id="insertProduct" parameterType="productDTO">
+	insert into product values (product_no.nextval, #{name}, #{price}, #{profile}, #{desc}, #{eval},#{unit}, #{producerNo)
+</insert>
+
+<!-- 3. 개별상품관리 - 수정 -->
+<!-- 3-1. 개별상품관리 정보 받아온다. -->
+<!-- <select id="productInfoMangage" parameterType="int" resultMap="productDTO">
+	select * from product where product_no = #{value}
+</select> -->
+
+<!-- 3.2. 개별 상품관리 정보를 수정한다. -->
+<update id="productModifyManage" parameterType="productDTO">
+	update product set product_name=#{name}, product_price=#{price}, product_profile=#{profile},
+	product_desc=#{desc},product_eval=#{eval}, product_unit=#{unit}, producer_no=#{producerNo} 
+	where product_no=#{no}
+</update>
+
+<!-- 3.3 개별 상품관리 정보를 삭제한다 -->
+<delete id="productDeleteManage" parameterType="int">
+	delete from product where product_no=#{value}
+</delete> 
+
+<!-- 4. package 상품들 정보를 불러온다. -->
+<select id="selectAllPackage" resultMap="productResultMap">
+	select package.package_name, product.product_price, package_product.product_no
+	from package, product, package_product
+	where product.prodct_no = package.product_no and package.package_no = package_product.package_no
+</select>
+
+
+<!-- 5.생산자관리 - 모든 생산자 정보를 불러온다. -->
+<select id="selectAllProducer" resultMap="producerResultMap">
+	select * from producer
+</select>
+
+<!-- 6. 생산자 - 등록  -->
+<insert id="producerRegisterManage" parameterType="producerDTO">
+	insert into producer values (producer_no.nextval, #{name}, #{addr}, #{phone}, sysdate)
+</insert>
+
+<!-- 7. 생산자 정보를 수정한다. -->
+<update id="producerModifyManage" parameterType="producerDTO">
+	update producer set producer_name=#{name}, producer_addr=#{addr}, producer_phone=#{phone},
+	producer_register_date=sysdate
+	where producer_no=#{no}
+</update>
+
+<!-- 8. 생산자 정보를 삭제한다 -->
+<delete id="producerDeleteManage" parameterType="int">
+	delete from producer where producer_no=#{value}
+</delete> 
+
+
+<!-- 9.회원관리 - 모든 회원 정보를 불러온다. -->
+<select id="selectAllMember" resultMap="memberResultMap">
+	select member_email, member_name, member_phone, memer_register_date from member
+</select>
+
+<!-- 10. 회원관리 삭제-->
+<delete id="memberDeleteManage" parameterType="String">
+	delete from member where member_email=#{value}
+</delete> 
+
+</mapper>

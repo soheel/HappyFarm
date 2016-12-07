@@ -29,19 +29,21 @@ public interface ManageService {
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
 	 * 해당하는 제품의 정보를 select한다.
-	 */
+	 
 	public ProductDTO productInfoMangage(String productno);
+	*/
+	
 	/**
 	 * 개별상품관리 수정
 	 * 수정폼을 div로 띄워줌
 	 * */
-	public int productModifyManage(String productno);
+	public int productModifyManage(ProductDTO productDTO);
 
 	/**
 	 * 개별상품관리 삭제
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
-	public int productDeleteManage(String productno);
+	public int productDeleteManage(int no);
 	
 	/**
 	 * 세트상품관리 클릭했을 때
@@ -77,6 +79,12 @@ public interface ManageService {
 	public int packageModifyManage(Map<String, Object> modifyinfo);
 	
 	/**
+	 * 세트상품관리 삭제
+	 * 수정폼을 div로 띄워줌
+	 * */
+	public int packageDeleteManage(String name);
+	
+	/**
 	 * 생산자관리 눌렀을 때
 	 * 생산자 DTO 리스트
 	 * */
@@ -94,8 +102,12 @@ public interface ManageService {
 	/**
 	 * 생산자 수정
 	 * */
-	public int producerModifyManage(String producerno);
+	public int producerModifyManage(ProducerDTO producerDTO);
 	
+	/**
+	 * 생산자 삭제
+	 * */
+	int producerDeleteManage(int no);
 	/**
 	 * 회원관리
 	 * 회원 DTO 리스트(오름차순)
@@ -191,6 +203,10 @@ public interface ManageService {
 	 * @return 
 	 * */
 	public int donationOrgDeleteManage(String donationOrgNo);
+
+	
+
+	
 
 	
 	

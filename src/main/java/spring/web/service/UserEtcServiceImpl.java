@@ -76,8 +76,8 @@ public class UserEtcServiceImpl implements UserEtcService{
 	 * @return
 	 */
 	@Override
-	public ProducerDTO producerDetail() {
-		return userEtcDao.producerDetail();
+	public Map<String, Object> producerDetail(int no) {
+		return userEtcDao.producerDetail(no);
 	}
 	/**
 	 * 진행중인 행사만 모아서 불러오기)
