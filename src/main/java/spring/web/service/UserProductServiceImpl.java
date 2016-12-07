@@ -1,5 +1,6 @@
 package spring.web.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,13 +20,26 @@ public class UserProductServiceImpl implements UserProductService{
 
 	@Override
 	public List<ProductDTO> shopMenuLoading() {
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		
 		// getBestProduct()를 통해 List<Integer> 받아오기
+		List<Integer> listBestProduct = userProductDAO.getBestProduct();
 		// 계절상품 담기
 		// getRecentPurchase()를 통해 List<Integer> 받아오기
+		List<Integer> listRecentPurchase = userProductDAO.getRecentPurchase();
 		
 		// getProductByProductNo(int productNo)를 통해 리스트에 있는 productNo들을 전달해줘서
 		// ProductDTO들을 저장하는 리스트를 만들어 컨트롤러로 반환하기
-		return null;
+		for(Integer i : listBestProduct) {
+			list.add(userProductDAO.getProductByProductNo(i));
+		}
+		for(Integer i : listRecentPurchase) {
+			list.add(userProductDAO.getProductByProductNo(i));
+		}
+		for(Integer i : listRecentPurchase) {
+			list.add(userProductDAO.getProductByProductNo(i));
+		}
+		return list;
 	}
 
 	@Override
@@ -88,6 +102,9 @@ public class UserProductServiceImpl implements UserProductService{
 		return null;
 	}
 
-	
-
+	@Override
+	public Map<String, Object> showPackageDetail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

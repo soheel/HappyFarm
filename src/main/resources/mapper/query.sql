@@ -302,9 +302,10 @@ drop table purchase_product;
 select * from purchase_product;
 
 create table purchase_product (
-purchase_no number(5) primary key references purchase(purchase_no) on delete cascade,
+purchase_no number(5) references purchase(purchase_no) on delete cascade,
 product_no number(5) references product(product_no) on delete cascade,
-purchase_product_num number(2) default 1
+purchase_product_num number(2) default 1,
+primary key(purchase_no, product_no)
 )
 
 »ðÀÔ

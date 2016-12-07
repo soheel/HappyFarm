@@ -2,6 +2,9 @@ package spring.web.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import spring.web.dto.CartDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.PackageDTO;
@@ -11,6 +14,9 @@ import spring.web.dto.ProductDTO;
 
 public class UserProductDAOImpl implements UserProductDAO {
 
+	@Autowired
+	SqlSession session;
+	
 	@Override
 	public List<Integer> getBestProduct() {
 		// TODO Auto-generated method stub
