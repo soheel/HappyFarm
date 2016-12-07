@@ -20,7 +20,7 @@ import spring.web.dto.QnaDTO;
 import spring.web.service.UserEtcService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/userEtcController")
 public class UserEtcController {
 	
 	@Autowired

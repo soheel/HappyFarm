@@ -44,8 +44,9 @@ public class UserProductServiceImpl implements UserProductService{
 
 	@Override
 	public List<ProductDTO> showMenuListLoading(int categoryNo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<ProductDTO> list = userProductDAO.getProductByCategory(categoryNo);
+		return list;
 	}
 
 	@Override

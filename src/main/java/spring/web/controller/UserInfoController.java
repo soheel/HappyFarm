@@ -19,8 +19,8 @@ import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.UserInfoService;
 
-@Controller("userinfo")
-@RequestMapping("/user")
+@Controller
+@RequestMapping("/userInfoController")
 public class UserInfoController {
 	
 	@Autowired
