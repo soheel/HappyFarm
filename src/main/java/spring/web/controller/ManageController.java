@@ -21,7 +21,7 @@ import spring.web.dto.QnaDTO;
 import spring.web.service.ManageService;
 
 @Controller
-@RequestMapping("manageController")
+@RequestMapping("/manageController")
 public class ManageController {
 
 	@Autowired

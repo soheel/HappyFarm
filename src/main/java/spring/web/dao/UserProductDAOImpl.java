@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import spring.web.dto.CartDTO;
 import spring.web.dto.CertificationDTO;
@@ -12,6 +13,7 @@ import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 
+@Repository
 public class UserProductDAOImpl implements UserProductDAO {
 
 	@Autowired

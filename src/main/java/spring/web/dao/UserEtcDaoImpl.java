@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
@@ -14,6 +15,7 @@ import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.QnaDTO;
 
+@Repository
 public class UserEtcDaoImpl implements UserEtcDao {
 
 	@Autowired

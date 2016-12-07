@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import spring.web.dao.UserEtcDao;
 import spring.web.dto.CommunityCommentDTO;
@@ -13,6 +14,7 @@ import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.QnaDTO;
 
+@Service
 public class UserEtcServiceImpl implements UserEtcService{
 
 	@Autowired

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import spring.web.dao.ManageDao;
 import spring.web.dto.CommunityCommentDTO;
@@ -14,6 +15,7 @@ import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
+@Service
 public class ManageServiceImpl implements ManageService {
 
 	@Autowired
