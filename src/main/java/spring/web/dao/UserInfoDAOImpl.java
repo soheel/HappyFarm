@@ -25,7 +25,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public int registerMember(MemberDTO memberDto) {
-		
 		return sqlSession.insert("userInfoMapper.registerMember", memberDto);
 	}
 	
@@ -57,8 +56,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 로그인하기
 	 * */
 	@Override
-	public MemberDTO login(MemberDTO memberDto) {
-		
+	public MemberDTO login(MemberDTO memberDto) {	
 		return sqlSession.selectOne("userInfoMapper.login", memberDto);
 	}
 	
@@ -67,7 +65,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public boolean checkId(String email) {
-		return false;
+		return sqlSession.selectOne("userInfoMapper.checkId", email);
 	}
 	
 	/**
@@ -75,7 +73,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public Map<String, Integer> myPageLoading(String email) {
-		return null;
+		return sqlSession.selectOne("userInfoMapper.getMileageAndOrderlist", email);
 	}
 	
 	/**

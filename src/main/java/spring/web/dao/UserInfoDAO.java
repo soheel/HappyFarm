@@ -10,9 +10,6 @@ import spring.web.dto.QnaDTO;
 
 public interface UserInfoDAO {
 
-
-
-
 	/**
 	 * 회원가입
 	 * */
