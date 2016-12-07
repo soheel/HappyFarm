@@ -1,6 +1,7 @@
 package spring.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,7 +17,7 @@ public interface UserEtcService {
 	 * 모임목록 불러오기 
 	 * 모임DTO 리스트(select + 페이징)
 	 */
-	List<CommunityDTO> communityLoading();	
+	Map<String, Object> communityLoading();	
 
 	/**
 	 * 모임상세 정보 불러오기 

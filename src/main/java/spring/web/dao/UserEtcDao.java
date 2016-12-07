@@ -1,6 +1,7 @@
 package spring.web.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
@@ -11,7 +12,7 @@ import spring.web.dto.QnaDTO;
 
 public interface UserEtcDao {
 
-	List<CommunityDTO> communityLoading();
+	Map<String, Object> communityLoading();
 
 	CommunityDTO communityDetail(String no);
 

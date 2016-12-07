@@ -1,6 +1,8 @@
 package spring.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,16 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	private SqlSession sqlsession;
 	
 	@Override
-	public List<CommunityDTO> communityLoading() {
+	public Map<String, Object> communityLoading() {
+		Map<String, Object> communityList = new HashMap<String, Object>();
 		
-		return sqlsession.selectList("userEtcMapper.communityLoading");
+		List<CommunityDTO> communityIngList = sqlsession.selectList("userEtcMapper.getCommunityIng");
+		List<CommunityDTO> communityPastList = sqlsession.selectList("userEtcMapper.getCommunityPast");
+		
+		communityList.put("communityIngList", communityIngList);
+		communityList.put("communityPastList", communityPastList);
+		
+		return communityList;
 	}
 
 	@Override

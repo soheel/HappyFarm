@@ -1,6 +1,7 @@
 package spring.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +22,7 @@ public class UserEtcServiceImpl implements UserEtcService{
 	 * 모임DTO 리스트(select + 페이징)
 	 */
 	@Override
-	public List<CommunityDTO> communityLoading() {
+	public Map<String, Object> communityLoading() {
 		return userEtcDao.communityLoading();
 	}
 	/**

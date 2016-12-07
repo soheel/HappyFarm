@@ -1,1 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userEtcMapper">
+
+<!-- 기본 CommunityDTO ResultMap -->
+<resultMap type="communityDTO" id="communityResultMap">
+	<id column="community_no" property="no"/>
+	<result column="community_name" property="name"/>
+	<result column="community_profile" property="profile"/>
+	<result column="community_desc" property="desc"/>
+	<result column="community_register_date" property="registerDate"/>
+	<result column="community_state" property="state"/>
+</resultMap>
+
+<!-- 1. 모임목록 불러오기  -->
+<!-- 	1-1.6개의 현재 진행하는 행사를 가져온다. -->
+<select id="getCommunityIng" resultMap="communityResultMap" parameterType="communityDTO">
+	SELECT * FROM community WHERE rownum <= 6 and #{community_state}= 0
+</select>
+
+<!-- 	1-2.3개의 과거진행하는 행사를 가져온다. -->
+<select id="getCommunityPast" resultMap="communityResultMap" parameterType="communityDTO">
+	SELECT * FROM community WHERE rownum <= 6 and #{community_state}= 1
+</select>
+
+SELECT *
+FROM community
+WHERE rownum <= 6
+</mapper>

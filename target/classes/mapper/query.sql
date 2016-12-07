@@ -366,9 +366,12 @@ community_desc varchar2(100),
 community_register_date date,
 community_state number(1) not null
 )
+SELECT * FROM community WHERE rownum <= 6 and community_state= 0
 
 »ðÀÔ
 insert into community values(community_no.nextval, '±èÄ¡´ã±×±â¸ðÀÓ', null, '±èÀåÀ»ÇÏÀÚ', sysdate, 1);
+insert into community values(community_no.nextval, '±ïµÎ±â´ã±×±â¸ðÀÓ', null, '±ïµÎ±âÀ»ÇÏÀÚ', sysdate, 0);
+insert into community values(community_no.nextval, '°«±èÄ¡´ã±×±â¸ðÀÓ', null, '°«±èÄ¡¸ÔÀÚ', sysdate, 1);
 
 -- community_comment Å×ÀÌºí-----------------------------------------------------
 drop table community_comment;

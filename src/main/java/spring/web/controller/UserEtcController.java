@@ -34,6 +34,8 @@ public class UserEtcController {
 	 * */
 	@RequestMapping("communityLoading")
 	public ModelAndView communityLoading() {
+		Map<String, Object> communitylist = new HashMap<String, Object>();
+		
 		/**
 		 * 1. commuity를 누르면, 
 		 * 2. 6개의 현재 진행하는 행사와 지난 3개행사를 보여줘서 총 9개를 담아서
@@ -42,7 +44,7 @@ public class UserEtcController {
 		 * 페이지 기능 메소드가 필요. 
 		 * 
 		 */
-		List<CommunityDTO> communitylist = null;
+		
 		ModelAndView mv = new ModelAndView();
 		communitylist = userEtcService.communityLoading();
 		if(communitylist!=null){
