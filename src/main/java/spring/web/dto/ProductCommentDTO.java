@@ -6,7 +6,8 @@ public class ProductCommentDTO {
 	private String content;
 	private String registerDate;
 	private String email;
-	private int commentNo;
+	private int parent;
+	private int productNo;
 	
 	private MemberDTO memberDto;
 	private ProductDTO productDto;
@@ -15,21 +16,30 @@ public class ProductCommentDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductCommentDTO(int no, String content, String registerDate, String email, int commentNo) {
+	public ProductCommentDTO(int no, String content, String registerDate, String email, int parent, int productNo) {
 		super();
 		this.no = no;
 		this.content = content;
 		this.registerDate = registerDate;
 		this.email = email;
-		this.commentNo = commentNo;
+		this.parent = parent;
+		this.productNo = productNo;
+	}
+	
+	public int getProductNo() {
+		return productNo;
+	}
+	
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
 	}
 
-	public int getCommentNo() {
-		return commentNo;
+	public int getparent() {
+		return parent;
 	}
 
-	public void setCommentNo(int commentNo) {
-		this.commentNo = commentNo;
+	public void setparent(int parent) {
+		this.parent = parent;
 	}
 
 	public int getNo() {

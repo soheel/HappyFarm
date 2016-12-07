@@ -22,12 +22,10 @@
 	<id column="product_comment_no" property="no"/>
 	<result column="product_comment_content" property="content"/>
 	<result column="product_comment_register_date" property="registerDate"/>
-	<association property="memberDto" javaType="memberDTO">
-		<id column="member_email" property="email"/>
-	</association>
-	<association property="productDto" javaType="productDTO">
-		<id column="product_no" property="no"/>
-	</association>
+	<result column="member_email" property="email"/>
+	<result column="product_comment_parent" property="parent"/>
+	<result column="product_no" property="productNo"/>
+	
 </resultMap>
 
 <!-- 기본 CertificationDTO ResultMap -->
@@ -92,11 +90,11 @@ from certification, product_certification
 where certification.certification_no = product_certification.certification_no and product_certification.product_no = #{value}
 </select>
 
-<!-- productNo를 이용해 Producer DTO 가져오기 -->
+<!-- productNo를 이용해 Producer DTO 가져오기 (테스트완료)-->
 <select id="getProducerByProductNo" resultMap="producerResultMap" parameterType="integer">
-select producer.producer_no, producer.producer_name, producer.producer_addr, producer.producer_phone, producer.producer_register_date
-from product, producer
-where product.producer_no = producer.producer_no and product.product_no = #{value}
+select r.producer_no, r.producer_name, r.producer_addr, r.producer_phone, r.producer_register_date
+from product t join producer r
+on t.producer_no = r.producer_no and t.producer_no = #{value}
 </select>
 
 <!-- 생산자번호(producerNo)로 Producer DTO 가져오기 -->
@@ -127,6 +125,7 @@ order by package.product_no desc
 
 <!-- 검색 -->
 <select id="search" resultMap="productResultMap" parameterType="string">
-select * from
+select * from product
+where product_name like '%' || #{value} || '%' order by product_no 
 </select>
 </mapper>

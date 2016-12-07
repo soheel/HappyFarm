@@ -32,6 +32,7 @@ public class UserProductDAOImpl implements UserProductDAO {
 
 	@Override
 	public List<ProductDTO> getProductByCategory(int categoryNo) {
+		System.out.println("dao의 getProductByCategory메소드 들어옴");
 		return sqlSession.selectList("UserProductMapper.getProductByCategory", categoryNo);
 	}
 
@@ -77,7 +78,7 @@ public class UserProductDAOImpl implements UserProductDAO {
 
 	@Override
 	public List<ProductDTO> search(String keyword) {
-		return sqlSession.selectList("UserProductMapper.", keyword);
+		return sqlSession.selectList("UserProductMapper.search", keyword);
 	}
 
 }

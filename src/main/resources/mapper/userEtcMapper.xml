@@ -43,6 +43,10 @@
 	</association>
 </resultMap>
 
+<resultMap type="communityCommentDTO" id="communityCommentResultMap">
+
+</resultMap>
+
 <!-- 1. 모임목록 불러오기  -->
 <!-- 	1-1.6개의 현재 진행하는 행사를 가져온다. -->
 <!-- <select id="getCommunityIng" resultMap="communityResultMap" parameterType="communityDTO">

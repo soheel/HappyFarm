@@ -48,8 +48,10 @@ public class UserProductServiceImpl implements UserProductService{
 
 	@Override
 	public List<ProductDTO> showMenuListLoading(int categoryNo) {
-		
+		System.out.println("service의 showMenuListLoading메소드 들어옴");
 		List<ProductDTO> list = userProductDAO.getProductByCategory(categoryNo);
+		System.out.println("service의 showMenuListLoading메소드 나옴");
+		System.out.println(list.size());
 		return list;
 	}
 
