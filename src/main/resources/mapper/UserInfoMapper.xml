@@ -65,17 +65,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 내정보(MyPage) -->
 	<!-- 마일리지 / 진행중인 주문내역 가져오기 -->
 	<select id="getMileageAndOrderlist">
-		select
-		m.member_mileage,pc.purchase_date,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
+		select m.member_mileage,pc.purchase_date,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
 		from member m, purchase pc, product pdt, purchase_product pp, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and
 		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
-		m.member_email='김나리';
+		m.member_email=#{email};
 
 
 	</select>
 
-
+	<select id="selectA" resultMap="memberDto">
+		select member_email,MEMBER_NAME,member_mileage from member where row_number<=3;
+	</select>
 
 
 </mapper>
