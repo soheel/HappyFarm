@@ -5,15 +5,16 @@ import java.util.List;
 public class PackageDTO {
 	private int no;
 	private String name;
+	private int productNo;
 	private List<ProductDTO> list;
 	
 	public PackageDTO() {}
 
-	public PackageDTO(int no, String name, List<ProductDTO> list) {
+	public PackageDTO(int no, String name, int productNo) {
 		super();
 		this.no = no;
 		this.name = name;
-		this.list = list;
+		this.productNo = productNo;
 	}
 
 	public int getNo() {
@@ -38,6 +39,14 @@ public class PackageDTO {
 
 	public void setList(List<ProductDTO> list) {
 		this.list = list;
+	}
+
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
 	}
 	
 	

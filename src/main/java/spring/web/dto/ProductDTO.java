@@ -9,15 +9,18 @@ public class ProductDTO {
 	private String desc;
 	private double eval;
 	private String unit;
+	private int producerNo;
+	private int subCategoryNo;
 	
 	private ProducerDTO producerDto;
-	private CategorySubcategoryDTO subcategoryDto;
+	private CategorySubcategoryDTO subCategoryDto;
 	
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
 	}
+
 	public ProductDTO(int no, String name, int price, String profile, String desc, double eval, String unit,
-			ProducerDTO producerDto, CategorySubcategoryDTO subcategoryDto) {
+			int producerNo, int subCategoryNo) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -26,8 +29,8 @@ public class ProductDTO {
 		this.desc = desc;
 		this.eval = eval;
 		this.unit = unit;
-		this.producerDto = producerDto;
-		this.subcategoryDto = subcategoryDto;
+		this.producerNo = producerNo;
+		this.subCategoryNo = subCategoryNo;
 	}
 
 	public int getNo() {
@@ -86,6 +89,22 @@ public class ProductDTO {
 		this.unit = unit;
 	}
 
+	public int getProducerNo() {
+		return producerNo;
+	}
+
+	public void setProducerNo(int producerNo) {
+		this.producerNo = producerNo;
+	}
+
+	public int getSubCategoryNo() {
+		return subCategoryNo;
+	}
+
+	public void setSubCategoryNo(int subCategoryNo) {
+		this.subCategoryNo = subCategoryNo;
+	}
+
 	public ProducerDTO getProducerDto() {
 		return producerDto;
 	}
@@ -94,15 +113,13 @@ public class ProductDTO {
 		this.producerDto = producerDto;
 	}
 
-	public CategorySubcategoryDTO getSubcategoryDto() {
-		return subcategoryDto;
+	public CategorySubcategoryDTO getSubCategoryDto() {
+		return subCategoryDto;
 	}
 
-	public void setSubcategoryDto(CategorySubcategoryDTO subcategoryDto) {
-		this.subcategoryDto = subcategoryDto;
+	public void setSubCategoryDto(CategorySubcategoryDTO subCategoryDto) {
+		this.subCategoryDto = subCategoryDto;
 	}
-	
-	
 	
 	
 }

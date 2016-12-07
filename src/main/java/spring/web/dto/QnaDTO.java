@@ -9,6 +9,8 @@ public class QnaDTO {
 	private String email;
 	private int qnaParent;
 	
+	private MemberDTO memberDto;
+	
 	public QnaDTO() {
 		super();
 	}
@@ -22,6 +24,14 @@ public class QnaDTO {
 		this.registerdate = registerdate;
 		this.email = email;
 		this.qnaParent = qnaParent;
+	}
+	
+	public MemberDTO getMemberDto() {
+		return memberDto;
+	}
+
+	public void setMemberDto(MemberDTO memberDto) {
+		this.memberDto = memberDto;
 	}
 
 	public int getNo() {

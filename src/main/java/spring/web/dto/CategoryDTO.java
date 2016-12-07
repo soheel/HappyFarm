@@ -5,6 +5,14 @@ public class CategoryDTO {
 	private int no;
 	private String name;
 	
+	public CategoryDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	public CategoryDTO(int no, String name) {
+		super();
+		this.no = no;
+		this.name = name;
+	}
 	public int getNo() {
 		return no;
 	}

@@ -16,6 +16,38 @@ public class DonationDTO {
 		this.price = price;
 		this.date = date;
 	}
+
+	public DonationOrgDTO getDonationOrgDto() {
+		return donationOrgDto;
+	}
+
+	public void setDonationOrgDto(DonationOrgDTO donationOrgDto) {
+		this.donationOrgDto = donationOrgDto;
+	}
+
+	public int getDonationOrgNo() {
+		return donationOrgNo;
+	}
+
+	public void setDonationOrgNo(int donationOrgNo) {
+		this.donationOrgNo = donationOrgNo;
+	}
+
+	public long getPrice() {
+		return price;
+	}
+
+	public void setPrice(long price) {
+		this.price = price;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 	
 	
 

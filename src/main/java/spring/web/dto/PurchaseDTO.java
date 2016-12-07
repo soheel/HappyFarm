@@ -8,12 +8,13 @@ public class PurchaseDTO {
 	private String method;
 	private int stateNo;
 	private int discount;
+	private String email;
 	
-	private MemberDTO membeDto;
+	private MemberDTO memberDto;
 
 	public PurchaseDTO() {}
-	
-	public PurchaseDTO(int no, int price, String date, String method, int stateNo, int discount, MemberDTO membeDto) {
+
+	public PurchaseDTO(int no, int price, String date, String method, int stateNo, int discount, String email) {
 		super();
 		this.no = no;
 		this.price = price;
@@ -21,7 +22,7 @@ public class PurchaseDTO {
 		this.method = method;
 		this.stateNo = stateNo;
 		this.discount = discount;
-		this.membeDto = membeDto;
+		this.email = email;
 	}
 
 	public int getNo() {
@@ -72,12 +73,20 @@ public class PurchaseDTO {
 		this.discount = discount;
 	}
 
-	public MemberDTO getMembeDto() {
-		return membeDto;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMembeDto(MemberDTO membeDto) {
-		this.membeDto = membeDto;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public MemberDTO getMemberDto() {
+		return memberDto;
+	}
+
+	public void setMemberDto(MemberDTO memberDto) {
+		this.memberDto = memberDto;
 	}
 	
 	

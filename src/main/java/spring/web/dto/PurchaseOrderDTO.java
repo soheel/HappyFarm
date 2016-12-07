@@ -3,6 +3,8 @@ package spring.web.dto;
 public class PurchaseOrderDTO {
 	
 	private PurchaseDTO purchaseDto;
+	
+	private int purchaseNo;
 	private String name;
 	private String addr;
 	private String detailAddr;
@@ -11,11 +13,11 @@ public class PurchaseOrderDTO {
 	private String phone;
 	
 	public PurchaseOrderDTO() {}
-	
-	public PurchaseOrderDTO(PurchaseDTO purchaseDto, String name, String addr, String detailAddr, String postCode,
-			String email, String phone) {
+
+	public PurchaseOrderDTO(int purchaseNo, String name, String addr, String detailAddr, String postCode, String email,
+			String phone) {
 		super();
-		this.purchaseDto = purchaseDto;
+		this.purchaseNo = purchaseNo;
 		this.name = name;
 		this.addr = addr;
 		this.detailAddr = detailAddr;
@@ -30,6 +32,14 @@ public class PurchaseOrderDTO {
 
 	public void setPurchaseDto(PurchaseDTO purchaseDto) {
 		this.purchaseDto = purchaseDto;
+	}
+
+	public int getPurchaseNo() {
+		return purchaseNo;
+	}
+
+	public void setPurchaseNo(int purchaseNo) {
+		this.purchaseNo = purchaseNo;
 	}
 
 	public String getName() {
@@ -81,6 +91,4 @@ public class PurchaseOrderDTO {
 	}
 	
 	
-	
-
 }
