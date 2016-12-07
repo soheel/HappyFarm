@@ -6,9 +6,7 @@ public class CertificationDTO {
 	private String name; //인증마크 이름
 	private String desc; //인증마크 설명
 	
-	public CertificationDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public CertificationDTO() {}
 
 	public CertificationDTO(int no, String image, String name, String desc) {
 		super();

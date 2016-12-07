@@ -14,13 +14,11 @@ public class CartDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartDTO(String email, int productNo, int num, MemberDTO memberDto, List<ProductDTO> productDto) {
+	public CartDTO(String email, int productNo, int num) {
 		super();
 		this.email = email;
 		this.productNo = productNo;
 		this.num = num;
-		this.memberDto = memberDto;
-		this.productDto = productDto;
 	}
 
 	public String getEmail() {
