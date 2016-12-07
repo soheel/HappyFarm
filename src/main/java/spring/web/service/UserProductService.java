@@ -29,4 +29,6 @@ public interface UserProductService {
 	public List<ProductDTO> packageMenuListLoading();
 	
 	public Map<String, Object> showPackageDetail();
+	
+	public List<ProductDTO> search(String keyword);
 }

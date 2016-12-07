@@ -121,4 +121,11 @@ public class UserProductServiceImpl implements UserProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<ProductDTO> search(String keyword) {
+		List<ProductDTO> list = null;
+		list = userProductDAO.search(keyword);
+		return list;
+	}
 }

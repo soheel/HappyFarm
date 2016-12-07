@@ -78,4 +78,10 @@ public interface UserProductDAO {
 	 * 패키지 상품 리스트 가져오기
 	 * */
 	List<ProductDTO> getPackageList();
+	
+	/**
+	 * search(String keyword)
+	 * 검색하기
+	 * */
+	List<ProductDTO> search(String keyword);
 }

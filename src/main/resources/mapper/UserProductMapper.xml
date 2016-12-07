@@ -14,10 +14,7 @@
 	<result column="product_eval" property="eval"/>
 	<result column="product_unit" property="unit"/>
 	<result column="producer_no" property="producerNo"/>
-	
-	<!-- <association property="subcategoryDto" javaType="subCategoryDTO">
-		
-	</association> -->
+	<result column="category_subcategory_no" property="subCategoryNo"/>
 </resultMap>
 
 <!-- 기본 ProductCommentDTO ResultMap -->
@@ -124,5 +121,12 @@ product.producer_no, product.product_unit, product.category_subcategory_no
 from product, package
 where product.prodct_no = package.product_no
 order by package.product_no desc
+</select>
+
+<!-- 패키지 상품 상세보기 -->
+
+<!-- 검색 -->
+<select id="search" resultMap="productResultMap" parameterType="string">
+select * from
 </select>
 </mapper>

@@ -176,8 +176,21 @@ public class UserProductController {
 	 * 검색
 	 * */
 	@RequestMapping("search")
-	public void search() {
+	public ModelAndView search(String keyword) {
+		/**
+		 * 1. 뷰로부터 전달된 keyword를 dao로 전달하여 product 테이블의 product_name에
+		 * keyword가 포함되는 모든 상품들의 dto를 담은 list를 modelandview에 저장하고
+		 * 이를 뷰에 반환한다.
+		 * */
 		
+		ModelAndView mv = new ModelAndView();
+		List<ProductDTO> list = null;
+		list = service.search(keyword);
+		
+		mv.addObject("list", list);
+		mv.setViewName(""); // 검색 결과를 뿌려줄 뷰
+		
+		return mv;
 	}
 	
 	// 패키지

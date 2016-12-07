@@ -75,4 +75,9 @@ public class UserProductDAOImpl implements UserProductDAO {
 		return sqlSession.selectList("UserProductMapper.getPackageList");
 	}
 
+	@Override
+	public List<ProductDTO> search(String keyword) {
+		return sqlSession.selectList("UserProductMapper.", keyword);
+	}
+
 }
