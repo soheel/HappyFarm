@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import spring.web.dao.UserProductDAO;
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 
 @Service
@@ -58,25 +60,30 @@ public class UserProductServiceImpl implements UserProductService{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		// ProductDTO 가져오기
-		
+		ProductDTO productDTO = userProductDAO.getProductByProductNo(productNo);
+		map.put("productDTO", productDTO);
 		// ProductCommentDTO 가져오기
-		
+		ProductCommentDTO ProductCommentDTO = userProductDAO.getProductCommentByProductNo(productNo);
+		map.put("ProductCommentDTO", ProductCommentDTO);
 		// CertificationDTO 가져오기
-		
+		CertificationDTO CertificationDTO = userProductDAO.getCertificationByProductNo(productNo);
+		map.put("CertificationDTO", CertificationDTO);
 		// ProducerDTO 가져오기
+		ProducerDTO ProducerDTO = userProductDAO.getProducerByProductNo(productNo);
+		map.put("ProducerDTO", ProducerDTO);
 		
 		return map;
 	}
 
 	@Override
 	public ProducerDTO showProducerInfo(int producerNo) {
-		// TODO Auto-generated method stub
-		return null;
+		ProducerDTO producerDTO = userProductDAO.getProducerByProducerNo(producerNo);
+		return producerDTO;
 	}
 
 	@Override
 	public int addCart(int productNo, int num, String email) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	
