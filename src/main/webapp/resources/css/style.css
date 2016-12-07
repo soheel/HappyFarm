@@ -15115,7 +15115,7 @@ p.demo_store a {
 .commerce .widget_layered_nav_filters ul li a:before {
     font-weight: 400;
     line-height: 1;
-    content: "��";
+    content: "占쏙옙";
     color: #a00;
     font-family: WooCommerce;
     speak: none;
@@ -15269,7 +15269,7 @@ p.demo_store a {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     margin-right: .618em;
-    content: "��";
+    content: "占쏙옙";
     text-decoration: none
 }
 
@@ -15338,7 +15338,7 @@ p.demo_store a {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     margin-left: .618em;
-    content: "��";
+    content: "占쏙옙";
     text-decoration: none
 }
 
@@ -17137,7 +17137,12 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
     color: #ffffff;
 }
 
-/* 추가한 css */
+
+
+
+
+
+/* 異붽��븳 css */
 
 #triangle-down { 
 	width: 0; 
@@ -17267,7 +17272,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 
 .checks {position: relative;}
 
-.checks input[type="checkbox"] {  /* 실제 체크박스는 화면에서 숨김 */
+.checks input[type="checkbox"] {  /* �떎�젣 泥댄겕諛뺤뒪�뒗 �솕硫댁뿉�꽌 �닲源� */
   position: absolute;
    width: 1px;
    height: 1px;
@@ -17285,12 +17290,12 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
   -moz-user-select: none;
   -ms-user-select: none;
 }
-.checks input[type="checkbox"] + label:before {  /* 가짜 체크박스 */
+.checks input[type="checkbox"] + label:before {  /* 媛�吏� 泥댄겕諛뺤뒪 */
   content: ' ';
   display: inline-block;
-  width: 21px;  /* 체크박스의 너비를 지정 */
-  height: 21px;  /* 체크박스의 높이를 지정 */
-  line-height: 21px; /* 세로정렬을 위해 높이값과 일치 */
+  width: 21px;  /* 泥댄겕諛뺤뒪�쓽 �꼫鍮꾨�� 吏��젙 */
+  height: 21px;  /* 泥댄겕諛뺤뒪�쓽 �넂�씠瑜� 吏��젙 */
+  line-height: 21px; /* �꽭濡쒖젙�젹�쓣 �쐞�빐 �넂�씠媛믨낵 �씪移� */
   text-align: center; 
   vertical-align: middle;
   background: #fafafa;
@@ -17303,8 +17308,8 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
 
-.checks input[type="checkbox"]:checked + label:before {  /* 체크박스를 체크했을때 */ 
-  content: '\2714';  /* 체크표시 유니코드 사용 */
+.checks input[type="checkbox"]:checked + label:before {  /* 泥댄겕諛뺤뒪瑜� 泥댄겕�뻽�쓣�븣 */ 
+  content: '\2714';  /* 泥댄겕�몴�떆 �쑀�땲肄붾뱶 �궗�슜 */
   color: #99a1a7;
   text-shadow: 1px 1px #fff;
   background: #e9ecee;
