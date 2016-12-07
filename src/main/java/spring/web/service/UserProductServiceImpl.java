@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import spring.web.dao.UserProductDAO;
+import spring.web.dto.CartDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
@@ -82,15 +83,15 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public int addCart(int productNo, int num, String email) {
-		
-		return 0;
+	public int addCart(CartDTO cart) {
+		int result = userProductDAO.registerProductToCart(cart);
+		return result;
 	}
 	
 	@Override
-	public int addCartDirect(int productNo, String email) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addCartDirect(CartDTO cart) {
+		int result = userProductDAO.registerProductToCartDirect(cart);
+		return result;
 	}
 	
 	@Override
