@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import spring.web.dto.CartDTO;
+import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 
@@ -25,7 +26,7 @@ public interface UserProductService {
 	
 	public Map<String, Object> order(int productNo, int num);
 	
-	public List<ProductDTO> packageMenuListLoading();
+	public List<PackageDTO> packageMenuListLoading();
 	
 	public Map<String, Object> showPackageDetail();
 }

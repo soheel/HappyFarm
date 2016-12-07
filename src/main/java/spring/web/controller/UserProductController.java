@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.web.dto.CartDTO;
+import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.service.UserProductService;
@@ -190,7 +191,7 @@ public class UserProductController {
 		 * 1. pacakage 테이블에서 등록순으로 List<ProductDTO>를 뷰로 전달
 		 * */
 		
-		List<ProductDTO> list = service.packageMenuListLoading();
+		List<PackageDTO> list = service.packageMenuListLoading();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
 		mv.setViewName("searchProduct");

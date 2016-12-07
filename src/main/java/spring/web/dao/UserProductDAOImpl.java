@@ -2,6 +2,7 @@ package spring.web.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,18 +18,16 @@ import spring.web.dto.ProductDTO;
 public class UserProductDAOImpl implements UserProductDAO {
 
 	@Autowired
-	SqlSession session;
+	private SqlSession sqlSession;
 	
 	@Override
 	public List<Integer> getBestProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("UserProductMapper.getBestProduct", null, new RowBounds(0, 3));
 	}
 
 	@Override
 	public List<Integer> getRecentPurchase() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("UserProductMapper.getRecentPurchase", null, new RowBounds(0, 3));
 	}
 
 	@Override
