@@ -10,6 +10,7 @@ import spring.web.dao.UserInfoDAO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 
 @Service
@@ -109,9 +110,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 해당 목록 삭제
 	 * */
 	@Override
-	public int deleteOrderProduct(String email) {
+	public int deleteOrderProduct(int no) {
 		
-		return userInfoDao.deleteOrderProduct(email);
+		return userInfoDao.deleteOrderProduct(no);
 	}
 	
 	/**

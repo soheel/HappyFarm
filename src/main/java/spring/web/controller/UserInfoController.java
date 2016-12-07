@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.UserInfoService;
 
@@ -259,6 +260,8 @@ public class UserInfoController {
 		List<ProductDTO> list = userService.myPageOrderList(email);
 		return list;
 	}
+	
+	
 	/**
 	 * 내정보에서 취소/반품/교환 버튼 클릭했을 때
 	 * 처음에는 3개월까지만 주문내역을 가져오기
@@ -299,19 +302,18 @@ public class UserInfoController {
 	 * 목록삭제(ajax)
 	 * */
 	@RequestMapping("requestCancelButton")
-	public int requestCancelButton(HttpSession session) {
+	public int requestCancelButton(int no) {
 		/**
 		 * 주문/배송 조회 시 나오는 데이터중에
 		 * 특정 데이터를 사용자가 지우기 원할 때
 		 * 해당데이터 앞의 체크박스 선택
 		 * 
-		 * 선택된 데이터에서 product_no(primary key)를
+		 * 선택된 데이터에서 상품코드
 		 * 전달받아서 service - dao로 전달
 		 * 그에 해당하는 데이터를 지운후 int형태로 리턴을 받아서
 		 * view로 전달 
 		 * */
-		String email = (String)session.getAttribute("email");
-		int result = userService.deleteOrderProduct(email);
+		int result = userService.deleteOrderProduct(no);
 		return result;
 	}
 	

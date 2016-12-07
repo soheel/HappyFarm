@@ -12,6 +12,7 @@ import oracle.net.aso.e;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 
 @Repository
@@ -101,9 +102,8 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 해당 목록 삭제
 	 * */
 	@Override
-	public int deleteOrderProduct(String email) {
-		
-		return 0;
+	public int deleteOrderProduct(int no) {
+		return sqlSession.delete("userInfoMapper.", no);
 	}
 	
 	/**

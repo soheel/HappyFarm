@@ -6,6 +6,7 @@ import java.util.Map;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 
 public interface UserInfoDAO {
@@ -64,7 +65,7 @@ public interface UserInfoDAO {
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
 	 * 해당 목록 삭제
 	 * */
-	int deleteOrderProduct(String email);
+	int deleteOrderProduct(int no);
 	
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
