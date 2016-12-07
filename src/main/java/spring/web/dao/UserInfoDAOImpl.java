@@ -24,7 +24,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public int registerMember(MemberDTO memberDto) {
 		
-		return 0;
+		return sqlSession.insert("userInfoMapper.registerMember", memberDto);
 	}
 	
 	/**
@@ -32,7 +32,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public String searchId(MemberDTO memeberDto) {
-		return null;
+		return sqlSession.selectOne("userInfoMapper.searchId", memeberDto);
 	}
 	
 	/**

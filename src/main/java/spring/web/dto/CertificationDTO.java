@@ -1,10 +1,10 @@
 package spring.web.dto;
 
 public class CertificationDTO {
-	private int no;
-	private String image;
-	private String name;
-	private String desc;
+	private int no; //인증마크 번호
+	private String image; //인증마크 이미지
+	private String name; //인증마크 이름
+	private String desc; //인증마크 설명
 	
 	public CertificationDTO() {
 		// TODO Auto-generated constructor stub

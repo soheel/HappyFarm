@@ -1,7 +1,7 @@
 package spring.web.dto;
 
 public class DonationDTO {
-	private String donationOrgNo;
+	private DonationOrgDTO donationOrgDto; //기부단체 번호
 	private long price;
 	private String date;
 	
@@ -9,19 +9,19 @@ public class DonationDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DonationDTO(String donationOrgNo, long price, String date) {
+	public DonationDTO(DonationOrgDTO donationOrgDto, long price, String date) {
 		super();
-		this.donationOrgNo = donationOrgNo;
+		this.donationOrgDto = donationOrgDto;
 		this.price = price;
 		this.date = date;
 	}
-
-	public String getDonationOrgName() {
-		return donationOrgNo;
+	
+	public DonationOrgDTO getDonationOrgDto() {
+		return donationOrgDto;
 	}
 
-	public void setDonationOrgName(String donationOrgNo) {
-		this.donationOrgNo = donationOrgNo;
+	public void setDonationOrgDto(DonationOrgDTO donationOrgDto) {
+		this.donationOrgDto = donationOrgDto;
 	}
 
 	public long getPrice() {

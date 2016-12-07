@@ -8,9 +8,7 @@ public class CommunityDTO {
 	private String registerDate;
 	private String state;
 	
-	public CommunityDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public CommunityDTO() {}
 
 	public CommunityDTO(int no, String name, String profile, String desc, String registerDate, String state) {
 		super();

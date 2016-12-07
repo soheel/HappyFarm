@@ -1,21 +1,25 @@
 package spring.web.dto;
 
 public class CommunityCommentDTO {
-	int no;	//모임 댓글 번호
-	String content; //모임 댓글 내용
-	String registerdate; // 모임 댓글 날짜
-	String email; // 회원 이메일
+	private int no;	//모임 댓글 번호
+	private String content; //모임 댓글 내용
+	private String registerdate; // 모임 댓글 날짜
+	private CommunityDTO communityDto; //모임 글 번호
+	private MemberDTO memberDto; // 회원 이메일
+	
 	
 	public CommunityCommentDTO() {
 		super();
 	}
 
-	public CommunityCommentDTO(int no, String content, String registerdate, String email) {
+	public CommunityCommentDTO(int no, String content, String registerdate, CommunityDTO communityDto,
+			MemberDTO memberDto) {
 		super();
 		this.no = no;
 		this.content = content;
 		this.registerdate = registerdate;
-		this.email = email;
+		this.communityDto = communityDto;
+		this.memberDto = memberDto;
 	}
 
 	public int getNo() {
@@ -47,12 +51,22 @@ public class CommunityCommentDTO {
 		this.registerdate = registerdate;
 	}
 
-	public String getEmail() {
-		return email;
+	public CommunityDTO getCommunityDto() {
+		return communityDto;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCommunityDto(CommunityDTO communityDto) {
+		this.communityDto = communityDto;
 	}
+
+	public MemberDTO getMemberDto() {
+		return memberDto;
+	}
+
+	public void setMemberDto(MemberDTO memberDto) {
+		this.memberDto = memberDto;
+	}
+
+	
 	
 }
