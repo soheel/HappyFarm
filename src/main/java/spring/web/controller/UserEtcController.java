@@ -72,16 +72,8 @@ public class UserEtcController {
 		 * community_state가 1인 것들을 뽑아와 List<CommunityDTO>해서 행사목록을 가져온다.
 		 * Map으로 받는다.
 		 */
-		CommunityDTO community = userEtcService.communityDetail(no);
-		
-		List<CommunityCommentDTO> commentlist = userEtcService.commmentList(no);
-		//현재 진행중인 행사를 가져온다.
-		List<CommunityDTO> communitylist = userEtcService.communityIngList();
-		
-		communityInfo.put("community", community);
-		communityInfo.put("commentlist", commentlist);
-		communityInfo.put("communitylist", communitylist);
-		
+		communityInfo = userEtcService.communityDetail(no);
+
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("communityInfo",communityInfo);
 		mv.setViewName("showCommunityDetail");

@@ -31,7 +31,7 @@ public class UserEtcServiceImpl implements UserEtcService{
 	 * 모임상세 정보 불러오기 
 	 */
 	@Override
-	public CommunityDTO communityDetail(String communityNo) {
+	public Map<String, Object> communityDetail(String communityNo) {
 		return userEtcDao.communityDetail(communityNo);
 	}
 	/**

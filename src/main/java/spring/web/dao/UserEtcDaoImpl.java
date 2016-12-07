@@ -35,8 +35,23 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	}
 
 	@Override
-	public CommunityDTO communityDetail(String no) {
-		return sqlsession.selectOne("userEtcMapper.communityDetail",no);
+	public Map<String, Object> communityDetail(String no) {
+		Map<String, Object> communityDetailList = new HashMap<String, Object>();
+		//해당번호에 해당하는 프로필 이미지 받아오기
+		String profile = sqlsession.selectOne("userEtcMapper.getCommunityProfile",no);
+		
+		//댓글 정보 받아오기
+		List<CommunityDTO> commentlist = sqlsession.selectList("userEtcMapper.getCommunityComment",no);
+		
+		// 현재 진행중인 행사 목록 받아오기
+		List<CommunityDTO> communityIngList = sqlsession.selectList("userEtcMapper.getCommunityIng");
+		
+		communityDetailList.put("profile", profile);
+		communityDetailList.put("commentlist", commentlist);
+		communityDetailList.put("communityIngList", communityIngList);
+
+		
+		return communityDetailList;
 	}
 
 	@Override

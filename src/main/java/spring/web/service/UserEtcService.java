@@ -22,7 +22,7 @@ public interface UserEtcService {
 	/**
 	 * 모임상세 정보 불러오기 
 	 */
-	CommunityDTO communityDetail(String communityNo);
+	Map<String, Object> communityDetail(String communityNo);
 	/**
 	 * Q&A 등록
 	 */
