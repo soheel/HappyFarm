@@ -59,9 +59,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 로그인하기
 	 * */
 	@Override
-	public MemberDTO login(String email, String pwd) {
+	public MemberDTO login(MemberDTO memberDto) {
 		
-		return userInfoDao.login(email, pwd);
+		return userInfoDao.login(memberDto);
 	}
 	
 	/**

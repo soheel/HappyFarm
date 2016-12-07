@@ -1,5 +1,6 @@
 package spring.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import oracle.net.aso.e;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
@@ -40,7 +42,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public String searchPwdSendCode(String email) {
-		return null;
+		return sqlSession.selectOne("userInfoMapper.searchPwdSendCode", email);
 	}
 	
 	/**
@@ -48,15 +50,16 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public String searchPwd(String code) {
-		return null;
+		return sqlSession.selectOne("userInfoMapper.searchPwd",code);
 	}
 	
 	/**
 	 * 로그인하기
 	 * */
 	@Override
-	public MemberDTO login(String email, String pwd) {
-		return null;
+	public MemberDTO login(MemberDTO memberDto) {
+		
+		return sqlSession.selectOne("userInfoMapper.login", memberDto);
 	}
 	
 	/**
@@ -81,6 +84,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public Map<String, Object> userMainLoading() {
+		
 		return null;
 	}
 	

@@ -123,7 +123,7 @@ public class UserInfoController {
 	 * 만약 아이디가 admin이면 관리자 페이지 로딩
 	 * */
 	@RequestMapping("login")
-	public ModelAndView login(String email, String pwd) {
+	public ModelAndView login(MemberDTO memberDto) {
 		/**
 		 * 로그인하기 - 본인의 아이디나 비밀번호를 입력한 후
 		 * db에 존재하면 해당 아이디를 리턴해옴
@@ -135,8 +135,8 @@ public class UserInfoController {
 		 * */
 		
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDto = userService.login(email, pwd);
-		if(memberDto!=null){
+		MemberDTO result = userService.login(memberDto);
+		if(result!=null){
 			if(memberDto.getName().equals("admin")){
 				/**
 				 * 관리자 메인창으로 이동

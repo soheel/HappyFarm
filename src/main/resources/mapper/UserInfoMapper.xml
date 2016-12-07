@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="userInfoMapper">
 
 	<!-- 일반 resultMap -->
-	<resultMap type="MemberDTO" id="memberDto">
+	<resultMap type="memberDTO" id="memberDto">
 		<id column="member_email" property="email" />
 		<result column="member_pwd" property="pwd" />
 		<result column="member_name" property="name" />
@@ -18,9 +18,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="member_recommand" property="recommand" />
 	</resultMap>
 
+	<resultMap type="memberDto" id="memberDtoJoin">
+		<id column="member_email" property="email"/>
+		<result column="member_mileage" property="mileage"/>
+		
+		<collection ofType="purchaseDto" property="purchaseDto">
+			<id column="purchase_no" property="no"/>
+			<result column="purchase_date" property="date"/>
+			<result column="purchase_price" property="price"/>
+			
+			<collection property="purchaseProductDto" javaType="purchaseProductDto">
+				<id column="purchase_no" property="purchaseNo"/>
+				<result column="purchase_product_no" property="productNum"/>
+					
+					<association javaType="productDto" property="productDto">
+						<id column="product_no" property="no"/>
+						<result column="product_name" property="name"/>
+						
+						<association javaType="producerDto" property="producerDto">
+							<id column="producer_no" property="no"/>
+							<result column="producer_name" property="name"/>
+						</association>
+					</association>
+			</collection>
+	 	</collection>	
+	</resultMap>
 
-
-	<!-- 회원가입 기부업체 번호는 어떻게 처리하지? -->
+	<!-- 회원가입 기부업체 번호는 어떻게 처리하지? 우선은 1로 직접입력 처리-->
 	<insert id="registerMember" parameterType="memberDTO">
 		insert into member
 		values(#{email},#{pwd},#{name},#{phone},sysdate,1,0,#{recommand})
@@ -64,18 +88,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 내정보(MyPage) -->
 	<!-- 마일리지 / 진행중인 주문내역 가져오기 -->
-	<select id="getMileageAndOrderlist">
+	<select id="getMileageAndOrderlist" resultMap="memberDtoJoin">
 		select m.member_mileage,pc.purchase_date,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
 		from member m, purchase pc, product pdt, purchase_product pp, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and
 		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
 		m.member_email=#{email};
 
-
-	</select>
-
-	<select id="selectA" resultMap="memberDto">
-<!-- 		select member_email,MEMBER_NAME,member_mileage from member where row_number<=3; -->
 	</select>
 
 

@@ -33,7 +33,7 @@ public interface UserInfoService {
 	/**
 	 * 로그인하기
 	 * */
-	MemberDTO login(String email,String pwd);
+	MemberDTO login(MemberDTO memberDto);
 	
 	/**
 	 * 아이디 중복확인 / 추천인 아이디 중복확인

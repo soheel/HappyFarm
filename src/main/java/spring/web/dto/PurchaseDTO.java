@@ -1,5 +1,7 @@
 package spring.web.dto;
 
+import java.util.List;
+
 public class PurchaseDTO {
 	
 	private int no;
@@ -11,6 +13,8 @@ public class PurchaseDTO {
 	private String email;
 	
 	private MemberDTO memberDto;
+	//purchase state dto»ý¼º
+	private List<PurchaseProductDTO> purchaseProductDto;
 
 	public PurchaseDTO() {}
 
@@ -23,6 +27,15 @@ public class PurchaseDTO {
 		this.stateNo = stateNo;
 		this.discount = discount;
 		this.email = email;
+	}
+	
+	
+	public List<PurchaseProductDTO> getPurchaseProductDto() {
+		return purchaseProductDto;
+	}
+
+	public void setPurchaseProductDto(List<PurchaseProductDTO> purchaseProductDto) {
+		this.purchaseProductDto = purchaseProductDto;
 	}
 
 	public int getNo() {
