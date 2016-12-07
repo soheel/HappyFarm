@@ -60,7 +60,7 @@ from purchase, purchase_product
 where purchase.purchase_no = purchase_product.purchase_no and purchase.purchase_state_no = 2 and purchase.member_email = #{value} order by purchase.purchase_date desc
 </select>
 
-<!-- 카테고리 눌렀을 때, 상품 리스트 가져오기 (개별상품) -->
+<!-- 카테고리 눌렀을 때, 상품 리스트 가져오기 (개별상품) (테스트완료) -->
 <select id="getProductByCategory" resultMap="productResultMap" parameterType="integer">
 select *
 from product
@@ -68,20 +68,20 @@ where category_subcategory_no = #{value}
 order by product_no desc
 </select>
 
-<!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 -->
+<!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 (테스트완료)-->
 <select id="getProductByProductNo" resultMap="productResultMap" parameterType="integer">
 select * from product where product_no = #{value}
 </select>
 
 <!-- 상품 상세보기 -->
-<!-- productNo를 이용해 ProductCommentDTO 가져오기 -->
+<!-- productNo를 이용해 ProductCommentDTO 가져오기 (테스트완료)-->
 <select id="getProductCommentByProductNo" resultMap="productCommentResultMap" parameterType="integer">
 select *
 from product_comment
 where product_no = #{value}
 </select>
 
-<!-- productNo를 이용해 Certification DTO 가져오기 -->
+<!-- productNo를 이용해 Certification DTO 가져오기 (테스트완료)-->
 <select id="getCertificationByProductNo" resultMap="certificationResultMap" parameterType="integer">
 select certification.certification_no, certification.certification_image, certification.certification_name, certification.certification_desc
 from certification, product_certification
