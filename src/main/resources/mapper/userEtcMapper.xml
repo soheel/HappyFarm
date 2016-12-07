@@ -16,15 +16,15 @@
 <!-- 1. 모임목록 불러오기  -->
 <!-- 	1-1.6개의 현재 진행하는 행사를 가져온다. -->
 <select id="getCommunityIng" resultMap="communityResultMap" parameterType="communityDTO">
-	SELECT * FROM community WHERE rownum <= 6 and #{community_state}= 0
-</select>
+<!-- 	SELECT * FROM community WHERE rownum <= 6 and #{community_state}= 0
+ --></select>
 
 <!-- 	1-2.3개의 과거진행하는 행사를 가져온다. -->
 <select id="getCommunityPast" resultMap="communityResultMap" parameterType="communityDTO">
-	SELECT * FROM community WHERE rownum <= 6 and #{community_state}= 1
-</select>
+<!-- 	SELECT * FROM community WHERE rownum <= 6 and #{community_state}= 1
+ --></select>
 
-SELECT *
+<!-- SELECT *
 FROM community
-WHERE rownum <= 6
+WHERE rownum <= 6 -->
 </mapper>

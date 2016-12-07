@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -21,8 +23,65 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="spring.web.controller" />
+	<context:component-scan base-package="spring.web" />
 	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Tiles~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- tiles 등록 -->
+	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+	<!-- Tiles를 위한 ViewResolver 선언 -->
+	<!-- tiles xml문서 위치 설정 -->
+	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" id="tilesViewResolver"/>
+	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" id="tilesConfigurer"> 
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- Exception등록 -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key="java.lang.Exception">
+					error/errorMessage
+				</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	
+	<!-- aop를 annotation 설정 -->
+	<aop:aspectj-autoproxy/>
+	
+	<!-- intercepter 설정 -->
+	<interceptors>
+		<beans:bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<beans:property name="cacheSeconds" value="0"/>
+			<beans:property name="useExpiresHeader" value="true"/>
+			<beans:property name="useCacheControlHeader" value="true"/>
+			<beans:property name="useCacheControlNoStore" value="true"/>
+		</beans:bean>
+	</interceptors>
+	
+	<!--
+	
+	<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/happyhouse/*" /> 모든 URL 에 대해 Interceptor 를 적용하고자 한다면 /**
+        <bean class="com.happyhouse.rednics.tutorial.spring.webmvc.interceptor.HappyInterceptor"/> HandlerInterceptor 인터페이스를 구현한 클래스
+    </mvc:interceptor>
+	</mvc:interceptors>
+ 
+	모든 요청에 적용하는 Interceptor 설정
+	<mvc:interceptors>
+	    <bean class=""/>
+	</mvc:interceptors>
+	
+	 -->
 	
 	
 </beans:beans>

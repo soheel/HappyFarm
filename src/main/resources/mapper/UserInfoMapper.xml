@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectA" resultMap="memberDto">
-		select member_email,MEMBER_NAME,member_mileage from member where row_number<=3;
+<!-- 		select member_email,MEMBER_NAME,member_mileage from member where row_number<=3; -->
 	</select>
 
 
