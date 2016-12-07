@@ -9,14 +9,13 @@ public class MemberDTO {
 	private String registerDate;
 	private int mileage;
 	private String recommand; // 자기가 추천한 사람의 아이디
-	private int donationOrgNo; // 기부될 단체 번호
 	
-	public MemberDTO() {
-
-	}
+	private DonationOrgDTO donationOrgDto;
+	
+	public MemberDTO() {}
 
 	public MemberDTO(int no, String email, String pwd, String name, String phone, String registerDate, int mileage,
-			String recommand, int donationOrgNo) {
+			String recommand, DonationOrgDTO donationOrgDto) {
 		super();
 		this.no = no;
 		this.email = email;
@@ -26,13 +25,13 @@ public class MemberDTO {
 		this.registerDate = registerDate;
 		this.mileage = mileage;
 		this.recommand = recommand;
-		this.donationOrgNo = donationOrgNo;
+		this.donationOrgDto = donationOrgDto;
 	}
-	
+
 	public int getNo() {
 		return no;
 	}
-	
+
 	public void setNo(int no) {
 		this.no = no;
 	}
@@ -93,12 +92,14 @@ public class MemberDTO {
 		this.recommand = recommand;
 	}
 
-	public int getDonationOrgNo() {
-		return donationOrgNo;
+	public DonationOrgDTO getDonationOrgDto() {
+		return donationOrgDto;
 	}
 
-	public void setDonationOrgNo(int donationOrgNo) {
-		this.donationOrgNo = donationOrgNo;
+	public void setDonationOrgDto(DonationOrgDTO donationOrgDto) {
+		this.donationOrgDto = donationOrgDto;
 	}
+
 	
+
 }

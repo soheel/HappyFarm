@@ -1,23 +1,27 @@
 package spring.web.dto;
 
+
 public class ProductCommentDTO {
 	private int no;
 	private String content;
 	private String registerDate;
 	private String email;
-	private int productNo;
+	private MemberDTO memberDto;
+	private ProductDTO productDto;
 	
 	public ProductCommentDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductCommentDTO(int no, String content, String registerDate, String email, int productNo) {
+	public ProductCommentDTO(int no, String content, String registerDate, String email, MemberDTO memberDto,
+			ProductDTO productDto) {
 		super();
 		this.no = no;
 		this.content = content;
 		this.registerDate = registerDate;
 		this.email = email;
-		this.productNo = productNo;
+		this.memberDto = memberDto;
+		this.productDto = productDto;
 	}
 
 	public int getNo() {
@@ -52,13 +56,22 @@ public class ProductCommentDTO {
 		this.email = email;
 	}
 
-	public int getProductNo() {
-		return productNo;
+	public MemberDTO getMemberDto() {
+		return memberDto;
 	}
 
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
+	public void setMemberDto(MemberDTO memberDto) {
+		this.memberDto = memberDto;
 	}
+
+	public ProductDTO getProductDto() {
+		return productDto;
+	}
+
+	public void setProductDto(ProductDTO productDto) {
+		this.productDto = productDto;
+	}
+	
 	
 	
 }

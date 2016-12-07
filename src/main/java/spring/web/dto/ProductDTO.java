@@ -1,6 +1,7 @@
 package spring.web.dto;
 
 public class ProductDTO {
+	
 	private int no;
 	private String name;
 	private int price;
@@ -8,15 +9,11 @@ public class ProductDTO {
 	private String desc;
 	private double eval;
 	private String unit;
-	private int producerNo;
-	private int categoryNo;
+	private ProducerDTO producerDto;
+	private CategorySubcategoryDTO subcategoryDto;
 	
-	public ProductDTO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public ProductDTO(int no, String name, int price, String profile, String desc, double eval, String unit, int producerNo,
-			int categoryNo) {
+	public ProductDTO(int no, String name, int price, String profile, String desc, double eval, String unit,
+			ProducerDTO producerDto, CategorySubcategoryDTO subcategoryDto) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -25,18 +22,18 @@ public class ProductDTO {
 		this.desc = desc;
 		this.eval = eval;
 		this.unit = unit;
-		this.producerNo = producerNo;
-		this.categoryNo = categoryNo;
+		this.producerDto = producerDto;
+		this.subcategoryDto = subcategoryDto;
 	}
 
 	public int getNo() {
 		return no;
 	}
-	
+
 	public void setNo(int no) {
 		this.no = no;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -85,21 +82,23 @@ public class ProductDTO {
 		this.unit = unit;
 	}
 
-	public int getProducerNo() {
-		return producerNo;
+	public ProducerDTO getProducerDto() {
+		return producerDto;
 	}
 
-	public void setProducerNo(int producerNo) {
-		this.producerNo = producerNo;
+	public void setProducerDto(ProducerDTO producerDto) {
+		this.producerDto = producerDto;
 	}
 
-	public int getCategoryNo() {
-		return categoryNo;
+	public CategorySubcategoryDTO getSubcategoryDto() {
+		return subcategoryDto;
 	}
 
-	public void setCategoryNo(int categoryNo) {
-		this.categoryNo = categoryNo;
+	public void setSubcategoryDto(CategorySubcategoryDTO subcategoryDto) {
+		this.subcategoryDto = subcategoryDto;
 	}
+	
+	
 	
 	
 }

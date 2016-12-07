@@ -7,9 +7,7 @@ public class PackageDTO {
 	private String name;
 	private List<ProductDTO> list;
 	
-	public PackageDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public PackageDTO() {}
 
 	public PackageDTO(int no, String name, List<ProductDTO> list) {
 		super();

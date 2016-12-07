@@ -7,9 +7,7 @@ public class ProducerDTO {
 	private String phone;
 	private String registerDate;
 	
-	public ProducerDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public ProducerDTO() {}
 
 	public ProducerDTO(int no, String name, String addr, String phone, String registerDate) {
 		super();

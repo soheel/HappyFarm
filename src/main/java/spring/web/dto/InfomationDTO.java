@@ -4,16 +4,16 @@ public class InfomationDTO {
 	private int no;
 	private String name;
 	private String desc;
+	private String date;
 	
-	public InfomationDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public InfomationDTO() {}
 
-	public InfomationDTO(int no, String name, String desc) {
+	public InfomationDTO(int no, String name, String desc, String date) {
 		super();
 		this.no = no;
 		this.name = name;
 		this.desc = desc;
+		this.date = date;
 	}
 
 	public int getNo() {
@@ -38,6 +38,14 @@ public class InfomationDTO {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 	
