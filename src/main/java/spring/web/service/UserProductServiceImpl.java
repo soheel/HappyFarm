@@ -110,8 +110,8 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public List<PackageDTO> packageMenuListLoading() {
-		List<PackageDTO> list = null;
+	public List<ProductDTO> packageMenuListLoading() {
+		List<ProductDTO> list = null;
 		list = userProductDAO.getPackageList();
 		return list;
 	}

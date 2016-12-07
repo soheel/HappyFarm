@@ -77,5 +77,5 @@ public interface UserProductDAO {
 	 * packageMenuListLoading()
 	 * 패키지 상품 리스트 가져오기
 	 * */
-	List<PackageDTO> getPackageList();
+	List<ProductDTO> getPackageList();
 }

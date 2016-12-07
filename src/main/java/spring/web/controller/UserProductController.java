@@ -191,7 +191,7 @@ public class UserProductController {
 		 * 1. pacakage 테이블에서 등록순으로 List<ProductDTO>를 뷰로 전달
 		 * */
 		
-		List<PackageDTO> list = service.packageMenuListLoading();
+		List<ProductDTO> list = service.packageMenuListLoading();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
 		mv.setViewName("searchProduct");

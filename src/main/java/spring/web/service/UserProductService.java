@@ -26,7 +26,7 @@ public interface UserProductService {
 	
 	public Map<String, Object> order(int productNo, int num);
 	
-	public List<PackageDTO> packageMenuListLoading();
+	public List<ProductDTO> packageMenuListLoading();
 	
 	public Map<String, Object> showPackageDetail();
 }

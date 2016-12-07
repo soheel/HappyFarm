@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>headerPage</title>
+
 </head>
 <body>
 	<div class="noo-spinner">
@@ -77,7 +78,7 @@
 									<ul class="nav-collapse navbar-nav">
 										<li><a href="<c:url value="/"/>">Home</a></li>
 										<li class="menu-item-has-children noo_megamenu mega-col-columns-4">
-											<a href="shop">Shop</a>
+											<a href="shop" id = "test">Shop</a>
 											<ul class="sub-menu">
 												<li class="menu-item-has-children">
 													<a href="<c:url value="/"/>shop">Shop page</a>

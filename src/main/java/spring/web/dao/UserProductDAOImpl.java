@@ -32,56 +32,47 @@ public class UserProductDAOImpl implements UserProductDAO {
 
 	@Override
 	public List<ProductDTO> getProductByCategory(int categoryNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("UserProductMapper.getProductByCategory", categoryNo);
 	}
 
 	@Override
 	public ProductDTO getProductByProductNo(int productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("UserProductMapper.getProductByProductNo", productNo);
 	}
 
 	@Override
 	public ProducerDTO getProducerByProductNo(int productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("UserProductMapper.getProducerByProductNo", productNo);
 	}
 
 	@Override
 	public ProductCommentDTO getProductCommentByProductNo(int productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("UserProductMapper.getProductCommentByProductNo", productNo);
 	}
 
 	@Override
 	public CertificationDTO getCertificationByProductNo(int productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("UserProductMapper.getCertificationByProductNo", productNo);
 	}
 
 	@Override
 	public ProducerDTO getProducerByProducerNo(int producerNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("UserProductMapper.getProducerByProducerNo", producerNo);
 	}
 
 	@Override
 	public int registerProductToCart(CartDTO cartDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("UserProductMapper.registerProductToCart", cartDTO);
 	}
 
 	@Override
 	public int registerProductToCartDirect(CartDTO cartDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("UserProductMapper.registerProductToCartDirect", cartDTO);
 	}
 
 	@Override
-	public List<PackageDTO> getPackageList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductDTO> getPackageList() {
+		return sqlSession.selectList("UserProductMapper.getPackageList");
 	}
 
 }
