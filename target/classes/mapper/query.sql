@@ -449,8 +449,12 @@ member_email varchar2(50) references member(member_email) on delete cascade,
 qna_parent number(5) references qna(qna_no) on delete cascade
 )
 
+alter table qna add answer_state varchar2(6)
+
 삽입
-insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '12월 3일에 주문했는데 아직까지 배송 준비중인데 언제 배송되나요', '123', sysdate, '박용우', null);
+insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '12월 3일에 주문했는데 아직까지 배송 준비중인데 언제 배송되나요', '123', sysdate, '박용우', 1);
+insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '프리미엄 맞나요?', '123', sysdate, '이소희',2,'Y');
+insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '이게뭔가요?', '123', sysdate, '박태흠',3,'N');
 
 -- information 테이블-----------------------------------------------------------
 drop table information;

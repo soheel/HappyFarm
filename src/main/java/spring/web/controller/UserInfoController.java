@@ -258,7 +258,7 @@ public class UserInfoController {
 		 * 테이블의 형태로 view에 뿌려준다.
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<ProductDTO> list = userService.myPageOrderList(email);
+		List<ProductDTO> list = userService.myPageOrderList3(email);
 		return list;
 	}
 	
@@ -276,7 +276,7 @@ public class UserInfoController {
 		 * 가지고 나오는 데이터 : 	주문날짜 / 주문정보(상품이름,상품코드) / 상품금액,수량 / 생산자 / 현상황
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<ProductDTO> list = userService.myPageCancelList(email);
+		List<ProductDTO> list = userService.myPageCancelList3(email);
 		return list;
 	}
 	
@@ -293,9 +293,8 @@ public class UserInfoController {
 		 * 가지고 나오는 데이터 : 	주문날짜/ 주문정보(상품이름,상품코드) / 상품금액,수량 / 생산자 
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<ProductDTO> list = userService.myPageRefundList(email);
-		return list
-				;
+		List<ProductDTO> list = userService.myPageRefundList3(email);
+		return list;
 
 	}
 	
@@ -342,7 +341,7 @@ public class UserInfoController {
 	 * 전체 질문 내역 띄워주기
 	 * */
 	@RequestMapping("myPageQna")
-	public List<QnaDTO> myPageQna(HttpSession session) {
+	public ModelAndView myPageQna(HttpSession session) {
 		/**
 		 * MyPage - Q&A를 눌렀을 때
 		 * 회원에 해당하는 질문글을 테이블의 형태로
@@ -354,7 +353,8 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		List<QnaDTO> list = userService.myPageQna(email);
-		return list;
+		
+		return null;
 	}
 	
 	/**
@@ -362,7 +362,7 @@ public class UserInfoController {
 	 * 새창띄워서 답변내용 보여주기
 	 * */
 	@RequestMapping("showAnswer")
-	public String showAnswer(HttpSession session, int no) {
+	public String showAnswer(int no) {
 		/**
 		 * session에 담긴 email과 view에서 인수로 qna글번호도 같이 받는다.
 		 * 아이디와 글번호를 Dto에 담아서 service로 보낸다
@@ -372,13 +372,9 @@ public class UserInfoController {
 		 * 질문에 해당하는 답변을 view로 보내준다.
 		 * 
 		 * view에서 ajax로 답변을 받아서 처리
-		 * */
-		String email = (String)session.getAttribute("email");
-		QnaDTO qnaDto = new QnaDTO();
-		qnaDto.setEmail(email);
-		qnaDto.setQnaParent(no);
+		 */
 		
-		String result = userService.showAnswer(qnaDto);
+		String result = userService.showAnswer(no);
 		
 		return result;
 	}
@@ -388,9 +384,9 @@ public class UserInfoController {
 	 * 3개월까지의 내역 보여주기
 	 * */
 	@RequestMapping("myPageDonation")
-	public List<DonationDTO> myPageDonation(HttpSession session) {
+	public ModelAndView myPageDonation(HttpSession session) {
 		/**
-		 * session에서 email(아이디)를 가져온다
+		 * session에서 email(아이디)를 가져온다ㅈㅂ
 		 * 가져온 아이디에 해당하는 기부내역을 조회
 		 * 처음 기부버튼을 클릭하면
 		 * 무조건 현재날짜에서 3개월이전의 데이터만 보여준다.
@@ -401,7 +397,7 @@ public class UserInfoController {
 		String email = (String)session.getAttribute("email");
 		List<DonationDTO> list= userService.myPageDonation(email);
 		
-		return list;
+		return null;
 	}
 	
 	/**
@@ -409,7 +405,7 @@ public class UserInfoController {
 	 * 내 정보 가져와서 아이디, 이름, 연락처 띄워주기
 	 * */
 	@RequestMapping("myPageInfoModify")
-	public MemberDTO myPageInfoModify(HttpSession session) {
+	public ModelAndView myPageInfoModify(HttpSession session) {
 		/**
 		 * session에서 email 받음
 		 * email에 해당하는 회원의 정보를 꺼내서
@@ -419,7 +415,7 @@ public class UserInfoController {
 		String email = (String)session.getAttribute("email");
 		MemberDTO memberDto = userService.myPageInfoModify(email);
 		
-		return memberDto;
+		return null;
 	}
 	
 	/**
@@ -428,7 +424,7 @@ public class UserInfoController {
 	 * 마일리지 사용내역은 3개월까지 보여주기
 	 * */
 	@RequestMapping("myPageMileage")
-	public Map<String, Object> myPageMileage(HttpSession session) {
+	public ModelAndView myPageMileage(HttpSession session) {
 		/**
 		 * 내정보 - 마일리지 버튼을 누르자마자 바로
 		 * 추천인 아이디(5명)을 띄워주고 그 이외의 다른 추천인은 ~외 ~명으로 나타낸다
@@ -441,16 +437,19 @@ public class UserInfoController {
 		String email = (String)session.getAttribute("email");
 		Map<String, Object> map = userService.myPageMileage(email);
 		
-		return map;
+		return null;
 	}
 	
 	/**
+	 * 수정!!!!!!!!!!!!!!!
+	 * 
+	 * 
 	 * 장바구니 버튼 클릭했을 때
 	 * 페이징, cart 테이블에서 정보가져오기
 	 * 총금액 띄워주기
 	 * */
 	@RequestMapping("myCart")
-	public Map<String, Object> myCart(HttpSession session) {
+	public ModelAndView myCart(HttpSession session) {
 		/**
 		 * session에서 email을 뽑아와서
 		 * 해당 이메일을 아이디로 가지는 회원의
@@ -459,7 +458,7 @@ public class UserInfoController {
 		String email = (String)session.getAttribute("email");
 		Map<String, Object> map = userService.myCart(email);
 		
-		return map;
+		return null;
 	}
 	
 	/**

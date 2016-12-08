@@ -59,7 +59,11 @@ public interface UserInfoDAO {
 	 * 회원의 3개월간 주문조회 내역을 purchase테이블에서
 	 * 가져와서 view에 뿌려줌
 	 * */
-	List<ProductDTO> myPageOrderList(String email);
+	List<ProductDTO> myPageOrderList3(String email);//3개월
+	List<ProductDTO> myPageOrderList6(String email);//6개월
+	List<ProductDTO> myPageOrderList12(String email);//1년
+	List<ProductDTO> myPageOrderListAll(String email);//전체
+	
 	
 	/**
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
@@ -75,7 +79,7 @@ public interface UserInfoDAO {
 	/**
 	 * 해당 qna에 달린 답글 가져오기
 	 * */
-	String showAnswer(QnaDTO qnaDto);
+	String showAnswer(int no);
 	
 	/**
 	 * 내정보 - 기부버튼 눌렀을 때
@@ -109,14 +113,20 @@ public interface UserInfoDAO {
 	int myCartDelete(int no);
 	
 	/**
-	 * 내정보 - 취소 / 교환 / 반품 내역 조회(3개월)
+	 * 내정보 - 취소 / 교환 / 반품 내역 조회
 	 * */
-	List<ProductDTO> myPageCancelList(String email);
+	List<ProductDTO> myPageCancelList3(String email);
+	List<ProductDTO> myPageCancelList6(String email);//6개월
+	List<ProductDTO> myPageCancelList12(String email);//1년
+	List<ProductDTO> myPageCancelListAll(String email);//전체
 	
 	
 	/**
 	 * 내정보 - 환불 조회
 	 * */
-	List<ProductDTO> myPageRefundList(String email);
+	List<ProductDTO> myPageRefundList3(String email);	
+	List<ProductDTO> myPageRefundList6(String email);//6개월
+	List<ProductDTO> myPageRefundList12(String email);//1년
+	List<ProductDTO> myPageRefundListAll(String email);//전체
 	
 }

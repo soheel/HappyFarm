@@ -92,9 +92,26 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 가져와서 view에 뿌려줌
 	 * */
 	@Override
-	public List<ProductDTO> myPageOrderList(String email) {
-		return userInfoDao.myPageOrderList(email);
+	public List<ProductDTO> myPageOrderList3(String email) {
+		return userInfoDao.myPageOrderList3(email);
 	}
+
+	//6개월
+	@Override
+	public List<ProductDTO> myPageOrderList6(String email) {
+		return userInfoDao.myPageOrderList6(email);
+	}
+	//12개월
+	@Override
+	public List<ProductDTO> myPageOrderList12(String email) {
+		return userInfoDao.myPageOrderList12(email);
+	}
+	//All
+	@Override
+	public List<ProductDTO> myPageOrderListAll(String email) {
+		return userInfoDao.myPageOrderListAll(email);
+	}
+	
 	
 	/**
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
@@ -117,8 +134,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 해당 질문글에 달린 답글 가져오기
 	 * */
 	@Override
-	public String showAnswer(QnaDTO qnaDto) {
-		return userInfoDao.showAnswer(qnaDto);
+	public String showAnswer(int no) {
+		return userInfoDao.showAnswer(no);
 	}
 	
 	/**
@@ -170,18 +187,52 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 /**
 	  * 내정보 - 반품 ,교환,환불 내역 조회(3개월)
 	  * */
+	 //3개월
 	 @Override
-	public List<ProductDTO> myPageCancelList(String email) {
-		return userInfoDao.myPageCancelList(email);
+	public List<ProductDTO> myPageCancelList3(String email) {
+		return userInfoDao.myPageCancelList3(email);
 	}
+	//6개월
+	@Override
+	public List<ProductDTO> myPageCancelList6(String email) {
+		return userInfoDao.myPageCancelList6(email);
+	}
+	//12개월
+	@Override
+	public List<ProductDTO> myPageCancelList12(String email) {
+		return userInfoDao.myPageCancelList12(email);
+	}
+	//All
+	@Override
+	public List<ProductDTO> myPageCancelListAll(String email) {
+		return userInfoDao.myPageCancelListAll(email);
+	}
+
 
 	/**
 	 * 내정보 - 환불 조회
 	 */
-	 @Override
-	public List<ProductDTO> myPageRefundList(String email) {
-		return userInfoDao.myPageRefundList(email);
+	//3개월
+	@Override
+	public List<ProductDTO> myPageRefundList3(String email) {
+		return userInfoDao.myPageRefundList3(email);
 	}
+	//6개월
+	@Override
+	public List<ProductDTO> myPageRefundList6(String email) {
+		return userInfoDao.myPageRefundList6(email);
+	}
+	//12개월
+	@Override
+	public List<ProductDTO> myPageRefundList12(String email) {
+		return userInfoDao.myPageRefundList12(email);
+	}
+	//All
+	@Override
+	public List<ProductDTO> myPageRefundListAll(String email) {
+		return userInfoDao.myPageRefundListAll(email);
+	}
+	 
 	 
 	 
 	
