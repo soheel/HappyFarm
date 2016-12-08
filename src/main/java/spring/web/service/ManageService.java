@@ -140,7 +140,7 @@ public interface ManageService {
 	 * 모임관리(수정)
 	 * @return 
 	 * */
-	public int communityModifyManage(String communityno);
+	public int communityModifyManage(CommunityDTO communityDTO);
 	
 	/**
 	 * 모임관리(삭제)
@@ -161,12 +161,12 @@ public interface ManageService {
 	
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
-	 */
-	public QnaDTO qnaInfoMangage(String qnano);
+	 
+	public QnaDTO qnaInfoMangage(String qnano);*/
 	/**
 	 * Q&A 답변 수정
 	 * */
-	public int qnaModifyManage(String communitycommentno);
+	public int qnaModifyManage(QnaDTO qnaDTO);
 	/**
 	 * Q&A 질문 삭제
 	 * */
@@ -202,7 +202,7 @@ public interface ManageService {
 	 * 기부업체 DTO
 	 * @return 
 	 * */
-	public int donationOrgDeleteManage(String donationOrgNo);
+	public int donationOrgDeleteManage(int no);
 
 	
 

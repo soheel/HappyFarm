@@ -161,6 +161,8 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- 식품 정보 -->
 				<div class="feature-product">
 					<div class="noo-sh-title text-center">
 						<h2>Featured products</h2>

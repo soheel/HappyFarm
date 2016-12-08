@@ -31,6 +31,11 @@
 			<result column="producer_register_date" property="registerDate"/>
 		</association>
 	
+		<collection property="productCertificationDTO" ofType="productCertificationDTO">
+			<id column="product_certification_no" property="no"/>
+			<result column="certification_no" property="certificationNo"/>
+			<result column="product_no" property="productNo"/>
+		</collection>
 		
 	</collection>
 	
@@ -55,6 +60,34 @@
 	<result column="member_mileage" property="mileage"/>
 	<result column="member_reommand" property="recommand"/>
 	
+</resultMap>
+
+<resultMap type="communityDTO" id="communityResultMap">
+	<id column="community_no" property="no"/>
+	<result column="community_name" property="name"/>
+	<result column="community_profile" property="profile"/>
+	<result column="community_desc" property="desc"/>
+	<result column="community_register_date" property="registerDate"/>
+	<result column="community_state" property="state"/>
+</resultMap>
+
+<resultMap type="qnaDTO" id="qnaResultMap">
+	<id column="qna_no" property="no"/>
+	<result column="qna_name" property="name"/>
+	<result column="qna_desc" property="desc"/>
+	<result column="qna_pwd" property="pwd"/>
+	<result column="qna_register_date" property="registerdate"/>
+	<result column="member_email" property="email"/>
+	<result column="qna_qnaParent" property="qnaParent"/>
+</resultMap>
+
+<resultMap type="donationOrgDTO" id="donationOrgResultMap">
+	<id column="donation_org_no" property="no"/>
+	<result column="donation_org_name" property="name"/>
+	<result column="donation_org_phone" property="phone"/>
+	<result column="donation_org_addr" property="addr"/>
+	<result column="donation_org_desc" property="desc"/>
+	<result column="donation_org_profile" property="profile"/>
 </resultMap>
 
 <!-- 1.개별상품관리 - 모든 상품들 정보를 불러온다. -->
@@ -92,16 +125,18 @@
 	where product.product_no = package.product_no and package.package_no = package_product.package_no
 </select>
 
-<!-- 4. package상품에 있는 개별 상품 정보들을 불러온다.-->
+<!-- 4.1 package상품에 있는 개별 상품 정보들을 불러온다.-->
 <!-- product_no에 일치하는 certification_no를 찾는다.-->
 <select id="packageShowManage" resultMap="productResultMap" parameterType="String">
-	select product.product_name, product.product_price, producer.producer_no
-	from product, producer
-	where product.producer_no = producer.producer_no and product.product_no In (select package_product.product_no
+	select product.product_name, product.product_price, producer.producer_name, product_certification.certification_no
+	from product, producer, product_certification
+	where product.product_no = product_certification.product_no and product.producer_no = producer.producer_no and product.product_no In (select package_product.product_no
 	from package, product, package_product, producer
 	where product.product_name=#{value} and product.product_no = package.product_no and package.package_no = package_product.package_no
 	)
 </select>
+
+<!-- 4.2 package상품을 등록한다. -->
 
 <!-- 5.생산자관리 - 모든 생산자 정보를 불러온다. -->
 <select id="selectAllProducer" resultMap="producerResultMap">
@@ -136,4 +171,71 @@
 	delete from member where member_email=#{value}
 </delete> 
 
+
+<!-- 11. COmmunity 정보 불러온다. -->
+<select id="communityManage" resultMap="communityResultMap">
+ 	select community_profile,community_name, community_register_date
+ 	from community
+ </select>
+ 
+ <!-- 12. community 정보를 등록한다. -->
+ <insert id="communityRegisterManage" parameterType="communityDTO">
+	insert into community values (community_no.nextval, #{name}, #{profile}, #{desc}, sysdate, #{state})
+</insert>
+
+<!-- 13. community정보를 수정한다. -->
+<update id="communityModifyManage" parameterType="communityDTO">
+	update community set community_name=#{name}, community_profile=#{profile},
+	community_desc=#{desc}, community_register_date= sysdate, community_state=#{state}
+	where community_no=#{no}
+</update>
+
+<!-- 14. community정보 삭제한다. -->
+<delete id="communityDeleteManage" parameterType="String">
+	delete from community where community_no=#{value}
+</delete> 
+
+<!-- 15. Q&A정보를 다 불러온다. -->
+<select id="qnaManage" resultMap="qnaResultMap">
+ 	select * from qna
+ </select>
+ 
+ <!-- 16. Q&A정보를 삽입한다. -->
+ <insert id="qnaRegisterManage" parameterType="qnaDTO">
+ 	insert into qna values (qna_no.nextval, #{name}, #{desc}, #{pwd}, #{registerdate}, #{email}, #{no})
+ </insert>
+ 
+ <!-- 17. Q&A정보를 수정한다 -->
+ <update id="qnaModifyManage" parameterType="qnaDTO">
+ 	update qna set qna_name=#{name}, qna_desc=#{desc}, qna_pwd=#{pwd}, qna_register_date=registerdate, qna_parent=#{qnaParent} 	
+ 	where qna_no=#{no}
+ </update>
+ 
+ <!-- 18. Q&A정보 삭제한다. -->
+<delete id="qnaDeleteManage" parameterType="String">
+	delete from qna where qna_no=#{value}
+</delete> 
+ 
+ 
+ <!-- 19. 기부정보를 다 불러온다. -->
+<select id="donationOrgManage" resultMap="donationOrgResultMap">
+ 	select donation_org_name, donation_org_phone, donation_org_addr, donation_org_desc, donation_org_profile from donation_org
+ </select>
+ 
+ <!-- 20. 기부정보 등록 -->
+ <insert id="donationOrgRegisterManage" parameterType="donationOrgDTO">
+ 	insert into donation_org values (donation_org_no.nextval, #{name}, #{phone}, #{addr}, #{desc}, #{profile})
+ </insert> 
+ 
+ <!-- 21.기부 정보 수정 -->
+  <update id="donationOrgModifyManage" parameterType="donationOrgDTO">
+ 	update donation_org set donation_org_name=#{name}, donation_org_phone=#{phone}, donation_org_addr=#{addr}, donation_org_desc=#{desc}, donation_org_profile=#{profile}	
+ 	where donation_org_no=#{no}
+ </update>
+ 
+ 
+ <!-- 22. 기부 정보 삭제 -->
+ <delete id="donationOrgDeleteManage" parameterType="String">
+	delete from donation_org where donation_org_no=#{value}
+</delete> 
 </mapper>

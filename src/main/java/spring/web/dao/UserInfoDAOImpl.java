@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -84,6 +85,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public Map<String, Object> userMainLoading() {
+		
+		List<Integer> list= sqlSession.selectList("UserProductMapper.getBestProduct", null, new RowBounds(0, 3));
+		
 		return null;
 	}
 
@@ -91,10 +95,77 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * MyPage의 쇼핑내역을 누를경우 바로 주문/배송조회가 이루어지면서 회원의 3개월간 주문조회 내역을 purchase테이블에서
 	 * 가져와서 view에 뿌려줌
 	 */
+	//3개월
 	@Override
-	public List<ProductDTO> myPageOrderList(String email) {
-		return sqlSession.selectList("userInfoMapper.getMypageOrderList", email);
+	public List<ProductDTO> myPageOrderList3(String email) {
+		return sqlSession.selectList("userInfoMapper.getMypageOrderList3", email);
 	}
+	//6개월
+	@Override
+	public List<ProductDTO> myPageOrderList6(String email) {
+		return sqlSession.selectList("userInfoMapper.getMypageOrderList6", email);
+	}
+	//12개월
+	@Override
+	public List<ProductDTO> myPageOrderList12(String email) {
+		return sqlSession.selectList("userInfoMapper.getMypageOrderList12", email);
+	}
+	//All
+	@Override
+	public List<ProductDTO> myPageOrderListAll(String email) {
+		return sqlSession.selectList("userInfoMapper.getMypageOrderListAll", email);
+	}
+	
+	
+	/**
+	 * 내정보 - 환불 / 교환 / 반품 내역 조회(3개월)
+	 */
+	//3개월
+	@Override
+	public List<ProductDTO> myPageCancelList3(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageCancerList3", email);
+	}
+	//6개월
+	@Override
+	public List<ProductDTO> myPageCancelList6(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageCancerList6", email);
+	}
+	//12개월
+	@Override
+	public List<ProductDTO> myPageCancelList12(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageCancerList12", email);
+	}
+	//All
+	@Override
+	public List<ProductDTO> myPageCancelListAll(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageCancerListAll", email);
+	}
+	
+	
+	/**
+	 * 내정보 - 환불 조회
+	 */
+	//3개월
+	@Override
+	public List<ProductDTO> myPageRefundList3(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageRefundList3", email);
+	}
+	//6개월
+	@Override
+	public List<ProductDTO> myPageRefundList6(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageRefundList6", email);
+	}
+	//12개월
+	@Override
+	public List<ProductDTO> myPageRefundList12(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageRefundList12", email);
+	}
+	//All
+	@Override
+	public List<ProductDTO> myPageRefundListAll(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageRefundListAll", email);
+	}
+	
 
 	/**
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때 해당 목록 삭제
@@ -109,17 +180,15 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public List<QnaDTO> myPageQna(String email) {
-
-		return null;
+		return sqlSession.selectList("userInfoMapper.getMyPageQnaList", email);
 	}
 
 	/**
 	 * 해당 질문글에 달린 답글 가져오기
 	 */
 	@Override
-	public String showAnswer(QnaDTO qnaDto) {
-
-		return null;
+	public String showAnswer(int no) {
+		return sqlSession.selectOne("userInfoMapper.getQnaAnswer", no);
 	}
 
 	/**
@@ -175,20 +244,5 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		return 0;
 	}
 
-	/**
-	 * 내정보 - 환불 / 교환 / 반품 내역 조회(3개월)
-	 */
-	@Override
-	public List<ProductDTO> myPageCancelList(String email) {
-		return sqlSession.selectList("userInfoMapper.getMyPageCancerList", email);
-	}
 
-	/**
-	 * 내정보 - 환불 조회
-	 */
-	@Override
-	public List<ProductDTO> myPageRefundList(String email) {
-
-		return sqlSession.selectList("userInfoMapper.getMyPageRefundList", email);
-	}
 }

@@ -192,8 +192,8 @@ public class ManageServiceImpl implements ManageService {
 	 * 모임관리(수정)
 	 * */
 	@Override
-	public int communityModifyManage(String communityno) {
-		return manageDao.communityModifyManage(communityno);
+	public int communityModifyManage(CommunityDTO communityDTO) {
+		return manageDao.communityModifyManage(communityDTO);
 	}
 	/**
 	 * 모임관리(삭제)
@@ -221,17 +221,17 @@ public class ManageServiceImpl implements ManageService {
 	}
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
-	 */
+	 
 	@Override
-	public QnaDTO qnaInfoMangage(String qnano) {
-		return manageDao.qnaInfoMangage(qnano);
-	}
+	public QnaDTO qnaInfoMangage(QnaDTO qnaDTO) {
+		return manageDao.qnaInfoMangage(qnaDTO);
+	}*/
 	/**
 	 * Q&A 답변 수정
 	 * */
 	@Override
-	public int qnaModifyManage(String communitycommentno) {
-		return manageDao.qnaModifyManage(communitycommentno);
+	public int qnaModifyManage(QnaDTO qnaDTO) {
+		return manageDao.qnaModifyManage(qnaDTO);
 	}
 	/**
 	 * Q&A 질문 삭제
@@ -274,8 +274,8 @@ public class ManageServiceImpl implements ManageService {
 	 * 기부업체 DTO
 	 * */
 	@Override
-	public int donationOrgDeleteManage(String donationOrgNo) {
-		return manageDao.donationOrgDeleteManage(donationOrgNo);
+	public int donationOrgDeleteManage(int no) {
+		return manageDao.donationOrgDeleteManage(no);
 	}
 
 	
