@@ -179,6 +179,9 @@ public class UserEtcController {
 		donationlist = userEtcService.donationLoading();
 		mv.addObject("donationlist",donationlist);
 		mv.setViewName("donate/donationLoading");
+		
+		System.out.println(donationlist.size());
+		System.out.println(donationlist.get(0).getPrice());
 		return mv;
 	}
 	

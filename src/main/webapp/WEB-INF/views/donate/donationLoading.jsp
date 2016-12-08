@@ -22,34 +22,23 @@
 	  		<table class="table">
 	  			<tr>
 	  				<th>기부금액</th>
-	  				<th>물품상품</th>
 	  				<th>기부날짜</th>
 	  			</tr>
 	  			
-	  			<tr>
-	  				<td><fmt:formatNumber value="3000000"/></td>
-	  				<td>사과</td>
-	  				<td>2016-03-21</td>
-	  			</tr>
+	  			<c:forEach items="${requestScope.donationlist }" var="list">
+	  				<tr>
+	  					<td><fmt:formatNumber value="${list.price }"/></td>
+	  					<td>${list.date }</td>
+	  				</tr>
+	  			</c:forEach>
 	  			
-	  			<tr>
-	  				<td><fmt:formatNumber value="3000000"/></td>
-	  				<td>사과</td>
-	  				<td>2016-03-21</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td><fmt:formatNumber value="3000000"/></td>
-	  				<td>사과</td>
-	  				<td>2016-03-21</td>
-	  			</tr>
 	  		</table>
 	  		<input type="button" class="btn btn-success" value="나의 기부 현황"/>
 	  	</div>
 	  	
-	  	<h3>기부 차트</h3>
+	  	<h3>기부 업체</h3>
 	  	<div class="related products qna_board">
-			차트
+			기부업체에 관한 설명 및 링크
 		</div>
   	</div>
 	
