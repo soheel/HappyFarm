@@ -96,11 +96,9 @@ public class UserEtcController {
 		 * 
 		 */
 		List<QnaDTO> qnaList = userEtcService.qnaLoading();
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("qnaList", qnaList);
-		
-		mv.setViewName("qnaLoading");
+		mv.setViewName("qna/qnaLoading");
 		return mv;
 	}
 	
@@ -139,7 +137,7 @@ public class UserEtcController {
 		ModelAndView mv = new ModelAndView();
 		infolist = userEtcService.infoLoading();
 		mv.addObject("infolist",infolist);
-		mv.setViewName("infoLoading");
+		mv.setViewName("info/infoLoading");
 		return mv;
 	}
 	
@@ -180,7 +178,7 @@ public class UserEtcController {
 		ModelAndView mv = new ModelAndView();
 		donationlist = userEtcService.donationLoading();
 		mv.addObject("donationlist",donationlist);
-		mv.setViewName("donationLoading");
+		mv.setViewName("donate/donationLoading");
 		return mv;
 	}
 	

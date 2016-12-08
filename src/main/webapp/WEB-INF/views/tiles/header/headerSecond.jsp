@@ -184,9 +184,9 @@
 										</li>
 										<li><a href="<c:url value="/userProductController/packageMenuListLoading"/>">Package</a></li>
 										<li><a href="<c:url value="/userEtcController/communityLoading"/>">Community</a></li>
-										<li><a href="<c:url value="/"/>info">Info</a></li>
-										<li><a href="<c:url value="/"/>qna">Q&A</a></li>
-										<li><a href="<c:url value="/"/>donate">Donate</a></li>
+										<li><a href="<c:url value="/userEtcController/infoLoading"/>">Info</a></li>
+										<li><a href="<c:url value="/userEtcController/qnaLoading"/>qna">Q&A</a></li>
+										<li><a href="<c:url value="/userEtcController/donationLoading"/>">Donate</a></li>
 										
 										<!-- 
 										<li class="menu-item-has-children">
