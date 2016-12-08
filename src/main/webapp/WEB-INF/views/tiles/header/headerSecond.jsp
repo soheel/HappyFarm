@@ -217,9 +217,9 @@
 				<div class="search-header5">
 					<div class="remove-form"></div>
 					<div class="container">
-						<form class="form-horizontal">
+						<form action = "<c:url value = "/userProductController/search"/>"  class="form-horizontal">
 							<label class="note-search">Type and Press Enter to Search</label>
-							<input type="search" name="s" class="form-control" value="" placeholder="Search...">
+							<input type="search" name="keyword" class="form-control" value="" placeholder="Search...">
 							<input type="submit" value="Search">
 						</form> 
 					</div>

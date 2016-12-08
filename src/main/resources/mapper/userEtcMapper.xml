@@ -85,7 +85,7 @@
 <select id="getCommunityComment" resultMap="communityResultMap" parameterType="int">
 	select *
 	from community_comment,community
-	where community.community_no=#{value} and community.community_no=community_comment.community_no;
+	where community.community_no=#{value} and community.community_no=community_comment.community_no
 </select>
 
 <!-- 2-3. 1-1을 다시 불러온다 -->
@@ -115,7 +115,7 @@
 <select id="donationLoading" resultType="donationOrgDTO">
 	select *
 	from donation,donation_org
-	where donation.donation_org_no=donation_org.donation_org_no;
+	where donation.donation_org_no=donation_org.donation_org_no
 </select>
 
 
@@ -132,7 +132,7 @@
 <select id="producerBest" resultMap="producerResultMap" parameterType="int">
 	select product.product_profile
 	from producer,product
-	where producer.producer_no=#{value} and producer.producer_no=product.producer_no;
+	where producer.producer_no=#{value} and producer.producer_no=product.producer_no
 </select>
 
 

@@ -9,8 +9,8 @@
 								<div class="noo-sidebar-wrap">
 								<div class="widget commerce widget_product_search">
 									<h3 class="widget-title">Search</h3>
-									<form>
-										<input type="search" class="search-field" placeholder="Search Products&hellip;" value="" name="s"/>
+									<form action = "<c:url value = "/userProductController/search"/>" method="get" >
+										<input type="search" class="search-field" placeholder="Search Products&hellip;" name="keyword"/>
 										<input type="submit" value="Search"/>
 									</form>
 								</div>

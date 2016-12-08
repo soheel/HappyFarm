@@ -132,11 +132,13 @@ public class UserProductController {
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품을 insert한다. (개수는 1)
 		 * */
-		
+		System.out.println(cart.getEmail());
+		System.out.println(cart.getProductNo());
 		String email = (String)session.getAttribute("email");
 		cart.setNum(1);
-		cart.setEmail(email);
+		//cart.setEmail(email);
 		int result = service.addCartDirect(cart);
+		System.out.println(result + " result 값");
 		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
 	}
 
@@ -190,7 +192,7 @@ public class UserProductController {
 		list = service.search(keyword);
 		
 		mv.addObject("list", list);
-		mv.setViewName(""); // 검색 결과를 뿌려줄 뷰
+		mv.setViewName("shop/searchProduct"); // 검색 결과를 뿌려줄 뷰
 		
 		return mv;
 	}

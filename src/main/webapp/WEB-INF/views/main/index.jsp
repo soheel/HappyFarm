@@ -13,7 +13,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="noo-traslate-atributes col-sm-12 col-md-6 hidden-xs">
-								<div class="pt-5">
+								<div class="pt-.search-header55">
 									<div class="noo-atributes">
 										<img width="494" height="618" src='<c:url value="/resources/images/"/>image-01.png' alt="" />
 										<div class="noo-atributes-item">
@@ -116,11 +116,15 @@
 											</li>
 										</ul>
 									</div>
+									
+									<!-- 상품 목록 -->
 									<div class="noo-product-grid products row product-grid noo-grid-4">
 										<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
 											<div class="noo-product-inner">
+											
+												<!-- 상품 -->
 												<div class="noo-product-thumbnail">
-													<a href="shop/detail">
+													<a href="<c:url value="/userProductController/showProductDetail?productNo=1"/>">
 														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/product_260x330.jpg' alt="" />
 													</a>
 													<div class="noo-rating">
@@ -142,182 +146,16 @@
 												</div>
 											</div>
 										</div>
-										<div class="others vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/shop/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													<div class="noo-rating">
-														<div class="star-rating">
-															<span style="width:60%"></span>
-														</div>
-													</div>
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">Broccoli</a></h3>
-													<span class="price"><span class="amount">&#36;2.05</span></span>
-													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/shop/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													<div class="noo-rating">
-														<div class="star-rating">
-															<span style="width:100%"></span>
-														</div>
-													</div>
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">Brown Bread</a></h3>
-													<span class="price"><span class="amount">&#36;12.00</span></span>
-													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/shop/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													<div class="noo-rating">
-														<div class="star-rating">
-															<span style="width:20%"></span>
-														</div>
-													</div>
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">Carrots</a></h3>
-													<span class="price"><span class="amount">&#36;1.05</span></span>
-													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/shop/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													<div class="noo-rating">
-														<div class="star-rating">
-															<span style="width:0%"></span>
-														</div>
-													</div>
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">Celery</a></h3>
-													<span class="price"><span class="amount">&#36;2.09</span></span>
-													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/shop/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													<div class="noo-rating">
-														<div class="star-rating">
-															<span style="width:0%"></span>
-														</div>
-													</div>
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">Cookie</a></h3>
-													<span class="price"><span class="amount">&#36;15.00</span></span>
-													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/shop/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													<div class="noo-rating">
-														<div class="star-rating">
-															<span style="width:0%"></span>
-														</div>
-													</div>
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">Cucumbers</a></h3>
-													<span class="price"><span class="amount">&#36;1.95</span></span>
-													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/shop/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													<div class="noo-rating">
-														<div class="star-rating">
-															<span style="width:0%"></span>
-														</div>
-													</div>
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">French Bread</a></h3>
-													<span class="price"><span class="amount">&#36;10.00</span></span>
-													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+										
+										
+										
+										
+										
+										
+										
+										
+									</div> <!-- 상품 목록 끝 -->
+									
 								</div>
 							</div>
 						</div>
