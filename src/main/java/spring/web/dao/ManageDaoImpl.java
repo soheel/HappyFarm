@@ -54,8 +54,8 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public List<ProductDTO> packageShowManage(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.packageShowManage",name);
+		
 	}
 
 	@Override

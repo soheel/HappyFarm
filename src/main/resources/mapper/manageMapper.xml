@@ -67,9 +67,19 @@
 <select id="selectAllPackage" resultMap="productResultMap">
 	select package.package_name, product.product_price, package_product.product_no
 	from package, product, package_product
-	where product.prodct_no = package.product_no and package.package_no = package_product.package_no
+	where product.product_no = package.product_no and package.package_no = package_product.package_no
 </select>
 
+<!-- 4. package상품에 있는 개별 상품 정보들을 불러온다.-->
+<!-- product_no에 일치하는 certification_no를 찾는다.-->
+<select id="packageShowManage" resultMap="productResultMap" parameterMap="String">
+	select product.product_name, product.product_price, producer.producer_no
+	from product, producer
+	where product.producer_no = producer.producer_no and product.product_no In (select package_product.product_no
+	from package, product, package_product, producer
+	where product.product_name=#{value} and product.product_no = package.product_no and package.package_no = package_product.package_no
+	)
+</select>
 
 <!-- 5.생산자관리 - 모든 생산자 정보를 불러온다. -->
 <select id="selectAllProducer" resultMap="producerResultMap">
