@@ -174,9 +174,9 @@
 							<div class="noo-link">
 								<div class="noo-product-table">
 									<div class="noo-product-table-cell">
-										<h4><a href="#">Cookies </a></h4>
+										<h4><a href="#">국산vs수입산 </a></h4>
 										<p>
-											There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by&hellip;
+											식품 비교&hellip;
 										</p>
 										<span class="noo-sh-pmeta">
 											<a href="#" class="button product_type_simple add_to_cart_button">

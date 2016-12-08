@@ -117,10 +117,9 @@
 </select>
 
 <!-- 6. 기부 정보를 모두 가져온다. -->
-<select id="donationLoading" resultType="donationOrgDTO">
+<select id="donationLoading" resultType="donationDTO">
 	select *
-	from donation,donation_org
-	where donation.donation_org_no=donation_org.donation_org_no
+	from donation
 </select>
 
 
