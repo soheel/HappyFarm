@@ -13,7 +13,7 @@
 	<definition name="shop" template="/WEB-INF/views/tiles/shop/shopPage.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
-		<put-attribute name="side" value="/WEB-INF/views/tiles/shop/shopSide.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/shop/shopSide.jsp"/>
 	</definition>
 	
 	<!-- package 페이지 defintion -->
@@ -52,8 +52,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
 	</definition>
 
-
-	
+	<!--  login 페이지 defintion -->
+	<definition name="login" template="/WEB-INF/views/tiles/login/loginPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
+	</definition>
 	
 	
 	
@@ -71,7 +74,7 @@
 	<!-- package 페이지  메인 -->
 	<definition name="package/*Main" extends="package">
 		<put-attribute name="content" value="/WEB-INF/views/package/{1}.jsp"/>
-		<put-attribute name="side" value="/WEB-INF/views/tiles/package/packageSide.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/package/packageSide.jsp"/>
 	</definition>
 	
 	<!-- package 페이지  detail -->
@@ -89,7 +92,7 @@
 	<!-- community 페이지  detail-->
 	<definition name="community/*Detail" extends="community">
 		<put-attribute name="content" value="/WEB-INF/views/community/{1}Detail.jsp"/>
-		<put-attribute name="side" value="/WEB-INF/views/tiles/community/communitySide.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/community/communitySide.jsp"/>
 	</definition>
 	
 	<!-- info 페이지 -->
@@ -110,6 +113,11 @@
 	<!-- cart 페이지 -->
 	<definition name="cart/*" extends="cart">
 		<put-attribute name="content" value="/WEB-INF/views/cart/{1}.jsp"/>
+	</definition>
+	
+	<!-- login 페이지 -->
+	<definition name="login/*" extends="login">
+		<put-attribute name="content" value="/WEB-INF/views/login/{1}.jsp"/>
 	</definition>
 	
 </tiles-definitions>

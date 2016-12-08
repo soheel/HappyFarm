@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <body>
@@ -93,14 +94,14 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="5" class="actions">
-										<a class="continue" href="shop.html">continue shopping</a>
-										<div class="coupon">
-											<label for="coupon_code">Coupon:</label> 
-											<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code"/> 
-											<input type="submit" class="button" name="apply_coupon" value="Apply Coupon"/>
+									<td colspan="6" class="actions">
+										<div class="cart-action">
+											<p>
+												<label>총 금액 : <span><fmt:formatNumber value="1234567"/></span></label>
+											</p>
+											<input type="submit" class="button" name="update_cart" value="선택상품주문"/>
+											<input type="submit" class="button" name="update_cart" value="전체상품주문"/>
 										</div>
-										<input type="submit" class="button" name="update_cart" value="Update Cart"/>
 									</td>
 								</tr>
 							</tbody>
