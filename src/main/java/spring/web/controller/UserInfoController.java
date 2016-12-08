@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import oracle.net.aso.s;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -395,9 +396,12 @@ public class UserInfoController {
 		 * view∑Œ ¿Ãµø
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<DonationDTO> list= userService.myPageDonation(email);
+		Map<String, List<DonationOrgDTO>> map= userService.myPageDonation(email);
 		
-		return null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("map", map);
+		
+		return mv;
 	}
 	
 	/**

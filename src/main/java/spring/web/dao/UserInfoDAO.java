@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -84,7 +85,7 @@ public interface UserInfoDAO {
 	/**
 	 * 내정보 - 기부버튼 눌렀을 때
 	 * */
-	List<DonationDTO> myPageDonation(String email);
+	Map<String, List<DonationOrgDTO>> myPageDonation(String email);
 	
 	/**
 	 * 내정보 - 개인정보 관리

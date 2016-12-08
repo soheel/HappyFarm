@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import oracle.jdbc.aq.AQNotificationListener;
 import oracle.net.aso.e;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -195,9 +196,15 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 내정보 - 기부페이지 눌렀을 때
 	 */
 	@Override
-	public List<DonationDTO> myPageDonation(String email) {
-
-		return null;
+	public Map<String, List<DonationOrgDTO>> myPageDonation(String email) {
+		List<DonationOrgDTO> donationInfo = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
+		List<DonationOrgDTO> donationTotalInfo = sqlSession.selectList("userInfoMapper.getMyPageTotalDonationInfo", email);
+		
+		Map<String, List<DonationOrgDTO>> map = new HashMap();
+		map.put("donationOnfo", donationInfo);
+		map.put("donationOnfo", donationTotalInfo);
+				
+		return map;
 	}
 
 	/**
