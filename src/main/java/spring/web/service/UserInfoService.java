@@ -108,5 +108,14 @@ public interface UserInfoService {
 	 * */
 	int myCartDelete(int no);
 	
+	/**
+	 * 내정보 - 취소/반품/교환 내역 조회
+	 * */
+	List<ProductDTO> myPageCancelList(String email);
+	
+	/**
+	 * 내정보 - 환불 조회
+	 * */
+	List<ProductDTO> myPageRefundList(String email);
 	
 }

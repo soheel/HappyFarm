@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import oracle.net.aso.s;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProductDTO;
@@ -267,8 +268,16 @@ public class UserInfoController {
 	 * 처음에는 3개월까지만 주문내역을 가져오기
 	 * */
 	@RequestMapping("myPageCancelList")
-	public void myPageCancelList() {
-		
+	public List<ProductDTO> myPageCancelList(HttpSession session) {
+		/**
+		 * MyPage에서 취소/반품/ 교환 내역을 눌렀을 때 
+		 * 현재날짜에서부터 3개월 이전의 기록만 우선 가지고 온다
+		 * 
+		 * 가지고 나오는 데이터 : 	주문날짜 / 주문정보(상품이름,상품코드) / 상품금액,수량 / 생산자 / 현상황
+		 * */
+		String email = (String)session.getAttribute("email");
+		List<ProductDTO> list = userService.myPageCancelList(email);
+		return list;
 	}
 	
 	/**
@@ -276,8 +285,18 @@ public class UserInfoController {
 	 * 처음에는 3개월까지만 주문내역을 가져오기
 	 * */
 	@RequestMapping("myPageRefundList")
-	public void myPageRefundList() {
-		
+	public List<ProductDTO> myPageRefundList(HttpSession session) {
+		/**
+		 * MyPage에서 환불 내역을 눌렀을 때 
+		 * 현재날짜에서부터 3개월 이전의 기록만 우선 가지고 온다
+		 * 
+		 * 가지고 나오는 데이터 : 	주문날짜/ 주문정보(상품이름,상품코드) / 상품금액,수량 / 생산자 
+		 * */
+		String email = (String)session.getAttribute("email");
+		List<ProductDTO> list = userService.myPageRefundList(email);
+		return list
+				;
+
 	}
 	
 	/**

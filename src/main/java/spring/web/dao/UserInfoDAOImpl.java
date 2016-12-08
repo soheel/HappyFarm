@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import oracle.jdbc.aq.AQNotificationListener;
 import oracle.net.aso.e;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.MemberDTO;
@@ -17,163 +18,177 @@ import spring.web.dto.QnaDTO;
 
 @Repository
 public class UserInfoDAOImpl implements UserInfoDAO {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	/**
 	 * 회원가입
-	 * */
+	 */
 	@Override
 	public int registerMember(MemberDTO memberDto) {
 		return sqlSession.insert("userInfoMapper.registerMember", memberDto);
 	}
-	
+
 	/**
 	 * 계정찾기(id)
-	 * */
+	 */
 	@Override
 	public String searchId(MemberDTO memeberDto) {
 		return sqlSession.selectOne("userInfoMapper.searchId", memeberDto);
 	}
-	
+
 	/**
-	 * 계정찾기(pwd-sendcode) 
-	 * */
+	 * 계정찾기(pwd-sendcode)
+	 */
 	@Override
 	public String searchPwdSendCode(String email) {
 		return sqlSession.selectOne("userInfoMapper.searchPwdSendCode", email);
 	}
-	
+
 	/**
 	 * 계정찾기(pwd)
-	 * */
+	 */
 	@Override
 	public String searchPwd(String code) {
-		return sqlSession.selectOne("userInfoMapper.searchPwd",code);
+		return sqlSession.selectOne("userInfoMapper.searchPwd", code);
 	}
-	
+
 	/**
 	 * 로그인하기
-	 * */
+	 */
 	@Override
-	public MemberDTO login(MemberDTO memberDto) {	
+	public MemberDTO login(MemberDTO memberDto) {
 		return sqlSession.selectOne("userInfoMapper.login", memberDto);
 	}
-	
+
 	/**
 	 * 아이디 중복확인
-	 * */
+	 */
 	@Override
 	public boolean checkId(String email) {
 		return sqlSession.selectOne("userInfoMapper.checkId", email);
 	}
-	
+
 	/**
 	 * 마이페이지 이동시 -> 회원 마일리지 및 현재진행중인 거래내역 가져오기
-	 * */
+	 */
 	@Override
 	public Map<String, Integer> myPageLoading(String email) {
 		return sqlSession.selectOne("userInfoMapper.getMileageAndOrderlist", email);
 	}
-	
+
 	/**
-	 * 회원 메인 페이지로 이동할 때 필요한 정보들
-	 * (생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 기부정보(저번달 총 모금액,이번달 총 모금액))
-	 * */
+	 * 회원 메인 페이지로 이동할 때 필요한 정보들 (생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 기부정보(저번달 총
+	 * 모금액,이번달 총 모금액))
+	 */
 	@Override
 	public Map<String, Object> userMainLoading() {
 		return null;
 	}
-	
+
 	/**
-	 * MyPage의 쇼핑내역을 누를경우
-	 * 바로 주문/배송조회가 이루어지면서
-	 * 회원의 3개월간 주문조회 내역을 purchase테이블에서
+	 * MyPage의 쇼핑내역을 누를경우 바로 주문/배송조회가 이루어지면서 회원의 3개월간 주문조회 내역을 purchase테이블에서
 	 * 가져와서 view에 뿌려줌
-	 * */
+	 */
 	@Override
 	public List<ProductDTO> myPageOrderList(String email) {
 		return sqlSession.selectList("userInfoMapper.getMypageOrderList", email);
 	}
-	
+
 	/**
-	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
-	 * 해당 목록 삭제
-	 * */
+	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때 해당 목록 삭제
+	 */
 	@Override
 	public int deleteOrderProduct(int no) {
-		return sqlSession.delete("userInfoMapper.", no);
+		return sqlSession.delete("userInfoMapper.deleteOrderList", no);
 	}
-	
+
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
-	 * */
+	 */
 	@Override
 	public List<QnaDTO> myPageQna(String email) {
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * 해당 질문글에 달린 답글 가져오기
-	 * */
+	 */
 	@Override
 	public String showAnswer(QnaDTO qnaDto) {
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * 내정보 - 기부페이지 눌렀을 때
-	 * */
+	 */
 	@Override
 	public List<DonationDTO> myPageDonation(String email) {
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * 내정보 - 개인정보관리
-	 * */
+	 */
 	@Override
 	public MemberDTO myPageInfoModify(String email) {
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * 내정보 - 마일리지 눌렀을 때
-	 * */
-	public Map<String,Object> myPageMileage(String email) {
-		
+	 */
+	public Map<String, Object> myPageMileage(String email) {
+
 		return null;
 	}
-	
+
 	/**
 	 * 내정보 - 장바구니 로딩
-	 * */
-	 @Override
+	 */
+	@Override
 	public Map<String, Object> myCart(String email) {
-		
+
 		return null;
 	}
-	 
-	 /**
-	  * 내정보 - 장바구니 -> 주문하기 버튼을 눌렀을 때
-	  * */
-	 @Override
+
+	/**
+	 * 내정보 - 장바구니 -> 주문하기 버튼을 눌렀을 때
+	 */
+	@Override
 	public List<ProductDTO> myCartOrder(String email) {
-		
+
 		return null;
 	}
-	 /**
-	  * 내정보  - 장바구니 -> 장바구니 안의 상품 삭제
-	  * */
-	 @Override
+
+	/**
+	 * 내정보 - 장바구니 -> 장바구니 안의 상품 삭제
+	 */
+	@Override
 	public int myCartDelete(int no) {
-		
+
 		return 0;
 	}
-	 
+
+	/**
+	 * 내정보 - 환불 / 교환 / 반품 내역 조회(3개월)
+	 */
+	@Override
+	public List<ProductDTO> myPageCancelList(String email) {
+		return sqlSession.selectList("userInfoMapper.getMyPageCancerList", email);
+	}
+
+	/**
+	 * 내정보 - 환불 조회
+	 */
+	@Override
+	public List<ProductDTO> myPageRefundList(String email) {
+
+		return sqlSession.selectList("userInfoMapper.getMyPageRefundList", email);
+	}
 }

@@ -135,6 +135,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteOrderList" parameterType="int">
 		 delete from purchase where purchase_no=#{no} and purchase_state_no=1; 
 	</delete>
-
+	
+	<!-- 취소/반품/교환 내역 조회(3개월) -->
+	<resultMap type="memberDto" id="cancerListMap">
+		<id column="member_email" property="email"/>
+		
+		<collection property="purchaseDto" ofType="purchaseDto">
+			<id column="purchase_no" property="no"/>
+			<result column="purchase_price" property="price"/>
+			<result column="purchase_date" property="date"/>
+			
+			<association property="purchaseStateDto" javaType="purchaseStateDto">
+				<id column="purchase_state_no" property="no"/>
+				<result column="purchase_state_name" property="name"/>
+			</association>
+			
+			<collection property="purchaseProductDto" ofType="purchaseProductDto">
+				<id column="purchase_no" property="purchaseNo"/>
+				<result column="product_no" property="productNo"/>
+				<result column="purchase_product_num" property="productNum"/>
+				
+				<association property="productDto" javaType="productDto">
+					<id column="product_no" property="no"/>
+					<result column="product_name" property="name"/>
+					<result column="producer_no" property="producerNo"/>
+					
+					<association property="producerDto" javaType="producerDto">
+						<id column="producer_no" property="no"/>
+						<result column="producer_name" property="name"/>
+					</association>
+				</association>	
+			</collection>
+		</collection>	
+	</resultMap>
+	
+	<select id="getMyPageCancerList" resultMap="cancerListMap" parameterType="String">
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
+ 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
+ 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
+            pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no>3 and 
+            pc.purchase_date  between (select sysdate -90 m_day from dual) and sysdate;
+	</select>
+	
+	
+	<select id="getMyPageRefundList" resultMap="cancerListMap" parameterType="String">
+	  select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
+ 	  from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
+ 	  where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
+            pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3 and 
+            pc.purchase_date  between (select sysdate -90 m_day from dual) and sysdate;
+		
+	</select>
 
 </mapper>

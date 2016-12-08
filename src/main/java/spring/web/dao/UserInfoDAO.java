@@ -108,5 +108,15 @@ public interface UserInfoDAO {
 	 * */
 	int myCartDelete(int no);
 	
+	/**
+	 * 내정보 - 취소 / 교환 / 반품 내역 조회(3개월)
+	 * */
+	List<ProductDTO> myPageCancelList(String email);
+	
+	
+	/**
+	 * 내정보 - 환불 조회
+	 * */
+	List<ProductDTO> myPageRefundList(String email);
 	
 }
