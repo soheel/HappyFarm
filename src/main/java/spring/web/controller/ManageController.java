@@ -178,7 +178,7 @@ public class ManageController {
 		 * 밑에 상품이 productDTO들이 insert된다.
 		 */
 		packageSearchProduct(name);
-		int result = manageService.productRegisterManage(productDTO);
+		int result = manageService.packageRegisterManage(productDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}

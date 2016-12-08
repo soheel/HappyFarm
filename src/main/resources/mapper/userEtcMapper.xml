@@ -38,19 +38,10 @@
 </resultMap>
 
 <!--  기부 단체 한개에 기부내역이 여러개 1:다 -> collection사용 -->
-<resultMap type="donationOrgDTO" id="donationResultMap">
-	<id column="donation_org_no" property="no"/>
-	<result column="donation_org_name" property="name"/>
-	<result column="donation_org_phone" property="phone"/>
-	<result column="donation_org_addr" property="addr"/>
-	<result column="donation_org_desc" property="desc"/>
-	<result column="donation_org_profile" property="profile"/>
-	
-	<collection property="donationDTO" ofType="donationDTO">
-		<id column="donation_date" property="date"/>
-		<result column="donation_donation_org_no" property="donationOrgNo"/>
-		<result column="donation_price" property="price"/>
-	</collection>
+<resultMap type="donationDTO" id="donationResultMap">
+	<id column="donation_date" property="date"/>
+	<result column="donation_donation_org_no" property="donationOrgNo"/>
+	<result column="donation_price" property="price"/>
 </resultMap>
 
 <resultMap type="producerDTO" id="producerResultMap">
@@ -118,9 +109,8 @@
 
 <!-- 6. 기부 정보를 모두 가져온다. -->
 <select id="donationLoading" resultType="donationOrgDTO">
-	select *
-	from donation,donation_org
-	where donation.donation_org_no=donation_org.donation_org_no
+	select donation.donation_date, donation.donation_price
+	from donation
 </select>
 
 

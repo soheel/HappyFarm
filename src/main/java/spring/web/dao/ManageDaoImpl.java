@@ -28,7 +28,7 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public int productRegisterManage(ProductDTO productDTO) {
-		return sqlsession.insert("userEtcMapper.insertProduct",productDTO);
+		return sqlsession.insert("userEtcMapper.productRegisterManage",productDTO);
 		
 	}
 
@@ -58,6 +58,12 @@ public class ManageDaoImpl implements ManageDao {
 		
 	}
 
+	@Override
+	public int packageRegisterManage(ProductDTO productDTO) {
+		return sqlsession.insert("userEtcMapper.packageRegisterManage",productDTO);
+	}
+	
+	
 	@Override
 	public List<ProductDTO> packageSearchProduct(String name) {
 		// TODO Auto-generated method stub
@@ -195,6 +201,8 @@ public class ManageDaoImpl implements ManageDao {
 	public int donationOrgDeleteManage(int no) {
 		return sqlsession.delete("userEtcMapper.donationOrgDeleteManage",no);
 	}
+
+	
 
 
 	

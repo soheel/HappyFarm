@@ -76,6 +76,14 @@ public class ManageServiceImpl implements ManageService {
 	public List<ProductDTO> packageShowManage(String packagename) {
 		return manageDao.packageShowManage(packagename);
 	}
+	
+	/**세트 상품 등록*/
+	@Override
+	public int packageRegisterManage(ProductDTO productDTO) {
+		return manageDao.packageRegisterManage(productDTO);
+	}
+	
+	
 
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
@@ -277,6 +285,8 @@ public class ManageServiceImpl implements ManageService {
 	public int donationOrgDeleteManage(int no) {
 		return manageDao.donationOrgDeleteManage(no);
 	}
+
+	
 
 	
 

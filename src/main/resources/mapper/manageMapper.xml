@@ -137,7 +137,10 @@
 </select>
 
 <!-- 4.2 package상품을 등록한다. -->
+<insert id="" parameterType="productDTO">
 
+</insert>
+productRegisterManage
 <!-- 5.생산자관리 - 모든 생산자 정보를 불러온다. -->
 <select id="selectAllProducer" resultMap="producerResultMap">
 	select * from producer
