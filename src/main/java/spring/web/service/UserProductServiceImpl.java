@@ -94,6 +94,7 @@ public class UserProductServiceImpl implements UserProductService{
 	@Override
 	public int addCartDirect(CartDTO cart) {
 		int result = userProductDAO.registerProductToCartDirect(cart);
+		System.out.println("service int°ª : " + result);
 		return result;
 	}
 	

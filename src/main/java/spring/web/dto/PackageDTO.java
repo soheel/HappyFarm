@@ -6,6 +6,9 @@ public class PackageDTO {
 	private int no;
 	private String name;
 	private int productNo;
+	
+	private PackageProductDTO packageProductDTO;
+	
 	private List<ProductDTO> list;
 	
 	public PackageDTO() {}

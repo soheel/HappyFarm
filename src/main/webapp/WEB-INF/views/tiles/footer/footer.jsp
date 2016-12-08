@@ -79,7 +79,7 @@
 										</div>
 										
 										<div>
-											<a href=""><p>Show More</p></a>
+											<a href="<c:url value="/userEtcController/donationLoading"/>"><p>Show More</p></a>
 										</div>
 									</li>
 								</ul>

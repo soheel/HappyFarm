@@ -65,5 +65,29 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
+	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop.js'></script>
+	
+	<script type="text/javascript">
+	$(function(){
+
+		$(document).on("click", "#addCartBtn",function() {
+			$.ajax({
+				url : "<c:url value='/userProductController/addCartDirect'/>",
+				type : "post",
+				data : "email=박용우&productNo=6",
+				dataType : "text",
+				success : function(result) {
+					alert("result : " + result);
+				},
+				error : function(err) {
+					alert("err : " + err);
+				}
+			})
+		})
+
+	});	
+	
+	
+	</script>
 </body>
 </html>

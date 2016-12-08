@@ -40,6 +40,11 @@
 <!--  기부 단체 한개에 기부내역이 여러개 1:다 -> collection사용 -->
 <resultMap type="donationOrgDTO" id="donationResultMap">
 	<id column="donation_org_no" property="no"/>
+	<result column="donation_org_name" property="name"/>
+	<result column="donation_org_phone" property="phone"/>
+	<result column="donation_org_addr" property="addr"/>
+	<result column="donation_org_desc" property="desc"/>
+	<result column="donation_org_profile" property="profile"/>
 	
 	<collection property="donationDTO" ofType="donationDTO">
 		<id column="donation_date" property="date"/>
@@ -85,7 +90,7 @@
 <select id="getCommunityComment" resultMap="communityResultMap" parameterType="int">
 	select *
 	from community_comment,community
-	where community.community_no=#{value} and community.community_no=community_comment.community_no;
+	where community.community_no=#{value} and community.community_no=community_comment.community_no
 </select>
 
 <!-- 2-3. 1-1을 다시 불러온다 -->
@@ -115,7 +120,7 @@
 <select id="donationLoading" resultType="donationOrgDTO">
 	select *
 	from donation,donation_org
-	where donation.donation_org_no=donation_org.donation_org_no;
+	where donation.donation_org_no=donation_org.donation_org_no
 </select>
 
 
@@ -132,7 +137,7 @@
 <select id="producerBest" resultMap="producerResultMap" parameterType="int">
 	select product.product_profile
 	from producer,product
-	where producer.producer_no=#{value} and producer.producer_no=product.producer_no;
+	where producer.producer_no=#{value} and producer.producer_no=product.producer_no
 </select>
 
 

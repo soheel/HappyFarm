@@ -120,14 +120,12 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public List<CommunityDTO> communityManage() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.communityManage");
 	}
 
 	@Override
 	public int communityRegisterManage(CommunityDTO communityDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.insert("userEtcMapper.communityRegisterManage");
 	}
 
 	@Override
@@ -137,57 +135,49 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int communityModifyManage(String no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int communityModifyManage(CommunityDTO communityDTO) {
+		return sqlsession.update("userEtcMapper.communityModifyManage",communityDTO);
 	}
 
 	@Override
 	public int communityDeleteManage(String no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.delete("userEtcMapper.communityDeleteManage",no);
 	}
 
 	@Override
 	public List<QnaDTO> qnaManage() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.qnaManage");
 	}
 
 	@Override
 	public int qnaRegisterManage(CommunityCommentDTO communitycommentDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.insert("userEtcMapper.qnaRegisterManage",communitycommentDTO);
 	}
 
-	@Override
+	/*@Override
 	public QnaDTO qnaInfoMangage(String no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 	@Override
-	public int qnaModifyManage(String no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int qnaModifyManage(QnaDTO qnaDTO) {
+		return sqlsession.update("userEtcMapper.qnaModifyManage",qnaDTO);
 	}
 
 	@Override
 	public int qnaDeleteManage(String no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.update("userEtcMapper.qnaDeleteManage",no);
 	}
 
 	@Override
 	public List<DonationDTO> donationOrgManage() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList("userEtcMapper.donationOrgManage");
 	}
 
 	@Override
 	public int donationOrgRegisterManage(DonationDTO donationDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.insert("userEtcMapper.donationOrgRegisterManage",donationDTO);
 	}
 
 	@Override
@@ -198,15 +188,14 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public int donationOrgModifyManage(DonationDTO donationDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.update("userEtcMapper.donationOrgModifyManage",donationDTO);
 	}
 
 	@Override
-	public int donationOrgDeleteManage(String donationOrgNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int donationOrgDeleteManage(int no) {
+		return sqlsession.delete("userEtcMapper.donationOrgDeleteManage",no);
 	}
+
 
 	
 

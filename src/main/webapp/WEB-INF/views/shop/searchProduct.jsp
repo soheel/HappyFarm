@@ -40,7 +40,7 @@
 								</form>
 							</div>
 							
-							<!-- 이걸 반복하면됨 -->
+							
 							<!-- 여기부터 농산묻 리스트 불러오는 곳 -->
 							<div class="products row product-grid">
 								<div class="masonry-item noo-product-column col-md-4 col-sm-6 product"> <!-- 한 상품의 div -->
@@ -73,10 +73,8 @@
 									</div>
 								</div>
 								<!-- 여기까지 농산묻 리스트 불러오는 곳 -->
-			
+
 							</div>
-							
-							<!-- 페이지 번호 -->
 							<div class="pagination list-center">
 								<span class="page-numbers current">1</span>
 								<a class="page-numbers" href="#">2</a>
