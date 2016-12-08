@@ -156,7 +156,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 6개월 -->
-	<select id="getMypageOrderList3" resultMap="listSearchMap" parameterType="String">
+	<select id="getMypageOrderList6" resultMap="listSearchMap" parameterType="String">
 		select pc.purchase_no,pc.purchase_date,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from purchase pc , product pdt, producer pdc, purchase_product pp, purchase_state ps
 		where pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
@@ -164,7 +164,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 		
 	<!-- 1년 -->
-	<select id="getMypageOrderList3" resultMap="listSearchMap" parameterType="String">
+	<select id="getMypageOrderList12" resultMap="listSearchMap" parameterType="String">
 		select pc.purchase_no,pc.purchase_date,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from purchase pc , product pdt, producer pdc, purchase_product pp, purchase_state ps
 		where pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
@@ -172,7 +172,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 전체 -->
-	<select id="getMypageOrderList3" resultMap="listSearchMap" parameterType="String">
+	<select id="getMypageOrderListAll" resultMap="listSearchMap" parameterType="String">
 		select pc.purchase_no,pc.purchase_date,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from purchase pc , product pdt, producer pdc, purchase_product pp, purchase_state ps
 		where pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
@@ -270,6 +270,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getQnaAnswer" resultType="String" parameterType="int">
 		select qna_desc from qna where qna_parent=#{no};
 	</select>
+	
+	
 
 
 </mapper>
