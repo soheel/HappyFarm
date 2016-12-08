@@ -181,7 +181,6 @@ public class UserEtcController {
 		mv.setViewName("donate/donationLoading");
 		
 		System.out.println(donationlist.size());
-		System.out.println(donationlist.get(0).getPrice());
 		return mv;
 	}
 	
