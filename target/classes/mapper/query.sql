@@ -189,6 +189,7 @@ insert into product values(product_no.nextval, '밀키퀸', 8000, null, '딱딱하다',
 
 insert into product values(product_no.nextval, '김장세트', 45000, null, '김장세트입니다', 3.9, '세트', 2, 14);
 insert into product values(product_no.nextval, '김장세트', 45000, null, '김장세트입니다', 3.9, '세트', 2, 14);
+insert into product values(product_no.nextval, '과일병원세트', 45000, null, '과일병원세트', 3.9, '세트', 2, 14);
 
 -- package 테이블---------------------------------------------------------------
 drop table package;
@@ -205,7 +206,7 @@ product_no number(5) references product(product_no) on delete cascade
 
 삽입
 insert into package values(package_no.nextval, '김장세트', 8);
-insert into package values(1, '김장세트', 8);
+insert into package values(package_no.nextval, '과일병원세트', 13);
 -- package_product 테이블-------------------------------------------------------
 drop table package_product;
 select * from package_product;
@@ -218,8 +219,18 @@ package_product_no number(5) primary key,
 package_no number(5) references package(package_no) on delete cascade,
 product_no number(5) references product(product_no) on delete cascade
 )
+select product.product_name, product.product_price
+	from product
+	where product.product_no In (select package_product.product_no
+	from package, product, package_product
+	where product.product_name='과일병원세트' and product.product_no = package.product_no and package.package_no = package_product.package_no
+	)
+	
+	
 
 삽입
+insert into package_product values(package_product_no.nextval, 3, 1);
+insert into package_product values(package_product_no.nextval, 3, 2);
 insert into package_product values(package_product_no.nextval, 1, 2);
 insert into package_product values(package_product_no.nextval, 1, 3);
 insert into package_product values(package_product_no.nextval, 1, 4);

@@ -30,6 +30,24 @@
 	<result column="qna_qnaParent" property="qnaParent"/>
 </resultMap>
 
+<resultMap type="infomationDTO" id="infoResultMap">
+	<id column="information_no" property="no"/>
+	<result column="information_name" property="name"/>
+	<result column="information_desc" property="desc"/>
+	<result column="information_date" property="date"/>
+</resultMap>
+
+<!--  기부 단체 한개에 기부내역이 여러개 1:다 -> collection사용 -->
+<resultMap type="donationOrgDTO" id="donationResultMap">
+	<id column="donation_org_no" property="no"/>
+	
+	<collection property="donationDTO" ofType="donationDTO">
+		<id column="donation_date" property="date"/>
+		<result column="donation_donation_org_no" property="donationOrgNo"/>
+		<result column="donation_price" property="price"/>
+	</collection>
+</resultMap>
+
 <resultMap type="producerDTO" id="producerResultMap">
 	<id column="producer_no" property="no"/>
 	<result column="producer_name" property="name"/>
@@ -44,16 +62,16 @@
 </resultMap>
 
 
-<!-- 1. 모임목록 불러오기  -->
+<!-- 1. 모임목록 불러오기  community_state가 1이면 진행중, 2면 진행완료 -->
 <!-- 	1-1.6개의 현재 진행하는 행사를 가져온다. -->
 <select id="getCommunityIng" resultMap="communityResultMap" parameterType="communityDTO">
-	SELECT * FROM community WHERE #{community_state}= 0
+	SELECT * FROM community WHERE #{community_state}= 1
 </select>
 
 <!-- 	1-2.3개의 과거진행하는 행사를 가져온다. -->
-<!-- <select id="getCommunityPast" resultMap="communityResultMap" parameterType="communityDTO">
-	SELECT * FROM community WHERE rownum <= 6 and #{community_state}= 1
-</select> -->
+<select id="getCommunityPast" resultMap="communityResultMap" parameterType="communityDTO">
+	SELECT * FROM community WHERE #{community_state}=2
+</select>
 
 <!-- 2. 모임 상세 보기 -->
 <!-- 2-1. 처음에 보여질 모임에 해당하는 profile 사진을 업로드 한다. 
@@ -94,8 +112,10 @@
 </select>
 
 <!-- 6. 기부 정보를 모두 가져온다. -->
-<select id="donationLoading" resultType="infomationDTO" parameterType="int">
-	select * from donation 
+<select id="donationLoading" resultType="donationOrgDTO">
+	select *
+	from donation,donation_org
+	where donation.donation_org_no=donation_org.donation_org_no;
 </select>
 
 

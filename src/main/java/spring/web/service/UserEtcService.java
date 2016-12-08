@@ -16,8 +16,9 @@ public interface UserEtcService {
 	/**
 	 * 모임목록 불러오기 
 	 * 모임DTO 리스트(select + 페이징)
+	 * @param communityDTO 
 	 */
-	Map<String, Object> communityLoading();	
+	Map<String, Object> communityLoading(CommunityDTO communityDTO);	
 
 	/**
 	 * 모임상세 정보 불러오기 

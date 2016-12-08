@@ -24,8 +24,8 @@ public class UserEtcServiceImpl implements UserEtcService{
 	 * 모임DTO 리스트(select + 페이징)
 	 */
 	@Override
-	public Map<String, Object> communityLoading() {
-		return userEtcDao.communityLoading();
+	public Map<String, Object> communityLoading(CommunityDTO communityDTO) {
+		return userEtcDao.communityLoading(communityDTO);
 	}
 	/**
 	 * 모임상세 정보 불러오기 

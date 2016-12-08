@@ -23,11 +23,11 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	private SqlSession sqlsession;
 	
 	@Override
-	public Map<String, Object> communityLoading() {
+	public Map<String, Object> communityLoading(CommunityDTO communityDTO) {
 		Map<String, Object> communityList = new HashMap<String, Object>();
 		
-		List<CommunityDTO> communityIngList = sqlsession.selectList("userEtcMapper.getCommunityIng");
-		List<CommunityDTO> communityPastList = sqlsession.selectList("userEtcMapper.getCommunityPast");
+		List<CommunityDTO> communityIngList = sqlsession.selectList("userEtcMapper.getCommunityIng",communityDTO);
+		List<CommunityDTO> communityPastList = sqlsession.selectList("userEtcMapper.getCommunityPast",communityDTO);
 		
 		communityList.put("communityIngList", communityIngList);
 		communityList.put("communityPastList", communityPastList);

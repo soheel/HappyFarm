@@ -33,7 +33,7 @@ public class UserEtcController {
 	 * select + 페이징
 	 * */
 	@RequestMapping("communityLoading")
-	public ModelAndView communityLoading() {
+	public ModelAndView communityLoading(CommunityDTO communityDTO) {
 		Map<String, Object> communitylist = new HashMap<String, Object>();
 		
 		/**
@@ -46,7 +46,7 @@ public class UserEtcController {
 		 */
 		
 		ModelAndView mv = new ModelAndView();
-		communitylist = userEtcService.communityLoading();
+		communitylist = userEtcService.communityLoading(communityDTO);
 		if(communitylist!=null){
 			//에러 처리 진행중인 행사가 없다.
 		}
