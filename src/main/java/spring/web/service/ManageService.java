@@ -58,7 +58,10 @@ public interface ManageService {
 	 * */
 	public List<ProductDTO> packageShowManage(String packagename);
 	
-
+	/**패키지 추가*/
+	public int packageRegisterManage(ProductDTO productDTO);
+	
+	
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 	 */
@@ -203,6 +206,8 @@ public interface ManageService {
 	 * @return 
 	 * */
 	public int donationOrgDeleteManage(int no);
+
+	
 
 	
 
