@@ -3,15 +3,37 @@
 
 <mapper namespace="manageMapper">
 
-<resultMap type="productDTO" id="productResultMap">
-	<id column="product_no" property="no"/>
-	<result column="product_name" property="name"/>
-	<result column="product_price" property="price"/>
-	<result column="product_profile" property="profile"/>
-	<result column="product_desc" property="desc"/>
-	<result column="product_eval" property="eval"/>
-	<result column="product_unit" property="unit"/>
-	<result column="producer_no" property="producerNo"/>
+
+<resultMap type="packageProductDTO" id="productResultMap">
+	<id column="package_product_no" property="packageno"/>
+	<result column="package_no" property="no"/>
+	<result column="product_no" property="productno"/>
+	
+	<association property="packageDTO" javaType="packageDTO">
+		<id column="package_no" property="no"/>
+		<result column="product_no" property="productNo"/>
+	</association>
+	
+	<collection property="productDTO" ofType="productDTO">
+		<id column="product_no" property="no"/>
+		<result column="product_name" property="name"/>
+		<result column="product_price" property="price"/>
+		<result column="product_profile" property="profile"/>
+		<result column="product_desc" property="desc"/>
+		<result column="product_eval" property="eval"/>
+		<result column="product_unit" property="unit"/>
+		<result column="producer_no" property="producerNo"/>
+		<association property="producerDTO" javaType="producerDTO">
+			<id column="producer_no" property="no"/>
+			<result column="producer_name" property="name"/>
+			<result column="producer_addr" property="addr"/>
+			<result column="producer_phone" property="phone"/>
+			<result column="producer_register_date" property="registerDate"/>
+		</association>
+	
+		
+	</collection>
+	
 </resultMap>
 
 <resultMap type="producerDTO" id="producerResultMap">
