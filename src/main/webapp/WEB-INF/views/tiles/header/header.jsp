@@ -33,7 +33,7 @@
 						<ul>
 							<li>
 								<span><i class="fa fa-user"></i></span>
-								<a href="my-account.html">My Account</a>
+								<a href="<c:url value='/userInfoController/loginPage'/>">Login</a> <!-- 로그인 되어있다면 My Account -->
 							</li>
 							<li>
 								<a href="<c:url value="/cart"/>">
@@ -83,12 +83,9 @@
 												<li class="menu-item-has-children">
 													<a href="<c:url value="/"/>shop">Shop page</a>
 													<ul class="sub-menu">
-														<li><a href="shop-list.html">Shop List</a></li>
-														<li><a href="<c:url value="/shop/"/>detail">Shop Detail</a></li>
-														<li><a href="my-account.html">My Account</a></li>
-														<li><a href="cart.html">Cart</a></li>
-														<li><a href="cart-empty.html">Empty Cart</a></li>
-														<li><a href="wishlist.html">Wishlist</a></li>
+														<li><a href="shop-list.html">과일/견과</a></li>
+														<li><a href="<c:url value="/shop/"/>detail">채소</a></li>
+														<li><a href="my-account.html">쌀/잡곡</a></li>
 													</ul>
 												</li>
 												<li class="menu-item-has-children">

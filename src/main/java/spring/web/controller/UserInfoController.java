@@ -30,6 +30,14 @@ public class UserInfoController {
 	private UserInfoService userService;
 	
 	/**
+	 * 로그인을 클릭하면 로그인 창으로 이동
+	 * */
+	@RequestMapping("loginPage")
+	public String loginPage() {
+		return "login/login";
+	}
+	
+	/**
 	 * 회원쪽이 아니라 관리자나 비회원쪽 Controller에 있어야하는 메소드
 	 * 로고 눌렀을 때
 	 * */
