@@ -173,7 +173,7 @@
 
 
 <!-- 11. COmmunity 정보 불러온다. -->
-<select id="communityManage" resultMap="communityDTO">
+<select id="communityManage" resultMap="communityResultMap">
  	select community_profile,community_name, community_register_date
  	from community
  </select>
