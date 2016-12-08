@@ -117,7 +117,7 @@ insert into cart values(#{email}, #{productNo}, 1)
 select product.product_no, product.product_name, product.product_price, product.product_profile, product.product_desc, product.product_eval,
 product.producer_no, product.product_unit, product.category_subcategory_no
 from product, package
-where product.prodct_no = package.product_no
+where product.product_no = package.product_no
 order by package.product_no desc
 </select>
 

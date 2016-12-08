@@ -183,8 +183,8 @@
 												</li>
 											</ul>
 										</li>
-										<li><a href="<c:url value="/"/>package">Package</a></li>
-										<li><a href="<c:url value="/"/>community">Community</a></li>
+										<li><a href="<c:url value="/userProductController/packageMenuListLoading"/>">Package</a></li>
+										<li><a href="<c:url value="/userEtcController/communityLoading"/>">Community</a></li>
 										<li><a href="<c:url value="/"/>info">Info</a></li>
 										<li><a href="<c:url value="/"/>qna">Q&A</a></li>
 										<li><a href="<c:url value="/"/>donate">Donate</a></li>

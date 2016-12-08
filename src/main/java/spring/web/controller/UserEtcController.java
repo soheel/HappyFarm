@@ -51,7 +51,7 @@ public class UserEtcController {
 			//에러 처리 진행중인 행사가 없다.
 		}
 		mv.addObject("communitylist",communitylist);
-		mv.setViewName("showCommunity");
+		mv.setViewName("community/showCommunity");
 		return mv;
 	}
 	

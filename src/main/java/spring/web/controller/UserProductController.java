@@ -59,12 +59,10 @@ public class UserProductController {
 		System.out.println("shopMenuListLoading() 들어옴");
 		List<ProductDTO> list = null;
 		ModelAndView mv = new ModelAndView();
-		System.out.println("sevice 들어가기 전");
 		list = service.showMenuListLoading(categoryNo);
 		System.out.println(list.size() + " : list의 size");
 		mv.addObject("list",list);
-		mv.setViewName("searchProduct");
-		
+		mv.setViewName("shop/searchProduct");
 		
 		return mv;
 	}
@@ -211,7 +209,7 @@ public class UserProductController {
 		List<ProductDTO> list = service.packageMenuListLoading();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
-		mv.setViewName("searchProduct");
+		mv.setViewName("shop/searchProduct");
 		return mv;
 	}
 	

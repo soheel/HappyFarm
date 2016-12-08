@@ -77,7 +77,7 @@
 									<ul class="nav-collapse navbar-nav">
 										<li><a href='<c:url value="/"/>'>Home</a></li>
 										<li class="menu-item-has-children noo_megamenu mega-col-columns-4">
-											<a href="<c:url value="/"/>shop">Shop</a>
+											<a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=1"/>">Shop</a>
 											<ul class="sub-menu">
 												<li class="menu-item-has-children">
 													<a href="shop">Shop page</a>
@@ -182,8 +182,8 @@
 												</li>
 											</ul>
 										</li>
-										<li><a href="<c:url value="/"/>package">Package</a></li>
-										<li><a href="<c:url value="/"/>community">Community</a></li>
+										<li><a href="<c:url value="/userProductController/packageMenuListLoading"/>">Package</a></li>
+										<li><a href="<c:url value="/userEtcController/communityLoading"/>">Community</a></li>
 										<li><a href="<c:url value="/"/>info">Info</a></li>
 										<li><a href="<c:url value="/"/>qna">Q&A</a></li>
 										<li><a href="<c:url value="/"/>donate">Donate</a></li>
