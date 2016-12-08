@@ -131,7 +131,7 @@ public interface ManageDao {
 	/**
 	 * 모임관리(수정)
 	 * */
-	int communityModifyManage(String communityno);
+	int communityModifyManage(CommunityDTO communityDTO);
 	
 	/**
 	 * 모임관리(삭제)
@@ -152,13 +152,14 @@ public interface ManageDao {
 	
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
-	 */
+	 
 	QnaDTO qnaInfoMangage(String qnano);
+	*/
 	
 	/**
 	 * Q&A 답변 수정
 	 * */
-	int qnaModifyManage(String communitycommentno);
+	int qnaModifyManage(QnaDTO qnaDTO);
 	
 	/**
 	 * Q&A 질문 삭제
@@ -190,7 +191,7 @@ public interface ManageDao {
 	 * 기부업체 관리(삭제)
 	 * 기부업체 DTO
 	 * */
-	int donationOrgDeleteManage(String donationOrgNo);
+	int donationOrgDeleteManage(int no);
 	
 	
 	

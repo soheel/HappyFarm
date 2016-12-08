@@ -219,14 +219,19 @@ package_product_no number(5) primary key,
 package_no number(5) references package(package_no) on delete cascade,
 product_no number(5) references product(product_no) on delete cascade
 )
-select product.product_name, product.product_price
-	from product
-	where product.product_no In (select package_product.product_no
-	from package, product, package_product
+select product.product_name, product.product_price, producer.producer_name, product_certification.certification_no
+	from product, producer, product_certification
+	where product.product_no = product_certification.product_no and product.producer_no = producer.producer_no and product.product_no In (select package_product.product_no
+	from package, product, package_product, producer
 	where product.product_name='과일병원세트' and product.product_no = package.product_no and package.package_no = package_product.package_no
 	)
 	
-	
+select product.product_name, product.product_price, producer.producer_name
+	from product, producer
+	where product.producer_no = producer.producer_no and product.product_no In (select package_product.product_no
+	from package, product, package_product, producer
+	where product.product_name= and product.product_no = package.product_no and package.package_no = package_product.package_no
+	)	
 
 삽입
 insert into package_product values(package_product_no.nextval, 3, 1);
@@ -271,6 +276,8 @@ product_no number(5) references product(product_no) on delete cascade
 
 삽입
 insert into product_certification values (product_certification_no.nextval, 1,1);
+insert into product_certification values (product_certification_no.nextval, 2,1);
+insert into product_certification values (product_certification_no.nextval, 3,1);
 insert into product_certification values (product_certification_no.nextval, 1,2);
 insert into product_certification values (product_certification_no.nextval, 2,3);
 insert into product_certification values (product_certification_no.nextval, 2,4);
@@ -398,6 +405,8 @@ select * from community;
 drop sequence community_no;
 create sequence community_no;
 
+insert into community values(community_no.nextval, '갓김치담그기모임', null, '갓김치먹자', sysdate, 1);
+
 community_state가 1이면 진행중, 2면 진행완료
 create table community (
 community_no number(5) primary key,
@@ -448,7 +457,6 @@ qna_register_date date,
 member_email varchar2(50) references member(member_email) on delete cascade,
 qna_parent number(5) references qna(qna_no) on delete cascade
 )
-
 삽입
 insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '12월 3일에 주문했는데 아직까지 배송 준비중인데 언제 배송되나요', '123', sysdate, '박용우', null);
 

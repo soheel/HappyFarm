@@ -201,19 +201,20 @@ public class ManageController {
 		return list;
 	}
 	
+	//div태그이므로, 할 필요 없을 것이다. 정보 저장되어 있기 떄문에
 	/** div에 정보를 불러와서 ...productno를 받는다.
 	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
 		ProductDTO product = manageService.selectByPackageName(productDTO)
 	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
 	 * 해당하는 제품의 정보를 select한다.
-	 */
+	
 	@RequestMapping("packageInfoMangage")
 	public ProductDTO packageInfoMangage(String no){
 		ProductDTO product = null;
 		product = manageService.packageInfoMangage(no);
 		
 		return product;
-	}
+	} */
 	
 	/**
 	 * 세트상품관리 수정 (productname을 인수로 받음)
@@ -471,26 +472,26 @@ public class ManageController {
 	}
 	/**
 	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.(comunityno)
-	 */
+	
 	public CommunityDTO communityInfoMangage(String no){
 		CommunityDTO community = null;
 		community = manageService.communityInfoMangage(no);
 		
 		return community;
-	}
+	} */
 	
 	/**
 	 * 모임관리(수정)(comunityno)
 	 * @return 
 	 * */
 	@RequestMapping("communityModifyManage")
-	public String communityModifyManage(String no) {
+	public String communityModifyManage(CommunityDTO communityDTO) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 community를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.communityModifyManage(no);
+		int result = manageService.communityModifyManage(communityDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -559,24 +560,24 @@ public class ManageController {
 	
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.(qnano)
-	 */
+	 
 	public QnaDTO qnaInfoMangage(String no){
 		QnaDTO qna = null;
 		qna = manageService.qnaInfoMangage(no);
 		
 		return qna;
-	}
+	}*/
 	/**
 	 * Q&A 답변 수정(communitycommentno)
 	 * */
 	@RequestMapping("qnaModifyManage")
-	public String qnaModifyManage(String no) {
+	public String qnaModifyManage(QnaDTO qnaDTO) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 qna를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.qnaModifyManage(no);
+		int result = manageService.qnaModifyManage(qnaDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
@@ -677,14 +678,14 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("donationOrgDeleteManage")
-	public String donationOrgDeleteManage(String donationOrgNo) {
+	public String donationOrgDeleteManage(int no) {
 		/**
 		 * 특정 기부업체 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * 그 다음 div태그가 사라지고 다시 donation관리를 보는 쪽으로 넘어간다.
 		 */
 		int result =0;
-		result = manageService.donationOrgDeleteManage(donationOrgNo);
+		result = manageService.donationOrgDeleteManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
