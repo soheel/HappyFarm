@@ -42,7 +42,7 @@
 	<result column="producer_name" property="name"/>
 	<result column="producer_addr" property="addr"/>
 	<result column="producer_phone" property="phone"/>
-	<result column="producer_register_date" property=""/>
+	<result column="producer_register_date" property="registerDate"/>
 </resultMap>
 
 

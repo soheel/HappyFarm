@@ -45,15 +45,15 @@ public interface UserProductDAO {
 
 	/**
 	 * showProductDetail(int productNo)
-	 * productNo로 ProductCommentDTO 가져오기
+	 * productNo로 ProductCommentDTO 리스트 가져오기
 	 * */
-	ProductCommentDTO getProductCommentByProductNo(int productNo);
+	List<ProductCommentDTO> getProductCommentByProductNo(int productNo);
 
 	/**
 	 * showProductDetail(int productNo)
 	 * productNo로 CertificationDTO 가져오기
 	 * */
-	CertificationDTO getCertificationByProductNo(int productNo);
+	List<CertificationDTO> getCertificationByProductNo(int productNo);
 	
 	/**
 	 * showProducerInfo(int producerNo)

@@ -47,13 +47,13 @@ public class UserProductDAOImpl implements UserProductDAO {
 	}
 
 	@Override
-	public ProductCommentDTO getProductCommentByProductNo(int productNo) {
-		return sqlSession.selectOne("UserProductMapper.getProductCommentByProductNo", productNo);
+	public List<ProductCommentDTO> getProductCommentByProductNo(int productNo) {
+		return sqlSession.selectList("UserProductMapper.getProductCommentByProductNo", productNo);
 	}
 
 	@Override
-	public CertificationDTO getCertificationByProductNo(int productNo) {
-		return sqlSession.selectOne("UserProductMapper.getCertificationByProductNo", productNo);
+	public List<CertificationDTO> getCertificationByProductNo(int productNo) {
+		return sqlSession.selectList("UserProductMapper.getCertificationByProductNo", productNo);
 	}
 
 	@Override

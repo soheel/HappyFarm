@@ -85,7 +85,7 @@ public class UserProductController {
 		Map<String, Object> map = service.showProductDetail(productNo);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("map", map);
-		mv.setViewName("productDetail");
+		mv.setViewName("shop/productDetail");
 		return mv;
 	}
 	

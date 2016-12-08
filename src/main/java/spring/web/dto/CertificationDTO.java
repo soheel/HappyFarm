@@ -1,27 +1,27 @@
 package spring.web.dto;
 
 public class CertificationDTO {
-	private int certificationNo; //인증마크 번호
+	private int no; //인증마크 번호
 	private String image; //인증마크 이미지
 	private String name; //인증마크 이름
 	private String desc; //인증마크 설명
 	
 	public CertificationDTO() {}
 
-	public CertificationDTO(int certificationNo, String image, String name, String desc) {
+	public CertificationDTO(int no, String image, String name, String desc) {
 		super();
-		this.certificationNo = certificationNo;
+		this.no = no;
 		this.image = image;
 		this.name = name;
 		this.desc = desc;
 	}
 
-	public int getCertificationNo() {
-		return certificationNo;
+	public int getno() {
+		return no;
 	}
 
-	public void setCertificationNo(int certificationNo) {
-		this.certificationNo = certificationNo;
+	public void setno(int no) {
+		this.no = no;
 	}
 
 	public String getImage() {

@@ -67,11 +67,11 @@ public class UserProductServiceImpl implements UserProductService{
 		ProductDTO productDTO = userProductDAO.getProductByProductNo(productNo);
 		map.put("productDTO", productDTO);
 		// ProductCommentDTO 가져오기
-		ProductCommentDTO ProductCommentDTO = userProductDAO.getProductCommentByProductNo(productNo);
-		map.put("ProductCommentDTO", ProductCommentDTO);
+		List<ProductCommentDTO> productCommentList = userProductDAO.getProductCommentByProductNo(productNo);
+		map.put("ProductCommentDTO", productCommentList);
 		// CertificationDTO 가져오기
-		CertificationDTO CertificationDTO = userProductDAO.getCertificationByProductNo(productNo);
-		map.put("CertificationDTO", CertificationDTO);
+		List<CertificationDTO> certificationList = userProductDAO.getCertificationByProductNo(productNo);
+		map.put("CertificationDTO", certificationList);
 		// ProducerDTO 가져오기
 		ProducerDTO ProducerDTO = userProductDAO.getProducerByProductNo(productNo);
 		map.put("ProducerDTO", ProducerDTO);

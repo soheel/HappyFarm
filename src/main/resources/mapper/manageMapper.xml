@@ -72,7 +72,7 @@
 
 <!-- 4. package상품에 있는 개별 상품 정보들을 불러온다.-->
 <!-- product_no에 일치하는 certification_no를 찾는다.-->
-<select id="packageShowManage" resultMap="productResultMap" parameterMap="String">
+<select id="packageShowManage" resultMap="productResultMap" parameterType="String">
 	select product.product_name, product.product_price, producer.producer_no
 	from product, producer
 	where product.producer_no = producer.producer_no and product.product_no In (select package_product.product_no
