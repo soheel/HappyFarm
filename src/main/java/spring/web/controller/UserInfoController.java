@@ -1,7 +1,9 @@
 package spring.web.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,7 @@ import oracle.net.aso.s;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
@@ -145,10 +148,12 @@ public class UserInfoController {
 		 *    일반 회원일 경우, user-main page로 이동
 		 * */
 		
+		System.out.println("UserInfoController의 login 메소드");
+		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO result = userService.login(memberDto);
 		if(result!=null){
-			if(memberDto.getName().equals("admin")){
+			if(memberDto.getEmail().equals("admin")){
 				/**
 				 * 관리자 메인창으로 이동
 				 *	ModelAndView의 setViewName으로 이동페이지 지정
@@ -167,6 +172,14 @@ public class UserInfoController {
 				Map<String, Object> map = userService.userMainLoading();
 				mv.addObject("map", map);
 				mv.setViewName("회원 메인 페이지");
+				
+				List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
+				System.out.println(list.get(0).getName());
+				List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
+				System.out.println(list2.get(0).getName());
+				int price = (Integer)map.get("previousMonthDonationPrice");
+				System.out.println(price);
+				
 			}
 		}
 		return mv;

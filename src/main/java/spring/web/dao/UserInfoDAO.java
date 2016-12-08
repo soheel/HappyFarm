@@ -6,6 +6,7 @@ import java.util.Map;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
@@ -42,11 +43,38 @@ public interface UserInfoDAO {
 	 * */
 	boolean checkId(String email);
 	
+	// -----------------------------------------------------
+	
 	/**
-	 * 회원 메인 페이지로 이동할 때 필요한 정보들
-	 * (생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 기부정보(저번달 총 모금액,이번달 총 모금액))
+	 * 가장 인기많은 생산자 정보 가져오기
 	 * */
-	Map<String, Object> userMainLoading();
+	List<Integer> getBestProducer();
+	
+	/**
+	 * 저번달 기부금액 가져오기
+	 * */
+	int getPreviousDonationPrice();
+	
+	/**
+	 * shopMenuLoading()
+	 * 인기상품 3개 가져오기
+	 * */
+	List<Integer> getBestProduct();
+	
+	/**
+	 * showProductDetail(int productNo) / order(int productNo, int num)
+	 * productNo로 ProductDTO 가져오기
+	 * */
+	ProductDTO getProductByProductNo(int productNo);
+	
+	/**
+	 * showProducerInfo(int producerNo)
+	 * producerNo로 ProducerDTO 가져오기
+	 * */
+	ProducerDTO getProducerByProducerNo(int producerNo);
+	
+	// -----------------------------------------------------
+	
 	
 	/**
 	 * 회원이 마이페이지를 눌렀을 때

@@ -88,6 +88,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</collection>
 	</resultMap>
 	
+	<!-- 기본 ProductDTO ResultMap -->
+	<resultMap type="productDTO" id="productResultMap">
+		<id column="product_no" property="no"/>
+		<result column="product_name" property="name"/>
+		<result column="product_price" property="price"/>
+		<result column="product_profile" property="profile"/>
+		<result column="product_desc" property="desc"/>
+		<result column="product_eval" property="eval"/>
+		<result column="product_unit" property="unit"/>
+		<result column="producer_no" property="producerNo"/>
+		<result column="category_subcategory_no" property="subCategoryNo"/>
+	</resultMap>
+	<!-- 기본 ProducerDTO ResultMap -->
+	<resultMap type="producerDTO" id="producerResultMap">
+		<id column="producer_no" property="no"/>
+		<result column="producer_name" property="name"/>
+		<result column="producer_addr" property="addr"/>
+		<result column="producer_phone" property="phone"/>
+		<result column="producer_register_date" property="registerDate"/>
+	</resultMap>
+	
 	
 	<!-- 나의 질문목록  -->
 	<resultMap type="qnaDto" id="getMyPageQnaList">
@@ -123,6 +144,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select member_email,member_pwd from member
 		where member_email=#{email} and member_pwd=#{pwd}
 	</select>
+	
+	<!-- 로그인 성공 후 생산자정보,기부금액,인기상품 가져오기 -->
+	<!-- 생산자 정보 가져오기 (판매하고있는 상품들의 평균 평점이 가장 높은 순서대로)-->
+	<select id="getBestProducer" resultType="integer">
+	select producer.producer_no
+	from product, producer where product.producer_no = producer.producer_no 
+	group by producer.producer_no order by avg(product.product_eval) desc
+	</select>
+	<!-- 인기상품 가져오기 (테스트완료)-->
+	<select id="getBestProduct" resultType="integer">
+	select purchase_product.product_no 
+	from purchase, purchase_product 
+	where purchase.purchase_no = purchase_product.purchase_no group by purchase_product.product_no order by count(purchase_product.product_no) desc
+	</select>
+	<!-- 기부금액 가져오기(저번달꺼만) -->
+	<select id="getPreviousDonationPrice" resultType="integer">
+	select donation_price from donation order by donation_date desc
+	</select>
+	<!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 (테스트완료)-->
+	<select id="getProductByProductNo" resultMap="productResultMap" parameterType="integer">
+	select * from product where product_no = #{value}
+	</select>
+	<!-- 생산자번호(producerNo)로 Producer DTO 가져오기 -->
+	<select id="getProducerByProducerNo" resultMap="producerResultMap" parameterType="integer">
+	select * from producer where producer_no = #{value}
+	</select>
+		
 
 	<!-- id 중복확인 / 추천인 id 중복확인 -->
 	<select id="checkId" parameterType="String" resultMap="memberDto">

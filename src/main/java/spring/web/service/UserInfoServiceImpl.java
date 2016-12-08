@@ -1,5 +1,7 @@
 package spring.web.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +12,7 @@ import spring.web.dao.UserInfoDAO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
@@ -83,7 +86,25 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public Map<String, Object> userMainLoading() {
-		return userInfoDao.userMainLoading();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<ProductDTO> bestProductList = new ArrayList<ProductDTO>();
+		List<Integer> list = userInfoDao.getBestProduct();
+		for(Integer i : list) {
+			bestProductList.add(userInfoDao.getProductByProductNo(i));
+		}
+		map.put("bestProduct", bestProductList);
+		
+		List<ProducerDTO> bestProducerList = new ArrayList<ProducerDTO>();
+		list = userInfoDao.getBestProducer();
+		for(Integer i : list) {
+			bestProducerList.add(userInfoDao.getProducerByProducerNo(i));
+		}
+		map.put("bestProducer", bestProducerList);
+		
+		map.put("previousMonthDonationPrice", userInfoDao.getPreviousDonationPrice());
+		
+		return map;
 	}
 	
 	/**
