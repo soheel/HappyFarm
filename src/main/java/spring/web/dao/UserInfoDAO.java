@@ -113,7 +113,7 @@ public interface UserInfoDAO {
 	/**
 	 * 내정보 - 기부버튼 눌렀을 때
 	 * */
-	Map<String, List<DonationOrgDTO>> myPageDonation(String email);
+	Map<String, Object> myPageDonation(String email);
 	
 	/**
 	 * 내정보 - 개인정보 관리
@@ -157,5 +157,13 @@ public interface UserInfoDAO {
 	List<ProductDTO> myPageRefundList6(String email);//6개월
 	List<ProductDTO> myPageRefundList12(String email);//1년
 	List<ProductDTO> myPageRefundListAll(String email);//전체
+	
+	/**
+	 * 마일리지 사용내역 조회
+	 * */
+	List<PurchaseDTO> getmyPageMileage3(String email);
+	List<PurchaseDTO> getmyPageMileage6(String email);
+	List<PurchaseDTO> getmyPageMileage12(String email);
+	List<PurchaseDTO> getmyPageMileageAll(String email);
 	
 }

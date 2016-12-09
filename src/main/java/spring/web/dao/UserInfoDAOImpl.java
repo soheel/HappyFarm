@@ -8,9 +8,6 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import oracle.jdbc.aq.AQNotificationListener;
-import oracle.net.aso.e;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
@@ -186,13 +183,13 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 내정보 - 기부페이지 눌렀을 때
 	 */
 	@Override
-	public Map<String, List<DonationOrgDTO>> myPageDonation(String email) {
+	public Map<String, Object> myPageDonation(String email) {
 		List<DonationOrgDTO> donationInfo = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
-		List<DonationOrgDTO> donationTotalInfo = sqlSession.selectList("userInfoMapper.getMyPageTotalDonationInfo", email);
+		int donationTotalInfo = sqlSession.selectOne("userInfoMapper.getMyPageTotalDonationInfo", email);
 		
-		Map<String, List<DonationOrgDTO>> map = new HashMap();
+		Map<String,Object> map = new HashMap();
 		map.put("donationOnfo", donationInfo);
-		map.put("donationOnfo", donationTotalInfo);
+		map.put("donationTotalInfo", donationTotalInfo);
 				
 		return map;
 	}
@@ -202,44 +199,47 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public MemberDTO myPageInfoModify(String email) {
-
-		return null;
+		return sqlSession.selectOne("userInfoMapper.getUserInfo",email);
 	}
 
 	/**
 	 * 내정보 - 마일리지 눌렀을 때
 	 */
-	public Map<String, Object> myPageMileage(String email) {
+	public Map<String,Object> myPageMileage(String email) {
+		List<MemberDTO> list1 = sqlSession.selectList("userInfoMapper.getMyPageRecommander", email, new RowBounds(0, 5));
+		List<PurchaseDTO> list2= sqlSession.selectList("userInfoMapper.searchMyMileage3", email);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("recommand", list1);
+		map.put("usedMileage", list2);
 
-		return null;
-	}
-
+		return map;
+	}	
+	
 	/**
-	 * 내정보 - 장바구니 로딩
-	 */
+	 * 마일리지 사용내역 조회
+	 * */
+	//3개월
 	@Override
-	public Map<String, Object> myCart(String email) {
-
-		return null;
+	public List<PurchaseDTO> getmyPageMileage3(String email) {
+		return sqlSession.selectList("userInfoMapper.searchMyMileage3", email);
+	}
+	//6개월
+	@Override
+	public List<PurchaseDTO> getmyPageMileage6(String email) {
+		return sqlSession.selectList("userInfoMapper.searchMyMileage6", email);
+	}
+	//12개월
+	@Override
+	public List<PurchaseDTO> getmyPageMileage12(String email) {
+		return sqlSession.selectList("userInfoMapper.searchMyMileage12", email);
+	}
+	//All
+	@Override
+	public List<PurchaseDTO> getmyPageMileageAll(String email) {
+		return sqlSession.selectList("userInfoMapper.searchMyMileageAll", email);
 	}
 
-	/**
-	 * 내정보 - 장바구니 -> 주문하기 버튼을 눌렀을 때
-	 */
-	@Override
-	public List<ProductDTO> myCartOrder(String email) {
-
-		return null;
-	}
-
-	/**
-	 * 내정보 - 장바구니 -> 장바구니 안의 상품 삭제
-	 */
-	@Override
-	public int myCartDelete(int no) {
-
-		return 0;
-	}
 
 	/**
 	 * 아래의 5개 메소드는 로그인 성공 후 메인화면 로딩할 때 필요
@@ -271,5 +271,37 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		return n;
 	}
 
+	/**
+	 * 내정보 - 장바구니 로딩
+	 */
+	@Override
+	public Map<String, Object> myCart(String email) {
+		 List<ProductDTO> productList= sqlSession.selectList("userInfoMapper.MyCartLoading", email);
+		 int totalPrice= sqlSession.selectOne("userInfoMapper.getTotalPriceInCart", email);
+		 
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("productList", productList);
+		 map.put("totalPrice", totalPrice);
+		
+		 return map;
+	}
+	
+	/**
+	 * 내정보 - 장바구니 -> 주문하기 버튼을 눌렀을 때
+	 */
+	@Override
+	public List<ProductDTO> myCartOrder(String email) {
+		
+		return null;
+	}
+	
+	/**
+	 * 내정보 - 장바구니 -> 장바구니 안의 상품 삭제
+	 */
+	@Override
+	public int myCartDelete(int no) {
+		
+		return 0;
+	}
 
 }
