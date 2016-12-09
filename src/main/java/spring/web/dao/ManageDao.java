@@ -53,10 +53,10 @@ public interface ManageDao {
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 	 */
-	List<ProductDTO> packageSearchProduct(String productname);
+	ProductDTO packageSearchProduct(String productname);
 	
 	/** 세트 상품 등록*/
-	int packageRegisterManage(PackageDTO packageDTO);
+	int packageRegisterManage(Map<String, Object> packageRegister);
 	
 	/**
 	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
