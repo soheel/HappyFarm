@@ -17327,3 +17327,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 .commerce-cart table.cart td:last-child p{
  	font-size:23px;
 }
+
+#customer_login .pw{
+    margin-top:40px;
+}
