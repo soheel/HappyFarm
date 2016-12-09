@@ -130,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 회원가입 기부업체 번호는 어떻게 처리하지? 우선은 1로 직접입력 처리 -->
 	<insert id="registerMember" parameterType="memberDTO">
-		insert into member values(#{email},#{pwd},#{name},#{phone},sysdate,1,0,#{recommand})
+		insert into member values(#{email},#{pwd},#{name},#{phone},sysdate,0,,#{recommand})
 	</insert>
 
 	<!-- 계정찾기(id) / 중복확인 -->

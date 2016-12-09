@@ -260,8 +260,11 @@ public class UserInfoController {
 	  * */
 	@RequestMapping("recommandIdCheck")
 	public ResponseEntity<Boolean> recommandIdCheck(String email) {
+		
 		boolean exist = userService.checkId(email);
 		ResponseEntity<Boolean> result = new ResponseEntity<Boolean>(exist, HttpStatus.OK);
+		
+		System.out.println(exist + " : exist");
 		
 		return result;
 	}

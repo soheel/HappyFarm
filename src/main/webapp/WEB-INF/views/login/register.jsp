@@ -25,10 +25,10 @@
 										<form action = "<c:url value = '/userInfoController/register'/>" method = "post" class="register">
 											<div class="form-row form-row-wide">
 												<label for="reg_email">
-													Email address 
-													<span class="required">*</span>
+													Email address (
+													<span id = "emailCheck" class="required">*</span>)
 												</label>
-												<input type="email" class="input-text" name="email" id="reg_email" value="" />
+												<input type="email" class="input-text" name="email" id="reg_email"/>
 											</div>
 											<div class="form-row form-row-wide">
 												<label for="reg_password">
@@ -56,10 +56,10 @@
 													추천인 (
 													<span id = "recommandCheck" class="required">선택사항</span>)
 												</label>
-												<input type="text" class="input-text" name="recommand" id="reg_recommand" />
+												<input type="text" class="input-text" name="recommand" id = "recommandInput" />
 											</div>
 											<div class="form-row">
-												<input id = "recommandInput" type="submit" class="button" name="register" value="Register" />
+												<input type="submit" class="button" name="register" value="Register" />
 											</div>
 										</form>
 									</div>

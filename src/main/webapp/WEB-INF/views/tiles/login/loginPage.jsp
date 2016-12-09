@@ -65,20 +65,55 @@
 			document.location.href = "<c:url value='/userInfoController/registerPage'/>";	
 		})
 		
+		/* 이메일 중복 체크 */
+		$("#reg_email").keyup(function() {
+			if($(this).val() == ""){
+				$("#emailCheck").text("*");
+			}else {
+				$.ajax({
+					url : "<c:url value = '/userInfoController/idCheck'/>",
+					type : "post",
+					data : "email=" + $(this).val(),
+					dataType : "text",
+					success : function(result) {
+						if(result == 'true') {
+							$("#emailCheck").text("해당 아이디가 존재합니다.");
+						}else {
+							$("#emailCheck").text("사용 가능합니다.");
+						}
+					},
+					error : function(err) {
+						alert("err : " + err);
+					}
+				})
+			}
+			
+		})
+		
+		
 		/* 추천인 아이디 체크 */
 		$("#recommandInput").keyup(function() {
-			$.ajax({
-				url : "<c:url value = '/userInfoController/recommandIdCheck'/>",
-				type : "post",
-				data : ,
-				dataType : ,
-				success : function(result) {
-					alert(result);
-				},
-				error : function(err) {
-					alert("err : " + err);
-				}
-			})
+			if($(this).val() == ""){
+				$("#recommandCheck").text("*");
+			}else {
+				$.ajax({
+					url : "<c:url value = '/userInfoController/recommandIdCheck'/>",
+					type : "post",
+					data : "email=" + $(this).val(),
+					dataType : "text",
+					success : function(result) {
+						if(result == 'true') {
+							$("#recommandCheck").text("해당 회원이 존재합니다.");
+						}else {
+							$("#recommandCheck").text("해당 회원이 존재하지 않습니다.");
+						}
+					},
+					error : function(err) {
+						alert("err : " + err);
+					}
+				})
+			}
+			
 		})
 		
 		

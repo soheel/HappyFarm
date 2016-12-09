@@ -68,7 +68,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public boolean checkId(String email) {
-		return sqlSession.selectOne("userInfoMapper.checkId", email);
+		Object obj = sqlSession.selectOne("userInfoMapper.checkId", email);
+		if(obj == null){
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**
