@@ -165,7 +165,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 내정보 - 기부페이지 눌렀을 때
 	 * */
 	@Override
-	public Map<String, List<DonationOrgDTO>> myPageDonation(String email) {
+	public Map<String, Object> myPageDonation(String email) {
 		return userInfoDao.myPageDonation(email);
 	}
 	
@@ -175,13 +175,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public MemberDTO myPageInfoModify(String email) {
 		return userInfoDao.myPageInfoModify(email);
-	}
-	
-	/**
-	 * 내정보 - 마일리지 눌렀을 때
-	 * */
-	public Map<String,Object> myPageMileage(String email) {
-		return userInfoDao.myPageMileage(email);
 	}
 	
 	/**
@@ -256,7 +249,36 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userInfoDao.myPageRefundListAll(email);
 	}
 	 
+	/**
+	 * 마일리지 사용내역 조회
+	 * */
+	//3개월
+	@Override
+	public List<PurchaseDTO> getmyPageMileage3(String email) {
+		return userInfoDao.getmyPageMileage3(email);
+	}
+	//6개월
+	@Override
+	public List<PurchaseDTO> getmyPageMileage6(String email) {
+		return userInfoDao.getmyPageMileage6(email);
+	}
+	//12개월
+	@Override
+	public List<PurchaseDTO> getmyPageMileage12(String email) {
+		return userInfoDao.getmyPageMileage12(email);
+	}
+	//All
+	@Override
+	public List<PurchaseDTO> getmyPageMileageAll(String email) {
+		return userInfoDao.getmyPageMileageAll(email);
+	}
 	 
+	/**
+	 * 내정보 - 마일리지 눌렀을 때
+	 * */
+	public Map<String,Object> myPageMileage(String email) {
+		return userInfoDao.myPageMileage(email);
+	}
 	 
 	
 }

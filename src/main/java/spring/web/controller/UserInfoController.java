@@ -423,7 +423,7 @@ public class UserInfoController {
 		 * view∑Œ ¿Ãµø
 		 * */
 		String email = (String)session.getAttribute("email");
-		Map<String, List<DonationOrgDTO>> map= userService.myPageDonation(email);
+		Map<String, Object> map= userService.myPageDonation(email);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("map", map);
