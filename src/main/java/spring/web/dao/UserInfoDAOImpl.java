@@ -299,9 +299,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 내정보 - 장바구니 -> 장바구니 안의 상품 삭제
 	 */
 	@Override
-	public int myCartDelete(int no) {
+	public int myCartDelete(String email, String name) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("name", name);
 		
-		return 0;
+		return sqlSession.delete("userInfoMapper.deleteMyCartProduct", map);
 	}
 
 }

@@ -196,8 +196,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	  * 내정보  - 장바구니 -> 장바구니 안의 상품 삭제
 	  * */
 	 @Override
-	public int myCartDelete(int no) {
-		return userInfoDao.myCartDelete(no);
+	public int myCartDelete(String email, String name) {
+		return userInfoDao.myCartDelete(email,name);
 	}
 	 
 	 /**

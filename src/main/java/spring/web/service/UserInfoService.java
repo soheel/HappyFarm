@@ -110,7 +110,7 @@ public interface UserInfoService {
 	/**
 	 * 내정보 - 장바구니 -> 상품 삭제
 	 * */
-	int myCartDelete(int no);
+	int myCartDelete(String email, String name);
 	
 	/**
 	 * 내정보 - 취소/반품/교환 내역 조회

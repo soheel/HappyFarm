@@ -399,8 +399,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from member m, product pdt, cart ca, purchase_product pp
 		where m.member_email=ca.member_email and ca.product_no=pdt.product_no and pdt.product_no=pp.product_no and
 			  m.member_email=#{email};
-		
 	</select>
+	
+	<!-- 카트안에 상품 지우기 -->
+	<delete id="deleteMyCartProduct" parameterType="map">
+		delete from cart ca
+		where ca.member_email=(select m.member_email from member m where m.member_email=#{email}) 
+		      and ca.product_no=(select pdt.product_no from product pdt where pdt.product_name=#{name});
+	</delete>
 	
 
 
