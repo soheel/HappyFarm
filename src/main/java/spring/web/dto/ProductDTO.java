@@ -123,6 +123,7 @@ public class ProductDTO {
 	}
 	
 	public PurchaseProductDTO getPurchaseProductDto() {
+		
 		return purchaseProductDto;
 	}
 	

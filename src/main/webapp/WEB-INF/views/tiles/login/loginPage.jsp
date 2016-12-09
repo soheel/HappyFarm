@@ -87,14 +87,13 @@
 					}
 				})
 			}
-			
 		})
 		
-		
+		var recommandIdExist = 0;
 		/* 추천인 아이디 체크 */
 		$("#recommandInput").keyup(function() {
 			if($(this).val() == ""){
-				$("#recommandCheck").text("*");
+				$("#recommandCheck").text("해당 회원이 존재하지 않습니다.");
 			}else {
 				$.ajax({
 					url : "<c:url value = '/userInfoController/recommandIdCheck'/>",
@@ -104,12 +103,49 @@
 					success : function(result) {
 						if(result == 'true') {
 							$("#recommandCheck").text("해당 회원이 존재합니다.");
+							recommandIdExist = 1;
 						}else {
 							$("#recommandCheck").text("해당 회원이 존재하지 않습니다.");
+							recommandIdExist = 0;
 						}
 					},
 					error : function(err) {
 						alert("err : " + err);
+					}
+				})
+			}
+			
+		})
+		
+		/* 회원가입 버튼 눌렀을 때 */
+		$("#registerButton").click(function() {
+			if($("#reg_email").val() == "") {
+				alert("이메일을 입력하세요");
+			}else if($("#reg_password").val() == ""){
+				alert("비밀번호를 입력하세요");
+			}else if($("#reg_name").val() == "") {
+				alert("이름을 입력하세요");
+			}else if($("#reg_phone").val() == "") {
+				alert("연락처를 입력하세요");
+			}else if(recommandIdExist == 0 && $("#recommandInput").val() != "") {
+				alert("해당 추천인이 존재하지 않습니다");
+			}
+			else{
+				$.ajax({
+					url : "<c:url value = '/userInfoController/register'/>",
+					type : "post",
+					data : "email=" + $("#reg_email").val() + "&pwd=" + $("#reg_password").val() + "&name=" + $("#reg_name").val() + "&phone=" + $("#reg_phone").val() + "&recommand=" + $("#recommandInput").val(),
+					dataType : "text",
+					success : function(result) {
+						if(result >= 1) {
+							alert("회원가입을 축하드립니다!");
+							location.href = "<c:url value = '/userInfoController/loginPage'/>"
+						}else {
+							alert("회원가입에 실패하였습니다.");
+						}
+					},
+					error : function(err) {
+						alert("회원가입에 실패하였습니다.");
 					}
 				})
 			}

@@ -132,6 +132,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="registerMember" parameterType="memberDTO">
 		insert into member values(#{email},#{pwd},#{name},#{phone},sysdate,0,#{recommand},1)
 	</insert>
+	
+	<!-- 회원가입시 추천인을 입력하지 않은 경우 -->
+	<insert id="registerMemberRecommand" parameterType="memberDTO">
+		insert into member values(#{email},#{pwd},#{name},#{phone},sysdate,0, null ,1)
+	</insert>
 
 	<!-- 계정찾기(id) / 중복확인 -->
 	<select id="searchId" parameterType="String" resultMap="memberDto">

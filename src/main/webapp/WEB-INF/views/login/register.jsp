@@ -59,7 +59,7 @@
 												<input type="text" class="input-text" name="recommand" id = "recommandInput" />
 											</div>
 											<div class="form-row">
-												<input type="submit" class="button" name="register" value="Register" />
+												<input id = "registerButton" type="button" class="button" name="register" value="Register" />
 											</div>
 										</form>
 									</div>

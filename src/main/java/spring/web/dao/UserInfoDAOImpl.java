@@ -27,6 +27,10 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public int registerMember(MemberDTO memberDto) {
+		if(memberDto.getRecommand().equals("")) {
+			System.out.println("입력하지 않은 경우");
+			return sqlSession.insert("userInfoMapper.registerMemberRecommand", memberDto);
+		}
 		return sqlSession.insert("userInfoMapper.registerMember", memberDto);
 	}
 

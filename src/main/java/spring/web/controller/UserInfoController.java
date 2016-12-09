@@ -82,8 +82,12 @@ public class UserInfoController {
 		 * 가지고 나온 리턴(int형)을 뷰로 보내준다.
 		 * 뷰에서 성공/실패의 여부에 따라 alert으로 알려준다.
 		 * */
+		System.out.println(memberDto.getRecommand());
+		System.out.println(memberDto.getEmail());
+		System.out.println(memberDto.getPwd());
+		System.out.println(memberDto.getName());
+		System.out.println(memberDto.getPhone());
 		int result = userService.registerMember(memberDto);
-		
 		return result;
 	}
 	
