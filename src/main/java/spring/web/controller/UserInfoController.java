@@ -137,7 +137,7 @@ public class UserInfoController {
 	 * 만약 아이디가 admin이면 관리자 페이지 로딩
 	 * */
 	@RequestMapping("login")
-	public ModelAndView login(MemberDTO memberDto) {
+	public ModelAndView login(MemberDTO memberDto, HttpSession session) {
 		/**
 		 * 로그인하기 - 본인의 아이디나 비밀번호를 입력한 후
 		 * db에 존재하면 해당 아이디를 리턴해옴
@@ -149,11 +149,9 @@ public class UserInfoController {
 		 * */
 		
 		System.out.println("UserInfoController의 login 메소드");
-		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO result = userService.login(memberDto);
 		
-		System.out.println("다오까지 다녀왔다");
 		if(result!=null){
 			if(memberDto.getEmail().equals("admin")){
 				/**
@@ -173,8 +171,7 @@ public class UserInfoController {
 				 * ModelAndView에 저장한 후 view로 이동
 				 */
 				Map<String, Object> map = userService.userMainLoading();
-				//mv.addObject("map", map);
-				mv.setViewName("main/afterLogin");
+				mv.setViewName("main/index");
 				
 				List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
 				System.out.println(list.get(0).getName());
@@ -183,6 +180,12 @@ public class UserInfoController {
 				int price = (Integer)map.get("previousMonthDonationPrice");
 				System.out.println(price);
 				
+				mv.addObject("bestProduct", list);
+				mv.addObject("bestProducer", list2);
+				mv.addObject("donationPrice", price);
+				
+				// session 추가하기
+				session.setAttribute("id", memberDto.getEmail());
 			}
 		}
 		return mv;

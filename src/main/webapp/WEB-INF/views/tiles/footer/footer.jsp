@@ -68,14 +68,10 @@
 								<h4 class="widget-title">Happy Hours</h4> 
 								<ul class="noo-happyhours">
 									<li>
-										<div>
-											이번달
-											<p><fmt:formatNumber value="123456789" groupingUsed="true"/>&nbsp;<i style="font-size:15px" class="fa">&#xf159;</i></p>
-										</div>
 
 										<div>
-											저번달 
-											<p><fmt:formatNumber value="123456789" groupingUsed="true"/>&nbsp;<i style="font-size:15px" class="fa">&#xf159;</i></p>										 
+											이전달의 총 기부액 : 
+											<p><fmt:formatNumber value="${donationPrice }" groupingUsed="true"/>&nbsp;<i style="font-size:15px" class="fa">원</i></p>										 
 										</div>
 										
 										<div>

@@ -61,7 +61,7 @@ public class UserProductController {
 		ModelAndView mv = new ModelAndView();
 		list = service.showMenuListLoading(categoryNo);
 		System.out.println(list.size() + " : list¿« size");
-		mv.addObject("list",list);
+		mv.addObject("list", list);
 		mv.setViewName("shop/searchProduct");
 		
 		return mv;

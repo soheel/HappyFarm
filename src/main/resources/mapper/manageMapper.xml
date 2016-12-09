@@ -159,9 +159,9 @@
 </select>
 
 <!-- 4.2 package상품을 등록한다. -->
-<insert id="packageRegisterManage" parameterType="productDTO">
+<!-- <insert id="packageRegisterManage" parameterType="productDTO">
 	insert into product values (product_no.nextval,#{name},#{price},#{profile},#{desc},#{eval},#{unit})
-</insert>
+</insert> -->
 
 <!-- productDTO 테이블 삽입 -->
 <insert id="packageRegisterManage" parameterType="packageDTO">

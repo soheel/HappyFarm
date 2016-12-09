@@ -119,13 +119,17 @@
 									
 									<!-- 상품 목록 -->
 									<div class="noo-product-grid products row product-grid noo-grid-4">
-										<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
+									
+										
+										<c:forEach items="${bestProduct }" var="bestProduct">
+											<!-- 상품 하나하나 -->
+											<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
 											<div class="noo-product-inner">
 											
 												<!-- 상품 -->
 												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/userProductController/showProductDetail?productNo=1"/>">
-														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/product_260x330.jpg' alt="" />
+													<a href="<c:url value="/userProductController/showProductDetail?productNo=${bestProduct.no }"/>">
+														<img width="600" height="760" src='<c:url value="/resources/img/product/"/>${bestProduct.profile}' alt="" />
 													</a>
 													<div class="noo-rating">
 														<div class="star-rating">
@@ -134,8 +138,8 @@
 													</div>
 												</div>
 												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/shop/"/>detail">Apples</a></h3>
-													<span class="price"><span class="amount">&#36;3.95</span></span>
+													<h3><a href="<c:url value="/shop/"/>detail">${bestProduct.name }</a></h3>
+													<span class="price"><span class="amount">${bestProduct.price }</span></span>
 													<div class="noo-product-action">
 														<div class="noo-action">
 															<a href="#" class="button product_type_simple add_to_cart_button">
@@ -146,7 +150,7 @@
 												</div>
 											</div>
 										</div>
-										
+										</c:forEach>
 
 									</div> <!-- 상품 목록 끝 -->
 									
@@ -298,6 +302,8 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- 생산자 정보 -->
 				<div class="pt-11 pb-10">
 					<div class="container">
 						<div class="row">
@@ -311,60 +317,28 @@
 							</div>
 						</div>
 						<div class="row">
+						
+						<c:forEach items="${bestProducer }" var="bestProducer">
+							<!-- 생산자 하나하나 -->
 							<div class="col-md-4 col-sm-6">
 								<div class="noo-farmer">
 									<div class="noo-farmer-thumbnail">
 										<img width="284" height="380" src="<c:url value="/resources/images/"/>team/team_1.png" alt="" />
 									</div>
 									<div class="noo-farmer-content">
-										<h4>Tristique</h4>
+										<h4>${bestProducer.name }</h4>
 										<p>
-											Maecenas tristique gravida, odio et sagi ttis justo Vestibulum non justo ultrices. Donec dictum non nulla tristique gravida odio.
+											${bestProducer.addr }
 										</p>
-										<span class="social">
-											<a href="#" class="fa fa-facebook"></a>
-											<a href="#" class="fa fa-twitter"></a>
-											<a href="#" class="fa fa-google"></a>
-										</span>
+										<p>
+											${bestProducer.phone }
+										</p>
+
 									</div>
 								</div> 
 							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="noo-farmer">
-									<div class="noo-farmer-thumbnail">
-										<img width="330" height="380" src="<c:url value="/resources/images/"/>team/team_2.png" alt=""/>
-									</div>
-									<div class="noo-farmer-content">
-										<h4>Alyssa Hiyama</h4>
-										<p>
-											Maecenas tristique gravida, odio et sagi ttis justo Vestibulum non justo ultrices. Donec dictum non nulla tristique gravida odio.
-										</p>
-										<span class="social">
-											<a href="#" class="fa fa-facebook"></a>
-											<a href="#" class="fa fa-twitter"></a>
-											<a href="#" class="fa fa-instagram"></a>
-										</span>
-									</div>
-								</div> 
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="noo-farmer">
-									<div class="noo-farmer-thumbnail">
-										<img width="285" height="380" src="<c:url value="/resources/images/"/>team/team_3.png" alt="" /> 
-									</div>
-									<div class="noo-farmer-content">
-										<h4>Alberto Trombin</h4>
-										<p>
-											Maecenas tristique gravida, odio et sagi ttis justo Vestibulum non justo ultrices. Donec dictum non nulla tristique gravida odio.
-										</p>
-										<span class="social">
-											<a href="#" class="fa fa-facebook"></a>
-											<a href="#" class="fa fa-twitter"></a>
-											<a href="#" class="fa fa-pinterest"></a>
-										</span>
-									</div>
-								</div> 
-							</div>
+						</c:forEach>
+							
 						</div>
 					</div>
 				</div>	

@@ -33,7 +33,15 @@
 						<ul>
 							<li>
 								<span><i class="fa fa-user"></i></span>
-								<a href="<c:url value='/userInfoController/loginPage'/>">Login</a> <!-- 로그인 되어있다면 My Account -->
+								<c:choose>
+									<c:when test="${sessionScope.id == null }">
+										<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
+									</c:when>
+									<c:otherwise>
+										<a href="<c:url value='/userInfoController/loginPage'/>">My Account</a>
+									</c:otherwise>
+								</c:choose>
+								
 							</li>
 							<li>
 								<a href="<c:url value="/cart"/>">
@@ -78,7 +86,7 @@
 									<ul class="nav-collapse navbar-nav">
 										<li><a href="<c:url value="/"/>">Home</a></li>
 										<li class="menu-item-has-children noo_megamenu mega-col-columns-4">
-											<a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=20"/>" id="test">Shop</a>
+											<a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=5"/>" id="test">Shop</a>
 											<ul class="sub-menu">
 												<li class="menu-item-has-children">
 													<a href="<c:url value="/"/>shop">Shop page</a>
