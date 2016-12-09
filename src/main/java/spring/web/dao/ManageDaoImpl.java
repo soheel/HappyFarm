@@ -59,13 +59,18 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int packageRegisterManage(PackageDTO packageDTO) {
-		return sqlsession.insert("userEtcMapper.packageRegisterManage",packageDTO);
+	public int packageRegisterManage(Map<String, Object> packageRegister) {
+		
+		int result1=sqlsession.insert("userEtcMapper.packageRegisterManage",packageRegister);
+		int result2=sqlsession.insert("userEtcMapper.packageRegisterPackage",packageRegister);
+		int result3=sqlsession.insert("userEtcMapper.packageRegisterPackageProduct",packageRegister);
+		
+		return result3;
 	}
 	
 	
 	@Override
-	public List<ProductDTO> packageSearchProduct(String name) {
+	public ProductDTO packageSearchProduct(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

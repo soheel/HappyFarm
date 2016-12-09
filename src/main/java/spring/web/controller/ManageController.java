@@ -170,6 +170,7 @@ public class ManageController {
 	 * */
 	@RequestMapping("packageRegisterManage")
 	public String packageRegisterManage(PackageDTO packageDTO, String name) {
+		Map<String, Object> packageRegister = new HashMap<String, Object>();
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
@@ -177,8 +178,12 @@ public class ManageController {
 		 * 상품검색 : product_name에 일치하는 product를 찾아준다
 		 * 밑에 상품이 productDTO들이 insert된다.
 		 */
-		packageSearchProduct(name);
-		int result = manageService.packageRegisterManage(packageDTO);
+		ProductDTO productDTO = packageSearchProduct(name);
+		
+		packageRegister.put("productDTO", productDTO);
+		packageRegister.put("packageDTO", packageDTO);
+		
+		int result = manageService.packageRegisterManage(packageRegister);
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
@@ -190,15 +195,13 @@ public class ManageController {
 	 * 상품번호, 상품이름 아래에 추가
 	 * */
 	@RequestMapping("packageSearchProduct")
-	public List<ProductDTO> packageSearchProduct(String name) {
+	public ProductDTO packageSearchProduct(String name) {
 		/**
 		 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 		 */
-		List<ProductDTO> list = null;
+		ProductDTO productDTO = manageService.packageSearchProduct(name);
 		
-		list = manageService.packageSearchProduct(name);
-		
-		return list;
+		return productDTO;
 	}
 	
 	//div태그이므로, 할 필요 없을 것이다. 정보 저장되어 있기 떄문에
@@ -235,7 +238,7 @@ public class ManageController {
 		 */
 		
 		//수정폼에서 상품 검색하기 위해서 필요한 메소드
-		List<ProductDTO> searchlist = packageSearchProduct(name);
+		ProductDTO searchlist = packageSearchProduct(name);
 		
 		modifyinfo.put("productDTO", productDTO);
 		modifyinfo.put("searchlist", searchlist);
