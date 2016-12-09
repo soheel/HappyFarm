@@ -28,7 +28,7 @@ public class HomeController {
 		mv.setViewName("main/index");
 		
 		List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
-		System.out.println("list : " + list);
+		System.out.println("bestProduce list¿« size : " + list.size());
 		System.out.println(list.get(0).getName());
 		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
 		System.out.println(list2.get(0).getName());

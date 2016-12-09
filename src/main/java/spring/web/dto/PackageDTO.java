@@ -8,17 +8,7 @@ public class PackageDTO {
 	private int productNo;
 	
 	private PackageProductDTO packageProductDTO;
-	
 	private ProductDTO productDTO;
-	
-	public ProductDTO getProductDTO() {
-		return productDTO;
-	}
-
-	public void setProductDTO(ProductDTO productDTO) {
-		this.productDTO = productDTO;
-	}
-
 	private List<ProductDTO> list;
 	
 	public PackageDTO() {}
@@ -70,5 +60,11 @@ public class PackageDTO {
 		this.productNo = productNo;
 	}
 	
-	
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
 }

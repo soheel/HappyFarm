@@ -82,12 +82,10 @@
 												<li class="menu-item-has-children">
 													<a href="shop">Shop page</a>
 													<ul class="sub-menu">
-														<li><a href="shop-list.html">Shop List</a></li>
-														<li><a href="shop-detail.html">Shop Detail</a></li>
-														<li><a href="my-account.html">My Account</a></li>
-														<li><a href="cart.html">Cart</a></li>
-														<li><a href="cart-empty.html">Empty Cart</a></li>
-														<li><a href="wishlist.html">Wishlist</a></li>
+														
+														<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=1"/>">과일/견과</a></li>
+														<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=10"/>">채소</a></li>
+														<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=20"/>">쌀/잡곡</a></li>
 													</ul>
 												</li>
 												<li class="menu-item-has-children">

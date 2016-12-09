@@ -54,6 +54,35 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>owl.carousel.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jflickrfeed.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.magnific-popup.js'></script>
-	<script type='text/javascript' src='<c:url value="/resources/js/"/>register-btn.js'></script>
+	
+	<script type="text/javascript">
+	$(function(){
+
+		/* 회원가입 페이지로 이동 */
+		var $registerBtn = $("form.login div.form-row input[name='Register']");
+
+		$registerBtn.click(function(){
+			document.location.href = "<c:url value='/userInfoController/registerPage'/>";	
+		})
+		
+		/* 추천인 아이디 체크 */
+		$("#recommandInput").keyup(function() {
+			$.ajax({
+				url : "<c:url value = '/userInfoController/recommandIdCheck'/>",
+				type : "post",
+				data : ,
+				dataType : ,
+				success : function(result) {
+					alert(result);
+				},
+				error : function(err) {
+					alert("err : " + err);
+				}
+			})
+		})
+		
+		
+	});
+	</script>
 </body>
 </html>

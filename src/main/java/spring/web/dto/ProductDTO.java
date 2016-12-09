@@ -14,6 +14,7 @@ public class ProductDTO {
 	
 	private ProducerDTO producerDto;
 	private CategorySubcategoryDTO subCategoryDto;
+	private PurchaseProductDTO purchaseProductDto;
 	
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
@@ -121,5 +122,12 @@ public class ProductDTO {
 		this.subCategoryDto = subCategoryDto;
 	}
 	
+	public PurchaseProductDTO getPurchaseProductDto() {
+		return purchaseProductDto;
+	}
+	
+	public void setPurchaseProductDto(PurchaseProductDTO purchaseProductDto) {
+		this.purchaseProductDto = purchaseProductDto;
+	}
 	
 }

@@ -39,6 +39,7 @@
 									</c:when>
 									<c:otherwise>
 										<a href="<c:url value='/userInfoController/loginPage'/>">My Account</a>
+										<a href="<c:url value='/userInfoController/logout'/>">&nbsp;|&nbsp;Logout</a>
 									</c:otherwise>
 								</c:choose>
 								
@@ -78,7 +79,7 @@
 											<span></span>
 										</div>
 									</div>
-									<a href="./" class="navbar-brand">
+									<a href="<c:url value="/"/>" class="navbar-brand">
 										<img class="noo-logo-img noo-logo-normal" src='<c:url value="/resources/images/"/>logo.png' alt="Organic Store">
 									</a>
 								</div>
@@ -91,9 +92,9 @@
 												<li class="menu-item-has-children">
 													<a href="<c:url value="/"/>shop">Shop page</a>
 													<ul class="sub-menu">
-														<li><a href="shop-list.html">과일/견과</a></li>
-														<li><a href="<c:url value="/shop/"/>detail">채소</a></li>
-														<li><a href="my-account.html">쌀/잡곡</a></li>
+														<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=1"/>">과일/견과</a></li>
+														<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=10"/>">채소</a></li>
+														<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=20"/>">쌀/잡곡</a></li>
 													</ul>
 												</li>
 												<li class="menu-item-has-children">

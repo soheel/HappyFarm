@@ -56,7 +56,7 @@ public class UserProductController {
 		 * 1. 사용자가 선택한 카테고리를 인수로 받음
 		 * 2. 받은 카테고리를 이용해서 dao로 가서 등록순으로 List<ProductDTO>에 저장 후 뷰로 반환해줌
 		 * */
-		System.out.println("shopMenuListLoading() 들어옴");
+		System.out.println("shopMenuListLoading() 들어옴 " + categoryNo);
 		List<ProductDTO> list = null;
 		ModelAndView mv = new ModelAndView();
 		list = service.showMenuListLoading(categoryNo);

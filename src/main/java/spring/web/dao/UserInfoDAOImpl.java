@@ -246,7 +246,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	@Override
 	public List<Integer> getBestProduct() {
-		return sqlSession.selectList("userInfoMapper.getBestProduct", null, new RowBounds(0, 3));
+		return sqlSession.selectList("userInfoMapper.getBestProduct", null, new RowBounds(0, 4));
 	}
 
 	@Override

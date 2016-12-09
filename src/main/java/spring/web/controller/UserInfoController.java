@@ -60,6 +60,13 @@ public class UserInfoController {
 		return mv;
 	}
 	
+	/**
+	 * 회원가입 페이지 이동
+	 * */
+	@RequestMapping("registerPage")
+	public String registerPage() {
+		return "login/register";
+	}
 	
 	/**
 	 * 회원가입 //insert
@@ -204,7 +211,32 @@ public class UserInfoController {
 		 * */
 		session.invalidate();
 		
-		return "메인창으로 이동";
+		return "redirect:mainLoading";
+	}
+	
+	/**
+	 * 메인로딩
+	 * 로그아웃 후 메인으로 이동하기 위해 필요
+	 * */
+	@RequestMapping("mainLoading")
+	public ModelAndView mainLoading() {
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = userService.userMainLoading();
+		mv.setViewName("main/index");
+		
+		List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
+		System.out.println("bestProduce list의 size : " + list.size());
+		System.out.println(list.get(0).getName());
+		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
+		System.out.println(list2.get(0).getName());
+		int price = (Integer)map.get("previousMonthDonationPrice");
+		System.out.println(price);
+		
+		mv.addObject("bestProduct", list);
+		mv.addObject("bestProducer", list2);
+		mv.addObject("donationPrice", price);
+		
+		return mv;
 	}
 	
 	 /**

@@ -103,9 +103,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="category_subcategory_no" property="subCategoryNo"/>
 		
 		<association property="purchaseProductDto" javaType="purchaseProductDto">
-			<id column="purchase_no" property="no"/>
+			<id column="purchase_no" property="purchaseNo"/>
 			<result column="purchase_product_num" property="productNum"/>
-			<result column="product_no" property="no"/>
+			<result column="product_no" property="productNo"/>
 		</association>
 	</resultMap>
 	
@@ -317,14 +317,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 마일리지 사용내역 조회 -->
 	
 	<!-- 3개월 -->
-	<select id="searchMyMileage3" resultMap="purchaseDto" parameterType="String">
+	<select id="searchMyMileage3" resultType="purchaseDto" parameterType="String">
 	   select pdt.product_name, pc.purchase_date,pc.purchase_discount
 	   from member m, product pdt, purchase pc, purchase_product pp
        where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and
              m.member_email=#{email} and pc.purchase_date between (select sysdate -90 m_day from dual) and sysdate
 	</select>
 	<!-- 6개월 -->
-	<select id="searchMyMileage6" resultMap="purchaseDto" parameterType="String">
+	<select id="searchMyMileage6" resultType="purchaseDto" parameterType="String">
 	   select pdt.product_name, pc.purchase_date,pc.purchase_discount
 	   from member m, product pdt, purchase pc, purchase_product pp
        where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and
@@ -332,7 +332,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 1년 -->
-	<select id="searchMyMileage12" resultMap="purchaseDto" parameterType="String">
+	<select id="searchMyMileage12" resultType="purchaseDto" parameterType="String">
 	   select pdt.product_name, pc.purchase_date,pc.purchase_discount
 	   from member m, product pdt, purchase pc, purchase_product pp
        where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and
@@ -340,7 +340,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 전체 -->
-	<select id="searchMyMileageAll" resultMap="purchaseDto" parameterType="String">
+	<select id="searchMyMileageAll" resultType="purchaseDto" parameterType="String">
 	   select pdt.product_name, pc.purchase_date,pc.purchase_discount
 	   from member m, product pdt, purchase pc, purchase_product pp
        where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and
