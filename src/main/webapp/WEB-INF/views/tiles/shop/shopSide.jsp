@@ -31,19 +31,19 @@
 										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=1"/>">-&nbsp;&nbsp;사과, 배</a></li>
 										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=9"/>">-&nbsp;&nbsp;수박, 참외, 매실</a></li>
 										<li><a href="#" style = "font-weight : bold;">쌀/잡곡</a></li>
-										<li><a href="#">-&nbsp;&nbsp;고춧가루, 미숫가루, 곡물가루</a></li>
-										<li><a href="#">-&nbsp;&nbsp;백미, 현미</a></li>
-										<li><a href="#">-&nbsp;&nbsp;잡곡, 콩, 깨</a></li>	
-										<li><a href="#">-&nbsp;&nbsp;찹쌀, 흑미</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=23"/>">-&nbsp;&nbsp;고춧가루, 미숫가루, 곡물가루</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=20"/>">-&nbsp;&nbsp;백미, 현미</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=22"/>">-&nbsp;&nbsp;잡곡, 콩, 깨</a></li>	
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=21"/>">-&nbsp;&nbsp;찹쌀, 흑미</a></li>
 										<li><a href="#" style = "font-weight : bold;">채소</a></li>
-										<li><a href="#">-&nbsp;&nbsp;고구마, 감자, 당근, 연근</a></li>
-										<li><a href="#">-&nbsp;&nbsp;배추, 무, 김장채소</a></li>
-										<li><a href="#">-&nbsp;&nbsp;브로콜리, 양배추, 샐러드, 녹즙</a></li>
-										<li><a href="#">-&nbsp;&nbsp;상추, 깻잎, 쌈채소</a></li>
-										<li><a href="#">-&nbsp;&nbsp;새송이, 느타리, 버섯</a></li>
-										<li><a href="#">-&nbsp;&nbsp;시금치, 미나리, 아욱, 건나물</a></li>
-										<li><a href="#">-&nbsp;&nbsp;양파, 마늘, 생강, 파</a></li>
-										<li><a href="#">-&nbsp;&nbsp;오이, 호박, 가지</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=11"/>">-&nbsp;&nbsp;고구마, 감자, 당근, 연근</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=14"/>">-&nbsp;&nbsp;배추, 무, 김장채소</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=17"/>">-&nbsp;&nbsp;브로콜리, 양배추, 샐러드, 녹즙</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=12"/>">-&nbsp;&nbsp;상추, 깻잎, 쌈채소</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=18"/>">-&nbsp;&nbsp;새송이, 느타리, 버섯</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=16"/>">-&nbsp;&nbsp;시금치, 미나리, 아욱, 건나물</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=13"/>">-&nbsp;&nbsp;양파, 마늘, 생강, 파</a></li>
+										<li><a href="<c:url value="/userProductController/shopMenuListLoading?categoryNo=5"/>">-&nbsp;&nbsp;오이, 호박, 가지</a></li>
 										<li><a href="#">-&nbsp;&nbsp;파프리카, 피망, 고추</a></li>
 									</ul>
 								</div>
