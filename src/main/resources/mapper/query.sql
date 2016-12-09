@@ -40,8 +40,17 @@ donation_org_desc varchar2(100) not null,
 donation_org_profile varchar2(100)
 )
 
+donation_org_desc 데이터 사이즈 변경
+ALTER TABLE donation_org
+MODIFY (donation_org_desc VARCHAR2(300));
+
+
 삽입
 insert into donation_org values(donation_org_no.nextval, '유니세프','031-219-1542','경기도','유니세프입니다',null);
+
+update donation_org set donation_org_desc='1946년에 창립된 유엔기구로써 유니세프는 지속가능개발목표를 달성하기 위해 보건,식수와위생,영양,어린이보호 등 7가지 중점 사업분야를 정하고 여러 보호사업을 펼치고 있는 단체입니다.', 
+donation_org_addr='서울시 마포구 서강로 60(창전동)',donation_org_phone='02-737-1004',donation_org_profile='unicfLogo.jpg' where donation_org_no=1;
+
 
 -- donation 테이블--------------------------------------------------------------
 drop table donation;
@@ -94,6 +103,9 @@ producer_phone varchar2(15) not null,
 producer_register_date date not null
 )
 
+alter table producer add producer_profile varchar2(100)
+
+
 삽입
 insert into producer values(producer_no.nextval, '제주농부','제주특별시','999', sysdate);
 insert into producer values(producer_no.nextval, '이천농부','경기도 이천','888', sysdate);
@@ -101,6 +113,15 @@ insert into producer values(producer_no.nextval, '가평농부','경기도 가평','777',
 insert into producer values(producer_no.nextval, '영주농부','경상북도 영주','666', sysdate);
 insert into producer values(producer_no.nextval, '나주농부','전라남도 나주','555', sysdate);
 insert into producer values(producer_no.nextval, '예천농부','경상북도 예천','444', sysdate);
+
+update producer set producer_name='강기식',producer_addr='경상북도 경주시 양북면 안동리 253-1',producer_phone='031-749-8569',producer_profile='farmer1.jpg' where producer_no=1;
+update producer set producer_name='류승빈',producer_addr='경기도 이천시 창전동 85-23 ',producer_phone='0-568-5584',producer_profile='farmer2.jpg'  where producer_no=2;
+update producer set producer_name='이정동',producer_addr='경상북도 영주시 영주동 산13 ',producer_phone='010-2433-6587',producer_profile='farmer3.jpg'  where producer_no=3;
+update producer set producer_name='박남길',producer_addr='전라남도 여수시 종화동 403-1 ',producer_phone='054-5289-7645',producer_profile='farmer4.jpg'  where producer_no=4;
+update producer set producer_name='허영남',producer_addr='강원도 속초시 영랑동 113-13 ',producer_phone='041-8115-5756',producer_profile='farmer5.jpg'  where producer_no=5;
+update producer set producer_name='김순자',producer_addr='강원도 정선군 정선읍 봉양리 1-67 ',producer_phone='064-7142-212`1',producer_profile='farmer6.jpg'  where producer_no=6;
+
+
 
 -- category 테이블--------------------------------------------------------------
 drop table category;
@@ -295,6 +316,15 @@ insert into certification values(certification_no.nextval, null, '인증마크1', '�
 insert into certification values(certification_no.nextval, null, '인증마크2', '인증마크2 입니다');
 insert into certification values(certification_no.nextval, null, '인증마크3', '인증마크3 입니다');
 
+update certification set certification_image='bpafree.png',certification_name='bpafree',certification_desc='환경호르몬인 비스페놀A가 검출되지 않은 친환경 제품입니다.' where certification_no=1;
+update certification set certification_image='gap.png',certification_name='GAP',certification_desc='우수 농산물 보증마크입니다. ' where certification_no=2;
+update certification set certification_image='joetanso.png',certification_name='저탄소',certification_desc='저탄소를 배출하는 인증마크입니다.' where certification_no=3;
+update certification set certification_no=4,certification_image='muhangsaengchucsanmul.png',certification_name='무항생제',certification_desc='항생제가 첨가되지 않은 제품을 인증하는 마크입니다.' where certification_no=21;
+
+insert into certification values(certification_no.nextval, 'munongyag.png', '무농약', '농약을 사용하지 않고 재배한 제품을 인증하는 마크입니다.');
+insert into certification values(certification_no.nextval, 'youginong.png', '유기농식품', '유기농 식품 인증마크입니다.');
+
+
 -- product_certification 테이블-------------------------------------------------
 drop table product_certification;
 select * from product_certification;
@@ -456,6 +486,14 @@ SELECT * FROM community WHERE rownum <= 6 and community_state= 0
 insert into community values(community_no.nextval, '김치담그기모임', null, '김장을하자', sysdate, 1);
 insert into community values(community_no.nextval, '깍두기담그기모임', null, '깍두기을하자', sysdate, 0);
 insert into community values(community_no.nextval, '갓김치담그기모임', null, '갓김치먹자', sysdate, 1);
+
+insert into community values(community_no.nextval, '김장체험', 'kimjang.jpg', 'kimjang1.jpg', sysdate, 1);
+insert into community values(community_no.nextval, '감자캐기', 'potato.jpg', 'potato1.jpg', sysdate, 1);
+insert into community values(community_no.nextval, '냉이채취행사', 'nangyee.jpg', 'nangyee1.jpg', sysdate, 1);
+insert into community values(community_no.nextval, '밤줍기', 'bam.jpg', 'bam1.jpg', sysdate, 2);
+insert into community values(community_no.nextval, '사과따기', 'apple.jpg', 'apple1.jpg', sysdate, 2);
+insert into community values(community_no.nextval, '포도수확', 'podo.jpg', 'podo1.jpg', sysdate, 2);
+
 
 -- community_comment 테이블-----------------------------------------------------
 drop table community_comment;
