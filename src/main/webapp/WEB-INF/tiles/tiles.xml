@@ -58,6 +58,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer/footer.jsp"/>
 	</definition>
 	
+	<!-- account 페이지 defintion -->
+	<definition name="account" template="/WEB-INF/views/tiles/account/accountPage.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header/headerSecond.jsp"/>
+	</definition>
+	
 	
 	
 	
@@ -120,4 +125,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/login/{1}.jsp"/>
 	</definition>
 	
+	<!-- account 페이지 -->
+	<definition name="account/*" extends="account">
+		<put-attribute name="content" value="/WEB-INF/views/account/{1}.jsp"/>
+	</definition>
+	
+	<definition name="account/shopping/*" extends="account">
+		<put-attribute name="content" value="/WEB-INF/views/account/shopping/{1}.jsp"/>
+	</definition>
 </tiles-definitions>
