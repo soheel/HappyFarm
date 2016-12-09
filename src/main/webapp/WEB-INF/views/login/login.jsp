@@ -22,20 +22,20 @@
 								<div id="customer_login">
 									<div class="col-md-12">
 										<h2>Login</h2>
-										<form class="login">
+										<form action = "<c:url value ='/userInfoController/login'/>" class="login">
 											<div class="form-row form-row-wide">
 												<label for="username">
 													Username or email address 
 													<span class="required">*</span>
 												</label>
-												<input type="text" class="input-text" name="username" id="username" value="" />
+												<input type="text" class="input-text" name="email" id="username" value="" />
 											</div>
 											<div class="form-row form-row-wide">
 												<label for="password">
 													Password 
 													<span class="required">*</span>
 												</label>
-												<input class="input-text" type="password" name="password" id="password" />
+												<input class="input-text" type="password" name="pwd" id="password" />
 											</div>
 											<div class="form-row">
 												<input type="submit" class="button" name="login" value="Login" />

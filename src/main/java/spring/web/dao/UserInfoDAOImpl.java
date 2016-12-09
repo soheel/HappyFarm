@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 import oracle.jdbc.aq.AQNotificationListener;
 import oracle.net.aso.e;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
@@ -77,18 +79,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public Map<String, Integer> myPageLoading(String email) {
 		return sqlSession.selectOne("userInfoMapper.getMileageAndOrderlist", email);
-	}
-
-	/**
-	 * 회원 메인 페이지로 이동할 때 필요한 정보들 (생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 기부정보(저번달 총
-	 * 모금액,이번달 총 모금액))
-	 */
-	@Override
-	public Map<String, Object> userMainLoading() {
-		
-		List<Integer> list= sqlSession.selectList("UserProductMapper.getBestProduct", null, new RowBounds(0, 3));
-		
-		return null;
 	}
 
 	/**
@@ -195,9 +185,15 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 내정보 - 기부페이지 눌렀을 때
 	 */
 	@Override
-	public List<DonationDTO> myPageDonation(String email) {
-
-		return null;
+	public Map<String, List<DonationOrgDTO>> myPageDonation(String email) {
+		List<DonationOrgDTO> donationInfo = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
+		List<DonationOrgDTO> donationTotalInfo = sqlSession.selectList("userInfoMapper.getMyPageTotalDonationInfo", email);
+		
+		Map<String, List<DonationOrgDTO>> map = new HashMap();
+		map.put("donationOnfo", donationInfo);
+		map.put("donationOnfo", donationTotalInfo);
+				
+		return map;
 	}
 
 	/**
@@ -242,6 +238,36 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	public int myCartDelete(int no) {
 
 		return 0;
+	}
+
+	/**
+	 * 아래의 5개 메소드는 로그인 성공 후 메인화면 로딩할 때 필요
+	 * */
+	@Override
+	public List<Integer> getBestProduct() {
+		return sqlSession.selectList("userInfoMapper.getBestProduct", null, new RowBounds(0, 3));
+	}
+
+	@Override
+	public ProductDTO getProductByProductNo(int productNo) {
+		return sqlSession.selectOne("userInfoMapper.getProductByProductNo", productNo);
+	}
+
+	@Override
+	public ProducerDTO getProducerByProducerNo(int producerNo) {
+		return sqlSession.selectOne("userInfoMapper.getProducerByProducerNo", producerNo);
+	}
+
+	@Override
+	public List<Integer> getBestProducer() {
+		return sqlSession.selectList("userInfoMapper.getBestProducer", null, new RowBounds(0, 3));
+	}
+
+	@Override
+	public int getPreviousDonationPrice() {
+		List<Object> list = sqlSession.selectList("userInfoMapper.getPreviousDonationPrice", null, new RowBounds(0, 1));
+		int n = (Integer)list.get(0);
+		return n;
 	}
 
 

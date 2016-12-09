@@ -8,6 +8,7 @@ public class DonationOrgDTO {
 	private String addr;
 	private String desc;
 	private String profile;
+	private DonationDTO donationDto;
 	
 	public DonationOrgDTO() {}
 	
@@ -20,6 +21,16 @@ public class DonationOrgDTO {
 		this.desc = desc;
 		this.profile = profile;
 	}
+	
+	
+	public DonationDTO getDonationDto() {
+		return donationDto;
+	}
+
+	public void setDonationDto(DonationDTO donationDto) {
+		this.donationDto = donationDto;
+	}
+
 	public int getNo() {
 		return no;
 	}

@@ -59,8 +59,8 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int packageRegisterManage(ProductDTO productDTO) {
-		return sqlsession.insert("userEtcMapper.packageRegisterManage",productDTO);
+	public int packageRegisterManage(PackageDTO packageDTO) {
+		return sqlsession.insert("userEtcMapper.packageRegisterManage",packageDTO);
 	}
 	
 	

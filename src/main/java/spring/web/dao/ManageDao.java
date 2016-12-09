@@ -56,7 +56,7 @@ public interface ManageDao {
 	List<ProductDTO> packageSearchProduct(String productname);
 	
 	/** 세트 상품 등록*/
-	int packageRegisterManage(ProductDTO productDTO);
+	int packageRegisterManage(PackageDTO packageDTO);
 	
 	/**
 	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 

@@ -4148,6 +4148,10 @@ ul.post_list_widget li a .post-date {
     position: relative;
 }
 
+.noo-menu-option ul li i{
+	color: #ababab;
+}
+
 .noo-menu-option ul li a:hover,
 .noo-menu-option ul li a:focus {
     color: #79cba8;
@@ -15115,7 +15119,7 @@ p.demo_store a {
 .commerce .widget_layered_nav_filters ul li a:before {
     font-weight: 400;
     line-height: 1;
-    content: "占쏙옙";
+    content: "��";
     color: #a00;
     font-family: WooCommerce;
     speak: none;
@@ -15269,7 +15273,7 @@ p.demo_store a {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     margin-right: .618em;
-    content: "占쏙옙";
+    content: "��";
     text-decoration: none
 }
 
@@ -15338,7 +15342,7 @@ p.demo_store a {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     margin-left: .618em;
-    content: "占쏙옙";
+    content: "��";
     text-decoration: none
 }
 
@@ -15429,7 +15433,7 @@ p.demo_store a {
     display: block;
 }
 .commerce table.cart td.actions, .commerce-page table.cart td.actions {
-    text-align: right;
+    text-align: center;
 }
 .commerce table.cart td.actions .coupon, .commerce-page table.cart td.actions .coupon {
     float: left;
@@ -16991,7 +16995,8 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
     text-transform: uppercase;
     -webkit-border-radius: 0;
     border-radius: 0;
-    margin-top: 20px;
+    margin-top: 5px;
+    width:100%;
 }
 
 .commerce-account input.button:hover,
@@ -17004,7 +17009,6 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
     display: block;
     height: 40px;
     border: 0;
-    width: 100%;
     -webkit-border-radius: 0;
     border-radius: 0;
     font-style: normal;
@@ -17137,12 +17141,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
     color: #ffffff;
 }
 
-
-
-
-
-
-/* 異붽��븳 css */
+/* 추가한 css */
 
 #triangle-down { 
 	width: 0; 
@@ -17217,6 +17216,11 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 	cursor:pointer;
 }
 
+.package_board{
+	border: 1px solid #f4eede;
+	padding:20px 10px;
+}
+
 .quote{
 	/* Safari 6.0 - 9.0 */
 	-webkit-filter: brightness(250%);
@@ -17239,7 +17243,6 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 
 .profile_board{
 	margin-top:50px;
-	padding: 50px 0px;
 	border: 1px solid #f4eede;
 }
 
@@ -17261,6 +17264,10 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 	border: 1px solid #f4eede;
 }
 
+.qna-question-area{
+	margin-bottom:20px;
+}
+
 .donate_table{
 	padding: 30px 0;
 }
@@ -17272,7 +17279,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 
 .checks {position: relative;}
 
-.checks input[type="checkbox"] {  /* �떎�젣 泥댄겕諛뺤뒪�뒗 �솕硫댁뿉�꽌 �닲源� */
+.checks input[type="checkbox"] {  /* 실제 체크박스는 화면에서 숨김 */
   position: absolute;
    width: 1px;
    height: 1px;
@@ -17290,12 +17297,12 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
   -moz-user-select: none;
   -ms-user-select: none;
 }
-.checks input[type="checkbox"] + label:before {  /* 媛�吏� 泥댄겕諛뺤뒪 */
+.checks input[type="checkbox"] + label:before {  /* 가짜 체크박스 */
   content: ' ';
   display: inline-block;
-  width: 21px;  /* 泥댄겕諛뺤뒪�쓽 �꼫鍮꾨�� 吏��젙 */
-  height: 21px;  /* 泥댄겕諛뺤뒪�쓽 �넂�씠瑜� 吏��젙 */
-  line-height: 21px; /* �꽭濡쒖젙�젹�쓣 �쐞�빐 �넂�씠媛믨낵 �씪移� */
+  width: 21px;  /* 체크박스의 너비를 지정 */
+  height: 21px;  /* 체크박스의 높이를 지정 */
+  line-height: 21px; /* 세로정렬을 위해 높이값과 일치 */
   text-align: center; 
   vertical-align: middle;
   background: #fafafa;
@@ -17308,11 +17315,15 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
 
-.checks input[type="checkbox"]:checked + label:before {  /* 泥댄겕諛뺤뒪瑜� 泥댄겕�뻽�쓣�븣 */ 
-  content: '\2714';  /* 泥댄겕�몴�떆 �쑀�땲肄붾뱶 �궗�슜 */
+.checks input[type="checkbox"]:checked + label:before {  /* 체크박스를 체크했을때 */ 
+  content: '\2714';  /* 체크표시 유니코드 사용 */
   color: #99a1a7;
   text-shadow: 1px 1px #fff;
   background: #e9ecee;
   border-color: #adb8c0;
   box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+}
+
+.commerce-cart table.cart td:last-child p{
+ 	font-size:23px;
 }

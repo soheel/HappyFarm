@@ -1,7 +1,9 @@
 package spring.web.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import oracle.net.aso.s;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
@@ -27,6 +31,14 @@ public class UserInfoController {
 	
 	@Autowired
 	private UserInfoService userService;
+	
+	/**
+	 * 로그인을 클릭하면 로그인 창으로 이동
+	 * */
+	@RequestMapping("loginPage")
+	public String loginPage() {
+		return "login/login";
+	}
 	
 	/**
 	 * 회원쪽이 아니라 관리자나 비회원쪽 Controller에 있어야하는 메소드
@@ -136,10 +148,12 @@ public class UserInfoController {
 		 *    일반 회원일 경우, user-main page로 이동
 		 * */
 		
+		System.out.println("UserInfoController의 login 메소드");
+		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO result = userService.login(memberDto);
 		if(result!=null){
-			if(memberDto.getName().equals("admin")){
+			if(memberDto.getEmail().equals("admin")){
 				/**
 				 * 관리자 메인창으로 이동
 				 *	ModelAndView의 setViewName으로 이동페이지 지정
@@ -158,6 +172,14 @@ public class UserInfoController {
 				Map<String, Object> map = userService.userMainLoading();
 				mv.addObject("map", map);
 				mv.setViewName("회원 메인 페이지");
+				
+				List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
+				System.out.println(list.get(0).getName());
+				List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
+				System.out.println(list2.get(0).getName());
+				int price = (Integer)map.get("previousMonthDonationPrice");
+				System.out.println(price);
+				
 			}
 		}
 		return mv;
@@ -395,9 +417,12 @@ public class UserInfoController {
 		 * view로 이동
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<DonationDTO> list= userService.myPageDonation(email);
+		Map<String, List<DonationOrgDTO>> map= userService.myPageDonation(email);
 		
-		return null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("map", map);
+		
+		return mv;
 	}
 	
 	/**

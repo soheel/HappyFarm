@@ -3,7 +3,29 @@
 
 <mapper namespace="manageMapper">
 
-
+<resultMap type="packageDTO" id="packageResultMap">
+	<id column="package_no" property="no"/>
+	<result column="product_name" property="name"/>
+	<result column="product_no" property="productNo"/>
+	
+	<collection property="packageProductDTO" ofType="packageProductDTO">
+		<id column="package_product_no" property="packageno"/>
+		<result column="package_no" property="no"/>
+		<result column="product_no" property="productno"/>		
+	</collection>
+	
+	<collection property="productDTO" ofType="productDTO">
+		<id column="product_no" property="no"/>
+		<result column="product_name" property="name"/>
+		<result column="product_price" property="price"/>
+		<result column="product_profile" property="profile"/>
+		<result column="product_desc" property="desc"/>
+		<result column="product_eval" property="eval"/>
+		<result column="product_unit" property="unit"/>
+		<result column="producer_no" property="producerNo"/>
+	</collection>
+	
+</resultMap>
 <resultMap type="packageProductDTO" id="productResultMap">
 	<id column="package_product_no" property="packageno"/>
 	<result column="package_no" property="no"/>
@@ -137,9 +159,25 @@
 </select>
 
 <!-- 4.2 package상품을 등록한다. -->
+<<<<<<< HEAD
 <insert id="packageRegisterManage" parameterType="productDTO">
 	insert into product values (product_no.nextval,#{name},#{price},#{profile},#{desc},#{eval},#{unit})
 </insert>
+=======
+<!-- productDTO 테이블 삽입 -->
+<insert id="packageRegisterManage" parameterType="packageDTO">
+	insert into product values (product_no.nextval,#{name},#{price},#{profile},#{desc},#{eval},#{unit})
+</insert>
+<!-- package 테이블 삽입 -->
+<insert id="packageRegisterPackage" parameterType="packageDTO">
+	insert into package values (package_no.nextval, #{no}, #{name})
+</insert>
+
+<!-- package_product 테이블 삽입 -->
+<insert id="packageRegisterPackageProduct" parameterType="packageDTO">
+	insert into package_product values (package_product_no.nextval, #{no},#{packageDTO.no})
+</insert>
+>>>>>>> origin/master
 
 <!-- 5.생산자관리 - 모든 생산자 정보를 불러온다. -->
 <select id="selectAllProducer" resultMap="producerResultMap">

@@ -59,7 +59,7 @@ public interface ManageService {
 	public List<ProductDTO> packageShowManage(String packagename);
 	
 	/**패키지 추가*/
-	public int packageRegisterManage(ProductDTO productDTO);
+	public int packageRegisterManage(PackageDTO packageDTO);
 	
 	
 	/**

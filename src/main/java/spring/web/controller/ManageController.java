@@ -169,7 +169,7 @@ public class ManageController {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("packageRegisterManage")
-	public String packageRegisterManage(ProductDTO productDTO, String name) {
+	public String packageRegisterManage(PackageDTO packageDTO, String name) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
@@ -178,7 +178,7 @@ public class ManageController {
 		 * 밑에 상품이 productDTO들이 insert된다.
 		 */
 		packageSearchProduct(name);
-		int result = manageService.packageRegisterManage(productDTO);
+		int result = manageService.packageRegisterManage(packageDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
