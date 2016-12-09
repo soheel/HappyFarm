@@ -22,7 +22,7 @@
 								<div id="customer_login">
 									<div class="col-md-12">
 										<h2>Login</h2>
-										<form action = "<c:url value ='/userInfoController/login'/>" class="login">
+										<form action = "<c:url value ='/userInfoController/login'/>" method = "post" class="login">
 											<div class="form-row form-row-wide">
 												<label for="username">
 													Username or email address 

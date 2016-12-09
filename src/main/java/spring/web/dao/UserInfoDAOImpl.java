@@ -62,6 +62,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public MemberDTO login(MemberDTO memberDto) {
+		System.out.println("login dao");
 		return sqlSession.selectOne("userInfoMapper.login", memberDto);
 	}
 

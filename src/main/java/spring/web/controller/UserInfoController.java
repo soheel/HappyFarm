@@ -152,6 +152,8 @@ public class UserInfoController {
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO result = userService.login(memberDto);
+		
+		System.out.println("다오까지 다녀왔다");
 		if(result!=null){
 			if(memberDto.getEmail().equals("admin")){
 				/**
@@ -162,6 +164,7 @@ public class UserInfoController {
 				return mv;
 				
 			}else{
+				System.out.println("login 메소드 else");
 				//user메인 창으로 이동
 				/**
 				 * user-main page : 생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 
@@ -170,8 +173,8 @@ public class UserInfoController {
 				 * ModelAndView에 저장한 후 view로 이동
 				 */
 				Map<String, Object> map = userService.userMainLoading();
-				mv.addObject("map", map);
-				mv.setViewName("회원 메인 페이지");
+				//mv.addObject("map", map);
+				mv.setViewName("main/afterLogin");
 				
 				List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
 				System.out.println(list.get(0).getName());
