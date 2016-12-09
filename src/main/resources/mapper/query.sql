@@ -179,17 +179,51 @@ category_subcategory_no number(5) references category_subcategory(category_subca
 )
 
 삽입
-insert into product values(product_no.nextval, '제주감귤', 20000, null, '싱싱하다', 3.8, '상자', 1, 5);
-insert into product values(product_no.nextval, '손맛배추', 30000, null, '노랗다', 4.8, '포기', 2, 14);
-insert into product values(product_no.nextval, '매운고춧가루', 10000, null, '새빨갛다', 4.0, 'kg', 2, 23);
-insert into product values(product_no.nextval, '의성마늘', 3000, null, '노랗다', 4.5, 'g', 3, 13);
-insert into product values(product_no.nextval, '매끈한무', 4000, null, '단단하다', 4.5, 'kg', 5, 14);
-insert into product values(product_no.nextval, '햇생강', 8000, null, '아삭하다', 3.6, 'kg', 6, 13);
-insert into product values(product_no.nextval, '밀키퀸', 8000, null, '딱딱하다', 3.0, 'kg', 2, 20);
-
-insert into product values(product_no.nextval, '김장세트', 45000, null, '김장세트입니다', 3.9, '세트', 2, 14);
-insert into product values(product_no.nextval, '김장세트', 45000, null, '김장세트입니다', 3.9, '세트', 2, 14);
-insert into product values(product_no.nextval, '과일병원세트', 45000, null, '과일병원세트', 3.9, '세트', 2, 14);
+insert into product values(product_no.nextval, '청도반시 감말랭이', 14800, 'fruit_persimmon_drypersimmon.jpg', 'fruit_persimmon_drypersimmon_1.jpg', 3.7, '800g', 1, 4);
+insert into product values(product_no.nextval, '마이스터 감귤', 11800, 'fruit_mandarinhanrabong_mandarin.jpg', 'fruit_mandarinhanrabong_mandarin_1.jpg', 4.0, '20kg', 2, 5);
+insert into product values(product_no.nextval, '제주 노지감귤', 19000, 'fruit_mandarinhanrabong_nozimandarin.jpg', 'fruit_mandarinhanrabong_nozimandarin_1.jpg', 4.6, '20kg', 3, 5);
+insert into product values(product_no.nextval, '황금향', 38000, 'fruit_mandarinhanrabong_goldmandarin.jpg', 'fruit_mandarinhanrabong_goldmandarin_1.jpg', 3.9, '20kg', 4, 5);
+insert into product values(product_no.nextval, '견과믹스', 8000, 'fruit_nut_mixmut.jpg', 'fruit_nut_mixmut_1.jpg', 3.0, '1kg', 5, 8);
+insert into product values(product_no.nextval, '건조블루베리', 18000, 'fruit_strawberryblueberry_blueberry.jpg', 'fruit_strawberryblueberry_blueberry_1.jpg', 3.0, '600g', 6, 2);
+insert into product values(product_no.nextval, '냉동산딸기', 8800, 'fruit_strawberryblueberry_mountainstrawberry.jpg', 'fruit_strawberryblueberry_mountainstrawberry_1.jpg', 3.0, '800g', 2, 2);
+insert into product values(product_no.nextval, '건대추', 9800, 'fruit_peanutpinenutwalnut_jujube.jpg', 'fruit_peanutpinenutwalnut_jujube_1.jpg', 3.0, '330g', 2, 6);
+insert into product values(product_no.nextval, '우리나라 맛밤', 3300, 'fruit_peanutpinenutwalnut_chestnut.jpg', 'fruit_peanutpinenutwalnut_chestnut_1.jpg', 3.0, '80g', 2, 6);
+insert into product values(product_no.nextval, '백잣', 16500, 'fruit_peanutpinenutwalnut_pinenut.jpg', 'fruit_peanutpinenutwalnut_pinenut_1.jpg', 3.5, '140g', 2, 6);
+insert into product values(product_no.nextval, '생캐슈넛', 12000, 'fruit_peanutpinenutwalnut_cashewnut.jpg', 'fruit_peanutpinenutwalnut_cashewnut_1.jpg', 4.0, '150g', 2, 6);
+insert into product values(product_no.nextval, '생호박씨', 8000, 'fruit_peanutpinenutwalnut_pumpkinnut.jpg', 'fruit_peanutpinenutwalnut_pumpkinnut_1.jpg', 2.8, '170g', 2, 6);
+insert into product values(product_no.nextval, '통살호두', 19800, 'fruit_peanutpinenutwalnut_walnut.jpg', 'fruit_peanutpinenutwalnut_walnut_1.jpg', 4.5, '100g', 2, 6);
+insert into product values(product_no.nextval, '해바라기씨', 18800, 'fruit_peanutpinenutwalnut_sunflowerseed.jpg', 'fruit_peanutpinenutwalnut_sunflowerseed_1.jpg', 3.7, '300g', 2, 6);
+insert into product values(product_no.nextval, '바나나', 3900, 'fruit_bananakiwitomato_banana.jpg', 'fruit_bananakiwitomato_banana_1.jpg', 3.3, '300g', 2, 3);
+insert into product values(product_no.nextval, '방울토마토', 7800, 'fruit_bananakiwitomato_minitomato.jpg', 'fruit_bananakiwitomato_minitomato_1.jpg', 3.9, '900g', 2, 3);
+insert into product values(product_no.nextval, '내 사랑 토마토', 15500, 'fruit_bananakiwitomato_tomato.jpg', 'fruit_bananakiwitomato_tomato_2.jpg', 3.9, '2kg', 2, 3);
+insert into product values(product_no.nextval, '껍질째 먹는 사과', 12800, 'fruit_applepear_apple.jpg', 'fruit_applepear_apple_1.jpg', 3.8, '2.3kg', 2, 1);
+insert into product values(product_no.nextval, '미니사과', 5900, 'fruit_applepear_miniapple.jpg', 'fruit_applepear_miniapple_1.jpg', 2.2, '10입', 2, 1);
+insert into product values(product_no.nextval, '배', 8900, 'fruit_applepear_pear.jpg', 'fruit_applepear_pear_1.jpg', 4.3, '3입', 2, 1);
+insert into product values(product_no.nextval, '달콤한 초록 친구 멜론', 11800, 'fruit_melon_melon.jpg', 'fruit_melon_melon_1.jpg', 4.9, '1.6kg', 2, 9);
+insert into product values(product_no.nextval, '깐들깨가루', 18500, 'rice_pepperpowdermisutpowdergrainpowder_perillapowder.jpg', 'rice_pepperpowdermisutpowdergrainpowder_perillapowder_1.jpg', 4.0, '270g', 3, 23);
+insert into product values(product_no.nextval, '볶음콩가루', 16500, 'rice_pepperpowdermisutpowdergrainpowder_beanpowder.jpg', 'rice_pepperpowdermisutpowdergrainpowder_beanpowder_1.jpg', 3.8, '300g', 3, 23);
+insert into product values(product_no.nextval, '볶음현미가루', 5500, 'rice_pepperpowdermisutpowdergrainpowder_mixedbrownricepowder.jpg', 'rice_pepperpowdermisutpowdergrainpowder_mixedbrownricepowder_1.jpg', 3.8, '300g', 3, 23);
+insert into product values(product_no.nextval, '시골애고춧가루', 32220, 'rice_pepperpowdermisutpowdergrainpowder_pepperpowder.jpg', 'rice_pepperpowdermisutpowdergrainpowder_pepperpowder_1.jpg', 4.2, '500g', 3, 23);
+insert into product values(product_no.nextval, '찹쌀가루', 4900, 'rice_pepperpowdermisutpowdergrainpowder_glutinousriceflour.jpg', 'rice_pepperpowdermisutpowdergrainpowder_glutinousriceflour_1.jpg', 4.2, '350g', 3, 23);
+insert into product values(product_no.nextval, '태양초 햇고춧가루', 40000, 'rice_pepperpowdermisutpowdergrainpowder_hatpepperpowder.jpg', 'rice_pepperpowdermisutpowdergrainpowder_hatpepperpowder_1.jpg', 4.5, '2.2kg', 3, 23);
+insert into product values(product_no.nextval, '현미가루', 5000, 'rice_pepperpowdermisutpowdergrainpowder_brownricepowder.jpg', 'rice_pepperpowdermisutpowdergrainpowder_brownricepowder_1.jpg', 3.7, '300g', 3, 23);
+insert into product values(product_no.nextval, '밀키퀸', 40000, 'rice_whitericebrownrice_milkyqueen.jpg', 'rice_whitericebrownrice_milkyqueen_1.jpg', 4.1, '4kg', 3, 20);
+insert into product values(product_no.nextval, '발아현미', 12000, 'rice_whitericebrownrice_balahyunmi.jpg', 'rice_whitericebrownrice_balahyunmi_1.jpg', 3.5, '1kg', 3, 20);
+insert into product values(product_no.nextval, '백미찹쌀', 15000, 'rice_whitericebrownrice_whiterice.jpg', 'rice_whitericebrownrice_whiterice_1.jpg', 4.1, '1.8kg', 3, 20);
+insert into product values(product_no.nextval, '여주찰현미', 53000, 'rice_whitericebrownrice_chalhyunmi.jpg', 'rice_whitericebrownrice_chalhyunmi_1.jpg', 3.8, '8kg', 3, 20);
+insert into product values(product_no.nextval, '15곡 영양밥', 12000, 'rice_mixgrainsbeansesame_deluxerice.jpg', 'rice_mixgrainsbeansesame_deluxerice_1.jpg', 3.4, '1kg', 3, 22);
+insert into product values(product_no.nextval, '귀리', 8000, 'rice_mixgrainsbeansesame_oats.jpg', 'rice_mixgrainsbeansesame_oats_1.jpg', 3.4, '300g', 3, 22);
+insert into product values(product_no.nextval, '귀리 혼합곡', 9500, 'rice_mixgrainsbeansesame_mixoats.jpg', 'rice_mixgrainsbeansesame_mixoats_1.jpg', 3.9, '300g', 3, 22);
+insert into product values(product_no.nextval, '백태', 9000, 'rice_mixgrainsbeansesame_whitecoating.jpg', 'rice_mixgrainsbeansesame_whitecoating_1.jpg', 3.8, '500g', 3, 22);
+insert into product values(product_no.nextval, '보리', 12000, 'rice_mixgrainsbeansesame_barley.jpg', 'rice_mixgrainsbeansesame_barley_1.jpg', 3.5, '500g', 3, 22);
+insert into product values(product_no.nextval, '블랙혼합곡', 13000, 'rice_mixgrainsbeansesame_blackmix.jpg', 'rice_mixgrainsbeansesame_blackmix_1.jpg', 3.2, '1kg', 3, 22);
+insert into product values(product_no.nextval, '아마란스', 16000, 'rice_mixgrainsbeansesame_amaranth.jpg', 'rice_mixgrainsbeansesame_amaranth_1.jpg', 3.6 '300g', 3, 22);
+insert into product values(product_no.nextval, '율무', 16000, 'rice_mixgrainsbeansesame_adlay.jpg', 'rice_mixgrainsbeansesame_adlay_1.jpg', 3.9, '500g', 3, 22);
+insert into product values(product_no.nextval, '적두', 18000, 'rice_mixgrainsbeansesame_redbean.jpg', 'rice_mixgrainsbeansesame_redbean_1.jpg', 3.9, '800g', 3, 22);
+insert into product values(product_no.nextval, '적두-팥', 16000, 'rice_mixgrainsbeansesame_redbeans.jpg', 'rice_mixgrainsbeansesame_redbeans_1.jpg', 4.3, '500g', 3, 22);
+insert into product values(product_no.nextval, '차조', 13000, 'rice_mixgrainsbeansesame_millet.jpg', 'rice_mixgrainsbeansesame_millet_1.jpg', 4.1, '500g', 3, 22);
+insert into product values(product_no.nextval, '찰보리', 5000, 'rice_mixgrainsbeansesame_barley.jpg', 'rice_mixgrainsbeansesame_barley_1.jpg', 4.2, '500g', 3, 22);
+insert into product values(product_no.nextval, '찰수수', 13000, 'rice_mixgrainsbeansesame_millets.jpg', 'rice_mixgrainsbeansesame_millets_1.jpg', 3.7, '500g', 3, 22);
 
 -- package 테이블---------------------------------------------------------------
 drop table package;
