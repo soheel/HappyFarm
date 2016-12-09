@@ -79,8 +79,8 @@ public class ManageServiceImpl implements ManageService {
 	
 	/**세트 상품 등록*/
 	@Override
-	public int packageRegisterManage(ProductDTO productDTO) {
-		return manageDao.packageRegisterManage(productDTO);
+	public int packageRegisterManage(PackageDTO packageDTO) {
+		return manageDao.packageRegisterManage(packageDTO);
 	}
 	
 	
