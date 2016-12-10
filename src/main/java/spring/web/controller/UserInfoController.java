@@ -534,10 +534,10 @@ public class UserInfoController {
 		 * */
 		
 		ModelAndView mv = new ModelAndView();
-		
 		String email = (String)session.getAttribute("email");
 		System.out.println(email + " : email");
 		
+		// 로그인 상태가 아니라면 로그인창으로 이동시켜줌
 		if(email == null) {
 			mv.setViewName("login/login");
 			return mv;
@@ -547,7 +547,10 @@ public class UserInfoController {
 		List<ProductDTO> list = (List<ProductDTO>)map.get("productList");
 		System.out.println("카트에 담긴 상품들의 개수 : " + list.size());
 		System.out.println("카트에 담긴 상품들의 총 가격 : " + map.get("totalPrice"));
-		return null;
+		mv.addObject("productList", map.get("productList"));
+		mv.addObject("totalPrice", map.get("totalPrice"));
+		mv.setViewName("cart/cart");
+		return mv;
 	}
 	
 	/**

@@ -127,6 +127,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="qna_register_date" property="registerdate"/>
 		<result column="member_email" property="email"/>
 	</resultMap>
+	
+	<!-- 장바구니 로딩에 필요한 Result Map -->
+	<resultMap type="productDto" id="productJoinCartResultMap">
+		<id column="product_no" property="no"/>
+		<result column="product_name" property="name"/>
+		<result column="product_price" property="price"/>
+		<result column="product_profile" property="profile"/>
+		
+		<association property="cartDto" javaType="cartDto">
+			<result column="cart_num" property="num"/>
+		</association>
+	</resultMap>
 
 	<!-- 회원가입 기부업체 번호는 어떻게 처리하지? 우선은 1로 직접입력 처리 -->
 	<insert id="registerMember" parameterType="memberDTO">
@@ -392,11 +404,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 장바구니 로딩시 -->
-	<select id="MyCartLoading" parameterType="String" resultMap="productResultMap">
-		select pdt.product_profile,pdt.product_name,pdt.product_price,pp.purchase_product_num,(product_price*purchase_product_num),(ca.cart_num*(product_price*purchase_product_num))
-		from member m, product pdt, cart ca, purchase_product pp
-		where m.member_email=ca.member_email and ca.product_no=pdt.product_no and
-		      pdt.product_no=pp.product_no and m.member_email=#{email}
+	<select id="MyCartLoading" parameterType="String" resultMap="productJoinCartResultMap">
+		select p.product_no, p.product_profile, p.product_name, p.product_price, c.cart_num
+		from product p, cart c
+		where p.product_no = c.product_no and c.member_email = #{value}
 	</select>
 	<!-- 카트에 담긴 상품들의 총 합 -->
 	<select id="getTotalPriceInCart"  resultType="integer" parameterType="String">

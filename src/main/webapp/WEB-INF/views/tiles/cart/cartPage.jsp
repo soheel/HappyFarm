@@ -62,5 +62,21 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
+	
+	<script type="text/javascript">
+	$(function() {
+		/* 물건 개수를 수정할 때마다 가격 변경 */
+		$(".quantity input[type=number]").change(function() {
+			var num = $(this).val();
+			var price = $(this).parent().parent().prev().children().text();
+			var changedNum = $(this).val() - num;
+			$(this).parent().parent().next().children().text($(this).val() * $(this).parent().parent().prev().children().text());
+			
+			/* 변경될 때마다 totalPrice 변경해주기 */
+			/* var chagnedtotalPrice = $("#totalPrice").text() + (changedNum * 원래 하나당 가격);
+			changedPrice를 $("#totalPrice")에 넣어주기 */
+		});
+	})
+	</script>
 </body>
 </html>

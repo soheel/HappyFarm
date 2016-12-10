@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-<<<<<<< HEAD
 	<section class="noo-page-heading eff">
 			<div class="container">
 				<div class="noo-heading-content">
@@ -26,7 +25,7 @@
 								<tr>
 									<th class="product-check">
 										<div class="checks etrans">
-  											<input type="checkbox" id="checkAll">
+  											<input type="checkbox" id="checkAll" checked="checked">
   											<label for="checkAll"></label> 
   										</div>
 									</th>
@@ -38,67 +37,48 @@
 								</tr>
 							</thead>
 							<tbody>
+							
+							<c:forEach items="${productList}" var="product">
+								<!-- 상품 하나하나 -->
 								<tr class="cart_item">
 									<td class="product-check">
 										<div class="checks etrans">
-  											<input type="checkbox" id="ex_chk1">
+  											<input type="checkbox" id="ex_chk1" checked="checked">
   											<label for="ex_chk1"></label> 
   										</div>
 									</td>
 									<td class="product-thumbnail">
 										<a href="shop-detail.html">
-											<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" />
+											<img width="100" height="100" src="<c:url value="/resources/img/product/"/>${product.profile}" alt="" />
 										</a>
-										<a href="shop-detail.html">Apples </a> 
+										<a href="shop-detail.html">${product.name} </a> 
 									</td>
 									<td class="product-price">
-										<span class="amount">&#36;3.95</span> 
+										<span class="amount">${product.price}</span> 
 									</td>
 									<td class="product-quantity">
 										<div class="quantity">
-											<input type="number" step="1" min="0" name="qty" value="1" class="input-text qty text" size="4"/>
+											<input id = "id${product.no }" type="number" step="1" min="0" name="qty" value="${product.cartDto.num }" class="input-text qty text" size="4"/>
 										</div>
 									</td>
 									<td class="product-subtotal">
-										<span class="amount">&#36;3.95</span> 
+										<span class="amount">${product.cartDto.num * product.price}</span> 
 									</td>
 									<td class="product-remove">
 										<a href="#" class="remove">&times;</a> 
 									</td>
 								</tr>
-								<tr class="cart_item">
-									<td class="product-check">
-										<div class="checks etrans">
-  											<input type="checkbox" id="ex_chk2">
-  											<label for="ex_chk2"></label> 
-  										</div>
-									</td>
-									<td class="product-thumbnail">
-										<a href="shop-detail.html">
-											<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" />
-										</a>
-										<a href="shop-detail.html">Brown Bread </a> 
-									</td>
-									<td class="product-price">
-										<span class="amount">&#36;1.05</span> 
-									</td>
-									<td class="product-quantity">
-										<div class="quantity">
-											<input type="number" step="1" min="0" name="qty" value="2" class="input-text qty text" size="4"/>
-										</div>
-									</td>
-									<td class="product-subtotal">
-										<span class="amount">&#36;1.05</span> 
-									</td>
-									<td class="product-remove">
-										<a href="#" class="remove">&times;</a> 
-									</td>
-								</tr>
+							<!-- 상품 하나하나 -->
+							</c:forEach>
+							
+							
+							
+								<!-- 선택 상품들 총 금액 -->
 								<tr>
 									<td colspan="6" class="actions">
 										<div class="cart-action">
 											<p>
-												<label>총 금액 : <span><fmt:formatNumber value="1234567"/></span></label>
+												<label>총 금액 : <span id = "totalPrice"><c:url value='${totalPrice}'/></span></label>
 											</p>
 											<input type="submit" class="button" name="update_cart" value="선택상품주문"/>
 											<input type="submit" class="button" name="update_cart" value="전체상품주문"/>
