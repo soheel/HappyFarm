@@ -42,7 +42,7 @@
 									</a>
 									<ul>
 										<li class="menu-item fly-right">
-											<a href="my-account.html">
+											<a href='<c:url value="/account"/>'>
 												<i class="fa fa-user"></i>
 												My Account 
 											</a>

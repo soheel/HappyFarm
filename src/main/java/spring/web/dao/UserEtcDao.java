@@ -12,7 +12,7 @@ import spring.web.dto.QnaDTO;
 
 public interface UserEtcDao {
 
-	Map<String, Object> communityLoading(CommunityDTO communityDTO);
+	Map<String, Object> communityLoading();
 
 	Map<String, Object> communityDetail(int no);
 

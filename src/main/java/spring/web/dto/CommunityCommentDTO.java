@@ -11,6 +11,22 @@ public class CommunityCommentDTO {
 	private MemberDTO memberDto; // 회원 이메일
 	
 	
+	public CommunityDTO getCommunityDto() {
+		return communityDto;
+	}
+
+	public void setCommunityDto(CommunityDTO communityDto) {
+		this.communityDto = communityDto;
+	}
+
+	public MemberDTO getMemberDto() {
+		return memberDto;
+	}
+
+	public void setMemberDto(MemberDTO memberDto) {
+		this.memberDto = memberDto;
+	}
+
 	public CommunityCommentDTO() {}
 
 	public CommunityCommentDTO(int no, String content, String registerdate, String communityNo, String email) {

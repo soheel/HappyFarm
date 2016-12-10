@@ -1,5 +1,6 @@
 package spring.web.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -204,6 +205,7 @@ public class UserInfoController {
 				
 				// session 추가하기
 				session.setAttribute("email", memberDto.getEmail());
+				mv.setViewName("main/index");
 			}
 		}
 		return mv;
@@ -298,13 +300,13 @@ public class UserInfoController {
 		 *    
 		 *    리턴한 정보들을 ModelAndView에 담아서 view로 이동
 		 * */
-		
+		System.out.println(11111);
 		ModelAndView mv = new ModelAndView();
 		String email = (String)session.getAttribute("email");
 		
-		Map<String, Integer>map = userService.myPageLoading(email);
-		mv.addObject("map", map);
-		mv.setViewName("마이페이지 로딩시 이동할 페이지");
+		List<MemberDTO> list= userService.myPageLoading(email);
+		mv.addObject("memberDto", list);
+		mv.setViewName("account/account");
 		
 		return mv;
 	}

@@ -80,7 +80,7 @@ public interface UserInfoDAO {
 	 * 회원이 마이페이지를 눌렀을 때
 	 * 마이페이지 메인 정보 로딩
 	 * */
-	Map<String, Integer> myPageLoading(String email); 
+	List<MemberDTO> myPageLoading(String email); 
 	
 	/**
 	 * MyPage의 쇼핑내역을 누를경우

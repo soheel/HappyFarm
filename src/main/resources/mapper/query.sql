@@ -464,12 +464,12 @@ insert into product_comment values(product_comment_no.nextval, '정말 좋은 상품이
 
 -- community 테이블-------------------------------------------------------------
 drop table community;
-select * from community;
+select * from community where community_state=1;
 시퀀스
 drop sequence community_no;
 create sequence community_no;
 
-insert into community values(community_no.nextval, '갓김치담그기모임', null, '갓김치먹자', sysdate, 1);
+update community set community_profile ='rice_mixgrainsbeansesame_redbeans.jpg' where community_no=1;
 
 community_state가 1이면 진행중, 2면 진행완료
 create table community (

@@ -12,12 +12,16 @@
 	<result column="community_register_date" property="registerDate"/>
 	<result column="community_state" property="state"/>
 	<!-- oftype : myreplay 여러개를 replies에 저장한다 -->
-	<collection property="replies" ofType="communityCommentDTO">
+	 <collection property="communityCommentDto" ofType="communityCommentDto">
 		<id column="community_comment_no" property="no"/>
 		<result column="community_comment_content" property="content"/>
 		<result column="community_comment_register" property="registerdate"/>
-		<result column="member_email" property="email"></result>
-	</collection>
+		<result column="community_no" property="communityNo"/>
+		<result column="member_email" property="email" />
+	</collection> 
+
+	
+	
 </resultMap>
 
 <resultMap type="qnaDTO" id="qnaResultMap">
@@ -61,13 +65,13 @@
 
 <!-- 1. 모임목록 불러오기  community_state가 1이면 진행중, 2면 진행완료 -->
 <!-- 	1-1.6개의 현재 진행하는 행사를 가져온다. -->
-<select id="getCommunityIng" resultMap="communityResultMap" parameterType="communityDTO">
-	SELECT * FROM community WHERE #{community_state}= 1
+<select id="getCommunityIng" resultMap="communityResultMap" >
+	SELECT * FROM community WHERE community_state= 1
 </select>
 
 <!-- 	1-2.3개의 과거진행하는 행사를 가져온다. -->
-<select id="getCommunityPast" resultMap="communityResultMap" parameterType="communityDTO">
-	SELECT * FROM community WHERE #{community_state}=2
+<select id="getCommunityPast" resultMap="communityResultMap" >
+	SELECT * FROM community WHERE community_state= 2
 </select>
 
 <!-- 2. 모임 상세 보기 -->

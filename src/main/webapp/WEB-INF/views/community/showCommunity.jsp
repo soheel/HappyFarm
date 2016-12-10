@@ -26,123 +26,23 @@
 									</div>
 									<div class="noo-product-grid products row product-grid noo-grid-4">
 										<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
+										<c:forEach items="${communityIngList}" var="ing">
 											<div class="noo-product-inner">
+											
 												<div class="noo-product-thumbnail">
 													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/product_260x330.jpg' alt="" />
+														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/${ing.profile}' alt="" />
 													</a>
 												</div>
 												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">농사일</a></h3>
-													<span class="date"><span class="amount">2016.12.15 - 2016.12.19</span></span>
+													<h3><a href="<c:url value="/community/"/>detail">${ing.name}</a></h3>
+													<span class="date"><span class="amount">${ing.registerDate}</span></span>
 												</div>
+												
 											</div>
+											</c:forEach>
 										</div>
-										<div class="others vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">Broccoli</a></h3>
-													<span class="date"><span class="amount">&#36;2.05</span></span>
-													
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">Brown Bread</a></h3>
-													<span class="date"><span class="amount">&#36;12.00</span></span>
-													
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">Carrots</a></h3>
-													<span class="date"><span class="amount">&#36;1.05</span></span>
-													
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">Celery</a></h3>
-													<span class="date"><span class="amount">&#36;2.09</span></span>
-													
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">Cookie</a></h3>
-													<span class="date"><span class="amount">&#36;15.00</span></span>
-													
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">Cucumbers</a></h3>
-													<span class="date"><span class="amount">&#36;1.95</span></span>
-													
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title"> 
-													<h3><a href="<c:url value="/community/"/>detail">French Bread</a></h3>
-													<span class="date"><span class="amount">&#36;10.00</span></span>
-													
-												</div>
-											</div>
-										</div>
+										
 									</div>
 								</div>
 							</div>

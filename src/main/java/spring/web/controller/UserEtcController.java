@@ -33,7 +33,7 @@ public class UserEtcController {
 	 * select + 페이징
 	 * */
 	@RequestMapping("communityLoading")
-	public ModelAndView communityLoading(CommunityDTO communityDTO) {
+	public ModelAndView communityLoading() {
 		Map<String, Object> communitylist = new HashMap<String, Object>();
 		
 		/**
@@ -46,11 +46,16 @@ public class UserEtcController {
 		 */
 		
 		ModelAndView mv = new ModelAndView();
-		communitylist = userEtcService.communityLoading(communityDTO);
+		communitylist = userEtcService.communityLoading();
+		List<CommunityDTO> list1 =(List<CommunityDTO>)communitylist.get("communityIngList");
+		/*System.out.println(list1.get(1).getName());*/
+		List<CommunityDTO> list2 = (List<CommunityDTO>)communitylist.get("communityPastList");
+		System.out.println(list2.get(0).getName());
 		if(communitylist!=null){
 			//에러 처리 진행중인 행사가 없다.
 		}
-		mv.addObject("communitylist",communitylist);
+		mv.addObject("communityIngList",list1);
+		mv.addObject("communityPastList",list2);
 		mv.setViewName("community/showCommunity");
 		return mv;
 	}

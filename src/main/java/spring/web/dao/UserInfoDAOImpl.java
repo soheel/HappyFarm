@@ -84,8 +84,8 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 마이페이지 이동시 -> 회원 마일리지 및 현재진행중인 거래내역 가져오기
 	 */
 	@Override
-	public Map<String, Integer> myPageLoading(String email) {
-		return sqlSession.selectOne("userInfoMapper.getMileageAndOrderlist", email);
+	public List<MemberDTO> myPageLoading(String email) {
+		return sqlSession.selectList("userInfoMapper.getMileageAndOrderlist", email);
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,11 +24,13 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	private SqlSession sqlsession;
 	
 	@Override
-	public Map<String, Object> communityLoading(CommunityDTO communityDTO) {
+	public Map<String, Object> communityLoading() {
 		Map<String, Object> communityList = new HashMap<String, Object>();
 		
-		List<CommunityDTO> communityIngList = sqlsession.selectList("userEtcMapper.getCommunityIng",communityDTO);
-		List<CommunityDTO> communityPastList = sqlsession.selectList("userEtcMapper.getCommunityPast",communityDTO);
+		List<CommunityDTO> communityIngList = sqlsession.selectList("userEtcMapper.getCommunityIng");
+	List<CommunityDTO> communityPastList = sqlsession.selectList("userEtcMapper.getCommunityPast", new RowBounds(0, 3));
+
+		System.out.println(communityIngList.size());
 		
 		communityList.put("communityIngList", communityIngList);
 		communityList.put("communityPastList", communityPastList);

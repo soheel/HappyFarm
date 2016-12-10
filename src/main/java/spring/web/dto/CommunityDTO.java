@@ -8,6 +8,8 @@ public class CommunityDTO {
 	private String registerDate;
 	private String state;
 	
+	private CommunityCommentDTO communityCommentDto;
+	
 	public CommunityDTO() {}
 
 	public CommunityDTO(int no, String name, String profile, String desc, String registerDate, String state) {
@@ -20,6 +22,13 @@ public class CommunityDTO {
 		this.state = state;
 	}
 
+	public CommunityCommentDTO getCommunityCommentDto() {
+		return communityCommentDto;
+	}
+	public void setCommunityCommentDto(CommunityCommentDTO communityCommentDto) {
+		this.communityCommentDto = communityCommentDto;
+	}
+	
 	public int getNo() {
 		return no;
 	}
