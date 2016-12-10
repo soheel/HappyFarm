@@ -286,7 +286,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public Map<String, Object> myCart(String email) {
 		 List<ProductDTO> productList= sqlSession.selectList("userInfoMapper.MyCartLoading", email);
-		 System.out.println(productList.size());
 		 int totalPrice= sqlSession.selectOne("userInfoMapper.getTotalPriceInCart", email);
 		 
 		 Map<String, Object> map = new HashMap<String, Object>();

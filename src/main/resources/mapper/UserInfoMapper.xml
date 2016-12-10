@@ -400,10 +400,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 카트에 담긴 상품들의 총 합 -->
 	<select id="getTotalPriceInCart"  resultType="integer" parameterType="String">
-		select sum(product_price*purchase_product_num)
-		from member m, product pdt, cart ca, purchase_product pp
-		where m.member_email=ca.member_email and ca.product_no=pdt.product_no and pdt.product_no=pp.product_no and
-			  m.member_email=#{email}
+		select sum(cart.cart_num * product.product_price) from cart, product where cart.product_no = product.product_no and member_email = '박용우'
 	</select>
 	
 	<!-- 카트안에 상품 지우기 -->

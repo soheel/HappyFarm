@@ -545,8 +545,8 @@ public class UserInfoController {
 		
 		Map<String, Object> map = userService.myCart(email);
 		List<ProductDTO> list = (List<ProductDTO>)map.get("productList");
-		System.out.println(list.size());
-		System.out.println(map.get("totalPrice"));
+		System.out.println("카트에 담긴 상품들의 개수 : " + list.size());
+		System.out.println("카트에 담긴 상품들의 총 가격 : " + map.get("totalPrice"));
 		return null;
 	}
 	

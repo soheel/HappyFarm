@@ -1,15 +1,16 @@
 package spring.web.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.List;
+import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductDTO;
+import spring.web.service.UserInfoService;
 
 /**
  * Handles requests for the application home page.
@@ -17,23 +18,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	UserInfoService userService;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	@RequestMapping("")
+	public ModelAndView home() {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		System.out.println("home");
 		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = userService.userMainLoading();
+		mv.setViewName("main/index");
+		List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
+		System.out.println("bestProduce list�� size : " + list.size());
+		System.out.println(list.get(0).getName());
+		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
+		System.out.println(list2.get(0).getName());
+		int price = (Integer)map.get("previousMonthDonationPrice");
+		System.out.println(price);
+		mv.addObject("bestProduct", list);
+		mv.addObject("bestProducer", list2);
+		mv.addObject("donationPrice", price);
+		return mv;
 	}
 	
 }
