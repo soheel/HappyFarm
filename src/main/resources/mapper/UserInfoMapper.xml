@@ -139,7 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<!-- 계정찾기(id) / 중복확인 -->
-	<select id="searchId" parameterType="String" resultMap="memberDto">
+	<select id="searchId" parameterType="memberDTO" resultType="string">
 		select member_email from member where member_name=#{name} and member_phone=#{phone}
 	</select>
 
@@ -357,17 +357,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 주문/조회 상태에서 주문완료된 상품을 삭제할 때 -->
 	<delete id="deleteOrderList" parameterType="int">
 		delete from purchase
-		where purchase_no=#{no} and purchase_state_no=1;
+		where purchase_no=#{no} and purchase_state_no=1
 	</delete>
 	
 	<!-- 내정보 - 나의질문내역 가져오기 -->
 	<select id="getMyPageQnaList" parameterType="String" resultMap="getMyPageQnaList">
-		select qna_no,qna_name,qna_desc,qna_register_date,answer_state from qna where member_email=#{email};
+		select qna_no,qna_name,qna_desc,qna_register_date,answer_state from qna where member_email=#{email}
 	</select>
 	
 	<!-- 내정보 - 질문내역에 해당하는 답글 가져오기 -->
 	<select id="getQnaAnswer" resultType="String" parameterType="int">
-		select qna_desc from qna where qna_parent=#{no};
+		select qna_desc from qna where qna_parent=#{no}
 	</select>
 	
 	<!-- 내정보 - donation(donation_price, donation_date, product_name) -->
@@ -375,7 +375,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   select  don.donation_price,don.donation_date, pdt.product_name
 	   from member m, donation don , product pdt, purchase pc, purchase_product pp, donation_org donorg
 	   where m.donation_org_no=donorg.donation_org_no and donorg.donation_org_no=don.donation_org_no and 
-	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{mail]; 
+	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{mail]
 	</select>
 	
 	<!-- 내정보 - donation(회원의 총 기부금액) -->
@@ -383,7 +383,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   select  sum(don.donation_price)
 	   from member m, donation don , product pdt, purchase pc, purchase_product pp, donation_org donorg
 	   where m.donation_org_no=donorg.donation_org_no and donorg.donation_org_no=don.donation_org_no and 
-	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{mail]; 
+	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{mail]
 	</select>
 	
 	<!-- 내정보 - 개인정보 관리 -->
@@ -396,21 +396,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pdt.product_profile,pdt.product_name,pdt.product_price,pp.purchase_product_num,(product_price*purchase_product_num),(ca.cart_num*(product_price*purchase_product_num))
 		from member m, product pdt, cart ca, purchase_product pp
 		where m.member_email=ca.member_email and ca.product_no=pdt.product_no and
-		      pdt.product_no=pp.product_no and m.member_email=#{email};
+		      pdt.product_no=pp.product_no and m.member_email=#{email}
 	</select>
 	<!-- 카트에 담긴 상품들의 총 합 -->
 	<select id="getTotalPriceInCart"  resultType="integer" parameterType="String">
 		select sum(product_price*purchase_product_num)
 		from member m, product pdt, cart ca, purchase_product pp
 		where m.member_email=ca.member_email and ca.product_no=pdt.product_no and pdt.product_no=pp.product_no and
-			  m.member_email=#{email};
+			  m.member_email=#{email}
 	</select>
 	
 	<!-- 카트안에 상품 지우기 -->
 	<delete id="deleteMyCartProduct" parameterType="map">
 		delete from cart ca
 		where ca.member_email=(select m.member_email from member m where m.member_email=#{email}) 
-		      and ca.product_no=(select pdt.product_no from product pdt where pdt.product_name=#{name});
+		      and ca.product_no=(select pdt.product_no from product pdt where pdt.product_name=#{name})
 	</delete>
 	
 

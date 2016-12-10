@@ -44,7 +44,7 @@
 												<input type="button" class="button" name="Register" value="Register"/>
 											</div>
 											<div class="lost_password">
-												<a href="#">Lost your password?</a>
+												<a href="<c:url value = '/userInfoController/searchAccountPage'/>">Lost your password?</a>
 											</div>
 										</form>
 									</div>

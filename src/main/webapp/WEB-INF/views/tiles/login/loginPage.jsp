@@ -152,6 +152,23 @@
 			
 		})
 		
+		/* 이메일 찾기 */
+		$("#searchIdButton").click(function() {
+			alert(1);
+			$.ajax({
+				url : "<c:url value = '/userInfoController/searchId'/>",
+				type : "post",
+				data : "email=" + $("#reg_email").val() + "&phone=" + $("#reg_phone").val(),
+				dataType : "text",
+				success : function(result) {
+					$("#searchIdBox").text("Email : " + result);
+				},
+				error : function(err) {
+					alert("존재하지 않는 회원입니다.");
+				}
+			})
+		})
+		
 		
 	});
 	</script>

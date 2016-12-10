@@ -82,13 +82,16 @@ public class UserInfoController {
 		 * 가지고 나온 리턴(int형)을 뷰로 보내준다.
 		 * 뷰에서 성공/실패의 여부에 따라 alert으로 알려준다.
 		 * */
-		System.out.println(memberDto.getRecommand());
-		System.out.println(memberDto.getEmail());
-		System.out.println(memberDto.getPwd());
-		System.out.println(memberDto.getName());
-		System.out.println(memberDto.getPhone());
 		int result = userService.registerMember(memberDto);
 		return result;
+	}
+	
+	/**
+	 * 계정찾기 페이지로 이동하기
+	 * */
+	@RequestMapping("searchAccountPage")
+	public String searchAccountPage() {
+		return "login/searchAccount";
 	}
 	
 	/**
@@ -96,7 +99,7 @@ public class UserInfoController {
 	 * */
 	@RequestMapping("searchId")
 	@ResponseBody
-	public String searchId(MemberDTO memeberDto) {
+	public String searchId(MemberDTO memberDto) {
 		/**
 		 * 로그인을 시도-> 계정을 모를 경우,계정찾기 누르기.
 		 * form의 이름과 연락처를 받음 그리고 이 값들을 
@@ -104,7 +107,11 @@ public class UserInfoController {
 		 * service에서 나오는 리턴값을 String 형태로 받아서
 		 * 뷰로 넘겨준다
 		 * */
-		String result = userService.searchId(memeberDto);
+		
+		System.out.println(memberDto.getEmail());
+		System.out.println(memberDto.getPhone());
+		String result = userService.searchId(memberDto);
+		System.out.println(result);
 		return result;
 	}
 	
@@ -196,7 +203,7 @@ public class UserInfoController {
 				mv.addObject("donationPrice", price);
 				
 				// session 추가하기
-				session.setAttribute("id", memberDto.getEmail());
+				session.setAttribute("email", memberDto.getEmail());
 			}
 		}
 		return mv;
@@ -525,9 +532,21 @@ public class UserInfoController {
 		 * 해당 이메일을 아이디로 가지는 회원의
 		 * 장바구니에 담긴 상품목록을 가져온다
 		 * */
-		String email = (String)session.getAttribute("email");
-		Map<String, Object> map = userService.myCart(email);
 		
+		ModelAndView mv = new ModelAndView();
+		
+		String email = (String)session.getAttribute("email");
+		System.out.println(email + " : email");
+		
+		if(email == null) {
+			mv.setViewName("login/login");
+			return mv;
+		}
+		
+		Map<String, Object> map = userService.myCart(email);
+		List<ProductDTO> list = (List<ProductDTO>)map.get("productList");
+		System.out.println(list.size());
+		System.out.println(map.get("totalPrice"));
 		return null;
 	}
 	

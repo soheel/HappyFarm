@@ -28,7 +28,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public int registerMember(MemberDTO memberDto) {
 		if(memberDto.getRecommand().equals("")) {
-			System.out.println("입력하지 않은 경우");
 			return sqlSession.insert("userInfoMapper.registerMemberRecommand", memberDto);
 		}
 		return sqlSession.insert("userInfoMapper.registerMember", memberDto);
@@ -38,8 +37,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 계정찾기(id)
 	 */
 	@Override
-	public String searchId(MemberDTO memeberDto) {
-		return sqlSession.selectOne("userInfoMapper.searchId", memeberDto);
+	public String searchId(MemberDTO memberDto) {
+		
+		return sqlSession.selectOne("userInfoMapper.searchId", memberDto);
 	}
 
 	/**
@@ -286,6 +286,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public Map<String, Object> myCart(String email) {
 		 List<ProductDTO> productList= sqlSession.selectList("userInfoMapper.MyCartLoading", email);
+		 System.out.println(productList.size());
 		 int totalPrice= sqlSession.selectOne("userInfoMapper.getTotalPriceInCart", email);
 		 
 		 Map<String, Object> map = new HashMap<String, Object>();

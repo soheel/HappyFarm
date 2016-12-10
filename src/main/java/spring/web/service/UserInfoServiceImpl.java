@@ -36,8 +36,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 계정찾기(id)
 	 * */
 	@Override
-	public String searchId(MemberDTO memeberDto) {
-		return userInfoDao.searchId(memeberDto);
+	public String searchId(MemberDTO memberDto) {
+		return userInfoDao.searchId(memberDto);
 	}
 	
 	/**

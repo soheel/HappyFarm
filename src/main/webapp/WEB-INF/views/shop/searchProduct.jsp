@@ -45,11 +45,14 @@
 							<!-- 여기부터 농산물 리스트 불러오는 곳 -->
 							<div class="products row product-grid">
 							
+								<c:forEach items="${list}" var="list">
 									<!--  상품 하나하나 -->
 									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
 										<div class="noo-product-inner">
 											<div class="noo-product-thumbnail">
+												<a href='<c:url value="/userProductController/showProductDetail?productNo=${list.no}"/>'>
 													<!-- 농산물 이미지 -->
+													<img width="600" height="760" src='<c:url value="/resources/img/product/"/>${list.profile}' alt="" />
 												</a>
 												<div class="noo-rating"> <!-- 평점 -->
 													<div class="star-rating">
@@ -59,7 +62,9 @@
 											</div>
 											<div class="noo-product-title">
 												<!-- 농산물 이름 --> 
+												<h3><a href="<c:url value="/shop/detail"/>">${list.name}</a></h3>
 												<!-- 농산물 가격 -->
+												<span class="price"><span class="amount">${list.price}</span></span>
 												<div class="noo-product-action">
 													<div class="noo-action">
 														<!-- 장바구니에 담기 버튼 -->

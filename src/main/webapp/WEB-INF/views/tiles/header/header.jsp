@@ -34,7 +34,7 @@
 							<li>
 								<span><i class="fa fa-user"></i></span>
 								<c:choose>
-									<c:when test="${sessionScope.id == null }">
+									<c:when test="${sessionScope.email == null }">
 										<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
 									</c:when>
 									<c:otherwise>
@@ -45,7 +45,7 @@
 								
 							</li>
 							<li>
-								<a href="<c:url value="/cart"/>">
+								<a href="<c:url value="/userInfoController/myCart"/>">
 									<span class="has-cart">
 										<i class="fa fa-shopping-cart"></i>
 										<em>0</em>

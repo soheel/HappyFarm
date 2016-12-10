@@ -32,9 +32,9 @@
 												<span class="required">*</span>
 											</label>
 											<input type="text" class="input-text" name="email" id="reg_email" value="" placeholder="NAME" />
-											<input type="text" class="input-text" name="email" id="reg_email" value="" placeholder="PHONE NUMBER" />
+											<input type="text" class="input-text" name="phone" id="reg_phone" value="" placeholder="PHONE NUMBER" />
 										</div>
-										<input type="submit" class="button" name="register" value="Find Account" />
+										<input id = "searchIdButton" type="button" class="button" name="register" value="Find Account" />
 									</form>
 
 									<form class="find-profile pw">
@@ -45,12 +45,16 @@
 											</label>
 											<input type="email" class="input-text" name="email" id="reg_email" value="" placeholder="EMAIL" />
 										</div>
-										<input type="submit" class="button" name="register" value="Find Account" />
+										<input id = "searchPwdButton" type="button" class="button" name="register" value="Find Account" />
+										
+										<div id = "searchIdBox" style = "width:100%; margin-top : 30px; text-align:center;"></div>
 									</form>
 								</div>
 								<div class="col-md-1"></div>
 							</div>
 						</div>
+						
+						
 					</div>
 				</div>
 			</div>

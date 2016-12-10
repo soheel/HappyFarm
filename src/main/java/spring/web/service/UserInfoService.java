@@ -20,7 +20,7 @@ public interface UserInfoService {
 	/**
 	 * 계정찾기(id)
 	 * */
-	String searchId(MemberDTO memeberDto);
+	String searchId(MemberDTO memberDto);
 	
 	/**
 	 * 계정찾기(pwd-sendcode)
