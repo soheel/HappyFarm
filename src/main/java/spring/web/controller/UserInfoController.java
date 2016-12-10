@@ -559,7 +559,7 @@ public class UserInfoController {
 	 * 장바구니에서 삭제
 	 * */
 	@RequestMapping("myCartDelete")
-	public int myCartDelete(HttpSession session,String name) {
+	public String myCartDelete(HttpSession session,String name) {
 		/**
 		 * 장바구니에서 상품 삭제를 누를 경우
 		 * 장바구니 리스트에서 해당 상품에 대한 정보 삭제
@@ -577,7 +577,7 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		int result = userService.myCartDelete(email,name);
-		return result;
+		return "redirect:myCart";
 	}
 	
 	/**

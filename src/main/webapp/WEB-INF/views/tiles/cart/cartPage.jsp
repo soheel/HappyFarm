@@ -65,17 +65,49 @@
 	
 	<script type="text/javascript">
 	$(function() {
+		var num = 0;
+		var totalPrice = $("#totalPrice").text();
+
 		/* 물건 개수를 수정할 때마다 가격 변경 */
 		$(".quantity input[type=number]").change(function() {
-			var num = $(this).val();
-			var price = $(this).parent().parent().prev().children().text();
+			num = $(this).next().val(); /* 처음 저장한 개수 */
+			var price = $(this).parent().parent().prev().children().text(); /* 상품의 개당 가격 */
 			var changedNum = $(this).val() - num;
+			$(this).next().val(parseInt(num) + parseInt(changedNum));
+			var totalPrice = $("#totalPrice").text();
 			$(this).parent().parent().next().children().text($(this).val() * $(this).parent().parent().prev().children().text());
-			
 			/* 변경될 때마다 totalPrice 변경해주기 */
-			/* var chagnedtotalPrice = $("#totalPrice").text() + (changedNum * 원래 하나당 가격);
+			/* var chagnedtotalPrice = $("#totalPrice").text() + (changedNum * price);
 			changedPrice를 $("#totalPrice")에 넣어주기 */
+			$("#totalPrice").text((parseInt(totalPrice) + (changedNum * price)));
 		});
+		
+		/* 상품별 체크박스 */
+		$(".checkboxs input[type=checkbox]").change(function() {
+			var totalPrice = $("#totalPrice").text();
+			var price = $(this).parent().parent().next().next().next().next().children().text();
+
+			if($(this).attr("checked") == 'checked'){
+				$("#totalPrice").text(parseInt(totalPrice) + parseInt(price));
+			}else {
+				$("#totalPrice").text(totalPrice - price);
+			}
+			
+		})
+		
+		/* 상품 전체 체크박스 */
+		$("#checkAll").change(function() {
+			alert(totalPrice);
+
+			if($(this).attr("checked") == 'checked'){
+				alert(totalPrice);
+				$(".checkboxs input[type=checkbox]").attr("checked", true);
+				$("#totalPrice").text(totalPrice);
+			}else {
+				$(".checkboxs input[type=checkbox]").attr("checked", false);
+				$("#totalPrice").text(0);
+			}
+		})
 	})
 	</script>
 </body>
