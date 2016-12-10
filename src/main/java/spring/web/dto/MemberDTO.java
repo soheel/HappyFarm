@@ -11,6 +11,14 @@ public class MemberDTO {
 	private int donationOrgNo;
 	
 	private DonationOrgDTO donationOrgDto;
+	private PurchaseDTO purchaseDto;
+	
+	public PurchaseDTO getPurchaseDto() {
+		return purchaseDto;
+	}
+	public void setPurchaseDto(PurchaseDTO purchaseDto) {
+		this.purchaseDto = purchaseDto;
+	}
 	
 	public MemberDTO() {}
 

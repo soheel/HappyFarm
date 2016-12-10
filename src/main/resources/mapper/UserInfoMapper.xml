@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="member_phone" property="phone" />
 		<result column="donation_org_no" property="donationOrgNo" />
 		<result column="member_recommand" property="recommand" />
+		<result column="member_mileage" property="mileage"/>
 	</resultMap>
 	
 	<!-- 내정보 - 마일리지 및 현 주문내역 가져올 때 사용 -->
@@ -206,7 +207,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 내정보(MyPage) -->
 	
 	<!-- 마일리지 / 진행중인 주문내역 가져오기 -->
-	<select id="getMileageAndOrderlist" resultMap="memberDtoJoin">
+	<select id="getMileageAndOrderlist" parameterType="String" resultMap="memberDtoJoin">
 		select m.member_mileage,pc.purchase_date,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
 		from member m, purchase pc, product pdt, purchase_product pp, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and

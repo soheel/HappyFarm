@@ -38,7 +38,7 @@
 										<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
 									</c:when>
 									<c:otherwise>
-										<a href="<c:url value='/userInfoController/loginPage'/>">My Account</a>
+										<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
 										<a href="<c:url value='/userInfoController/logout'/>">&nbsp;|&nbsp;Logout</a>
 									</c:otherwise>
 								</c:choose>
