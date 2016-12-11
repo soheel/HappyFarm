@@ -56,7 +56,7 @@
 												</a>
 												<div class="noo-rating"> <!-- 평점 -->
 													<div class="star-rating">
-														<span style="width:0%"></span> <!-- width 값을 주면 별이 그려짐 -->
+														<span style="width:${list.eval * 20}%"></span> <!-- width 값을 주면 별이 그려짐 -->
 													</div>
 												</div>
 											</div>

@@ -43,6 +43,7 @@
 	<result column="producer_addr" property="addr"/>
 	<result column="producer_phone" property="phone"/>
 	<result column="producer_register_date" property="registerDate"/>
+	<result column="producer_profile" property="profile"/>
 </resultMap>
 
 
@@ -92,9 +93,9 @@ where certification.certification_no = product_certification.certification_no an
 
 <!-- productNo를 이용해 Producer DTO 가져오기 (테스트완료)-->
 <select id="getProducerByProductNo" resultMap="producerResultMap" parameterType="integer">
-select r.producer_no, r.producer_name, r.producer_addr, r.producer_phone, r.producer_register_date
+select r.producer_no, r.producer_name, r.producer_addr, r.producer_phone, r.producer_register_date, r.producer_profile
 from product t join producer r
-on t.producer_no = r.producer_no and t.producer_no = #{value}
+on t.producer_no = r.producer_no and t.producer_no = #{value} and t.product_no = #{value}
 </select>
 
 <!-- 생산자번호(producerNo)로 Producer DTO 가져오기 -->

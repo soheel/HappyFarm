@@ -133,7 +133,7 @@
 													</a>
 													<div class="noo-rating">
 														<div class="star-rating">
-															<span style="width:0%"></span>
+															<span style="width:${bestProduct.eval * 20}%"></span>
 														</div>
 													</div>
 												</div>
@@ -323,7 +323,7 @@
 							<div class="col-md-4 col-sm-6">
 								<div class="noo-farmer">
 									<div class="noo-farmer-thumbnail">
-										<img width="284" height="380" src="<c:url value="/resources/images/"/>team/team_1.png" alt="" />
+										<img style="width : 360px; height : 330.9px;" src="<c:url value="/resources/img/producer/"/>${bestProducer.profile}" alt="" />
 									</div>
 									<div class="noo-farmer-content">
 										<h4>${bestProducer.name }</h4>

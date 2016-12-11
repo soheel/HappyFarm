@@ -78,8 +78,4 @@ public class DonationOrgDTO {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	
-	
-	
-
 }

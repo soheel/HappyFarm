@@ -44,11 +44,19 @@
 										<li class="menu-item fly-right">
 											<a href='<c:url value="/account"/>'>
 												<i class="fa fa-user"></i>
-												My Account 
+												<c:choose>
+												<c:when test="${sessionScope.email == null }">
+													<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
+												</c:when>
+												<c:otherwise>
+													<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
+													<a href="<c:url value='/userInfoController/logout'/>">&nbsp;|&nbsp;Logout</a>
+												</c:otherwise>
+											</c:choose>
 											</a>
 										</li>
 										<li class="menu-item noo-menu-item-cart minicart">
-											<a class="cart-button" href='<c:url value="/cart"/>'>
+											<a class="cart-button" href='<c:url value="/userInfoController/myCart"/>'>
 												<span class="cart-item"><i class="fa fa-shopping-cart"></i></span>
 											</a>
 											<div class="noo-minicart">

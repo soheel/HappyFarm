@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -110,5 +111,10 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	public List<CommunityCommentDTO> commmentList(int no) {
 		return sqlsession.selectList("userEtcMapper.commmentList",no);
 	}*/
+
+	@Override
+	public DonationOrgDTO donationLoading2() {
+		return sqlsession.selectOne("userEtcMapper.getDonationOrg");
+	}
 
 }

@@ -71,7 +71,7 @@
 												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Maecenas tristique gravida, odio et sagi ttis justo. Susp endisse ultricies nisi vel quam suscipit, et rutrum odio porttitor. Donec dictum non nulla ut lobortis. Maecenas tristique gravida, odio et sagi ttis justo. Aliquam vitae mi a eros tincidunt ultricies. Donec porta gravida arcu. Morbi facilisis lorem felis, eu inerdum quam scelerisque eu. Phasellus vel turpis dictum, pulvinar nulla</p>
 											</div>
 											<div class="tab-pane fade" id="tab-3">
-												<img alt="" src="<c:url value='/resources/img/product/'/>${producer.profile}">
+												<img style = "width : 200px; height : 200px; margin : auto;" alt="" src="<c:url value='/resources/img/producer/'/>${producer.profile}">
 												<p>생산자 이름 : ${producer.name }</p>
 												<p>생산지 : ${producer.addr }</p>
 												<div>지도 들어갈 곳</div>

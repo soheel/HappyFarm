@@ -560,6 +560,11 @@ select '[' || c.category_name || ']' || ' [' || s.category_subcategory_name || '
 from category c, category_subcategory s
 where c.category_no = s.category_no and s.category_subcategory_no = #{value}
 
-select purchase_product.product_no from purchase, purchase_product where purchase.purchase_no = purchase_product.purchase_no group by purchase_product.product_no order by count(purchase_product.product_no) desc;
+select r.producer_no, r.producer_name, r.producer_addr, r.producer_phone, r.producer_register_date 
+from product t join producer r on t.producer_no = r.producer_no and t.producer_no = 2 and t.product_no = 2
 
-select purchase_product.product_no from purchase, purchase_product where purchase.purchase_no = purchase_product.purchase_no and purchase.purchase_state_no = 2 and purchase.member_email = '회원이메일' order by purchase.purchase_date desc;
+select * from product;
+
+select *
+from donation_org
+where donation_org_no = 1

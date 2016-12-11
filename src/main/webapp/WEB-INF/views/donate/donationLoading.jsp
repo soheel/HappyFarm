@@ -38,7 +38,8 @@
 	  	
 	  	<h3>기부 업체</h3>
 	  	<div class="related products qna_board">
-			<img alt="" src="">
+			<img alt="" src="<c:url value='/resources/img/donation_org/'/>${donationOrg.profile}">
+			<p>${donationOrg.desc }</p>
 		</div>
   	</div>
 	

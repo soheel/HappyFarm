@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.QnaDTO;
@@ -63,5 +64,10 @@ public interface UserEtcService {
 	
 	List<CommunityCommentDTO> commmentList(int no);
 	 */
+	
+	/**
+	 * 기부단체정보
+	 * */
+	DonationOrgDTO donationLoading2();
 
 }

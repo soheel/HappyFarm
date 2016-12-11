@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.QnaDTO;
@@ -186,8 +187,10 @@ public class UserEtcController {
 		mv.setViewName("donate/donationLoading");
 		
 		// 기부업체 로딩 작성해야함
+		DonationOrgDTO donationOrg = userEtcService.donationLoading2();
+		mv.addObject("donationOrg", donationOrg);
 		
-		System.out.println(donationlist.size());
+		System.out.println(donationOrg.getDesc());
 		return mv;
 	}
 	

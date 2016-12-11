@@ -10,6 +10,7 @@ import spring.web.dao.UserEtcDao;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.QnaDTO;
@@ -94,5 +95,9 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public List<CommunityCommentDTO> commmentList(int no) {
 		return userEtcDao.commmentList(no);
 	} */
+	@Override
+	public DonationOrgDTO donationLoading2() {
+		return userEtcDao.donationLoading2();
+	}
 
 }
