@@ -102,6 +102,13 @@ on t.producer_no = r.producer_no and t.producer_no = #{value}
 select * from producer where producer_no = #{value}
 </select>
 
+<!-- product의 subcategoryNo로 카테고리이름 String으로 가져오기 -->
+<select id="getCategoryName" parameterType="integer" resultType="string">
+select '[' || c.category_name || ']' || ' [' || s.category_subcategory_name || ']'
+from category c, category_subcategory s
+where c.category_no = s.category_no and s.category_subcategory_no = #{value}
+</select>
+
 <!-- 장바구니에 상품 담기(상품 상세보기에서 눌렀을 때) -->
 <insert id="registerProductToCart" parameterType="cartDTO">
 insert into cart values(#{email}, #{productNo}, #{num} )

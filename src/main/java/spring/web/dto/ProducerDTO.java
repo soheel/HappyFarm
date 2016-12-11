@@ -6,16 +6,18 @@ public class ProducerDTO {
 	private String addr;
 	private String phone;
 	private String registerDate;
+	private String profile;
 	
 	public ProducerDTO() {}
 
-	public ProducerDTO(int no, String name, String addr, String phone, String registerDate) {
+	public ProducerDTO(int no, String name, String addr, String phone, String registerDate, String profile) {
 		super();
 		this.no = no;
 		this.name = name;
 		this.addr = addr;
 		this.phone = phone;
 		this.registerDate = registerDate;
+		this.profile = profile;
 	}
 
 	public int getNo() {
@@ -58,5 +60,12 @@ public class ProducerDTO {
 		this.registerDate = registerDate;
 	}
 	
+	public String getProfile() {
+		return profile;
+	}
+	
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	
 }

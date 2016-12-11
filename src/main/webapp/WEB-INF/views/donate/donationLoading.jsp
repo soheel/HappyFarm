@@ -38,7 +38,7 @@
 	  	
 	  	<h3>기부 업체</h3>
 	  	<div class="related products qna_board">
-			기부업체에 관한 설명 및 링크
+			<img alt="" src="">
 		</div>
   	</div>
 	

@@ -65,17 +65,21 @@ public class UserProductServiceImpl implements UserProductService{
 		Map<String, Object> map = new HashMap<String, Object>();
 		// ProductDTO 가져오기
 		ProductDTO productDTO = userProductDAO.getProductByProductNo(productNo);
-		map.put("productDTO", productDTO);
+		map.put("product", productDTO);
 		// ProductCommentDTO 가져오기
 		List<ProductCommentDTO> productCommentList = userProductDAO.getProductCommentByProductNo(productNo);
-		map.put("ProductCommentDTO", productCommentList);
+		map.put("productComment", productCommentList);
 		// CertificationDTO 가져오기
 		List<CertificationDTO> certificationList = userProductDAO.getCertificationByProductNo(productNo);
-		map.put("CertificationDTO", certificationList);
+		map.put("certification", certificationList);
 		// ProducerDTO 가져오기
-		ProducerDTO ProducerDTO = userProductDAO.getProducerByProductNo(productNo);
-		map.put("ProducerDTO", ProducerDTO);
+		ProducerDTO producerDTO = userProductDAO.getProducerByProductNo(productNo);
+		map.put("producer", producerDTO);
 		
+		// productDTO의 categoryno를 통해 상품 상세보기에서 뿌려줄 카테고리 가져오기
+		int subcategoryNo = productDTO.getSubCategoryNo();
+		String categoryName = userProductDAO.getCategoryName(subcategoryNo);
+		map.put("categoryName", categoryName);
 		return map;
 	}
 

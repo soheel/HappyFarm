@@ -62,6 +62,11 @@ public interface UserProductDAO {
 	ProducerDTO getProducerByProducerNo(int producerNo);
 	
 	/**
+	 * 상품 상세보기에서 해당 상품의 카테고리 가져오기
+	 * */
+	String getCategoryName(int subcategoryNo);
+	
+	/**
 	 * addCart(int productNo, int num, HttpSession session)
 	 * 상품상세보기에서 장바구니에 추가
 	 * */

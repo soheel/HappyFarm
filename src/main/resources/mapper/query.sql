@@ -556,7 +556,9 @@ insert into information values(information_no.nextval, '국산콩과 수입콩', '비교'
 
 
 -- test
-
+select '[' || c.category_name || ']' || ' [' || s.category_subcategory_name || ']'
+from category c, category_subcategory s
+where c.category_no = s.category_no and s.category_subcategory_no = #{value}
 
 select purchase_product.product_no from purchase, purchase_product where purchase.purchase_no = purchase_product.purchase_no group by purchase_product.product_no order by count(purchase_product.product_no) desc;
 
