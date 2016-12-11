@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.web.dto.CartDTO;
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.service.UserProductService;
 
@@ -84,7 +86,17 @@ public class UserProductController {
 		 * */
 		Map<String, Object> map = service.showProductDetail(productNo);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("map", map);
+		ProductDTO product = (ProductDTO)map.get("product");
+		List<ProductCommentDTO> productCommentList = (List<ProductCommentDTO>)map.get("productComment");
+		List<CertificationDTO> certificationList = (List<CertificationDTO>)map.get("certification");
+		ProducerDTO producer = (ProducerDTO)map.get("producer");
+		String categoryName = (String)map.get("categoryName");
+		
+		mv.addObject("product", product);
+		mv.addObject("productCommentList", productCommentList);
+		mv.addObject("certificationList", certificationList);
+		mv.addObject("producer", producer);
+		mv.addObject("categoryName", categoryName);
 		mv.setViewName("shop/productDetail");
 		return mv;
 	}

@@ -185,9 +185,13 @@ public class UserEtcController {
 		mv.addObject("donationlist",donationlist);
 		mv.setViewName("donate/donationLoading");
 		
+		// 기부업체 로딩 작성해야함
+		
 		System.out.println(donationlist.size());
 		return mv;
 	}
+	
+	
 	
 	// 메인
 	/**

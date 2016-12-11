@@ -81,4 +81,9 @@ public class UserProductDAOImpl implements UserProductDAO {
 		return sqlSession.selectList("UserProductMapper.search", keyword);
 	}
 
+	@Override
+	public String getCategoryName(int subcategoryNo) {
+		return sqlSession.selectOne("getCategoryName", subcategoryNo);
+	}
+
 }
