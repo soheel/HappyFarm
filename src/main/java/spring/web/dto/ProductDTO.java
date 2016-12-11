@@ -1,5 +1,7 @@
 package spring.web.dto;
 
+import java.util.List;
+
 public class ProductDTO {
 	
 	private int no;
@@ -123,15 +125,18 @@ public class ProductDTO {
 		this.subCategoryDto = subCategoryDto;
 	}
 	
+	
+	
+	
+
 	public PurchaseProductDTO getPurchaseProductDto() {
-		
 		return purchaseProductDto;
 	}
-	
+
 	public void setPurchaseProductDto(PurchaseProductDTO purchaseProductDto) {
 		this.purchaseProductDto = purchaseProductDto;
 	}
-	
+
 	public CartDTO getCartDto() {
 		return cartDto;
 	}

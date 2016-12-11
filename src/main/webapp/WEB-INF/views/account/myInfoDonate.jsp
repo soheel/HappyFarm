@@ -7,71 +7,23 @@
 	<thead>
 		<tr>
 			<th>기부날짜</th>
-			<th>상품명</th>
 			<th>기부금액</th>
+			<th>상품명</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-		</tr>
+	<c:forEach items="${donationInfo}" var="donate">
 		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
+			<td>${donate.date}</td>
+			<td>${donate.price}</td>
+			<td></td>
 		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-		</tr>
+	</c:forEach>
 	</tbody>
 </table>
 <div>
 	<ul>
 		<li>총 기부금액</li>
-		<li class="total-donate">1234567</li>
+		<li class="total-donate">${donationTotalInfo}</li>
 	</ul>
 </div>

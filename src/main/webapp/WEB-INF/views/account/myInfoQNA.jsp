@@ -6,77 +6,29 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>상품명</th>
+			<th>질문제목</th>
 			<th>문의내용</th>
 			<th>등록일</th>
 			<th>답변</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-		</tr>
+	<c:choose>
+	<c:when test="${empty list}">
+	<td colspan='4'>
+		 <p align="center"><b><span style="font-size:9pt;">현재 등록된 질문이 없습니다..</span></b></p>
+	</td>
+	</c:when>
+	<c:otherwise>
+	<c:forEach items="${list}" var="qnaDto">
 		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
+			<td>${qnaDto.name}</td>
+			<td>${qnaDto.desc}</td>
+			<td>${qnaDto.registerdate}</td>
+			<td>${qnaDto.answerState}</td>
 		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-		</tr>
+	</c:forEach>
+	</c:otherwise>
+	</c:choose>	
 	</tbody>
 </table>

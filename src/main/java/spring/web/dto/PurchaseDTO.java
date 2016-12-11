@@ -15,7 +15,7 @@ public class PurchaseDTO {
 	private MemberDTO memberDto;
 	//purchase state dto»ý¼º
 	private PurchaseStateDTO purchaseStateDto;
-	private PurchaseProductDTO purchaseProductDto;
+	private List<PurchaseProductDTO> purchaseProductDto;
 
 	public PurchaseDTO() {}
 
@@ -39,24 +39,16 @@ public class PurchaseDTO {
 		this.purchaseStateDto = purchaseStateDto;
 	}
 
-	/*public List<PurchaseProductDTO> getPurchaseProductDto() {
+	public List<PurchaseProductDTO> getPurchaseProductDto() {
 		return purchaseProductDto;
 	}
 
 	public void setPurchaseProductDto(List<PurchaseProductDTO> purchaseProductDto) {
 		this.purchaseProductDto = purchaseProductDto;
-	}*/
+	}
 
 	public int getNo() {
 		return no;
-	}
-
-	public PurchaseProductDTO getPurchaseProductDto() {
-		return purchaseProductDto;
-	}
-
-	public void setPurchaseProductDto(PurchaseProductDTO purchaseProductDto) {
-		this.purchaseProductDto = purchaseProductDto;
 	}
 
 	public void setNo(int no) {

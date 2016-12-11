@@ -52,7 +52,7 @@ public interface UserInfoService {
 	 * 회원이 마이페이지를 눌렀을 때
 	 * 마이페이지 메인 정보 로딩
 	 * */
-	List<MemberDTO> myPageLoading(String email); 
+	Map<String, Object> myPageLoading(String email); 
 	
 	/**
 	 * MyPage의 쇼핑내역을 누를경우
@@ -90,6 +90,11 @@ public interface UserInfoService {
 	 * 내정보 - 개인정보 관리
 	 * */
 	MemberDTO myPageInfoModify(String email);
+	
+	/**
+	 * 개인정보 수정
+	 * */
+	int updateUserInfo(MemberDTO memberDto);
 	
 	/**
 	 * 내정보 - 마일리지 눌렀을 때

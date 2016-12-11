@@ -8,6 +8,7 @@ public class QnaDTO {
 	private String registerdate;
 	private String email;
 	private int qnaParent;
+	private String answerState;
 	
 	private MemberDTO memberDto;
 	
@@ -15,7 +16,19 @@ public class QnaDTO {
 		super();
 	}
 
-	public QnaDTO(int no, String name, String desc, String pwd, String registerdate, String email, int qnaParent) {
+	public String getAnswerState() {
+		return answerState;
+	}
+
+	public void setAnswerState(String answerState) {
+		this.answerState = answerState;
+	}
+	public MemberDTO getMemberDto() {
+		return memberDto;
+	}
+
+	public QnaDTO(int no, String name, String desc, String pwd, String registerdate, String email, int qnaParent,
+			String answerState) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -24,11 +37,10 @@ public class QnaDTO {
 		this.registerdate = registerdate;
 		this.email = email;
 		this.qnaParent = qnaParent;
+		this.answerState = answerState;
 	}
-	
-	public MemberDTO getMemberDto() {
-		return memberDto;
-	}
+
+
 
 	public void setMemberDto(MemberDTO memberDto) {
 		this.memberDto = memberDto;

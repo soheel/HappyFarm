@@ -1,5 +1,9 @@
 package spring.web.dto;
 
+import java.util.List;
+
+import javax.lang.model.type.PrimitiveType;
+
 public class MemberDTO {
 	private String email;
 	private String pwd;
@@ -11,15 +15,41 @@ public class MemberDTO {
 	private int donationOrgNo;
 	
 	private DonationOrgDTO donationOrgDto;
-	private PurchaseDTO purchaseDto;
+	private List<PurchaseDTO> purchaseDto;
+	private ProductDTO productDto;
+	private List<PurchaseProductDTO> purchaseProductDto;
+	private ProducerDTO producerDto;
 	
-	public PurchaseDTO getPurchaseDto() {
+	public ProducerDTO getProducerDto() {
+		return producerDto;
+	}
+	public void setProducerDto(ProducerDTO producerDto) {
+		this.producerDto = producerDto;
+	}
+	
+	
+	
+	public List<PurchaseProductDTO> getPurchaseProductDto() {
+		return purchaseProductDto;
+	}
+	public void setPurchaseProductDto(List<PurchaseProductDTO> purchaseProductDto) {
+		this.purchaseProductDto = purchaseProductDto;
+	}
+	public ProductDTO getProductDto() {
+		return productDto;
+	}
+	public void setProductDto(ProductDTO productDto) {
+		this.productDto = productDto;
+	}
+	
+	
+	
+	public List<PurchaseDTO> getPurchaseDto() {
 		return purchaseDto;
 	}
-	public void setPurchaseDto(PurchaseDTO purchaseDto) {
+	public void setPurchaseDto(List<PurchaseDTO> purchaseDto) {
 		this.purchaseDto = purchaseDto;
 	}
-	
 	public MemberDTO() {}
 
 	

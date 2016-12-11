@@ -7,9 +7,9 @@
 <table class="table">
 	<tr>
 	 <th>현재 나의 마일리지</th>
-	 <c:forEach items="memberDto" var="memberDto">
-	 <td>${memberDto.mileage} </td>
-	 </c:forEach>
+	 
+	 <td>${mileage}</td>
+	 
 	</tr>
 
 </table>
@@ -21,69 +21,26 @@
 			<th>주문일자</th>
 			<th>주문상품정보</th>
 			<th>상품금액(수량)</th>
-			<th>배송비(판매자)</th>
+			<th>생산자</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-		</tr>
+	<c:choose>
+	<c:when test="${empty list}">
+	<td colspan='4'>
+		 <p align="center"><b><span style="font-size:9pt;">현재 진행중인 상품 구매 목록이 없습니다.</span></b></p>
+	</td>
+	</c:when>
+	<c:otherwise>
+	<c:forEach items="${list}" var="dto">
 		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
+			<td>${dto.purchaseDto.date}</td>
+         	<td>${dto.purchaseDto.purchaseProductDto.productDto.name}</td>
+         	<td>${dto.purchaseDto.purchaseProductDto.productDto.price}(${dto.purchaseDto.purchaseProductDto.productNum})</td>
+         	<td>${dto.purchaseDto.purchaseProductDto.productDto.producerDto.name}</td>
 		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-		</tr>
-		<tr class="warning">
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-		</tr>
+	</c:forEach>
+	</c:otherwise>
+	</c:choose>	
 	</tbody>
 </table>

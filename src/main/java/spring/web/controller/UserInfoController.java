@@ -238,12 +238,12 @@ public class UserInfoController {
 		mv.setViewName("main/index");
 		
 		List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
-		System.out.println("bestProduce list의 size : " + list.size());
-		System.out.println(list.get(0).getName());
+		//System.out.println("bestProduce list의 size : " + list.size());
+		//System.out.println(list.get(0).getName());
 		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
-		System.out.println(list2.get(0).getName());
+		//System.out.println(list2.get(0).getName());
 		int price = (Integer)map.get("previousMonthDonationPrice");
-		System.out.println(price);
+		//System.out.println(price);
 		
 		mv.addObject("bestProduct", list);
 		mv.addObject("bestProducer", list2);
@@ -300,12 +300,17 @@ public class UserInfoController {
 		 *    
 		 *    리턴한 정보들을 ModelAndView에 담아서 view로 이동
 		 * */
-		System.out.println(11111);
 		ModelAndView mv = new ModelAndView();
 		String email = (String)session.getAttribute("email");
+		//System.out.println(email);
+		Map<String, Object>  map = userService.myPageLoading(email);
+		mv.addObject("mileage", map.get("mileage"));
+		List<MemberDTO> list = (List<MemberDTO>)map.get("list");
+		//System.out.println("list.size : "+list.size());
+		//System.out.println("list"+list.get(0));
 		
-		List<MemberDTO> list= userService.myPageLoading(email);
-		mv.addObject("memberDto", list);
+		mv.addObject("list", list);
+	
 		mv.setViewName("account/account");
 		
 		return mv;
@@ -327,7 +332,7 @@ public class UserInfoController {
 	 * 처음에는 3개월까지만 주문내역을 가져오기
 	 * */
 	@RequestMapping("myPageOrderList")
-	public List<ProductDTO> myPageOrderList(HttpSession session) {
+	public ModelAndView myPageOrderList(HttpSession session) {
 		/**
 		 * Mypage 쇼핑내역을 누르자마자 개인의 주문/배송 내역이 나옴
 		 * purchase테이블에서 현시점으로부터 3개월전의 데이터들을 모두 가져와서
@@ -335,7 +340,10 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		List<ProductDTO> list = userService.myPageOrderList3(email);
-		return list;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list",list);
+		mv.setViewName("account/shopping/order");
+		return mv;
 	}
 	
 	
@@ -344,7 +352,7 @@ public class UserInfoController {
 	 * 처음에는 3개월까지만 주문내역을 가져오기
 	 * */
 	@RequestMapping("myPageCancelList")
-	public List<ProductDTO> myPageCancelList(HttpSession session) {
+	public ModelAndView myPageCancelList(HttpSession session) {
 		/**
 		 * MyPage에서 취소/반품/ 교환 내역을 눌렀을 때 
 		 * 현재날짜에서부터 3개월 이전의 기록만 우선 가지고 온다
@@ -353,7 +361,10 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		List<ProductDTO> list = userService.myPageCancelList3(email);
-		return list;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("account/shopping/return");
+		return mv;
 	}
 	
 	/**
@@ -361,7 +372,7 @@ public class UserInfoController {
 	 * 처음에는 3개월까지만 주문내역을 가져오기
 	 * */
 	@RequestMapping("myPageRefundList")
-	public List<ProductDTO> myPageRefundList(HttpSession session) {
+	public ModelAndView myPageRefundList(HttpSession session) {
 		/**
 		 * MyPage에서 환불 내역을 눌렀을 때 
 		 * 현재날짜에서부터 3개월 이전의 기록만 우선 가지고 온다
@@ -370,7 +381,10 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		List<ProductDTO> list = userService.myPageRefundList3(email);
-		return list;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("account/shopping/refund");
+		return mv;
 
 	}
 	
@@ -429,8 +443,10 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		List<QnaDTO> list = userService.myPageQna(email);
-		
-		return null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("account/myInfoQNA");
+		return mv;
 	}
 	
 	/**
@@ -472,10 +488,11 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		Map<String, Object> map= userService.myPageDonation(email);
-		
+		List<DonationDTO> list = (List<DonationDTO>)map.get("donationInfo");
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("map", map);
-		
+		mv.addObject("donationInfo",list);
+		mv.addObject("donationTotalInfo", map.get("donationTotalInfo"));
+		mv.setViewName("account/myInfoDonate");
 		return mv;
 	}
 	
@@ -493,9 +510,22 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		MemberDTO memberDto = userService.myPageInfoModify(email);
-		
-		return null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("memberDto", memberDto);
+		mv.setViewName("account/myInfoModify");
+		return mv;
 	}
+	
+	/**
+	 * 개인정보 수정
+	 * */
+	@RequestMapping("updateUserInfo")
+	public int updateUserInfo(MemberDTO memberDto){
+		int result=userService.updateUserInfo(memberDto);
+		
+		return result;
+	}
+	
 	
 	/**
 	 * 내정보에서 마일리지 버튼 클릭했을 때

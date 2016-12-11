@@ -48,19 +48,19 @@
 							<a href="<c:url value="/account/shopping"/>" class="dropdown-toggle" data-toggle="dropdown">쇼핑내역<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li class="dropdown-header">원하는 메뉴를 선택해주세요.</li>
-								<li><a href="<c:url value="/account/shopping/order"/>">주문 / 배송 조회</a></li>
-								<li><a href="<c:url value="/account/shopping/return"/>">취소 / 반품 / 교환</a></li>
-								<li><a href='<c:url value="/account/shopping/refund"/>'>환불내역</a></li>
+								<li><a href="<c:url value="/userInfoController/myPageOrderList"/>">주문 / 배송 조회</a></li>
+								<li><a href="<c:url value="/userInfoController/myPageCancelList"/>">취소 / 반품 / 교환</a></li>
+								<li><a href='<c:url value="/userInfoController/myPageRefundList"/>'>환불내역</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="<c:url value="/account/qna"/>">Q&A</a>
+							<a href="<c:url value="/userInfoController/myPageQna"/>">Q&A</a>
 						</li>
 						<li>
-							<a href="<c:url value="/account/donate"/>">기부</a>
+							<a href="<c:url value="/userInfoController/myPageDonation"/>">기부</a>
 						</li>
 						<li>
-							<a href="<c:url value="/account/myInfoModify"/>">정보관리</a>
+							<a href="<c:url value="/userInfoController/myPageInfoModify"/>">정보관리</a>
 						</li>
 					</ul>
 				</nav>

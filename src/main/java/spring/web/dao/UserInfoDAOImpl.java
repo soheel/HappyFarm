@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Repository;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
@@ -84,8 +85,15 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 마이페이지 이동시 -> 회원 마일리지 및 현재진행중인 거래내역 가져오기
 	 */
 	@Override
-	public List<MemberDTO> myPageLoading(String email) {
-		return sqlSession.selectList("userInfoMapper.getMileageAndOrderlist", email);
+	public Map<String, Object> myPageLoading(String email) {
+		int mileage =sqlSession.selectOne("userInfoMapper.getMileage", email);
+		List<MemberDTO> list = sqlSession.selectList("userInfoMapper.getOrderlist", email);
+		System.out.println(list.size());
+		System.out.println(list+"eeeeeeeeeeeeee");
+		Map<String , Object> map = new HashMap<String, Object>();
+		map.put("mileage", mileage);
+		map.put("list", list);
+		return map;
 	}
 
 	/**
@@ -193,9 +201,10 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public Map<String, Object> myPageDonation(String email) {
-		List<DonationOrgDTO> donationInfo = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
+		List<DonationDTO> donationInfo = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
 		int donationTotalInfo = sqlSession.selectOne("userInfoMapper.getMyPageTotalDonationInfo", email);
-		
+		System.out.println(donationInfo.size());
+		System.out.println(donationInfo);
 		Map<String,Object> map = new HashMap();
 		map.put("donationOnfo", donationInfo);
 		map.put("donationTotalInfo", donationTotalInfo);
@@ -208,9 +217,16 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public MemberDTO myPageInfoModify(String email) {
+		
 		return sqlSession.selectOne("userInfoMapper.getUserInfo",email);
 	}
-
+		
+		
+	@Override
+	public int updateUserInfo(MemberDTO memberDto) {
+		
+		return sqlSession.update("userInfoMapper.updateUserInfo", memberDto);
+	}
 	/**
 	 * 내정보 - 마일리지 눌렀을 때
 	 */

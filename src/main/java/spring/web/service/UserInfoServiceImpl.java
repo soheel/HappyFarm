@@ -76,7 +76,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 마이페이지 이동시 -> 회원 마일리지 및 현재진행중인 거래내역 가져오기
 	 * */
 	@Override
-	public List<MemberDTO> myPageLoading(String email) {
+	public Map<String, Object> myPageLoading(String email) {
 		return userInfoDao.myPageLoading(email);
 	}
 	
@@ -175,6 +175,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public MemberDTO myPageInfoModify(String email) {
 		return userInfoDao.myPageInfoModify(email);
+	}
+	@Override
+	public int updateUserInfo(MemberDTO memberDto) {
+		
+		return userInfoDao.updateUserInfo(memberDto);
 	}
 	
 	/**

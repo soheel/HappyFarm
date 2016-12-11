@@ -20,24 +20,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<!-- 내정보 - 마일리지 및 현 주문내역 가져올 때 사용 -->
-	<resultMap type="memberDto" id="memberDtoJoin">
+	<resultMap type="memberDTO" id="memberDtoJoin">
 		<id column="member_email" property="email" />
 		<result column="member_mileage" property="mileage" />
 
-		<collection ofType="purchaseDto" property="purchaseDto">
+		<collection ofType="purchaseDTO" property="purchaseDto">
 			<id column="purchase_no" property="no" />
 			<result column="purchase_date" property="date" />
-			<result column="purchase_price" property="price" />
-
-			<collection property="purchaseProductDto" javaType="purchaseProductDto">
+			
+			<collection property="PurchaseProductDto" ofType="purchaseProductDTO">
 				<id column="purchase_no" property="purchaseNo" />
-				<result column="purchase_product_no" property="productNum" />
+				<result column="purchase_product_num" property="productNum" />
+				<result column="product_no" property="no"/>
 
-				<association javaType="productDto" property="productDto">
+				<association javaType="productDTO" property="productDto">
 					<id column="product_no" property="no" />
 					<result column="product_name" property="name" />
+					<result column="product_price" property="price"/>
 
-					<association javaType="producerDto" property="producerDto">
+					<association javaType="producerDTO" property="producerDto">
 						<id column="producer_no" property="no" />
 						<result column="producer_name" property="name" />
 					</association>
@@ -47,13 +48,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<!-- 조회 resultMap + 기부 resultMap-->
-	<resultMap type="memberDto" id="listSearchMap">
+	<resultMap type="memberDTO" id="listSearchMap">
 		<id column="member_email" property="email" />
 
-		<association property="donationOrgDto" javaType="donationOrgDto">
+		<association property="donationOrgDto" javaType="donationOrgDTO">
 			<id column="donation_org_no" property="no"/>
 			
-			<collection property="donationDto" ofType="donationDto">
+			<collection property="donationDto" ofType="donationDTO">
 				<id column="donation_date" property="date"/>
 				<result column="donation_org_no" property="donationOrgNo"/>
 				<result column="donation_price" property="price"/>
@@ -61,28 +62,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 		</association>
 		
-		<collection property="purchaseDto" ofType="purchaseDto">
+		<collection property="purchaseDto" ofType="purchaseDTO">
 			<id column="purchase_no" property="no" />
 			<result column="purchase_price" property="price" />
 			<result column="purchase_date" property="date" />
 			<result column="purchase_discount" property="discount"/>
 
-			<association property="purchaseStateDto" javaType="purchaseStateDto">
+			<association property="purchaseStateDto" javaType="purchaseStateDTO">
 				<id column="purchase_state_no" property="no" />
 				<result column="purchase_state_name" property="name" />
 			</association>
 
-			<collection property="purchaseProductDto" ofType="purchaseProductDto">
+			<collection property="purchaseProductDto" ofType="purchaseProductDTO">
 				<id column="purchase_no" property="purchaseNo" />
 				<result column="product_no" property="productNo" />
 				<result column="purchase_product_num" property="productNum" />
 
-				<association property="productDto" javaType="productDto">
+				<association property="productDto" javaType="productDTO">
 					<id column="product_no" property="no" />
 					<result column="product_name" property="name" />
 					<result column="producer_no" property="producerNo" />
 
-					<association property="producerDto" javaType="producerDto">
+					<association property="producerDto" javaType="producerDTO">
 						<id column="producer_no" property="no" />
 						<result column="producer_name" property="name" />
 					</association>
@@ -127,6 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="qna_desc" property="desc"/>
 		<result column="qna_register_date" property="registerdate"/>
 		<result column="member_email" property="email"/>
+		<result column="answer_state" property="answerState"/>
 	</resultMap>
 	
 	<!-- 장바구니 로딩에 필요한 Result Map -->
@@ -207,8 +209,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 내정보(MyPage) -->
 	
 	<!-- 마일리지 / 진행중인 주문내역 가져오기 -->
-	<select id="getMileageAndOrderlist" parameterType="String" resultMap="memberDtoJoin">
-		select m.member_mileage,pc.purchase_date,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
+	<select id="getMileage" parameterType="String" resultType="int">
+		select member_mileage from member where member_email=#{email}
+	</select>
+	<select id="getOrderlist" parameterType="String" resultType="memberDTO">
+		select pc.purchase_date,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name
 		from member m, purchase pc, product pdt, purchase_product pp, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and
 			pdt.producer_no=pdc.producer_no and m.member_email=#{email}
@@ -375,7 +380,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 내정보 - 나의질문내역 가져오기 -->
 	<select id="getMyPageQnaList" parameterType="String" resultMap="getMyPageQnaList">
-		select qna_no,qna_name,qna_desc,qna_register_date,answer_state from qna where member_email=#{email}
+		select qna_name,qna_desc,qna_register_date,answer_state from qna where answer_state is not null and member_email=#{email}
 	</select>
 	
 	<!-- 내정보 - 질문내역에 해당하는 답글 가져오기 -->
@@ -384,19 +389,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 내정보 - donation(donation_price, donation_date, product_name) -->
-	<select id="getMyPageDonationInfo" resultMap="listSearchMap">
+	<select id="getMyPageDonationInfo" resultType="memberDTO" parameterType="String">
 	   select  don.donation_price,don.donation_date, pdt.product_name
 	   from member m, donation don , product pdt, purchase pc, purchase_product pp, donation_org donorg
 	   where m.donation_org_no=donorg.donation_org_no and donorg.donation_org_no=don.donation_org_no and 
-	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{mail]
+	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{email}
 	</select>
 	
 	<!-- 내정보 - donation(회원의 총 기부금액) -->
-	<select id="getMyPageTotalDonationInfo" resultType="int">
+	<select id="getMyPageTotalDonationInfo" resultType="int" parameterType="String">
 	   select  sum(don.donation_price)
 	   from member m, donation don , product pdt, purchase pc, purchase_product pp, donation_org donorg
 	   where m.donation_org_no=donorg.donation_org_no and donorg.donation_org_no=don.donation_org_no and 
-	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{mail]
+	   		 m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no and m.member_email=#{email}
 	</select>
 	
 	<!-- 내정보 - 개인정보 관리 -->
@@ -404,6 +409,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where member_email=#{email}
 	</select>
 	
+	<update id="updateUserInfo" parameterType="memberDTO">
+		update member set member_pwd=#{pwd},member_phone=#{phone} where member_email=#{email} and member_name=#{name}
+	</update>
+		
 	<!-- 장바구니 로딩시 -->
 	<select id="MyCartLoading" parameterType="String" resultMap="productJoinCartResultMap">
 		select p.product_no, p.product_profile, p.product_name, p.product_price, c.cart_num
