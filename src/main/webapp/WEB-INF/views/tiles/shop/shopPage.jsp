@@ -70,24 +70,26 @@
 	<script type="text/javascript">
 	$(function(){
 
-		$(document).on("click", "#addCartBtn",function() {
+		/* 장바구니 추가 */
+		$(document).on("click", "#addToCart",function() {
 			$.ajax({
-				url : "<c:url value='/userProductController/addCartDirect'/>",
+				url : "<c:url value='/userProductController/addCart'/>",
 				type : "post",
-				data : "email=박용우&productNo=6",
+				data : "productNo=" + $("#product_no").val() + "&num=" + $("#product_num").val(),
 				dataType : "text",
 				success : function(result) {
-					alert("result : " + result);
+					if(result >= 1) {
+						alert("해당상품이 장바구니에 추가되었습니다.");
+					}else {
+						alert("해당상품이 이미 장바구니에 존재합니다.");
+					}
 				},
 				error : function(err) {
-					alert("err : " + err);
+					alert("해당상품이 이미 장바구니에 존재합니다.");
 				}
 			})
 		})
-
 	});	
-	
-	
 	</script>
 </body>
 </html>

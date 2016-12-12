@@ -138,13 +138,12 @@
 													</div>
 												</div>
 												<div class="noo-product-title"> 
+													<input id = "best_product_no" type = "hidden" value = "${bestProduct.no }">
 													<h3><a href="<c:url value="/shop/"/>detail">${bestProduct.name }</a></h3>
 													<span class="price"><span class="amount">${bestProduct.price }</span></span>
 													<div class="noo-product-action">
-														<div class="noo-action">
-															<a href="#" class="button product_type_simple add_to_cart_button">
-																<span>Add to cart</span>
-															</a>
+														<div class="noo-action" id="addToCartDirect">
+															<input type = "button" value="Add to cart" class="single_add_to_cart_button button">
 														</div>
 													</div>
 												</div>

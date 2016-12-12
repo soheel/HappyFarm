@@ -89,23 +89,24 @@
 
 			if($(this).attr("checked") == 'checked'){
 				$("#totalPrice").text(parseInt(totalPrice) + parseInt(price));
+				$(this).parent().parent().next().next().next().children().children("input[type=number]").attr("disabled", false);
 			}else {
 				$("#totalPrice").text(totalPrice - price);
+				$(this).parent().parent().next().next().next().children().children("input[type=number]").attr("disabled", true);
 			}
 			
 		})
 		
 		/* 상품 전체 체크박스 */
 		$("#checkAll").change(function() {
-			alert(totalPrice);
-
 			if($(this).attr("checked") == 'checked'){
-				alert(totalPrice);
 				$(".checkboxs input[type=checkbox]").attr("checked", true);
 				$("#totalPrice").text(totalPrice);
+				$("input[type=number]").prop("disabled", false);
 			}else {
 				$(".checkboxs input[type=checkbox]").attr("checked", false);
 				$("#totalPrice").text(0);
+				$("input[type=number]").prop("disabled", true);
 			}
 		})
 	})

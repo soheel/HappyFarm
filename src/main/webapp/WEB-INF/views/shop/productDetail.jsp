@@ -29,8 +29,9 @@
 											</div>
 										</div>
 										<div class="summary entry-summary">
+											<input id = "product_no" type = "hidden" value = "${product.no }">
 											<h1 class="product_title entry-title">${product.name}</h1>
-											<p class="price"><span class="amount">${product.price} 원</span></p>
+											<p class="price"><span class="amount">${product.price}</span>원</p>
 <!-- 											<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
  -->											<div class="product_meta">
 												<span class="posted_in">Category: <a href="#">${categoryName }</a></span>
@@ -40,9 +41,9 @@
 											</div>
 											<form class="cart">
 												<div class="quantity">
-													<input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"/>
+													<input id = "product_num" type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"/>
 												</div>
-												<button type="submit" class="single_add_to_cart_button button">Add to cart</button>
+												<input type = "button" id = "addToCart" value = "Add to Cart" class="single_add_to_cart_button button"/>
 												<button type="submit" class="single_add_to_cart_button button">Purchase</button>
 											</form>
 											
