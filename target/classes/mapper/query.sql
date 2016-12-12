@@ -386,7 +386,7 @@ member_email varchar2(50) references member(member_email) on delete cascade
 )
 
 삽입
-insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박용우');
+insert into purchase values(purchase_no.nextval, sysdate, 45600, 'card', 0, 2, '박용우');
 insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박태흠');
 
 -- purchase_order 테이블--------------------------------------------------------
