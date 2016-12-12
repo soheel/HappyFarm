@@ -36,6 +36,7 @@ public class HomeController {
 		System.out.println(list.get(0).getName());
 		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
 		System.out.println(list2.get(0).getName());
+		System.out.println(list2.get(0).getProfile());
 		int price = (Integer)map.get("previousMonthDonationPrice");
 		System.out.println(price);
 		mv.addObject("bestProduct", list);
