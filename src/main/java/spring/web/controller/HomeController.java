@@ -37,9 +37,10 @@ public class HomeController {
 		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
 		System.out.println(list2.get(0).getName());
 		int price = (Integer)map.get("previousMonthDonationPrice");
-		System.out.println(price);
 		mv.addObject("bestProduct", list);
 		mv.addObject("bestProducer", list2);
+		
+		System.out.println(list2.get(0).getProfile() + "~~~");
 		session.setAttribute("donationPrice", price);
 		return mv;
 	}
