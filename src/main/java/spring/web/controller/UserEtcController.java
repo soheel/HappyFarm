@@ -79,10 +79,15 @@ public class UserEtcController {
 		 * Map으로 받는다.
 		 */
 		communityInfo = userEtcService.communityDetail(no);
-
+		CommunityDTO community = (CommunityDTO)communityInfo.get("community");
+		List<CommunityCommentDTO> commentlist = (List<CommunityCommentDTO>)communityInfo.get("commentlist");
+		List<CommunityDTO> communityIngList = (List<CommunityDTO>)communityInfo.get("communityIngList");
+		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("communityInfo",communityInfo);
-		mv.setViewName("showCommunityDetail");
+		mv.addObject("community",community);
+		mv.addObject("commentlist",commentlist);
+		mv.addObject("communityIngList", communityIngList);
+		mv.setViewName("community/communityDetail");
 		return mv;
 	}
 	

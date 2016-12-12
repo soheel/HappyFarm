@@ -30,7 +30,8 @@
 											<div class="noo-product-inner">
 											
 												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/community/"/>detail">
+													<a href="<c:url value="/userEtcController/communityDetail?no=${ing.no}"/>">
+						
 														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/${ing.profile}' alt="" />
 													</a>
 												</div>

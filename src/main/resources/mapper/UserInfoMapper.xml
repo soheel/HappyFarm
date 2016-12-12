@@ -366,7 +366,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 내정보 - 나의질문내역 가져오기 -->
 	<select id="getMyPageQnaList" parameterType="String" resultMap="getMyPageQnaList">
-		select qna_name,qna_desc,qna_register_date,answer_state from qna where answer_state is not null and member_email=#{email}
+		select qna_name,qna_desc,qna_register_date,answer_state from qna where answer_state is not null and qna.member_email=#{email}
 	</select>
 	
 	<!-- 내정보 - 질문내역에 해당하는 답글 가져오기 -->

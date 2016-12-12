@@ -19,17 +19,31 @@
 					<div class="container">
 						<div class="row">
 							<div class="noo-main col-md-9">
-								<div class="product">
-									<div class="single-inner">
+								<!-- <div class="product">
+									<div class="single-inner"> -->
 										<div class="images">
 											<div class="product-simple-image">
+											<h1 class="product_title entry-title">${community.name}</h1>
 												<a href="http://lorempixel.com/400/300/" data-rel="prettyPhoto">
-													<img width="300" height="381" src="http://lorempixel.com/400/300/" alt="" />
+													<img width="300" height="381" src="<c:url value="/resources/images/"/>product/${community.profile}/" alt="" />
 												</a>
 											</div>
 										</div>
+									
+									<c:if test="${object.key=='commentlist'}">
+										<c:set var="commentlist" value="${object.value}"/>
 										<div class="summary entry-summary">
-											<h1 class="product_title entry-title">행사 이름</h1>
+										<c:forEach var="comment" items="${commentlist}">
+											<p>${comment.communityCommentDto.no}</p>
+											<p>${comment.communityCommentDto.content}</p>
+											<p>${comment.communityCommentDto.registerdate}</p>
+											<p>${comment.communityCommentDto.email}</p>
+										</c:forEach>
+										</div>
+									</c:if>
+						
+										<!-- <div class="summary entry-summary">
+											<h1 class="product_title entry-title"></h1>
 											<p class="date"><span class="amount">2016.12.5 - 2016.12.9</span></p>
 											<form class="cart">
 												<div class="quantity">
@@ -56,9 +70,9 @@
 												</a>
 												<a href="#share" class="noo-share" title="Share on Pinterest">
 													<i class="fa fa-pinterest"></i>
-												</a>
+												</a>-->
 											</div>
-										</div> 
+										</div>  
 									</div>
 									<div class="related products profile_board">
 									12389
@@ -74,8 +88,11 @@
 												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Maecenas tristique gravida, odio et sagi ttis justo. Susp endisse ultricies nisi vel quam suscipit, et rutrum odio porttitor. Donec dictum non nulla ut lobortis. Maecenas tristique gravida, odio et sagi ttis justo. Aliquam vitae mi a eros tincidunt ultricies. Donec porta gravida arcu. Morbi facilisis lorem felis, eu inerdum quam scelerisque eu. Phasellus vel turpis dictum, pulvinar nulla</p>
 											</div>
 										</div>
+									
 									</div>
+									
 								</div>
 							</div>
+			
 </body>
 </html>
