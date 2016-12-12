@@ -32,13 +32,17 @@
 	</td>
 	</c:when>
 	<c:otherwise>
-	<c:forEach items="${list}" var="dto">
-		<tr class="warning">
-			<td>${dto.purchaseDto.date}</td>
-         	<td>${dto.purchaseDto.purchaseProductDto.productDto.name}</td>
-         	<td>${dto.purchaseDto.purchaseProductDto.productDto.price}(${dto.purchaseDto.purchaseProductDto.productNum})</td>
-         	<td>${dto.purchaseDto.purchaseProductDto.productDto.producerDto.name}</td>
-		</tr>
+	<c:forEach items="${list}" var="list">
+			<c:forEach items="${list.purchaseDto}" var="purchaseDto">
+			<tr class="warning">
+				<td>${purchaseDto.date}</td>
+				<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
+         		<td>${purchaseProductDto.productDto.name}</td>
+         		<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>
+         		<td>${purchaseProductDto.productDto.producerDto.name}</td> 
+				</c:forEach> 
+			</tr>
+			</c:forEach>
 	</c:forEach>
 	</c:otherwise>
 	</c:choose>	

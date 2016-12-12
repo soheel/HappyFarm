@@ -305,11 +305,10 @@ public class UserInfoController {
 		//System.out.println(email);
 		Map<String, Object>  map = userService.myPageLoading(email);
 		mv.addObject("mileage", map.get("mileage"));
-		List<MemberDTO> list = (List<MemberDTO>)map.get("list");
-		//System.out.println("list.size : "+list.size());
-		//System.out.println("list"+list.get(0));
+	
+		//System.out.println("list.size : "+map.get("list"));
 		
-		mv.addObject("list", list);
+		mv.addObject("list", map.get("list"));
 	
 		mv.setViewName("account/account");
 		
@@ -488,11 +487,12 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		Map<String, Object> map= userService.myPageDonation(email);
-		List<DonationDTO> list = (List<DonationDTO>)map.get("donationInfo");
+		List<MemberDTO> list = (List<MemberDTO>)map.get("list");
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("donationInfo",list);
+		mv.addObject("list",list);
 		mv.addObject("donationTotalInfo", map.get("donationTotalInfo"));
 		mv.setViewName("account/myInfoDonate");
+		
 		return mv;
 	}
 	

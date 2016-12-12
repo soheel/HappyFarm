@@ -1,5 +1,7 @@
 package spring.web.dto;
 
+import java.util.List;
+
 public class DonationDTO {
 	
 	private DonationOrgDTO donationOrgDto; //기부단체 번호
@@ -7,6 +9,7 @@ public class DonationDTO {
 	private int donationOrgNo;
 	private long price;
 	private String date;
+
 	
 	public DonationDTO() {}
 

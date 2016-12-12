@@ -89,7 +89,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		int mileage =sqlSession.selectOne("userInfoMapper.getMileage", email);
 		List<MemberDTO> list = sqlSession.selectList("userInfoMapper.getOrderlist", email);
 		System.out.println(list.size());
-		System.out.println(list+"eeeeeeeeeeeeee");
+				
 		Map<String , Object> map = new HashMap<String, Object>();
 		map.put("mileage", mileage);
 		map.put("list", list);
@@ -201,13 +201,14 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	@Override
 	public Map<String, Object> myPageDonation(String email) {
-		List<DonationDTO> donationInfo = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
+		List<MemberDTO> list = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
 		int donationTotalInfo = sqlSession.selectOne("userInfoMapper.getMyPageTotalDonationInfo", email);
-		System.out.println(donationInfo.size());
-		System.out.println(donationInfo);
+		//System.out.println(donationInfo);
 		Map<String,Object> map = new HashMap();
-		map.put("donationOnfo", donationInfo);
+		map.put("list", list);
 		map.put("donationTotalInfo", donationTotalInfo);
+		
+		System.out.println(map.size());
 				
 		return map;
 	}

@@ -1,5 +1,7 @@
 package spring.web.dto;
 
+import java.util.List;
+
 public class DonationOrgDTO {
 	
 	private int no;
@@ -8,7 +10,7 @@ public class DonationOrgDTO {
 	private String addr;
 	private String desc;
 	private String profile;
-	private DonationDTO donationDto;
+	private List<DonationDTO> donationDto;
 	
 	public DonationOrgDTO() {}
 	
@@ -22,15 +24,13 @@ public class DonationOrgDTO {
 		this.profile = profile;
 	}
 	
-	
-	public DonationDTO getDonationDto() {
+	public List<DonationDTO> getDonationDto() {
 		return donationDto;
 	}
-
-	public void setDonationDto(DonationDTO donationDto) {
+	public void setDonationDto(List<DonationDTO> donationDto) {
 		this.donationDto = donationDto;
 	}
-
+	
 	public int getNo() {
 		return no;
 	}

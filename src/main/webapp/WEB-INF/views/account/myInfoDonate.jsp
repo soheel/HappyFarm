@@ -12,13 +12,26 @@
 		</tr>
 	</thead>
 	<tbody>
-	<c:forEach items="${donationInfo}" var="donate">
+	<c:choose>
+	<c:when test="${empty list}">
+	<td colspan='3'>
+		 <p align="center"><b><span style="font-size:9pt;"> 기부 내역이 없습니다. </span></b></p>
+	</td>
+	</c:when>
+	<c:otherwise>
+	<c:forEach items="${list}" var="memberDto">
+		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto">
 		<tr class="warning">
-			<td>${donate.date}</td>
-			<td>${donate.price}</td>
-			<td></td>
+			<td>${purchaseDto.date}</td>
+			<td>${(purchaseDto.price*0.05)}</td>
+			<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
+         		<td>${purchaseProductDto.productDto.name}</td> 
+			</c:forEach> 
 		</tr>
+		</c:forEach>
 	</c:forEach>
+	</c:otherwise>
+	</c:choose>
 	</tbody>
 </table>
 <div>

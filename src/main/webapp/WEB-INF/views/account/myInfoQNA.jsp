@@ -16,7 +16,7 @@
 	<c:choose>
 	<c:when test="${empty list}">
 	<td colspan='4'>
-		 <p align="center"><b><span style="font-size:9pt;">현재 등록된 질문이 없습니다..</span></b></p>
+		 <p align="center"><b><span style="font-size:9pt;">현재 등록된 질문이 없습니다.</span></b></p>
 	</td>
 	</c:when>
 	<c:otherwise>
