@@ -98,6 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="producer_addr" property="addr"/>
 		<result column="producer_phone" property="phone"/>
 		<result column="producer_register_date" property="registerDate"/>
+		<result column="producer_profile" property="profile"/>
 	</resultMap>
 	
 	<resultMap type="purchaseDTO" id="purchaseDto">

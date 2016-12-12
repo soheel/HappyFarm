@@ -38,9 +38,9 @@ public class HomeController {
 		System.out.println(list2.get(0).getName());
 		System.out.println(list2.get(0).getProfile());
 		int price = (Integer)map.get("previousMonthDonationPrice");
-		System.out.println(price);
 		mv.addObject("bestProduct", list);
 		mv.addObject("bestProducer", list2);
+		
 		session.setAttribute("donationPrice", price);
 		return mv;
 	}

@@ -90,12 +90,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 		
 		List<ProductDTO> bestProductList = new ArrayList<ProductDTO>();
 		List<Integer> list = userInfoDao.getBestProduct();
-		System.out.println(list.size());
 		for(Integer i : list) {
 			bestProductList.add(userInfoDao.getProductByProductNo(i));
 		}
 		map.put("bestProduct", bestProductList);
-		
 		List<ProducerDTO> bestProducerList = new ArrayList<ProducerDTO>();
 		list = userInfoDao.getBestProducer();
 		for(Integer i : list) {

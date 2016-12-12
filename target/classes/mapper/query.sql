@@ -385,8 +385,9 @@ purchase_state_no number(1) references purchase_state(purchase_state_no) on dele
 member_email varchar2(50) references member(member_email) on delete cascade
 )
 
+update purchase set purchase_price = 45600 where purchase_no = 1;
 삽입
-insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박용우');
+insert into purchase values(purchase_no.nextval, sysdate, 45600, 'card', 0, 2, '박용우');
 insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박태흠');
 
 -- purchase_order 테이블--------------------------------------------------------
