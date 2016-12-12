@@ -581,6 +581,7 @@ public class UserInfoController {
 		mv.addObject("productList", map.get("productList"));
 		mv.addObject("totalPrice", map.get("totalPrice"));
 		mv.setViewName("cart/cart");
+		System.out.println("cart : " + map.get("totalPrice"));
 		return mv;
 	}
 	

@@ -565,15 +565,4 @@ insert into information values(information_no.nextval, '양파의 영양분 & 효능', '
 
 
 -- test
-select '[' || c.category_name || ']' || ' [' || s.category_subcategory_name || ']'
-from category c, category_subcategory s
-where c.category_no = s.category_no and s.category_subcategory_no = #{value}
-
-select r.producer_no, r.producer_name, r.producer_addr, r.producer_phone, r.producer_register_date 
-from product t join producer r on t.producer_no = r.producer_no and t.producer_no = 2 and t.product_no = 2
-
-select * from product;
-
-select *
-from donation_org
-where donation_org_no = 1
+		select nvl(sum(cart.cart_num * product.product_price), 0) from cart, product where cart.product_no = product.product_no and member_email = #{value}

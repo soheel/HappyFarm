@@ -243,7 +243,7 @@ public class UserProductController {
 		List<ProductDTO> list = service.packageMenuListLoading();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
-		mv.setViewName("shop/searchProduct");
+		mv.setViewName("package/package");
 		return mv;
 	}
 	

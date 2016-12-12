@@ -77,7 +77,7 @@
 	</definition>
 	
 	<!-- package 페이지  메인 -->
-	<definition name="package/*Main" extends="package">
+	<definition name="package/*" extends="package">
 		<put-attribute name="content" value="/WEB-INF/views/package/{1}.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/views/tiles/package/packageSide.jsp"/>
 	</definition>
@@ -89,7 +89,7 @@
 	</definition>
 	
 	<!-- community 페이지 main-->
-	<definition name="community/*Main" extends="community">
+	<definition name="community/*" extends="community">
 		<put-attribute name="content" value="/WEB-INF/views/community/{1}.jsp"/>
 		<put-attribute name="side" value=""/>
 	</definition>
