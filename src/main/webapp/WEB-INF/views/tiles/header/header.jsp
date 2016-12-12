@@ -56,10 +56,6 @@
 							<li>
 								<a href="#" class="fa fa-search noo-search" id="noo-search"></a>
 							</li>
-							<li class="country">
-								<a href="#"><img src='<c:url value="/resources/images/"/>korean.png' alt="korean"/></a>
-								<a href="#"><img src='<c:url value="/resources/images/"/>eng.png' alt="eng"/></a>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -232,5 +228,7 @@
 					</div>
 				</div>
 			</header>
+			
+			
 </body>
 </html>

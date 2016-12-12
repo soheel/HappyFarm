@@ -74,9 +74,9 @@
 											<div class="tab-pane fade" id="tab-3">
 												<img style = "width : 200px; height : 200px; margin : auto;" alt="" src="<c:url value='/resources/img/producer/'/>${producer.profile}">
 												<p>생산자 이름 : ${producer.name }</p>
-												<p>생산지 : ${producer.addr }</p>
-												<div>지도 들어갈 곳</div>
-												<p>생산자 연락처 : ${producer.phone }</p>
+												<p>생산지 : <span id = "producer_addr">${producer.addr}</span></p>
+												<div id = "mapDiv" style = "width : 500px; height:400px;"></div>
+												<p>생산자 연락처 : ${producer.phone}</p>
 												
 											</div>
 										</div>
@@ -89,5 +89,24 @@
 									</div>
 								</div>
 							</div>
+					
+		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=a4323905bc104c7f43e6f2c4a13baa6b&libraries=services"></script>
+		<script type="text/javascript">
+		var addr = document.getElementById('producer_addr').innerHTML;
+		 // 다음 지도
+	    var geocoder = new daum.maps.services.Geocoder();
+	    var callback = function(status, result) {
+	        if (status === daum.maps.services.Status.OK) {
+	        	var container = document.getElementById('mapDiv');
+	        	var options = {
+	        		center: new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng),
+	        		level: 3
+	        	};
+
+	        	var map = new daum.maps.Map(container, options);
+	        }
+	    };
+	    geocoder.addr2coord(addr, callback); // db에서 꺼내온 주소를 addr2coord함수의 첫번째 인수에 문자열로 넣어줌
+		</script>
 	</body>
 </html>

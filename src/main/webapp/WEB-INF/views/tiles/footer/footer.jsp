@@ -90,5 +90,62 @@
 			</footer>
 		</div>
 	<a href="#" class="go-to-top hidden-print"><i class="fa fa-angle-up"></i></a>
+	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.min.js'></script>
+	<script type="text/javascript">
+			
+			$(function() {
+				$("#test").mouseover(function() {
+					$.ajax({
+						url : "<c:url value='/userProductController/shopMenuLoading'/>",
+						type : "post",
+						dataType : "json",
+						success : function(result) {
+							if(result.length == 6) { // 로그인 하지 않았거나 최근 구매한 상품이 없는 회원의 경우
+								for(var i = 0 ; i < 3; i++){
+									/* 인기상품 갱신 */
+									$("#best_product" + (i+1) + "_name").text(result[i].name);
+									$("#best_product" + (i+1) + "_price").text(result[i].price + ' 원');
+									$("#best_product" + (i+1) + "_profile").attr("src", "<c:url value='/resources/img/product/'/>" + result[i].profile);
+									$("#best_product" + (i+1) + "_no").attr("href", "<c:url value='/userProductController/showProductDetail'/>?productNo=" + result[i].no);
+									
+									/* 계절상품 갱신 */
+									$("#season_product" + (i+1) + "_name").text(result[i+3].name);
+									$("#season_product" + (i+1) + "_price").text(result[i+3].price + ' 원');
+									$("#season_product" + (i+1) + "_profile").attr("src", "<c:url value='/resources/img/product/'/>" + result[i+3].profile);
+									$("#season_product" + (i+1) + "_no").attr("href", "<c:url value='/userProductController/showProductDetail'/>?productNo=" + result[i+3].no);
+								}
+							}else {
+								for(var i = 0 ; i < 3; i++){ // 로그인을 한 상태에서 최근 구매한 상품이 있는 경우
+									/* 인기상품 갱신 */
+									$("#best_product" + (i+1) + "_name").text(result[i].name);
+									$("#best_product" + (i+1) + "_price").text(result[i].price + ' 원');
+									$("#best_product" + (i+1) + "_profile").attr("src", "<c:url value='/resources/img/product/'/>" + result[i].profile);
+									$("#best_product" + (i+1) + "_no").attr("href", "<c:url value='/userProductController/showProductDetail'/>?productNo=" + result[i].no);
+									
+									/* 계절상품 갱신 */
+									$("#season_product" + (i+1) + "_name").text(result[i+3].name);
+									$("#season_product" + (i+1) + "_price").text(result[i+3].price + ' 원');
+									$("#season_product" + (i+1) + "_profile").attr("src", "<c:url value='/resources/img/product/'/>" + result[i+3].profile);
+									$("#season_product" + (i+1) + "_no").attr("href", "<c:url value='/userProductController/showProductDetail'/>?productNo=" + result[i+3].no);
+									
+								}
+								for(var j = 7 ; j <= result.length ; j++){
+									/* 최근구매목록 갱신 */
+									$("#recent_product" + (j-6) + "_name").text(result[j-7].name);
+									$("#recent_product" + (j-6) + "_price").text(result[j-7].price + ' 원');
+									$("#recent_product" + (j-6) + "_profile").attr("src", "<c:url value='/resources/img/product/'/>" + result[j-7].profile);
+									$("#recent_product" + (j-6) + "_no").attr("href", "<c:url value='/userProductController/showProductDetail'/>?productNo=" + result[j-7].no);
+								}
+							}
+					
+						},
+						error : function(err) {
+							alert("err : " + err);
+						}
+					})
+				})
+			})
+			
+			</script>
 </body>
 </html>
