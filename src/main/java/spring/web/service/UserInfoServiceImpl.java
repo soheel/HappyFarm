@@ -115,23 +115,23 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 가져와서 view에 뿌려줌
 	 * */
 	@Override
-	public List<ProductDTO> myPageOrderList3(String email) {
+	public List<MemberDTO> myPageOrderList3(String email) {
 		return userInfoDao.myPageOrderList3(email);
 	}
 
 	//6개월
 	@Override
-	public List<ProductDTO> myPageOrderList6(String email) {
+	public List<MemberDTO> myPageOrderList6(String email) {
 		return userInfoDao.myPageOrderList6(email);
 	}
 	//12개월
 	@Override
-	public List<ProductDTO> myPageOrderList12(String email) {
+	public List<MemberDTO> myPageOrderList12(String email) {
 		return userInfoDao.myPageOrderList12(email);
 	}
 	//All
 	@Override
-	public List<ProductDTO> myPageOrderListAll(String email) {
+	public List<MemberDTO> myPageOrderListAll(String email) {
 		return userInfoDao.myPageOrderListAll(email);
 	}
 	
@@ -210,22 +210,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 	  * */
 	 //3개월
 	 @Override
-	public List<ProductDTO> myPageCancelList3(String email) {
+	public List<MemberDTO> myPageCancelList3(String email) {
 		return userInfoDao.myPageCancelList3(email);
 	}
 	//6개월
 	@Override
-	public List<ProductDTO> myPageCancelList6(String email) {
+	public List<MemberDTO> myPageCancelList6(String email) {
 		return userInfoDao.myPageCancelList6(email);
 	}
 	//12개월
 	@Override
-	public List<ProductDTO> myPageCancelList12(String email) {
+	public List<MemberDTO> myPageCancelList12(String email) {
 		return userInfoDao.myPageCancelList12(email);
 	}
 	//All
 	@Override
-	public List<ProductDTO> myPageCancelListAll(String email) {
+	public List<MemberDTO> myPageCancelListAll(String email) {
 		return userInfoDao.myPageCancelListAll(email);
 	}
 
@@ -235,22 +235,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 */
 	//3개월
 	@Override
-	public List<ProductDTO> myPageRefundList3(String email) {
+	public List<MemberDTO> myPageRefundList3(String email) {
 		return userInfoDao.myPageRefundList3(email);
 	}
 	//6개월
 	@Override
-	public List<ProductDTO> myPageRefundList6(String email) {
+	public List<MemberDTO> myPageRefundList6(String email) {
 		return userInfoDao.myPageRefundList6(email);
 	}
 	//12개월
 	@Override
-	public List<ProductDTO> myPageRefundList12(String email) {
+	public List<MemberDTO> myPageRefundList12(String email) {
 		return userInfoDao.myPageRefundList12(email);
 	}
 	//All
 	@Override
-	public List<ProductDTO> myPageRefundListAll(String email) {
+	public List<MemberDTO> myPageRefundListAll(String email) {
 		return userInfoDao.myPageRefundListAll(email);
 	}
 	 
@@ -259,22 +259,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	//3개월
 	@Override
-	public List<PurchaseDTO> getmyPageMileage3(String email) {
+	public List<MemberDTO> getmyPageMileage3(String email) {
 		return userInfoDao.getmyPageMileage3(email);
 	}
 	//6개월
 	@Override
-	public List<PurchaseDTO> getmyPageMileage6(String email) {
+	public List<MemberDTO> getmyPageMileage6(String email) {
 		return userInfoDao.getmyPageMileage6(email);
 	}
 	//12개월
 	@Override
-	public List<PurchaseDTO> getmyPageMileage12(String email) {
+	public List<MemberDTO> getmyPageMileage12(String email) {
 		return userInfoDao.getmyPageMileage12(email);
 	}
 	//All
 	@Override
-	public List<PurchaseDTO> getmyPageMileageAll(String email) {
+	public List<MemberDTO> getmyPageMileageAll(String email) {
 		return userInfoDao.getmyPageMileageAll(email);
 	}
 	 

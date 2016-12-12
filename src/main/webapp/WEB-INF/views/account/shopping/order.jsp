@@ -19,86 +19,29 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td><input type="checkbox" name="box"/></td>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
+	<c:choose>
+	<c:when test="${empty list}">
+	<td colspan='6'>
+		 <p align="center"><b><span style="font-size:9pt;">구매 내역이 없습니다.</span></b></p>
+	</td>
+	</c:when>
+	<c:otherwise>
+		<c:forEach items="${list}" var="memberDto">
+		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto">
 		<tr class="warning">
 			<td><input type="checkbox" name="box"/></td>
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
+			<td>${purchaseDto.date}</td>
+		<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
+         	<td>${purchaseProductDto.productDto.name}</td>
+         	<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>
+         	<td>${purchaseProductDto.productDto.producerDto.name}</td> 
+		</c:forEach>
+			<td>${purchaseDto.purchaseStateDto.name}</td>
 		</tr>
-		<tr>
-			<td><input type="checkbox" name="box"/></td>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
-		<tr class="warning">
-			<td><input type="checkbox" name="box"/></td>
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
-		<tr>
-			<td><input type="checkbox" name="box"/></td>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
-		<tr class="warning">
-			<td><input type="checkbox" name="box"/></td>
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
-		<tr>
-			<td><input type="checkbox" name="box"/></td>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
-		<tr class="warning">
-			<td><input type="checkbox" name="box"/></td>
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
-		<tr>
-			<td><input type="checkbox" name="box"/></td>
-			<td>Default</td>
-			<td>Defaultson</td>
-			<td>def@somemail.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
-		<tr class="warning">
-			<td><input type="checkbox" name="box"/></td>
-			<td>Warning</td>
-			<td>Refs</td>
-			<td>bo@example.com</td>
-			<td>def@somemail.com</td>
-			<td>결제완료</td>
-		</tr>
+		</c:forEach>
+		</c:forEach>
+		</c:otherwise>
+		</c:choose>
 	</tbody>
 </table>
 <input type="button" value="환불/반품/교환" name="order-action">

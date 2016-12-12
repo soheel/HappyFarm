@@ -102,22 +102,22 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	//3개월
 	@Override
-	public List<ProductDTO> myPageOrderList3(String email) {
+	public List<MemberDTO> myPageOrderList3(String email) {
 		return sqlSession.selectList("userInfoMapper.getMypageOrderList3", email);
 	}
 	//6개월
 	@Override
-	public List<ProductDTO> myPageOrderList6(String email) {
+	public List<MemberDTO> myPageOrderList6(String email) {
 		return sqlSession.selectList("userInfoMapper.getMypageOrderList6", email);
 	}
 	//12개월
 	@Override
-	public List<ProductDTO> myPageOrderList12(String email) {
+	public List<MemberDTO> myPageOrderList12(String email) {
 		return sqlSession.selectList("userInfoMapper.getMypageOrderList12", email);
 	}
 	//All
 	@Override
-	public List<ProductDTO> myPageOrderListAll(String email) {
+	public List<MemberDTO> myPageOrderListAll(String email) {
 		return sqlSession.selectList("userInfoMapper.getMypageOrderListAll", email);
 	}
 	
@@ -127,22 +127,22 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	//3개월
 	@Override
-	public List<ProductDTO> myPageCancelList3(String email) {
+	public List<MemberDTO> myPageCancelList3(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageCancerList3", email);
 	}
 	//6개월
 	@Override
-	public List<ProductDTO> myPageCancelList6(String email) {
+	public List<MemberDTO> myPageCancelList6(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageCancerList6", email);
 	}
 	//12개월
 	@Override
-	public List<ProductDTO> myPageCancelList12(String email) {
+	public List<MemberDTO> myPageCancelList12(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageCancerList12", email);
 	}
 	//All
 	@Override
-	public List<ProductDTO> myPageCancelListAll(String email) {
+	public List<MemberDTO> myPageCancelListAll(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageCancerListAll", email);
 	}
 	
@@ -152,22 +152,22 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 */
 	//3개월
 	@Override
-	public List<ProductDTO> myPageRefundList3(String email) {
+	public List<MemberDTO> myPageRefundList3(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageRefundList3", email);
 	}
 	//6개월
 	@Override
-	public List<ProductDTO> myPageRefundList6(String email) {
+	public List<MemberDTO> myPageRefundList6(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageRefundList6", email);
 	}
 	//12개월
 	@Override
-	public List<ProductDTO> myPageRefundList12(String email) {
+	public List<MemberDTO> myPageRefundList12(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageRefundList12", email);
 	}
 	//All
 	@Override
-	public List<ProductDTO> myPageRefundListAll(String email) {
+	public List<MemberDTO> myPageRefundListAll(String email) {
 		return sqlSession.selectList("userInfoMapper.getMyPageRefundListAll", email);
 	}
 	
@@ -202,8 +202,13 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public Map<String, Object> myPageDonation(String email) {
 		List<MemberDTO> list = sqlSession.selectList("userInfoMapper.getMyPageDonationInfo", email);
-		int donationTotalInfo = sqlSession.selectOne("userInfoMapper.getMyPageTotalDonationInfo", email);
-		//System.out.println(donationInfo);
+		int donationTotalInfo; 
+		if(sqlSession.selectOne("userInfoMapper.getMyPageTotalDonationInfo", email)==null){
+			donationTotalInfo=0;
+		}else{
+			donationTotalInfo =sqlSession.selectOne("userInfoMapper.getMyPageTotalDonationInfo", email); 
+		}
+	
 		Map<String,Object> map = new HashMap();
 		map.put("list", list);
 		map.put("donationTotalInfo", donationTotalInfo);
@@ -247,22 +252,22 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * */
 	//3개월
 	@Override
-	public List<PurchaseDTO> getmyPageMileage3(String email) {
+	public List<MemberDTO> getmyPageMileage3(String email) {
 		return sqlSession.selectList("userInfoMapper.searchMyMileage3", email);
 	}
 	//6개월
 	@Override
-	public List<PurchaseDTO> getmyPageMileage6(String email) {
+	public List<MemberDTO> getmyPageMileage6(String email) {
 		return sqlSession.selectList("userInfoMapper.searchMyMileage6", email);
 	}
 	//12개월
 	@Override
-	public List<PurchaseDTO> getmyPageMileage12(String email) {
+	public List<MemberDTO> getmyPageMileage12(String email) {
 		return sqlSession.selectList("userInfoMapper.searchMyMileage12", email);
 	}
 	//All
 	@Override
-	public List<PurchaseDTO> getmyPageMileageAll(String email) {
+	public List<MemberDTO> getmyPageMileageAll(String email) {
 		return sqlSession.selectList("userInfoMapper.searchMyMileageAll", email);
 	}
 

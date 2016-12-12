@@ -40,7 +40,7 @@
 				<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
 					<ul class="nav sidebar-nav">
 						<li class="sidebar-brand">
-							<a href="<c:url value="/account/"/>">
+							<a href="<c:url value="/userInfoController/myPageLoading"/>">
 								My Account
 							</a>
 						</li>

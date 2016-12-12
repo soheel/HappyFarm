@@ -338,7 +338,7 @@ public class UserInfoController {
 		 * 테이블의 형태로 view에 뿌려준다.
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<ProductDTO> list = userService.myPageOrderList3(email);
+		List<MemberDTO> list = userService.myPageOrderList3(email);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list",list);
 		mv.setViewName("account/shopping/order");
@@ -359,7 +359,7 @@ public class UserInfoController {
 		 * 가지고 나오는 데이터 : 	주문날짜 / 주문정보(상품이름,상품코드) / 상품금액,수량 / 생산자 / 현상황
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<ProductDTO> list = userService.myPageCancelList3(email);
+		List<MemberDTO> list = userService.myPageCancelList3(email);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
 		mv.setViewName("account/shopping/return");
@@ -379,7 +379,7 @@ public class UserInfoController {
 		 * 가지고 나오는 데이터 : 	주문날짜/ 주문정보(상품이름,상품코드) / 상품금액,수량 / 생산자 
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<ProductDTO> list = userService.myPageRefundList3(email);
+		List<MemberDTO> list = userService.myPageRefundList3(email);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
 		mv.setViewName("account/shopping/refund");

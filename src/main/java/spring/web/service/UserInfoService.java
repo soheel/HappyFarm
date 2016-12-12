@@ -60,10 +60,10 @@ public interface UserInfoService {
 	 * 회원의 3개월간 주문조회 내역을 purchase테이블에서
 	 * 가져와서 view에 뿌려줌
 	 * */
-	List<ProductDTO> myPageOrderList3(String email);
-	List<ProductDTO> myPageOrderList6(String email);//6개월
-	List<ProductDTO> myPageOrderList12(String email);//1년
-	List<ProductDTO> myPageOrderListAll(String email);//전체
+	List<MemberDTO> myPageOrderList3(String email);
+	List<MemberDTO> myPageOrderList6(String email);//6개월
+	List<MemberDTO> myPageOrderList12(String email);//1년
+	List<MemberDTO> myPageOrderListAll(String email);//전체
 	
 	/**
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
@@ -120,25 +120,25 @@ public interface UserInfoService {
 	/**
 	 * 내정보 - 취소/반품/교환 내역 조회
 	 * */
-	List<ProductDTO> myPageCancelList3(String email);
-	List<ProductDTO> myPageCancelList6(String email);//6개월
-	List<ProductDTO> myPageCancelList12(String email);//1년
-	List<ProductDTO> myPageCancelListAll(String email);//전체
+	List<MemberDTO> myPageCancelList3(String email);
+	List<MemberDTO> myPageCancelList6(String email);//6개월
+	List<MemberDTO> myPageCancelList12(String email);//1년
+	List<MemberDTO> myPageCancelListAll(String email);//전체
 	
 	/**
 	 * 내정보 - 환불 조회
 	 * */
-	List<ProductDTO> myPageRefundList3(String email);
-	List<ProductDTO> myPageRefundList6(String email);//6개월
-	List<ProductDTO> myPageRefundList12(String email);//1년
-	List<ProductDTO> myPageRefundListAll(String email);//전체
+	List<MemberDTO> myPageRefundList3(String email);
+	List<MemberDTO> myPageRefundList6(String email);//6개월
+	List<MemberDTO> myPageRefundList12(String email);//1년
+	List<MemberDTO> myPageRefundListAll(String email);//전체
 	
 	/**
 	 * 마일리지 사용내역 조회
 	 * */
-	List<PurchaseDTO> getmyPageMileage3(String email);
-	List<PurchaseDTO> getmyPageMileage6(String email);
-	List<PurchaseDTO> getmyPageMileage12(String email);
-	List<PurchaseDTO> getmyPageMileageAll(String email);
+	List<MemberDTO> getmyPageMileage3(String email);
+	List<MemberDTO> getmyPageMileage6(String email);
+	List<MemberDTO> getmyPageMileage12(String email);
+	List<MemberDTO> getmyPageMileageAll(String email);
 	
 }

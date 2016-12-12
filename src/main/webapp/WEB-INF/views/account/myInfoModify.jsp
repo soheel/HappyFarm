@@ -12,14 +12,14 @@
 								<div class="col-md-1"></div>
 								<div class="col-md-10">
 									<h2>Info Modify</h2>
-									<form class="find-profile id" action="/userInfoController/updateUserInfo?">
+									<form class="find-profile id" action="/userInfoController/updateUserInfo">
 										<div class="form-row form-row-wide">
-										<c:forEach items="memberDto">
+				
 											<label for="find_id">
 												아이디(이메일)
 												<span class="required">*</span>
 											</label>
-											<input type="text" class="input-text" name="id" id="reg_id" value="${memberDto.email}"  readonly="readonly"/>
+											<input type="text" class="input-text" name="email" id="reg_id" value="${memberDto.email}"  readonly="readonly"/>
 											
 											<label for="find_id">
 												이름
@@ -31,20 +31,20 @@
 												비밀번호
 												<span class="required">*</span>
 											</label>
-											<input type="password" class="input-text" name="name" id="reg_name" value="${memberDto.pwd}"/>
+											<input type="password" class="input-text" name="pwd" id="reg_name" value="${memberDto.pwd}"/>
 											
 											<label for="find_pw_re">
 												비밀번호 확인
 												<span class="required">*</span>
 											</label>
-											<input type="password" class="input-text" name="name" id="reg_name" value="${memberDto.pwd}"/>
+											<input type="password" class="input-text" name="pwd" id="reg_name" value="${memberDto.pwd}"/>
 											
 											<label for="find_phone">
 												연락처
 												<span class="required">*</span>
 											</label>
-											<input type="text" class="input-text" name="name" id="reg_name" value="${memberDto.phone}"/>
-											</c:forEach>
+											<input type="text" class="input-text" name="phone" id="reg_name" value="${memberDto.phone}"/>
+											
 										</div>
 										<input type="submit" class="button" name="register" value="수정하기" />
 									</form>
