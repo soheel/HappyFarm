@@ -548,11 +548,19 @@ create table information (
 information_no number(5) primary key,
 information_name varchar2(50) not null,
 information_desc varchar2(100) not null,
-information_register_date date
+information_register_date date,
+information_profile varchar2(300) not null
 )
 	
 삽입
-insert into information values(information_no.nextval, '국산콩과 수입콩', '비교', sysdate);
+insert into information values(information_no.nextval, '4월의 제철 식품 아스파라거스', 'asparagus.png', sysdate, 'asparagus_2.png');
+insert into information values(information_no.nextval, '친환경 부추 품질 & 기준', 'buchu.png', sysdate, 'buchu_2.png');
+insert into information values(information_no.nextval, '감기에 좋은 파', 'cold.png', sysdate, 'cold_2.png');
+insert into information values(information_no.nextval, '고구마순의 효능', 'goguma.png', sysdate, 'goguma_2.png');
+insert into information values(information_no.nextval, '마늘종 구매요령', 'manuljong.png', sysdate, 'manuljong_2.png');
+insert into information values(information_no.nextval, '5월의 제철식품 오디', 'odi.png', sysdate, 'odi_2.png');
+insert into information values(information_no.nextval, '친환경 포도의 품질 & 기준', 'podo.png', sysdate, 'podo_2.png');
+insert into information values(information_no.nextval, '양파의 영양분 & 효능', 'yangpa.png', sysdate, 'yangpa_2.png');
 
 
 -- test

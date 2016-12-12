@@ -24,108 +24,28 @@
 										<h2>Our new Info</h2>
 										<p>Maecenas tristique gravida odio, et sagi ttis justo interdum porta. Duis et lacus mattis, tincidunt eronec dictum non nulla.</p>
 									</div>
+									
 									<div class="noo-product-grid products row product-grid noo-grid-4">
+									
+									<c:forEach items="${infoList}" var="info">
+										<!-- 글 하나하나 -->
 										<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
 											<div class="noo-product-inner">
 												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/product_260x330.jpg' alt="" />
+													<a href="<c:url value="/userEtcController/infoDetail"/>?no=${info.no}">
+														<img width="600" height="760" src='<c:url value="/resources/img/info/"/>${info.profile}' alt="" />
 													</a>
 												</div>
 												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">게시글1</a></h3>
+													<h3><a href="<c:url value="/info/"/>detail">${info.name}</a></h3>
 												</div>
 											</div>
 										</div>
-										<div class="others vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-												</div>
-												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">Broccoli</a></h3>
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">Brown Bread</a></h3>
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">Carrots</a></h3>
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-												</div>
-												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">Celery</a></h3>
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-												</div>
-												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">Cookie</a></h3>
-												</div>
-											</div>
-										</div>
-										<div class="vegetable masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">Cucumbers</a></h3>
-												</div>
-											</div>
-										</div>
-										<div class="bread masonry-item col-md-4 col-sm-6">
-											<div class="noo-product-inner">
-												<div class="noo-product-thumbnail">
-													<a href="<c:url value="/info/"/>detail">
-														<img width="600" height="760" src="<c:url value="/resources/images/"/>product/product_260x330.jpg" alt="" />
-													</a>
-													
-												</div>
-												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">French Bread</a></h3>
-												</div>
-											</div>
-										</div>
+										<!-- 글 하나하나 -->
+									</c:forEach>
+									
 									</div>
+									
 								</div>
 							</div>
 						</div>

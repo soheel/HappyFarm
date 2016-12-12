@@ -32,8 +32,7 @@
 											<input id = "product_no" type = "hidden" value = "${product.no }">
 											<h1 class="product_title entry-title">${product.name}</h1>
 											<p class="price"><span class="amount">${product.price}</span>원</p>
-<!-- 											<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
- -->											<div class="product_meta">
+											<div class="product_meta">
 												<span class="posted_in">Category: <a href="#">${categoryName }</a></span>
 												<span class="posted_in">Unit: <a href="#">${product.unit }</a></span>
 												<span class="posted_in">Producer: <a href="#">${producer.name }</a></span>

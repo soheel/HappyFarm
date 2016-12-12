@@ -3,6 +3,8 @@ package spring.web.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,7 @@ public class HomeController {
 	UserInfoService userService;
 	
 	@RequestMapping("")
-	public ModelAndView home() {
+	public ModelAndView home(HttpSession session) {
 		
 		System.out.println("home");
 		
@@ -38,7 +40,7 @@ public class HomeController {
 		System.out.println(price);
 		mv.addObject("bestProduct", list);
 		mv.addObject("bestProducer", list2);
-		mv.addObject("donationPrice", price);
+		session.setAttribute("donationPrice", price);
 		return mv;
 	}
 	

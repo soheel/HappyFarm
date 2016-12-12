@@ -71,7 +71,7 @@
 
 										<div>
 											이전달의 총 기부액 : 
-											<p><fmt:formatNumber value="${donationPrice }" groupingUsed="true"/>&nbsp;<i style="font-size:15px" class="fa">원</i></p>										 
+											<p><fmt:formatNumber value="${sessionScope.donationPrice }" groupingUsed="true"/>&nbsp;<i style="font-size:15px" class="fa">원</i></p>										 
 										</div>
 										
 										<div>
