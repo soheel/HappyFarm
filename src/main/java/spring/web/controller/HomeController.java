@@ -40,7 +40,6 @@ public class HomeController {
 		mv.addObject("bestProduct", list);
 		mv.addObject("bestProducer", list2);
 		
-		System.out.println(list2.get(0).getProfile() + "~~~");
 		session.setAttribute("donationPrice", price);
 		return mv;
 	}
