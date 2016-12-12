@@ -377,9 +377,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 내정보 - donation(donation_price, donation_date, product_name) -->
 	<select id="getMyPageDonationInfo" resultMap="memberDtoJoin" parameterType="String">
 	   select pc.purchase_price,pc.purchase_date, pc.purchase_no
-	   from member m, product pdt, purchase pc, purchase_product pp
-	   where  m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and pp.product_no=pdt.product_no 
-	   		  and m.member_email=#{email}
+	   from member m,purchase pc, purchase_product pp
+	   where  m.member_email=pc.member_email and pc.purchase_no= pp.purchase_no and m.member_email=#{email}
 	</select>
 	
 	<!-- 내정보 - donation(회원의 총 기부금액) -->

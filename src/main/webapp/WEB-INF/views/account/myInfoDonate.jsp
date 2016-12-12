@@ -8,7 +8,7 @@
 		<tr>
 			<th>기부날짜</th>
 			<th>기부금액</th>
-			<th>상품명</th>
+			<th>구매번호</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,9 +24,7 @@
 		<tr class="warning">
 			<td>${purchaseDto.date}</td>
 			<td>${(purchaseDto.price*0.05)}</td>
-			<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
-         		<td>${purchaseProductDto.productDto.name}</td> 
-			</c:forEach> 
+         	<td>${purchaseDto.no}</td> 
 		</tr>
 		</c:forEach>
 	</c:forEach>
