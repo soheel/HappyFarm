@@ -521,8 +521,7 @@ public class UserInfoController {
 	 * */
 	@RequestMapping("updateUserInfo")
 	public int updateUserInfo(MemberDTO memberDto){
-		int result=userService.updateUserInfo(memberDto);
-		
+		int result = userService.updateUserInfo(memberDto);
 		return result;
 	}
 	

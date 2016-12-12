@@ -92,7 +92,7 @@ public interface UserInfoService {
 	MemberDTO myPageInfoModify(String email);
 	
 	/**
-	 * 개인정보 수정
+	 * 내정보 - 개인정보 수정
 	 * */
 	int updateUserInfo(MemberDTO memberDto);
 	

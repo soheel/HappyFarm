@@ -174,9 +174,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public MemberDTO myPageInfoModify(String email) {
 		return userInfoDao.myPageInfoModify(email);
 	}
+	
 	@Override
 	public int updateUserInfo(MemberDTO memberDto) {
-		
 		return userInfoDao.updateUserInfo(memberDto);
 	}
 	

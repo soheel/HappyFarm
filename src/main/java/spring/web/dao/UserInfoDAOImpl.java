@@ -226,11 +226,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		
 		return sqlSession.selectOne("userInfoMapper.getUserInfo",email);
 	}
-		
-		
+	
+	/**
+	 * ¼öÁ¤
+	 * */
 	@Override
 	public int updateUserInfo(MemberDTO memberDto) {
-		
 		return sqlSession.update("userInfoMapper.updateUserInfo", memberDto);
 	}
 	/**
