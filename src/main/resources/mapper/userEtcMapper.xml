@@ -34,13 +34,6 @@
 	<result column="qna_qnaParent" property="qnaParent"/>
 </resultMap>
 
-<resultMap type="infomationDTO" id="infoResultMap">
-	<id column="information_no" property="no"/>
-	<result column="information_name" property="name"/>
-	<result column="information_desc" property="desc"/>
-	<result column="information_date" property="date"/>
-</resultMap>
-
 <!--  기부 단체 한개에 기부내역이 여러개 1:다 -> collection사용 -->
 <resultMap type="donationDTO" id="donationResultMap">
 	
@@ -69,6 +62,14 @@
 	<result column="donation_org_addr" property="addr"/>
 	<result column="donation_org_desc" property="desc"/>
 	<result column="donation_org_profile" property="profile"/>
+</resultMap>
+
+<resultMap type="infomationDto" id="informationResultMap">
+	<id column="information_no" property="no"/>
+	<result column="information_name" property="name"/>
+	<result column="information_desc" property="desc"/>
+	<result column="information_register_date" property="date"/>
+	<result column="information_profile" property="profile"/>
 </resultMap>
 
 
@@ -112,12 +113,12 @@
 </insert>
 
 <!-- 4. 정보 게시판을 누르면 정보에 대한 내용을 모두 가져온다 -->
-<select id="infoLoading" resultType="infomationDTO">
+<select id="infoLoading" resultMap="informationResultMap">
 	select * from information order by information_no desc
 </select>
 
 <!-- 5. 특정 게시판을 누르면 상세 정보를 가져온다. -->
-<select id="infoDetail" resultType="infomationDTO" parameterType="int">
+<select id="infoDetail" resultMap="informationResultMap" parameterType="int">
 	select * from information where information_no=#{no}
 </select>
 

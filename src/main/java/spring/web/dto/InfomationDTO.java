@@ -5,15 +5,17 @@ public class InfomationDTO {
 	private String name;
 	private String desc;
 	private String date;
+	private String profile;
 	
 	public InfomationDTO() {}
 
-	public InfomationDTO(int no, String name, String desc, String date) {
+	public InfomationDTO(int no, String name, String desc, String date, String profile) {
 		super();
 		this.no = no;
 		this.name = name;
 		this.desc = desc;
 		this.date = date;
+		this.profile = profile;
 	}
 
 	public int getNo() {
@@ -48,5 +50,12 @@ public class InfomationDTO {
 		this.date = date;
 	}
 	
+	public String getProfile() {
+		return profile;
+	}
+	
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	
 }

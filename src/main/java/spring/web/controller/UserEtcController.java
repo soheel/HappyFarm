@@ -139,11 +139,13 @@ public class UserEtcController {
 		 * commuity를 누르면,9개의 정보를 담아서 뷰로 보내준다.
 		 * dao 소드와  페이지 기능 메소드가 필요. 
 		 */
-		List<InfomationDTO> infolist = null;
+		List<InfomationDTO> infoList = null;
 		ModelAndView mv = new ModelAndView();
-		infolist = userEtcService.infoLoading();
-		mv.addObject("infolist",infolist);
+		infoList = userEtcService.infoLoading();
+		mv.addObject("infoList",infoList);
 		mv.setViewName("info/infoLoading");
+		System.out.println(infoList.size() + " !!!");
+
 		return mv;
 	}
 	
@@ -161,8 +163,8 @@ public class UserEtcController {
 		InfomationDTO infomationDTO = userEtcService.infoDetail(no);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("infomationDTO",infomationDTO);
-		mv.setViewName("showCommunityDetail");
+		mv.addObject("info",infomationDTO);
+		mv.setViewName("info/infoDetail");
 		return mv;
 	}
 	
