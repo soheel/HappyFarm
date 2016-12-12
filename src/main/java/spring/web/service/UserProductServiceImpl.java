@@ -23,21 +23,21 @@ public class UserProductServiceImpl implements UserProductService{
 	UserProductDAO userProductDAO;
 
 	@Override
-	public List<ProductDTO> shopMenuLoading() {
+	public List<ProductDTO> shopMenuLoading(String email) {
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		
 		// getBestProduct()를 통해 List<Integer> 받아오기
 		List<Integer> listBestProduct = userProductDAO.getBestProduct();
 		// 계절상품 담기
 		// getRecentPurchase()를 통해 List<Integer> 받아오기
-		List<Integer> listRecentPurchase = userProductDAO.getRecentPurchase();
+		List<Integer> listRecentPurchase = userProductDAO.getRecentPurchase(email);
 		
 		// getProductByProductNo(int productNo)를 통해 리스트에 있는 productNo들을 전달해줘서
 		// ProductDTO들을 저장하는 리스트를 만들어 컨트롤러로 반환하기
 		for(Integer i : listBestProduct) {
 			list.add(userProductDAO.getProductByProductNo(i));
 		}
-		for(Integer i : listRecentPurchase) {
+		for(int i = 2; i <= 4 ; i++) {
 			list.add(userProductDAO.getProductByProductNo(i));
 		}
 		for(Integer i : listRecentPurchase) {

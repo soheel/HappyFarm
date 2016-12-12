@@ -23,7 +23,7 @@ public interface UserProductDAO {
 	 * showMenuLoading()
 	 * 최근구매상품 3개 가져오기
 	 * */
-	List<Integer> getRecentPurchase();
+	List<Integer> getRecentPurchase(String email);
 	
 	/**
 	 * showMenuListLoading(int categoryNo)

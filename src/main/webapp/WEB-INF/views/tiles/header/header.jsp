@@ -103,25 +103,25 @@
 															<h3 class="widget-title">인기상품</h3>
 															<ul class="product_list_widget">
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">French Bread</span>
+																	<a id = "best_product1_no" href="<c:url value="/shop/"/>detail">
+																		<img id ="best_product1_profile"  width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id ="best_product1_name" class="product-title"></span>
 																	</a>
-																	<span class="amount">&#36;10.00</span>
+																	<span id ="best_product1_price" class="amount"></span>
 																</li>
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">Cookie</span>
+																	<a id = "best_product2_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "best_product2_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "best_product2_name" class="product-title"></span>
 																	</a>
-																	<span class="amount">&#36;15.00</span>
+																	<span id = "best_product2_price" class="amount"></span>
 																</li>
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">Brown Bread</span>
+																	<a id = "best_product3_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "best_product3_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "best_product3_name" class="product-title"></span>
 																	</a>
-																	<span class="amount">&#36;12.00</span>
+																	<span id = "best_product3_price" class="amount"></span>
 																</li>
 															</ul>
 														</div>
@@ -133,25 +133,25 @@
 															<h3 class="widget-title">계절별 상품</h3>
 															<ul class="product_list_widget">
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">French Bread</span>
+																	<a id = "season_product1_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "season_product1_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "season_product1_name" class="product-title">French Bread</span>
 																	</a>
-																	<span class="amount">&#36;10.00</span>
+																	<span id = "season_product1_price" class="amount">&#36;10.00</span>
 																</li>
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">Cookie</span>
+																	<a id = "season_product2_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "season_product2_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "season_product2_name" class="product-title">Cookie</span>
 																	</a>
-																	<span class="amount">&#36;15.00</span>
+																	<span id = "season_product2_price" class="amount">&#36;15.00</span>
 																</li>
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">Brown Bread</span>
+																	<a id = "season_product3_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "season_product3_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "season_product3_name" class="product-title">Brown Bread</span>
 																	</a>
-																	<span class="amount">&#36;12.00</span>
+																	<span id = "season_product3_price" class="amount">&#36;12.00</span>
 																</li>
 															</ul>
 														</div>
@@ -160,28 +160,28 @@
 												<li>
 													<div class="noo_megamenu_widget_area">
 														<div class="widget commerce widget_products">
-															<h3 class="widget-title">지난 구매 품목</h3>
+															<h3 class="widget-title">최근 구매 상품</h3>
 															<ul class="product_list_widget">
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">French Bread</span>
+																	<a id = "recent_product1_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "recent_product1_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "recent_product1_name" class="product-title"></span>
 																	</a>
-																	<span class="amount">&#36;10.00</span>
+																	<span id = "recent_product1_price" class="amount"></span>
 																</li>
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">Cookie</span>
+																	<a id = "recent_product2_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "recent_product2_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "recent_product2_name" class="product-title"></span>
 																	</a>
-																	<span class="amount">&#36;15.00</span>
+																	<span id = "recent_product2_price" class="amount"></span>
 																</li>
 																<li>
-																	<a href="<c:url value="/shop/"/>detail">
-																		<img width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
-																		<span class="product-title">Brown Bread</span>
+																	<a id = "recent_product3_no" href="<c:url value="/shop/"/>detail">
+																		<img id = "recent_product3_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
+																		<span id = "recent_product3_name" class="product-title"></span>
 																	</a>
-																	<span class="amount">&#36;12.00</span>
+																	<span id = "recent_product3_price" class="amount"></span>
 																</li>
 															</ul>
 														</div>

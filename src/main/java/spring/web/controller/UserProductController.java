@@ -34,7 +34,8 @@ public class UserProductController {
 	 * 최근구매(없으면 빈칸)
 	 * */
 	@RequestMapping("shopMenuLoading")
-	public List<ProductDTO> shopMenuLoading() {
+	@ResponseBody
+	public List<ProductDTO> shopMenuLoading(HttpSession session) {
 		/**
 		 * 1. shop에 마우스 오버
 		 * 2. 인기상품, 계절상품, 최근구매를 
@@ -44,8 +45,15 @@ public class UserProductController {
 		 * 이 3가지 메소드를 모두 서비스의 showMenuLoading에서 불러줘서 이를 
 		 * list에 넣어서 컨트롤러로 반환
 		 * */
+		String email = (String)session.getAttribute("email");
+		System.out.println(email);
+		if(email == null) {
+			email = " ";
+		}
 		List<ProductDTO> list = null;
-		list = service.shopMenuLoading();
+		list = service.shopMenuLoading(email);
+		
+		System.out.println(list.size());
 		return list;
 	}
 	 

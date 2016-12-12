@@ -26,8 +26,8 @@ public class UserProductDAOImpl implements UserProductDAO {
 	}
 
 	@Override
-	public List<Integer> getRecentPurchase() {
-		return sqlSession.selectList("UserProductMapper.getRecentPurchase", null, new RowBounds(0, 3));
+	public List<Integer> getRecentPurchase(String email) {
+		return sqlSession.selectList("UserProductMapper.getRecentPurchase", email, new RowBounds(0, 3));
 	}
 
 	@Override

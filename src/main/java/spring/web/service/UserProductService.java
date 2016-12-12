@@ -12,7 +12,7 @@ import spring.web.dto.ProductDTO;
 
 public interface UserProductService {
 	
-	public List<ProductDTO> shopMenuLoading();
+	public List<ProductDTO> shopMenuLoading(String email);
 	
 	public List<ProductDTO> showMenuListLoading(int categoryNo);
 	
