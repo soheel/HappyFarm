@@ -49,4 +49,4 @@
 	</tbody>
 </table>
 <input type="button" value="환불/반품/교환" name="order-action">
-<input type="button" value="취소" name="cancel" class="searchOrderList">
+<input type="button" value="취소" name="cancel" class="searchOrderListCancer">

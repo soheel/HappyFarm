@@ -163,6 +163,12 @@
 			location.href="<c:url value='/userInfoController/searchReturnList'/>?value="+$(this).val();
 		});
 		
+		$(".searchOrderListCancer").click(function(){
+			var str = $("input[type=checkbox]").next().val()+"나리";
+			alert(str)
+			
+		});
+		
 	});
 </script>
 </body>

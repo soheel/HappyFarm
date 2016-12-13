@@ -25,7 +25,7 @@
 			<td>${qnaDto.name}</td>
 			<td>${qnaDto.desc}</td>
 			<td>${qnaDto.registerdate}</td>
-			<td>${qnaDto.answerState}</td>
+			<td><a href="<C:url value='/userInfoController/showAnswer'/>/">${qnaDto.answerState}</a></td>
 		</tr>
 	</c:forEach>
 	</c:otherwise>
