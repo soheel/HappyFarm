@@ -279,6 +279,7 @@ insert into package values(package_no.nextval, 99, 2);
 insert into package values(package_no.nextval, 99, 3);
 
 -- package_product 테이블-------------------------------------------------------
+-- 삭제예정인 테이블
 drop table package_product;
 select * from package_product;
 시퀀스

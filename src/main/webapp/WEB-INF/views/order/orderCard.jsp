@@ -17,22 +17,26 @@
 	<div class="commerce single-product noo-shop-main">
 		<div class="container">
 			<div class="row">
-				<form>
+				<form action = "<c:url value = '/userProductController/pay'/>" method = "post">
+				<!-- 상품 하나하나 -->
 					<div class="col-md-12 order_check_border">
-						<div class="col-md-4">
+						<div class="col-md-2">
 							<img src="<c:url value = '/resources/img/product/'/>${product.profile}">
 						</div>
-						<div class="col-md-8 order_check_content">
+						<div class="col-md-10 order_check_content">
 							<p>
 								<span class="order_check_title">&lt;주문상품 확인&gt;</span>
 							</p>
 							<p>
+							<input id = "product_no" type = "hidden" value="${product.no}">
 								상품 이름 :<span class="order_check_name"> ${product.name}</span>
 							</p>
 							<p>
 								수량 : <span class="order_check_count"> ${quantity}</span>
 							</p>
 							<p>
+							<!-- PurchaseDTO의 price -->
+							<input type = "hidden" name = "price" value = "${totalPrice}">
 								총 금액 : <span class="order_check_total">${totalPrice} (배송비 2500원이 포함된 금액입니다.)</span>
 							</p>
 						</div>
@@ -58,21 +62,26 @@
 							<span class="addr_check_title">&lt;배송지 정보 입력&gt;</span>
 						</p>
 						<p>
+						<!-- PurchaseOrderDTO의 name -->
 							수취인 : <span class="addr_check_name"> <input type="text"
 								name="name">
 							</span>
 						</p>
 						<p>
+						<!-- PurchaseOrderDTO의 postcode -->
 							주소 : <span class="addr_check_addr"> 
 							<input type="text" id="sample6_postcode" placeholder="우편번호">
 							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 							<p>
+							<!-- PurchaseOrderDTO의 addr -->
 							&nbsp;&nbsp;&nbsp;<input size = "50" type="text" id="sample6_address" placeholder="주소">
+							<!-- PurchaseOrderDTO의 detailAddr -->
 							<input type="text" size = "30" id="sample6_address2" placeholder="상세주소">
 							</p>
 							</span>
 						</p>
 						<p>
+						<!-- PurchaseOrderDTO의 phone -->
 							연락처 : <span class="addr_check_phone"> 
 							<select>
 							<option>010</option><option>011</option><option>016</option>
@@ -93,7 +102,9 @@
 							<span class="payment_title">&lt;결제 정보 입력&gt;</span>
 						</p>
 						<p>
-							결제방식선택 : <span class="payment_count"> <select>
+						<!-- PurchaseDTO의 method -->
+							결제방식선택 : <span class="payment_count">
+							 <select name = "method">
 									<option value="card">카드</option>
 									<option value="trans">실시간계좌이체</option>
 									<option value="vbank">무통장입금</option>
@@ -109,6 +120,7 @@
 						</p>
 						<p>
 							보유 마일리지 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
+							<!-- PurchaseDTO의 discount -->
 							마일리지 사용 : <input id = "useMileage" type = "text" size = "8"><span>(1000원 단위로 사용이 가능합니다.)</span>
 						</p>
 					</div>
@@ -121,8 +133,8 @@
 							<p>
 								최종 결제 금액 <h3><span id = "amount" class="amount"></span><fmt:formatNumber value="${totalPrice }" pattern="#,###" /> 원</h3>
 							</p>
-							<input type="button" onclick = "paypay()" value="결제"> <input type="button"
-								value="취소" name="cancle">
+							<input type="submit" value="결제"> 
+							<input type="button" value="취소" name="cancle">
 						</div>
 					</div>
 				</form>

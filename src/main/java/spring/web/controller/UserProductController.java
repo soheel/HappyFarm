@@ -17,6 +17,8 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
+import spring.web.dto.PurchaseOrderDTO;
 import spring.web.service.UserProductService;
 
 @Controller
@@ -232,9 +234,11 @@ public class UserProductController {
 	 * 주문화면에서 결제버튼 클릭했을 때
 	 * */
 	@RequestMapping("pay")
-	@ResponseBody
-	public String pay() {
-		return "pay";
+	public String pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, HttpSession session) {
+		System.out.println("pay");
+		System.out.println(purchaseDTO.getPrice());
+		System.out.println(purchaseDTO.getMethod());
+		return "order/pay";
 	}
 	
 	/**
