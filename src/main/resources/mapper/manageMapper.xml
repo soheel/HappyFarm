@@ -7,7 +7,7 @@
 	<id column="package_no" property="no"/>
 	<result column="product_name" property="name"/>
 	<result column="product_no" property="productNo"/>
-	<collection property="productDTO" resultMap="productResultMap"/>
+	<collection property="productDTO" resultMap="productManager"/>
 </resultMap>
 
 <resultMap type="productDTO" id="productManager">
@@ -79,7 +79,7 @@
 
 <!-- 1.개별상품관리 - 모든 상품들 정보를 불러온다. -->
 <select id="selectAll" resultMap="productManager">
-	select pd.product_name, pd.product_price, pc.producer_name, certi.certification_no
+	select pd.product_profile, pd.product_name, pd.product_price, pc.producer_name, certi.certification_no
 	from product pd, producer pc, product_certification certi
 	where pd.producer_no=pc.producer_no and certi.product_no=pd.product_no
 </select>

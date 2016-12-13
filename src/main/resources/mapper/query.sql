@@ -185,10 +185,11 @@ insert into category_subcategory values(category_subcategory_no.nextval, 'Âý½Ò/È
 insert into category_subcategory values(category_subcategory_no.nextval, 'Àâ°î/Äá/±ú',3);
 insert into category_subcategory values(category_subcategory_no.nextval, '°íÃå°¡·ç/¹Ì¼ý°¡·ç/°î¹°°¡·ç',3);
 
-
-	select product.product_name, product.product_price, producer.producer_name
-	from product, producer
-	where product.producer_no = producer.producer_no;
+	select pd.product_profile, pd.product_name, pd.product_price, pc.producer_name, certi.certification_no
+	from product pd, producer pc, product_certification certi
+	where pd.producer_no=pc.producer_no and certi.product_no=pd.product_no
+	
+	
 -- product Å×ÀÌºí---------------------------------------------------------------
 drop table product;
 select * from product;

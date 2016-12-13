@@ -40,6 +40,7 @@ public class ManageController {
 		 * 
 		 */
 		List<ProductDTO> productlist = manageService.selectAllProduct();
+		System.out.println(productlist.get(0).getName());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
@@ -135,7 +136,7 @@ public class ManageController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("packagelist", packagelist);
 		
-		mv.setViewName("packageManage");  
+		mv.setViewName("admin/packageItem");  
 		return mv;
 	}
 	
