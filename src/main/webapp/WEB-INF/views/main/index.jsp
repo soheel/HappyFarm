@@ -138,7 +138,7 @@
 													</div>
 												</div>
 												<div class="noo-product-title"> 
-													<input id = "best_product_no" type = "hidden" value = "${bestProduct.no }">
+													<input id = "product_no" type = "hidden" value = "${bestProduct.no }">
 													<h3><a href="<c:url value="/shop/"/>detail">${bestProduct.name }</a></h3>
 													<span class="price"><span class="amount">${bestProduct.price }</span></span>
 													<div class="noo-product-action">
