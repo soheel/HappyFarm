@@ -90,16 +90,16 @@
 		<put-attribute name="content" value="/WEB-INF/views/shop/{1}.jsp"/>
 	</definition>
 	
-	<!-- package 페이지  메인 -->
-	<definition name="package/*" extends="package">
-		<put-attribute name="content" value="/WEB-INF/views/package/{1}.jsp"/>
-		<put-attribute name="side" value="/WEB-INF/views/tiles/package/packageSide.jsp"/>
-	</definition>
-	
 	<!-- package 페이지  detail -->
 	<definition name="package/*Detail" extends="package">
 		<put-attribute name="content" value="/WEB-INF/views/package/{1}Detail.jsp"/>
 		<put-attribute name="side" value=""/>
+	</definition>
+	
+	<!-- package 페이지  메인 -->
+	<definition name="package/*" extends="package">
+		<put-attribute name="content" value="/WEB-INF/views/package/{1}.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/tiles/package/packageSide.jsp"/>
 	</definition>
 	
 	<!-- community 페이지 main-->

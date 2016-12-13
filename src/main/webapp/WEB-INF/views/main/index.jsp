@@ -8,7 +8,7 @@
 							<div class="noo-traslate-atributes col-sm-12 col-md-6 hidden-xs">
 								<div class="pt-.search-header55">
 									<div class="noo-atributes">
-										<img width="494" height="618" src='<c:url value="/resources/images/"/>image-01.png' alt="" />
+										<img width="494" height="618" src='<c:url value="/resources/img/main/"/>image-01.png' alt="" />
 										<div class="noo-atributes-item">
 											<div class="noo-atributes-hover">
 												<div class="noo-atributes-content">
@@ -19,7 +19,7 @@
 											<span class="eff">
 												<span class="eff1"></span>
 												<span class="eff2"></span>
-												<img width="64" height="64" src='<c:url value="/resources/images/"/>thumb_53x53.jpg' alt=""/> 
+												<img width="64" height="64" src='<c:url value="/resources/img/main/"/>organicfood-1.png' alt=""/> 
 											</span>
 										</div>
 										<div class="noo-atributes-item noo-atributes-item2 orange">
@@ -32,7 +32,7 @@
 											<span class="eff">
 												<span class="eff1"></span>
 												<span class="eff2"></span>
-												<img width="53" height="53" src='<c:url value="/resources/images/"/>thumb_53x53.jpg' alt=""/>
+												<img width="53" height="53" src='<c:url value="/resources/img/main/"/>organicfood-2.png' alt=""/>
 											</span>
 										</div>
 										<div class="noo-atributes-item noo-atributes-item4 orange">
@@ -45,7 +45,7 @@
 											<span class="eff">
 												<span class="eff1"></span>
 												<span class="eff2"></span>
-												<img width="53" height="53" src='<c:url value="/resources/images/"/>thumb_53x53.jpg' alt=""/> 
+												<img width="53" height="53" src='<c:url value="/resources/img/main/"/>organicfood-3.png' alt=""/> 
 											</span>
 										</div>
 									</div>
@@ -74,40 +74,6 @@
 									<div class="noo-sh-title">
 										<h2>Our new products</h2>
 										<p>Maecenas tristique gravida odio, et sagi ttis justo interdum porta. Duis et lacus mattis, tincidunt eronec dictum non nulla.</p>
-									</div>
-									<div class="noo-product-filter masonry-filters">
-										<ul class="noo-header-filter" data-option-key="filter">
-											<li>
-												<a data-option-value="*" href="#all" class="selected">
-													<img width="30" height="26" src='<c:url value="/resources/images/"/>filter/filter_30x30.jpg' alt="" />
-													<span>All products</span>
-												</a>
-											</li>
-											<li>
-												<a data-option-value=".organic-fruits" href="#organic-fruits">
-													<img width="30" height="26" src='<c:url value="/resources/images/"/>filter/filter_30x30.jpg' alt=""/> 
-													<span>Fruits</span>
-												</a>
-											</li>
-											<li>
-												<a data-option-value=".vegetable" href="#vegetable">
-													<img width="30" height="26" src='<c:url value="/resources/images/"/>filter/filter_30x30.jpg' alt=""/> 
-													<span>Vegetable</span>
-												</a>
-											</li>
-											<li>
-												<a data-option-value=".bread" href="#bread">
-													<img width="30" height="26" src='<c:url value="/resources/images/"/>filter/filter_30x30.jpg' alt=""/> 
-													<span>Bread</span>
-												</a>
-											</li>
-											<li>
-												<a data-option-value=".others" href="#others">
-													<img width="30" height="26" src='<c:url value="/resources/images/"/>filter/filter_30x30.jpg' alt=""/> 
-													<span>Others</span>
-												</a>
-											</li>
-										</ul>
 									</div>
 									
 									<!-- 상품 목록 -->
@@ -336,8 +302,8 @@
 				</div>	
 				<div class="testimonial">
 					<div class="noo_testimonial_wrap">
-						<img width="328" height="851" src="<c:url value="/resources/images/"/>image_left.png" class="image_left" alt=""/>
-						<img width="329" height="789" src="<c:url value="/resources/images/"/>image_right.png" class="image_right" alt="" /> 
+						<img width="328" height="851" src="<c:url value="/resources/img/main/"/>image_left.png" class="image_left" alt=""/>
+						<img width="329" height="789" src="<c:url value="/resources/img/main/"/>image_right.png" class="image_right" alt="" /> 
 						<div class="noo-testimonial-sync2 testimonial-three">
 							<div class="item">
 								<div class="testimonial-content">
@@ -447,28 +413,6 @@
 								<div class="testimonial-name">
 									<h4 class="noo_testimonial_name">- 테스트입니다 -</h4>
 									<span class="noo_testimonial_position">( Test )</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="newsletter">
-					<div class="noo-sh-mailchimp">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-5 col-xs-12">
-									<h3 class="noo-mail-title">Subscribe to us!</h3>
-									<p class="noo-mail-desc">
-										Enter Your email address for our mailing list to keep yourself update.
-									</p>
-								</div>
-								<div class="col-md-7 col-xs-12">
-									<form>
-										<div class="newsletter-form-fields">
-											<input type="email" name="EMAIL" placeholder="Email address" required />
-											<input type="submit" value="submit"/>
-										</div>
-									</form>
 								</div>
 							</div>
 						</div>

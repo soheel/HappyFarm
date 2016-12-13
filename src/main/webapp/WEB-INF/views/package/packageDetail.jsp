@@ -71,7 +71,11 @@
 												<button type="submit" class="single_add_to_cart_button button">Purchase</button>
 											</form>
 											<div class="clear"></div>
-											<div class="commerce-tabs">
+										</div>
+									</div>
+								</div>
+								<div class="product">
+									<div class="commerce-tabs">
 												<ul class="nav nav-tabs tabs">
 											    	<li class="active">
 											    		<a data-toggle="tab" href="#tab-noo_boxes_tab">Box contents</a>
@@ -217,8 +221,6 @@
 												</div>
 												
 											</div>
-										</div> 
-									</div>
 								</div>
 							</div>
 						</div>
