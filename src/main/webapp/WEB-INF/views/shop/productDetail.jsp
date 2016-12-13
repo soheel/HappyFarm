@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-	<body>
 			<section class="noo-page-heading eff heading-6">
 				<div class="container">
 					<div class="noo-heading-content">
@@ -106,5 +103,3 @@
 	    };
 	    geocoder.addr2coord(addr, callback); // db에서 꺼내온 주소를 addr2coord함수의 첫번째 인수에 문자열로 넣어줌
 		</script>
-	</body>
-</html>
