@@ -7,9 +7,9 @@ public class PackageDTO {
 	private String name;
 	private int productNo;
 	
-	private PackageProductDTO packageProductDTO;
-	private ProductDTO productDTO;
-	private List<ProductDTO> list;
+	/*private PackageProductDTO packageProductDTO;*/
+	/*private ProductDTO productDTO;*/
+	private List<ProductDTO> productDTO;
 	
 	public PackageDTO() {}
 
@@ -36,35 +36,43 @@ public class PackageDTO {
 		this.name = name;
 	}
 
-	public List<ProductDTO> getList() {
+/*	public List<ProductDTO> getList() {
 		return list;
 	}
 
 	public void setList(List<ProductDTO> list) {
 		this.list = list;
-	}
+	}*/
 
 	public int getProductNo() {
 		return productNo;
 	}
 
-	public PackageProductDTO getPackageProductDTO() {
+	/*public PackageProductDTO getPackageProductDTO() {
 		return packageProductDTO;
 	}
 
 	public void setPackageProductDTO(PackageProductDTO packageProductDTO) {
 		this.packageProductDTO = packageProductDTO;
 	}
-
+*/
 	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
+
+	public List<ProductDTO> getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(List<ProductDTO> productDTO) {
+		this.productDTO = productDTO;
+	}
 	
-	public ProductDTO getProductDTO() {
+/*	public ProductDTO getProductDTO() {
 		return productDTO;
 	}
 
 	public void setProductDTO(ProductDTO productDTO) {
 		this.productDTO = productDTO;
-	}
+	}*/
 }

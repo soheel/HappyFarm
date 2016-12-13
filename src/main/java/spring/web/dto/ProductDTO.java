@@ -15,6 +15,16 @@ public class ProductDTO {
 	private int subCategoryNo;
 	
 	private ProducerDTO producerDto;
+	private List<ProductCertificationDTO> productCertificationDto;
+	
+	public List<ProductCertificationDTO> getProductCertificationDto() {
+		return productCertificationDto;
+	}
+
+	public void setProductCertificationDto(List<ProductCertificationDTO> productCertificationDto) {
+		this.productCertificationDto = productCertificationDto;
+	}
+
 	private CategorySubcategoryDTO subCategoryDto;
 	private PurchaseProductDTO purchaseProductDto;
 	private CartDTO cartDto;

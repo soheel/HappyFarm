@@ -7,60 +7,20 @@
 	<id column="package_no" property="no"/>
 	<result column="product_name" property="name"/>
 	<result column="product_no" property="productNo"/>
-	
-	<collection property="packageProductDTO" ofType="packageProductDTO">
-		<id column="package_product_no" property="packageno"/>
-		<result column="package_no" property="no"/>
-		<result column="product_no" property="productno"/>		
-	</collection>
-	
-	<collection property="productDTO" ofType="productDTO">
-		<id column="product_no" property="no"/>
-		<result column="product_name" property="name"/>
-		<result column="product_price" property="price"/>
-		<result column="product_profile" property="profile"/>
-		<result column="product_desc" property="desc"/>
-		<result column="product_eval" property="eval"/>
-		<result column="product_unit" property="unit"/>
-		<result column="producer_no" property="producerNo"/>
-	</collection>
-	
+	<collection property="productDTO" resultMap="productResultMap"/>
 </resultMap>
-<resultMap type="packageProductDTO" id="productResultMap">
-	<id column="package_product_no" property="packageno"/>
-	<result column="package_no" property="no"/>
-	<result column="product_no" property="productno"/>
-	
-	<association property="packageDTO" javaType="packageDTO">
-		<id column="package_no" property="no"/>
-		<result column="product_no" property="productNo"/>
-	</association>
-	
-	<collection property="productDTO" ofType="productDTO">
-		<id column="product_no" property="no"/>
-		<result column="product_name" property="name"/>
-		<result column="product_price" property="price"/>
-		<result column="product_profile" property="profile"/>
-		<result column="product_desc" property="desc"/>
-		<result column="product_eval" property="eval"/>
-		<result column="product_unit" property="unit"/>
-		<result column="producer_no" property="producerNo"/>
-		<association property="producerDTO" javaType="producerDTO">
-			<id column="producer_no" property="no"/>
-			<result column="producer_name" property="name"/>
-			<result column="producer_addr" property="addr"/>
-			<result column="producer_phone" property="phone"/>
-			<result column="producer_register_date" property="registerDate"/>
-		</association>
-	
-		<collection property="productCertificationDTO" ofType="productCertificationDTO">
-			<id column="product_certification_no" property="no"/>
-			<result column="certification_no" property="certificationNo"/>
-			<result column="product_no" property="productNo"/>
-		</collection>
-		
-	</collection>
-	
+
+<resultMap type="productDTO" id="productManager">
+	<id column="product_no" property="no"/>
+	<result column="product_name" property="name"/>
+	<result column="product_price" property="price"/>
+	<result column="product_profile" property="profile"/>
+	<result column="product_desc" property="desc"/>
+	<result column="product_eval" property="eval"/>
+	<result column="product_unit" property="unit"/>
+	<result column="producer_no" property="producerNo"/>
+	<association property="producerDto" resultMap="producerResultMap"/>
+	<collection property="productCertificationDto" resultMap="productCertificationDto"></collection>
 </resultMap>
 
 <resultMap type="producerDTO" id="producerResultMap">
@@ -69,8 +29,14 @@
 	<result column="producer_addr" property="addr"/>
 	<result column="producer_phone" property="phone"/>
 	<result column="producer_register_date" property="registerDate"/>
+
 </resultMap>
 
+<resultMap type="productCertificationDto" id="productCertificationDto">	
+	<id column="product_certification_no" property="no"/>
+	<result column="certification_no" property="certificationNo"/>
+	<result column="product_no" property="productNo"/>
+</resultMap>	
 	
 <resultMap type="memberDTO" id="memberResultMap">
 	<id column="member_no" property="no"/>
@@ -81,7 +47,6 @@
 	<result column="member_register_date" property="registerDate"/>
 	<result column="member_mileage" property="mileage"/>
 	<result column="member_reommand" property="recommand"/>
-	
 </resultMap>
 
 <resultMap type="communityDTO" id="communityResultMap">
@@ -113,8 +78,10 @@
 </resultMap>
 
 <!-- 1.개별상품관리 - 모든 상품들 정보를 불러온다. -->
-<select id="selectAllProduct" resultMap="productResultMap">
-	select * from product 
+<select id="selectAll" resultMap="productManager">
+	select pd.product_name, pd.product_price, pc.producer_name, certi.certification_no
+	from product pd, producer pc, product_certification certi
+	where pd.producer_no=pc.producer_no and certi.product_no=pd.product_no
 </select>
 
 <!-- 2. 개별상품관리 - 등록  -->
@@ -141,7 +108,7 @@
 </delete> 
 
 <!-- 4. package 상품들 정보를 불러온다. -->
-<select id="selectAllPackage" resultMap="productResultMap">
+<select id="selectAllPackage" resultMap="productManager">
 	select package.package_name, product.product_price, package_product.product_no
 	from package, product, package_product
 	where product.product_no = package.product_no and package.package_no = package_product.package_no
@@ -149,7 +116,7 @@
 
 <!-- 4.1 package상품에 있는 개별 상품 정보들을 불러온다.-->
 <!-- product_no에 일치하는 certification_no를 찾는다.-->
-<select id="packageShowManage" resultMap="productResultMap" parameterType="String">
+<select id="packageShowManage" resultMap="productManager" parameterType="String">
 	select product.product_name, product.product_price, producer.producer_name, product_certification.certification_no
 	from product, producer, product_certification
 	where product.product_no = product_certification.product_no and product.producer_no = producer.producer_no and product.product_no In (select package_product.product_no

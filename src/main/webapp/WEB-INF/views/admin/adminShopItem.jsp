@@ -24,6 +24,7 @@
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach items="${productlist}" var="productlist">
 											<tr class="cart_item">
 												<td class="product-check">
 													<div class="checks etrans">
@@ -35,21 +36,29 @@
 													<a href="shop-detail.html">
 														<img width="100" height="100" src="http://lorempixel.com/100/100/">
 													</a>
-													<a href="shop-detail.html">Apples </a> 
+													<a href="shop-detail.html"> </a> 
 												</td>
 												<td class="product-name">
-													으아아아아
+													${productlist.name}
 												</td>
 												<td class="product-price">
-													<span class="amount">&#36;3.95</span> 
+													<span class="amount"><%-- ${productlist.price} --%></span> 
 												</td>
 												<td class="product-producer">
-													<span class="amount">thie</span> 
+													<span class="amount"><%-- ${productlist.producerDto.name} --%></span> 
 												</td>
 												<td class="product-no">
-													<span class="amount">&#36;123-123-123</span> 
+													<span class="amount">
+													<%-- <c:forEach items="${productlist}" var="prolist">
+														<c:forEach items="${prolist.productCertificationDto}" var="certi">
+															<p>${certi.certificationNo}</p>	
+														</c:forEach>
+													</c:forEach> --%>
+														
+													</span> 
 												</td>
 											</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

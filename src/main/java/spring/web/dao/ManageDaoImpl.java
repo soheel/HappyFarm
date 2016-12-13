@@ -23,12 +23,14 @@ public class ManageDaoImpl implements ManageDao {
 	
 	@Override
 	public List<ProductDTO> selectAllProduct() {
-		return sqlsession.selectList("userEtcMapper.selectAllProduct");
+		List<ProductDTO> list = sqlsession.selectList("manageMapper.selectAll");
+		System.out.println(list.size()+"ddd");
+		return list;
 	}
 
 	@Override
 	public int productRegisterManage(ProductDTO productDTO) {
-		return sqlsession.insert("userEtcMapper.productRegisterManage",productDTO);
+		return sqlsession.insert("manageMapper.productRegisterManage",productDTO);
 		
 	}
 
@@ -39,31 +41,31 @@ public class ManageDaoImpl implements ManageDao {
 */
 	@Override
 	public int productModifyManage(ProductDTO productDTO) {
-		return sqlsession.update("userEtcMapper.productModifyManage",productDTO);
+		return sqlsession.update("manageMapper.productModifyManage",productDTO);
 	}
 
 	@Override
 	public int productDeleteManage(int no) {
-		return sqlsession.delete("userEtcMapper.productDeleteManage",no);
+		return sqlsession.delete("manageMapper.productDeleteManage",no);
 	}
 
 	@Override
 	public List<PackageDTO> packageManage() {
-		return sqlsession.selectList("userEtcMapper.packageManage");
+		return sqlsession.selectList("manageMapper.packageManage");
 	}
 
 	@Override
 	public List<ProductDTO> packageShowManage(String name) {
-		return sqlsession.selectList("userEtcMapper.packageShowManage",name);
+		return sqlsession.selectList("manageMapper.packageShowManage",name);
 		
 	}
 
 	@Override
 	public int packageRegisterManage(Map<String, Object> packageRegister) {
 		
-		int result1=sqlsession.insert("userEtcMapper.packageRegisterManage",packageRegister);
-		int result2=sqlsession.insert("userEtcMapper.packageRegisterPackage",packageRegister);
-		int result3=sqlsession.insert("userEtcMapper.packageRegisterPackageProduct",packageRegister);
+		int result1=sqlsession.insert("manageMapper.packageRegisterManage",packageRegister);
+		int result2=sqlsession.insert("manageMapper.packageRegisterPackage",packageRegister);
+		int result3=sqlsession.insert("manageMapper.packageRegisterPackageProduct",packageRegister);
 		
 		return result3;
 	}
@@ -95,12 +97,12 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public List<ProductDTO> selectAllProducer() {
-		return sqlsession.selectList("userEtcMapper.selectAllProducer");
+		return sqlsession.selectList("manageMapper.selectAllProducer");
 	}
 
 	@Override
 	public int producerRegisterManage(ProducerDTO producerDTO) {
-		return sqlsession.insert("userEtcMapper.producerRegisterManage",producerDTO);
+		return sqlsession.insert("manageMapper.producerRegisterManage",producerDTO);
 	}
 
 	@Override
@@ -111,32 +113,32 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public int producerModifyManage(ProducerDTO producerDTO) {
-		return sqlsession.update("userEtcMapper.producerModifyManage",producerDTO);
+		return sqlsession.update("manageMapper.producerModifyManage",producerDTO);
 	}
 
 	@Override
 	public int producerDeleteManage(int no) {
-		return sqlsession.delete("userEtcMapper.producerDeleteManage",no);
+		return sqlsession.delete("manageMapper.producerDeleteManage",no);
 	}
 	
 	@Override
 	public List<ProductDTO> selectAllMember() {
-		return sqlsession.selectList("userEtcMapper.selectAllMember");
+		return sqlsession.selectList("manageMapper.selectAllMember");
 	}
 
 	@Override
 	public int memberDeleteManage(String email) {
-		return sqlsession.delete("userEtcMapper.memberDeleteManage",email);
+		return sqlsession.delete("manageMapper.memberDeleteManage",email);
 	}
 
 	@Override
 	public List<CommunityDTO> communityManage() {
-		return sqlsession.selectList("userEtcMapper.communityManage");
+		return sqlsession.selectList("manageMapper.communityManage");
 	}
 
 	@Override
 	public int communityRegisterManage(CommunityDTO communityDTO) {
-		return sqlsession.insert("userEtcMapper.communityRegisterManage");
+		return sqlsession.insert("manageMapper.communityRegisterManage");
 	}
 
 	@Override
@@ -147,22 +149,22 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public int communityModifyManage(CommunityDTO communityDTO) {
-		return sqlsession.update("userEtcMapper.communityModifyManage",communityDTO);
+		return sqlsession.update("manageMapper.communityModifyManage",communityDTO);
 	}
 
 	@Override
 	public int communityDeleteManage(String no) {
-		return sqlsession.delete("userEtcMapper.communityDeleteManage",no);
+		return sqlsession.delete("manageMapper.communityDeleteManage",no);
 	}
 
 	@Override
 	public List<QnaDTO> qnaManage() {
-		return sqlsession.selectList("userEtcMapper.qnaManage");
+		return sqlsession.selectList("manageMapper.qnaManage");
 	}
 
 	@Override
 	public int qnaRegisterManage(CommunityCommentDTO communitycommentDTO) {
-		return sqlsession.insert("userEtcMapper.qnaRegisterManage",communitycommentDTO);
+		return sqlsession.insert("manageMapper.qnaRegisterManage",communitycommentDTO);
 	}
 
 	/*@Override
@@ -173,22 +175,22 @@ public class ManageDaoImpl implements ManageDao {
 */
 	@Override
 	public int qnaModifyManage(QnaDTO qnaDTO) {
-		return sqlsession.update("userEtcMapper.qnaModifyManage",qnaDTO);
+		return sqlsession.update("manageMapper.qnaModifyManage",qnaDTO);
 	}
 
 	@Override
 	public int qnaDeleteManage(String no) {
-		return sqlsession.update("userEtcMapper.qnaDeleteManage",no);
+		return sqlsession.update("manageMapper.qnaDeleteManage",no);
 	}
 
 	@Override
 	public List<DonationDTO> donationOrgManage() {
-		return sqlsession.selectList("userEtcMapper.donationOrgManage");
+		return sqlsession.selectList("manageMapper.donationOrgManage");
 	}
 
 	@Override
 	public int donationOrgRegisterManage(DonationDTO donationDTO) {
-		return sqlsession.insert("userEtcMapper.donationOrgRegisterManage",donationDTO);
+		return sqlsession.insert("manageMapper.donationOrgRegisterManage",donationDTO);
 	}
 
 	@Override
@@ -199,12 +201,12 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public int donationOrgModifyManage(DonationDTO donationDTO) {
-		return sqlsession.update("userEtcMapper.donationOrgModifyManage",donationDTO);
+		return sqlsession.update("manageMapper.donationOrgModifyManage",donationDTO);
 	}
 
 	@Override
 	public int donationOrgDeleteManage(int no) {
-		return sqlsession.delete("userEtcMapper.donationOrgDeleteManage",no);
+		return sqlsession.delete("manageMapper.donationOrgDeleteManage",no);
 	}
 
 	

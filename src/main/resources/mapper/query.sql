@@ -185,6 +185,10 @@ insert into category_subcategory values(category_subcategory_no.nextval, 'Âý½Ò/È
 insert into category_subcategory values(category_subcategory_no.nextval, 'Àâ°î/Äá/±ú',3);
 insert into category_subcategory values(category_subcategory_no.nextval, '°íÃå°¡·ç/¹Ì¼ý°¡·ç/°î¹°°¡·ç',3);
 
+
+	select product.product_name, product.product_price, producer.producer_name
+	from product, producer
+	where product.producer_no = producer.producer_no;
 -- product Å×ÀÌºí---------------------------------------------------------------
 drop table product;
 select * from product;
@@ -340,6 +344,9 @@ insert into certification values(certification_no.nextval, 'munongyag.png', '¹«³
 insert into certification values(certification_no.nextval, 'youginong.png', 'À¯±â³ó½ÄÇ°', 'À¯±â³ó ½ÄÇ° ÀÎÁõ¸¶Å©ÀÔ´Ï´Ù.');
 
 
+
+	
+	
 -- product_certification Å×ÀÌºí-------------------------------------------------
 drop table product_certification;
 select * from product_certification;
@@ -362,6 +369,8 @@ insert into product_certification values (product_certification_no.nextval, 2,3)
 insert into product_certification values (product_certification_no.nextval, 2,4);
 insert into product_certification values (product_certification_no.nextval, 1,5);
 insert into product_certification values (product_certification_no.nextval, 3,5);
+
+	
 
 -- purchase_state Å×ÀÌºí--------------------------------------------------------
 drop table purchase_state;
