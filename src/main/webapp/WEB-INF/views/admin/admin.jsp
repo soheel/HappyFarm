@@ -7,7 +7,7 @@
 		<div class="col-md-12">
 			<!-- button 영역 -->
 			<div class="col-md-4">
-				<a href="<c:url value="/admin/shopItem"/>">
+				<a href="<c:url value="/manageController/productManage"/>">
 					<div class="admin-btn admin-color-royalblue">개별 상품 관리</div>
 				</a>
 			</div>

@@ -360,9 +360,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<!-- 주문/조회 상태에서 주문완료된 상품을 삭제할 때 -->
-	<delete id="deleteOrderList" parameterType="int">
-		delete from purchase
-		where purchase_no=#{no} and purchase_state_no=1
+	<delete id="deleteOrderList" parameterType="String">
+		delete from purchase pc
+		where pc.member_email=(select m.member_email from member m where m.member_email=#{email})
+		and pc.purchase_no=#{no} and pc.purchase_state_no=1
 	</delete>
 	
 	<!-- 내정보 - 나의질문내역 가져오기 -->
