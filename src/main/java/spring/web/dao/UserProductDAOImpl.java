@@ -96,4 +96,9 @@ public class UserProductDAOImpl implements UserProductDAO {
 		return sqlSession.selectList("UserProductMapper.getPackageInnerProductList");
 	}
 
+	@Override
+	public int getMileage(String email) {
+		return sqlSession.selectOne("userInfoMapper.getMileage", email);
+	}
+
 }

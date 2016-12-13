@@ -38,14 +38,13 @@
 												<span class="posted_in">Producer: <a href="#">${producer.name }</a></span>
 												
 											</div>
-											<form class="cart">
+											<form action = "<c:url value = '/userProductController/purchase?productNo=${product.no}&producerNo=${producer.no}&price=${product.price}'/>" method = "post" class="cart">
 												<div class="quantity">
 													<input id = "product_num" type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"/>
 												</div>
 												<input type = "button" id = "addToCart" value = "Add to Cart" class="single_add_to_cart_button button"/>
 												<button type="submit" class="single_add_to_cart_button button">Purchase</button>
 											</form>
-											
 											<div class="clear"></div>
 											
 										</div> 

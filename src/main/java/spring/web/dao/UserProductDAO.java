@@ -99,4 +99,9 @@ public interface UserProductDAO {
 	 * 검색하기
 	 * */
 	List<ProductDTO> search(String keyword);
+	
+	/**
+	 * 내 마일리지 가져오기
+	 * */
+	int getMileage(String email);
 }

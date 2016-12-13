@@ -59,14 +59,14 @@
 											</div>
 										</div>
 										<div class="noo-product-title">
+											<input id = "product_no" type = "hidden" value = "${list.no }">
 											<h3><a href="<c:url value="/package/detail"/>">${list.name }</a></h3>
 											<span class="price"><span class="amount">${list.price } 원</span></span>
 											<div class="noo-product-action">
 												<div class="noo-action">
-													<!-- 장바구니에 담기 버튼 -->
-														<a href="#" class="button product_type_simple add_to_cart_button">
-															<span>Add to cart</span>
-														</a>
+													<div class="noo-action" id="addToCartDirect">
+														<input type = "button" value="Add to cart" class="single_add_to_cart_button button">
+													</div>
 												</div>
 											</div>
 										</div>

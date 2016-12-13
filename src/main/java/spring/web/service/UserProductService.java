@@ -34,5 +34,11 @@ public interface UserProductService {
 	 * 패키지 상품 상세보기
 	 * */
 	Map<String, Object> getPackageDetail();
-
+	
+	/**
+	 * purchase
+	 * productDTO, producerDTO를 map에 넣어 반환
+	 * */
+	Map<String, Object> showPurchase(int productNo, int producerNo, String email);
+	
 }
