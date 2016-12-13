@@ -44,7 +44,7 @@ public class ManageController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
 		
-		mv.setViewName("productManage");  
+		mv.setViewName("admin/adminShopItem");  
 		return mv;
 	}
 	
