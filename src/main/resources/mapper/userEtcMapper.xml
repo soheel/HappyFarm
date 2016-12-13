@@ -11,13 +11,13 @@
 	<result column="community_desc" property="desc"/>
 	<result column="community_register_date" property="registerDate"/>
 	<result column="community_state" property="state"/>
-	<collection property="communityCommentDto" resultMap="communityCommentDto"/>
+	<collection property="communityCommentDTO" resultMap="communityCommentDTO"/>
 </resultMap>
 
-<resultMap type="communityCommentDTO" id="communityCommentDto">
-	<id column="community_comment_no" property="no"/>
-		<result column="community_comment_content" property="content"/>
+<resultMap type="communityCommentDTO" id="communityCommentDTO">
+		<id column="community_comment_no" property="no"/>
 		<result column="community_comment_register" property="registerdate"/>
+		<result column="community_comment_content" property="content"/>
 		<result column="community_no" property="communityNo"/>
 		<result column="member_email" property="email" />
 </resultMap>
@@ -92,7 +92,7 @@
 
 <!-- 2-2. 화면 밑에는 댓글에 해당하는 댓글 내용이 다 출력되어진다. -->
 <select id="getCommunityComment" resultMap="communityResultMap" parameterType="int">
-  select community_comment_no,community_comment_register,community_comment_content,member_email 
+  select community_comment_register,community_comment_content,member_email 
   from community_comment,community 
   where community.community_no=#{value} and community.community_no = community_comment.community_no 
 </select>

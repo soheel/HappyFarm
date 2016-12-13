@@ -80,7 +80,7 @@ public class UserEtcController {
 		 */
 		communityInfo = userEtcService.communityDetail(no);
 		CommunityDTO community = (CommunityDTO)communityInfo.get("community");
-		List<CommunityCommentDTO> commentlist = (List<CommunityCommentDTO>)communityInfo.get("commentlist");
+		List<CommunityDTO> commentlist = (List<CommunityDTO>)communityInfo.get("commentlist");
 		List<CommunityDTO> communityIngList = (List<CommunityDTO>)communityInfo.get("communityIngList");
 		
 		ModelAndView mv = new ModelAndView();

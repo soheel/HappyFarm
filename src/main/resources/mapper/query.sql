@@ -1,6 +1,11 @@
 donation_org -> donation -> member -> producer -> category -> sub_category -> product -> package -> package_product -> certification -> product_certification
 -> purchase_state -> purchase -> purchase_order -> purchase_product -> cart -> product_comment -> commuinty -> community_comment -> qna -> information
+select community_comment_no,community_comment_register,community_comment_content,member_email 
+  from community_comment,community 
+  where community.community_no=23 and community.community_no = community_comment.community_no 
 
+  
+  select community_comment_no,community_comment_register,community_comment_content,member_email from community_comment,community where community.community_no=23 and community.community_no = community_comment.community_no  
 테이블 삭제 순서
 drop table information;
 drop table qna;

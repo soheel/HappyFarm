@@ -9,13 +9,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
-import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
 @Repository
@@ -46,8 +44,10 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	      CommunityDTO community= sqlsession.selectOne("userEtcMapper.getCommunityProfile",no);
 	      System.out.println(community.getName());
 	      //댓글 정보 받아오기
-	      List<CommunityCommentDTO> commentlist = sqlsession.selectList("userEtcMapper.getCommunityComment",no);
-	   
+	      List<CommunityDTO> commentlist = sqlsession.selectList("userEtcMapper.getCommunityComment",no);
+	      System.out.println("commentlist의 크기 : " + commentlist.size());
+	      
+	      
 	      // 현재 진행중인 행사 목록 받아오기
 	      List<CommunityDTO> communityIngList = sqlsession.selectList("userEtcMapper.getCommunityIng");
 

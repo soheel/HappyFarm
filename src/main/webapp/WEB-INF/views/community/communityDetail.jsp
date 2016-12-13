@@ -21,6 +21,7 @@
 							<div class="noo-main col-md-9">
 								<!-- <div class="product">
 									<div class="single-inner"> -->
+										<h3> 세부사항 보기</h3>
 										<div class="images">
 											<div class="product-simple-image">
 											<h1 class="product_title entry-title">${community.name}</h1>
@@ -30,18 +31,41 @@
 											</div>
 										</div>
 									
-									<c:if test="${object.key=='commentlist'}">
-										<c:set var="commentlist" value="${object.value}"/>
+										<h3> 댓글 내용 보기</h3>
 										<div class="summary entry-summary">
-										<c:forEach var="comment" items="${commentlist}">
-											<p>${comment.communityCommentDto.no}</p>
-											<p>${comment.communityCommentDto.content}</p>
-											<p>${comment.communityCommentDto.registerdate}</p>
-											<p>${comment.communityCommentDto.email}</p>
+									
+									<c:forEach items="${commentlist}" var="communityDTO">
+										<c:forEach items="${communityDTO.communityCommentDTO}" var="comm">
+											<p>${comm.no}</p>
+											<p>${comm.content}</p>
+											<p>${comm.registerdate}</p>
+											<p>${comm.email}</p>
 										</c:forEach>
-										</div>
-									</c:if>
+									</c:forEach>
+
+									</div>
+									
+									<h3> 오른쪽 바에 진행중인 행사 목록 띄어주기</h3>
+									<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
+										<c:forEach items="${communityIngList}" var="ing">
+											<div class="noo-product-inner">
+											
+												<div class="noo-product-thumbnail">
+													<a href="<c:url value="/userEtcController/communityDetail?no=${ing.no}"/>">
 						
+														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/${ing.profile}' alt="" />
+													</a>
+												</div>
+												<div class="noo-product-title"> 
+													<h3><a href="">${ing.name}</a></h3>
+													<span class="date"><span class="amount">${ing.registerDate}</span></span>
+												</div>
+												
+											</div>
+											</c:forEach>
+										</div>
+										
+										
 										<!-- <div class="summary entry-summary">
 											<h1 class="product_title entry-title"></h1>
 											<p class="date"><span class="amount">2016.12.5 - 2016.12.9</span></p>
