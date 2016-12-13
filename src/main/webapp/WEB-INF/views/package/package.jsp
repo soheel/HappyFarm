@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 		<section class="noo-page-heading eff">
 			<div class="container">
 				<div class="noo-heading-content">
@@ -59,14 +52,14 @@
 											</div>
 										</div>
 										<div class="noo-product-title">
+											<input id = "product_no" type = "hidden" value = "${list.no }">
 											<h3><a href="<c:url value="/package/detail"/>">${list.name }</a></h3>
 											<span class="price"><span class="amount">${list.price } 원</span></span>
 											<div class="noo-product-action">
 												<div class="noo-action">
-													<!-- 장바구니에 담기 버튼 -->
-														<a href="#" class="button product_type_simple add_to_cart_button">
-															<span>Add to cart</span>
-														</a>
+													<div class="noo-action" id="addToCartDirect">
+														<input type = "button" value="Add to cart" class="single_add_to_cart_button button">
+													</div>
 												</div>
 											</div>
 										</div>
@@ -83,5 +76,3 @@
 								<a class="next page-numbers" href="#"><i class="fa fa-long-arrow-right"></i></a>
 							</div>
 						</div>
-	</body>
-</html>
