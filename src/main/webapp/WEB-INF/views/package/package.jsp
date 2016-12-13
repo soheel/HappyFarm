@@ -54,7 +54,7 @@
 											</a>
 											<div class="noo-rating">
 												<div class="star-rating">
-													<span style="width:0%"></span>
+													<span style="width:${list.eval * 20}%"></span>
 												</div>
 											</div>
 										</div>
@@ -63,9 +63,10 @@
 											<span class="price"><span class="amount">${list.price } 원</span></span>
 											<div class="noo-product-action">
 												<div class="noo-action">
-													<a href="#" class="button product_type_simple add_to_cart_button">
-														<span>Add to cart</span>
-													</a>
+													<!-- 장바구니에 담기 버튼 -->
+														<a href="#" class="button product_type_simple add_to_cart_button">
+															<span>Add to cart</span>
+														</a>
 												</div>
 											</div>
 										</div>

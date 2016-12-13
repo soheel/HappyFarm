@@ -144,8 +144,29 @@
 						}
 					})
 				})
+				
+				/* 장바구니 추가 */
+				$(document).on("click", "#addToCart",function() {
+					alert(1);
+					$.ajax({
+						url : "<c:url value='/userProductController/addCart'/>",
+						type : "post",
+						data : "productNo=" + $("#product_no").val() + "&num=" + $("#product_num").val(),
+						dataType : "text",
+						success : function(result) {
+							if(result >= 1) {
+								alert("해당상품이 장바구니에 추가되었습니다.");
+							}else {
+								alert("해당상품이 이미 장바구니에 존재합니다.");
+							}
+						},
+						error : function(err) {
+							alert("해당상품이 이미 장바구니에 존재합니다.");
+						}
+					})
+				})
+				
 			})
-			
 			</script>
 </body>
 </html>
