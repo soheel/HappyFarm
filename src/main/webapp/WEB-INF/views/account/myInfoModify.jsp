@@ -2,17 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <body>
-	
 					<div class="row">
 						<div class="noo-main col-md-12">
 							<div id="customer_login" class="myInfo">
 								<div class="col-md-1"></div>
 								<div class="col-md-10">
 									<h2>Info Modify</h2>
-									<form class="find-profile id" action="/userInfoController/updateUserInfo">
+									<form class="find-profile id" action="<c:url value='/userInfoController/updateUserInfo' />">
 										<div class="form-row form-row-wide">
 				
 											<label for="find_id">
@@ -37,7 +37,7 @@
 												비밀번호 확인
 												<span class="required">*</span>
 											</label>
-											<input type="password" class="input-text" name="pwd" id="reg_name" value="${memberDto.pwd}"/>
+											<input type="password" class="input-text" name="pwdCheck" id="reg_name" value="${memberDto.pwd}"/>
 											
 											<label for="find_phone">
 												연락처
@@ -53,6 +53,3 @@
 							</div>
 						</div>
 					</div>
-	
-</body>
-</html>

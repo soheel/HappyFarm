@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-	<body>
 			<section class="noo-page-heading eff">
 				<div class="container">
 					<div class="noo-heading-content">
@@ -70,7 +67,7 @@
 												<div class="quantity">
 													<input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"/>
 												</div>
-												<button type="submit" class="single_add_to_cart_button button">Add to cart</button>
+												<input type = "button" id = "addToCart" value = "Add to Cart" class="single_add_to_cart_button button"/>
 												<button type="submit" class="single_add_to_cart_button button">Purchase</button>
 											</form>
 											<div class="clear"></div>
@@ -94,8 +91,8 @@
 															<!-- 패키시 상품 내에있는 개별 상품 -->
 															<li>
 																<div class="box-item">
-																	<img width="150" height="150" src="<c:url value="/resources/img/product/"/>${list.profile}" alt="" /> 
-																	<strong>${list.name}</strong>
+																	<img width="150" height="150" src="<c:url value="/resources/img/product/"/>${list.profile}" alt="" />
+																	<a href = "<c:url value = '/userProductController/showProductDetail?productNo='/>${list.no}"><strong>${list.name}</strong></a>
 																	<span>${list.price} 원</span>
 																</div>
 															</li>
@@ -228,5 +225,3 @@
 					</div>
 				</div>
 			</div>
-	</body>
-</html>

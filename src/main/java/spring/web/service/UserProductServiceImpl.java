@@ -145,4 +145,21 @@ public class UserProductServiceImpl implements UserProductService{
 		return map;
 	}
 
+	@Override
+	public Map<String, Object> showPurchase(int productNo, int producerNo, String email) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		// productNo를 통해 ProductDTO 얻어오기
+		ProductDTO productDTO = userProductDAO.getProductByProductNo(productNo);
+		map.put("productDTO", productDTO);
+		// producerNo를 통해 ProducerDTO 얻어오기
+		ProducerDTO producerDTO = userProductDAO.getProducerByProducerNo(producerNo);
+		map.put("producerDTO", producerDTO);
+		// 현재 내 마일리지 얻어오기
+		int mileage = userProductDAO.getMileage(email);
+		map.put("mileage", mileage);
+		
+		return map;
+	}
+
 }

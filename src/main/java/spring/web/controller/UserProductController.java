@@ -201,11 +201,40 @@ public class UserProductController {
 	}
 	
 	/**
+	 * 상품 상세보기에서 purchase 클릭했을 때
+	 * */
+	@RequestMapping("purchase")
+	public ModelAndView purchase(int productNo, int producerNo, int quantity, int price, HttpSession session) {
+		System.out.println("purchase");
+		Map<String, Object> map = null;
+		ModelAndView mv = new ModelAndView();
+		// productDTO 가져오기
+		// producerDTO 가져오기
+		// 위 두 가지를 한번에 처리할 service 호출
+		map = service.showPurchase(productNo, producerNo, (String)session.getAttribute("email"));
+		ProductDTO productDTO = (ProductDTO)map.get("productDTO");
+		ProducerDTO producerDTO = (ProducerDTO)map.get("producerDTO");
+		int mileage = (Integer)map.get("mileage");
+		mv.addObject("product", productDTO);
+		mv.addObject("producer", producerDTO);
+		mv.addObject("mileage", mileage);
+		mv.setViewName("order/orderCard");
+		
+		// 총 가격 가져오기
+		int totalPrice = quantity * price;
+		mv.addObject("totalPrice", totalPrice);
+		mv.addObject("quantity", quantity);
+		
+		return mv;
+	}
+	
+	/**
 	 * 주문화면에서 결제버튼 클릭했을 때
 	 * */
 	@RequestMapping("pay")
-	public void pay() {
-		
+	@ResponseBody
+	public String pay() {
+		return "pay";
 	}
 	
 	/**
