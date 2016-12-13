@@ -316,12 +316,99 @@ public class UserInfoController {
 	}
 	
 	/**
-	 * 조회에관한 12가지 기능별 처리
+	 * 조회에관한 12가지 기능별 처리 - 주문내역 조회
 	 * */
-	@RequestMapping("showButton")
-	public void showButton(String value) {
+	@RequestMapping("searchOrderList")
+	public ModelAndView searchOrderList(HttpSession session,String value) {
+		System.out.println(value);
+		String email = (String)session.getAttribute("email");
+		List<MemberDTO> list = null;
+		int result=0;
 		
-	}         
+		if(value.equals("전체")){
+			list = userService.myPageOrderListAll(email);
+			
+		}else if(value.equals("3개월")){
+			list = userService.myPageCancelList3(email);
+			
+		}else if(value.equals("6개월")){
+			list = userService.myPageCancelList6(email);
+			
+		}else if(value.equals("1년")){
+			list = userService.myPageOrderList12(email);
+			
+		}else if(value.equals("취소")){
+			//result = userService.deleteOrderProduct(1);
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("account/shopping/order");
+		
+		return mv;
+	}    
+	
+	/**
+	 * 조회에관한 12가지 기능별 처리 - 환불내역 조회
+	 * */
+	@RequestMapping("searchRefundList")
+	public ModelAndView searchRefundList(HttpSession session,String value) {
+		System.out.println(value);
+		String email = (String)session.getAttribute("email");
+		List<MemberDTO> list = null;
+		
+		
+		if(value.equals("전체")){
+			list = userService.myPageRefundListAll(email);
+			
+		}else if(value.equals("3개월")){
+			list = userService.myPageRefundList3(email);
+			
+		}else if(value.equals("6개월")){
+			list = userService.myPageRefundList6(email);
+			
+		}else if(value.equals("1년")){
+			list = userService.myPageRefundList12(email);
+			
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("account/shopping/refund");
+		
+		return mv;
+	}    
+
+	/**
+	 * 조회에관한 12가지 기능별 처리 - 환불내역 조회
+	 * */
+	@RequestMapping("searchReturnList")
+	public ModelAndView searchReturnList(HttpSession session,String value) {
+		System.out.println(value);
+		String email = (String)session.getAttribute("email");
+		List<MemberDTO> list = null;
+		
+		
+		if(value.equals("전체")){
+			list = userService.myPageCancelListAll(email);
+			
+		}else if(value.equals("3개월")){
+			list = userService.myPageCancelList3(email);
+			
+		}else if(value.equals("6개월")){
+			list = userService.myPageCancelList6(email);
+			
+		}else if(value.equals("1년")){
+			list = userService.myPageCancelList12(email);
+			
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("account/shopping/return");
+		
+		return mv;
+	}    
+	
 	
 	
 	
@@ -520,9 +607,13 @@ public class UserInfoController {
 	 * 개인정보 수정
 	 * */
 	@RequestMapping("updateUserInfo")
-	public int updateUserInfo(MemberDTO memberDto){
+	public String updateUserInfo(MemberDTO memberDto)throws Throwable{
 		int result = userService.updateUserInfo(memberDto);
-		return result;
+		if(result==0){
+			throw new Exception("수정할 수 없습니다.");
+		}
+		
+		return "forward:myPageInfoModify";
 	}
 	
 	

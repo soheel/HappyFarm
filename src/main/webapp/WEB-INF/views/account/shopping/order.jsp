@@ -3,10 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <h2>주문/배송 조회</h2>
-<input type="button" value="전체" name="id">
-<input type="button" value="3개월" name="three_month">
-<input type="button" value="6개월" name="six_month">
-<input type="button" value="1년" name="year_month">
+
+
+
+
+<input type="button" value="전체" name="id" class="searchOrderList">
+<input type="button" value="3개월" name="three_month" class="searchOrderList">
+<input type="button" value="6개월" name="six_month" class="searchOrderList">
+<input type="button" value="1년" name="year_month" class="searchOrderList">
 <table class="table">
 	<thead>
 		<tr>
@@ -45,4 +49,4 @@
 	</tbody>
 </table>
 <input type="button" value="환불/반품/교환" name="order-action">
-<input type="button" value="취소" name="cancel">
+<input type="button" value="취소" name="cancel" class="searchOrderList">

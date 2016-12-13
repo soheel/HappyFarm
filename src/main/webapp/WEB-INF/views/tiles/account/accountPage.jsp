@@ -144,5 +144,25 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>myAccount.js"></script>
+	<script type="text/javascript">
+	//버튼의 value값에 따라 결과 나누기
+	$(document).ready(function(){
+		$(".searchOrderList").click(function(){
+			//alert($(this).val());
+			location.href="<c:url value='/userInfoController/searchOrderList'/>?value="+$(this).val();
+		});
+		
+		$(".searchRefundList").click(function(){
+			//alert($(this).val());
+			location.href="<c:url value='/userInfoController/searchRefundList'/>?value="+$(this).val();
+		});
+		
+		$(".searchReturnList").click(function(){
+			//alert($(this).val());
+			location.href="<c:url value='/userInfoController/searchReturnList'/>?value="+$(this).val();
+		});
+		
+	});
+</script>
 </body>
 </html>
