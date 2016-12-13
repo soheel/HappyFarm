@@ -1,0 +1,74 @@
+.admin-btn{
+	width:99%;
+	height:190px;
+	color:#fff;
+	font-size:30px;
+	line-height:190px;
+	text-align: center;
+	border-radius: 10px;
+	margin-bottom: 30px;
+	cursor:pointer;
+}
+
+.admin-color-royalblue{
+	background-color: #3991db;
+	transition: 0.2s;
+}
+
+.admin-color-blueviolet{
+	background-color: #9139db;
+	transition: 0.2s;
+}
+
+.admin-color-greenyellow{
+	background-color: #d9db3a;
+	transition: 0.2s;
+}
+
+.admin-color-chocolate{
+	background-color: #dc673b;
+	transition: 0.2s;
+}
+
+.admin-color-peru{
+	background-color: #da9838;
+	transition: 0.2s;
+}
+
+.admin-color-dimgray{
+	background-color: #555555;
+	transition: 0.2s;
+}
+
+.admin-color-mediumorchid{
+	background-color: #dd39bc;
+	transition: 0.2s;
+}
+
+#adminMain div.admin-color-royalblue:hover{
+	background-color: #2b618f;
+}
+
+#adminMain div.admin-color-blueviolet:hover{
+	background-color: #5a2288;
+}
+
+#adminMain div.admin-color-greenyellow:hover{
+	background-color: #9d9e2b;
+}
+
+#adminMain div.admin-color-chocolate:hover{
+	background-color: #a55334;
+}
+
+#adminMain div.admin-color-peru:hover{
+	background-color: #a0702b;
+}
+
+#adminMain div.admin-color-dimgray:hover{
+	background-color: #383838;
+}
+
+#adminMain div.admin-color-mediumorchid:hover{
+	background-color: #a82c8f;
+}

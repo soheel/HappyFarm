@@ -1,0 +1,54 @@
+#page-content-wrapper .container table.table tr th:first-child{
+	width:4%;
+}
+
+.commerce-cart table.cart td{
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	border-color: #f4eede;
+	padding: 30px 0;
+}
+
+.adminShopItem-action-btn{
+	float: right;
+	display: inline-block;
+}
+
+.adminShopItem-action-btn input[type="button"]{
+	width:80px;
+	height:35px;
+	margin: 0px 5px;
+	margin-top: 15px;
+}
+
+.commerce form .form-row input.input-text{
+    height:40px;
+    font-size:23px;
+    font-style: normal;
+}
+
+
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+  z-index: 105000;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-backdrop{
+	z-index: 104000;
+}

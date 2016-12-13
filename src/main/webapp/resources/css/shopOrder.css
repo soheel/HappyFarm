@@ -1,0 +1,38 @@
+.order_check_border{
+	border: 1px solid gray;
+	padding: 15px 0px;
+	margin:10px 0px;
+}
+
+.order_check_content{
+
+}
+
+.seller_check_border{
+	border: 1px solid gray;
+	padding: 15px 0px;
+	margin:10px 0px;
+}
+
+.addr_check_border{
+	border: 1px solid gray;
+	padding: 15px 0px;
+	margin:10px 0px;
+}
+
+.payment_check_border{
+	border: 1px solid gray;
+	padding: 15px 0px;
+	margin:10px 0px;
+}
+
+.mileage_check_border{
+	padding: 15px 0px;
+	margin:10px 0px;	
+}
+
+.final_check_border{
+	border: 1px solid gray;
+	padding: 15px 0px;
+	margin:10px 0px;
+}
