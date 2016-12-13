@@ -253,19 +253,14 @@ public class UserProductController {
 	 * */
 	@RequestMapping("showPackageDetail")
 	public ModelAndView showPackageDetail() {
-		/**
-		 * 1. 뷰로부터 해당하는 패키지 상품의 상품번호(packageNo)를 인수로 전달받는다.
-		 * 2. 해당 패키지의 ProductDTO를 가져온다.
-		 * 3. 해당 패키지에 포함되어있는 상품들의 ProductDTO들을 list에 담아 가져온다.
-		 * 4. 해당 패키지상품에 대한 댓글의 ProductCommentDTO를 가져온다.
-		 * 5. service에서는 map을 반환하는데, map에는 ProductDTO, ProductCommentDTO가 들어있는 list와
-		 * ProductDTO들이 들어있는 list가 있다.
-		 * 6. 이 map에서 두개의 list들을 꺼내어 modelandview에 저장하여 뷰로 보낸다.
-		 * */
-		
+		System.out.println("showPackageDetail 메소드");
 		ModelAndView mv = new ModelAndView();
-		
-		return null;
+		Map<String, Object> map = service.getPackageDetail();
+		ProductDTO productDTO = (ProductDTO)map.get("productDTO");
+		List<ProductDTO> list = (List<ProductDTO>)map.get("list");
+		mv.addObject("packageProduct", productDTO);
+		mv.addObject("list", list);
+		mv.setViewName("package/packageDetail");
+		return mv;
 	}
-
 }

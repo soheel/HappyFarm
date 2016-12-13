@@ -251,6 +251,8 @@ insert into product values(product_no.nextval, '차조', 13000, 'rice_mixgrainsbea
 insert into product values(product_no.nextval, '찰보리', 5000, 'rice_mixgrainsbeansesame_barley.jpg', 'rice_mixgrainsbeansesame_barley_1.jpg', 4.2, '500g', 3, 22);
 insert into product values(product_no.nextval, '찰수수', 13000, 'rice_mixgrainsbeansesame_millets.jpg', 'rice_mixgrainsbeansesame_millets_1.jpg', 3.7, '500g', 3, 22);
 
+insert into product values(99, '패키지상품', 99999, 'hospitalset.png', 'hospitalset_1.jpg', 3.7,'바구니', null, null);
+
 -- package 테이블---------------------------------------------------------------
 drop table package;
 select * from package;
@@ -259,14 +261,18 @@ drop sequence package_no;
 create sequence package_no;
 
 create table package (
-package_no number(5) primary key,
-package_name varchar2(20),
+package_pk number(5) primary key,
+package_no number(5) references product(product_no) on delete cascade,
 product_no number(5) references product(product_no) on delete cascade
 )
 
+alter table package drop column package_name;
+
 삽입
-insert into package values(package_no.nextval, '김장세트', 8);
-insert into package values(package_no.nextval, '과일병원세트', 13);
+insert into package values(package_no.nextval, 99, 1);
+insert into package values(package_no.nextval, 99, 2);
+insert into package values(package_no.nextval, 99, 3);
+
 -- package_product 테이블-------------------------------------------------------
 drop table package_product;
 select * from package_product;
@@ -301,6 +307,10 @@ insert into package_product values(package_product_no.nextval, 1, 3);
 insert into package_product values(package_product_no.nextval, 1, 4);
 insert into package_product values(package_product_no.nextval, 1, 5);
 insert into package_product values(package_product_no.nextval, 1, 6);
+
+insert into pacakge_product values(package_product_no.nextval, 1, 1);
+insert into pacakge_product values(package_product_no.nextval, 1, 2);
+insert into pacakge_product values(package_product_no.nextval, 1, 3);
 
 -- certiifcation 테이블---------------------------------------------------------
 drop table certification;
@@ -570,4 +580,18 @@ insert into information values(information_no.nextval, '양파의 영양분 & 효능', '
 
 
 -- test
-		select nvl(sum(cart.cart_num * product.product_price), 0) from cart, product where cart.product_no = product.product_no and member_email = #{value}
+
+-- 1. 패키지 상품 리스트 불러오기 (ProductDTO를 반환)
+select distinct t.product_no, t.product_name, t.product_price, t.product_profile, t.product_eval
+from product t, package k
+where t.product_no = k.package_no
+
+-- 2. 패키지 상품 상세보기 눌렀을 때, 패키지 상품 정보 상세정보 불러오기
+select distinct t.product_no, t.product_profile, t.product_name, t.product_price, t.product_eval, t.product_desc, t.product_unit
+from product t, package k
+where t.product_no = k.package_no
+
+-- 2-1. 패키지 상품 내에있는 상품들의 목록 불러오기
+select t.product_profile, t.product_name, t.product_price
+from product t, package k
+where t.product_no = k.product_no

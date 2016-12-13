@@ -26,7 +26,7 @@
 												<div class="owl-carousel sync1">
 													<div class="item"> 
 														<a href="<c:url value="/resources/images/"/>box/box_540x686.jpg" data-rel="prettyPhoto[product-gallery]">
-															<img width="561" height="713" src="<c:url value="/resources/images/"/>box/box_540x686.jpg" alt="" /> 
+															<img width="561" height="713" src="<c:url value="/resources/img/product/"/>${packageProduct.profile}" alt="" /> 
 														</a>
 													</div>
 													<div class="item">
@@ -55,79 +55,25 @@
 														</a>
 													</div>
 												</div>
-												<div class="owl-carousel sync2">
-													<div class="item">
-														<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_150x150.jpg" alt="" />
-													</div>
-													<div class="item">
-														<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_150x150.jpg" alt="" />
-													</div>
-													<div class="item">
-														<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_150x150.jpg" alt="" />
-													</div>
-													<div class="item">
-														<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_150x150.jpg" alt="" />
-													</div>
-													<div class="item">
-														<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_150x150.jpg" alt="" />
-													</div>
-													<div class="item">
-														<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_150x150.jpg" alt="" />
-													</div>
-												</div>
+												
 											</div>
 										</div>
 										<div class="summary entry-summary">
-											<ul class="noo_link_boxes">
-												<li>
-													<a href="#">Small <i class="fa fa-angle-down"></i></a>
-													<ul>
-														<li>
-															<a href="#">Large</a>
-														</li>
-														<li>
-															<a href="#">Medium</a>
-														</li>
-													</ul>
-												</li>
-											</ul>
-											<h1 class="product_title entry-title">Small Fruit Box</h1>
-											<p class="price"><span class="amount">&#36;20.00</span></p>
-											<div class="description">
-												<p>
-													Maecenas tristique gravida odio, et sagi ttis justo interdum porta. Duis et lacus mattis, tincidunt eroat  labore et dolore magna aliquanim veniam.
-												</p>
-											</div>
+											<h1 class="product_title entry-title">${packageProduct.name}</h1>
+											<p class="price"><span class="amount">${packageProduct.price} 원</span></p>
+											
 											<div class="product_meta">
-												<span class="tagged_as">Tag: <a href="#">fruits</a></span>
+												<span class="tagged_as">Unit: <a href="#">${packageProduct.unit}</a></span>
+												
 											</div>
 											<form class="cart">
 												<div class="quantity">
 													<input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"/>
 												</div>
 												<button type="submit" class="single_add_to_cart_button button">Add to cart</button>
+												<button type="submit" class="single_add_to_cart_button button">Purchase</button>
 											</form>
-											<div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button">
-                                                    <a href="#" class="add_to_wishlist"></a>
-                                                </div>
-                                            </div>
 											<div class="clear"></div>
-											<div class="noo-social-share">
-												<span>Share:</span>
-												<a href="#share" class="noo-share" title="Share on Facebook">
-													<i class="fa fa-facebook"></i>
-												</a>
-												<a href="#share" class="noo-share" title="Share on Twitter">
-													<i class="fa fa-twitter"></i>
-												</a>
-												<a href="#share" class="noo-share" title="Share on Google+">
-													<i class="fa fa-google-plus"></i>
-												</a>
-												<a href="#share" class="noo-share" title="Share on Pinterest">
-													<i class="fa fa-pinterest"></i>
-												</a>
-											</div>
 											<div class="commerce-tabs">
 												<ul class="nav nav-tabs tabs">
 											    	<li class="active">
@@ -143,49 +89,27 @@
 												<div class="tab-content">
 													<div class="tab-pane fade in active" id="tab-noo_boxes_tab">
 														<ul> 
+															
+															<c:forEach items="${list}" var="list">
+															<!-- 패키시 상품 내에있는 개별 상품 -->
 															<li>
 																<div class="box-item">
-																	<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_100x100.jpg" alt="" /> 
-																	<strong>Pomegranates</strong>
-																	<span>1.5kg</span>
+																	<img width="150" height="150" src="<c:url value="/resources/img/product/"/>${list.profile}" alt="" /> 
+																	<strong>${list.name}</strong>
+																	<span>${list.price} 원</span>
 																</div>
 															</li>
-															<li>
-																<div class="box-item">
-																	<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_100x100.jpg" alt="" /> 
-																	<strong>Apples</strong>
-																	<span>2kg</span>
-																</div>
-															</li>
-															<li>
-																<div class="box-item">
-																	<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_100x100.jpg" alt="" /> 
-																	<strong>Passion Fruits</strong>
-																	<span>1kg</span>
-																</div>
-															</li>
-															<li>
-																<div class="box-item">
-																	<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_100x100.jpg" alt="" /> 
-																	<strong>Mangoes</strong>
-																	<span>1.5kg</span>
-																</div>
-															</li>
-															<li>
-																<div class="box-item">
-																	<img width="150" height="150" src="<c:url value="/resources/images/"/>box/box_100x100.jpg" alt="" /> 
-																	<strong>Limes</strong>
-																	<span>1kg</span>
-																</div>
-															</li>
+															<!-- 패키시 상품 내에있는 개별 상품 -->
+															</c:forEach>
+															
 														</ul>
 														<p class="ds">We do our best to send you the things youwill will chosen. Our photos do not show the actual quantities.</p>
 													</div>
 													<div id="tab-description" class="tab-pane fade">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Maecenas tristique gravida, odio et sagi ttis justo. Susp endisse ultricies nisi vel quam suscipit, et rutrum odio porttitor. Donec dictum non nulla ut lobortis. Maecenas tristique gravida, odio et sagi ttis justo. Aliquam vitae mi a eros tincidunt ultricies. Donec porta gravida arcu. Morbi facilisis lorem felis, eu inerdum quam scelerisque eu. Phasellus vel turpis dictum, pulvinar nulla</p>
+														<img alt="" src="<c:url value='/resources/img/product/'/>${packageProduct.desc}">
 													</div>
 													<div id="tab-review" class="tab-pane fade">
-														<div id="comments" class="comments-area">
+														<div id="comments" class="commentsㅜ-area">
 								                        	<h2 class="comments-title">3 Comments</h2>
 								                        	<ol class="comments-list">
 											        			<li class="comment">
@@ -294,6 +218,7 @@
 								    					</div>
 													</div>
 												</div>
+												
 											</div>
 										</div> 
 									</div>

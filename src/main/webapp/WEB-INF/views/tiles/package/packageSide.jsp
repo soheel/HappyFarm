@@ -14,24 +14,7 @@
 										<input type="submit" value="Search"/>
 									</form>
 								</div>
-								<div class="widget commerce widget_product_categories shop_side">
-										<div id="categories-title" class="relative">
-											<h3 class="widget-title">Categories</h3>
-											<div id="triangle-down" class="right absolute shop_categories_btn"></div>
-										</div>
-										
-									<ul class="product-categories">
-										<li><a href="#">Bread</a></li>
-										<li><a href="#">Featured</a></li>
-										<li><a href="#">Fruit</a></li>
-										<li><a href="#">Fruit Box</a></li>
-										<li><a href="#">Fruits</a></li>
-										<li><a href="#">Others</a></li>
-										<li><a href="#">Package</a></li>
-										<li><a href="#">Vegetable</a></li>
-										<li><a href="#">Vegetable Box</a></li>
-									</ul>
-								</div>
+								
 								<div class="widget commerce widget_price_filter">
 									<h3 class="widget-title">Filter by price</h3>
 									<form>

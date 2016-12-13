@@ -124,15 +124,25 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public Map<String, Object> showPackageDetail() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<ProductDTO> search(String keyword) {
 		List<ProductDTO> list = null;
 		list = userProductDAO.search(keyword);
 		return list;
 	}
+
+	@Override
+	public Map<String, Object> getPackageDetail() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 패키지 상품 상세보기
+		ProductDTO productDTO = userProductDAO.getPackageDetail();
+		map.put("productDTO", productDTO);
+		System.out.println(productDTO.getName());
+		System.out.println(productDTO.getProducerNo());
+		// 패키지 상품 내에있는 상품 리스트 가져오기
+		List<ProductDTO> list = userProductDAO.getPackageInnerProductList();
+		map.put("list", list);
+		
+		return map;
+	}
+
 }

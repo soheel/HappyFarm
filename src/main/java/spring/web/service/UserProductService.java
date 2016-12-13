@@ -28,7 +28,11 @@ public interface UserProductService {
 	
 	public List<ProductDTO> packageMenuListLoading();
 	
-	public Map<String, Object> showPackageDetail();
-	
 	public List<ProductDTO> search(String keyword);
+	
+	/**
+	 * 패키지 상품 상세보기
+	 * */
+	Map<String, Object> getPackageDetail();
+
 }

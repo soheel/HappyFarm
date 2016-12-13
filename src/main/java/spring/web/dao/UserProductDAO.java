@@ -85,6 +85,16 @@ public interface UserProductDAO {
 	List<ProductDTO> getPackageList();
 	
 	/**
+	 * 패키지 상품 상세보기
+	 * */
+	ProductDTO getPackageDetail();
+	
+	/**
+	 * 패키지 상품 내에 포함되어 있는 상품들 띄워주기
+	 * */
+	List<ProductDTO> getPackageInnerProductList();
+	
+	/**
 	 * search(String keyword)
 	 * 검색하기
 	 * */
