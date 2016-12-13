@@ -177,7 +177,7 @@ public class UserInfoController {
 				 * 관리자 메인창으로 이동
 				 *	ModelAndView의 setViewName으로 이동페이지 지정
 				 **/
-				mv.setViewName("관리자 메인 페이지");
+				mv.setViewName("admin/admin");
 				return mv;
 				
 			}else{
