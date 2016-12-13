@@ -128,7 +128,7 @@ public class UserEtcController {
 			request.setAttribute("errorMsg","삽입하지 못했습니다.");
 			throw new Exception();
 		}
-		return "userEtc/qnaLoading";
+		return "qna/qnaLoading";
 		
 	}
 	

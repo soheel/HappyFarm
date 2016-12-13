@@ -37,7 +37,7 @@
 													</a>
 												</div>
 												<div class="noo-product-title noo-info-title"> 
-													<h3><a href="<c:url value="/info/"/>detail">${info.name}</a></h3>
+													<h3><a href="<c:url value="/userEtcController/infoDetail"/>?no=${info.no}">${info.name}</a></h3>
 												</div>
 											</div>
 										</div>
