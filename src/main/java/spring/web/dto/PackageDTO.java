@@ -4,75 +4,51 @@ import java.util.List;
 
 public class PackageDTO {
 	private int no;
-	private String name;
+	private int packageNo;
 	private int productNo;
 	
-	/*private PackageProductDTO packageProductDTO;*/
-	/*private ProductDTO productDTO;*/
-	private List<ProductDTO> productDTO;
+	private List<ProductDTO> productlist;
 	
 	public PackageDTO() {}
 
-	public PackageDTO(int no, String name, int productNo) {
+	public PackageDTO(int no, int packageNo, int productNo, List<ProductDTO> productlist) {
 		super();
 		this.no = no;
-		this.name = name;
+		this.packageNo = packageNo;
 		this.productNo = productNo;
+		this.productlist = productlist;
 	}
 
 	public int getNo() {
 		return no;
 	}
-	
+
 	public void setNo(int no) {
 		this.no = no;
 	}
-	
-	public String getName() {
-		return name;
+
+	public int getPackageNo() {
+		return packageNo;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPackageNo(int packageNo) {
+		this.packageNo = packageNo;
 	}
-
-/*	public List<ProductDTO> getList() {
-		return list;
-	}
-
-	public void setList(List<ProductDTO> list) {
-		this.list = list;
-	}*/
 
 	public int getProductNo() {
 		return productNo;
 	}
 
-	/*public PackageProductDTO getPackageProductDTO() {
-		return packageProductDTO;
-	}
-
-	public void setPackageProductDTO(PackageProductDTO packageProductDTO) {
-		this.packageProductDTO = packageProductDTO;
-	}
-*/
 	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
 
-	public List<ProductDTO> getProductDTO() {
-		return productDTO;
+	public List<ProductDTO> getProductlist() {
+		return productlist;
 	}
 
-	public void setProductDTO(List<ProductDTO> productDTO) {
-		this.productDTO = productDTO;
-	}
-	
-/*	public ProductDTO getProductDTO() {
-		return productDTO;
+	public void setProductlist(List<ProductDTO> productlist) {
+		this.productlist = productlist;
 	}
 
-	public void setProductDTO(ProductDTO productDTO) {
-		this.productDTO = productDTO;
-	}*/
 }

@@ -40,7 +40,7 @@ public class ManageController {
 		 * 
 		 */
 		List<ProductDTO> productlist = manageService.selectAllProduct();
-		System.out.println(productlist.get(0).getName());
+		//System.out.println(productlist.get(1).getName());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
@@ -290,7 +290,7 @@ public class ManageController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("producerlist", producerlist);
 		
-		mv.setViewName("producerManage");  
+		mv.setViewName("admin/adminProducer");  
 		return mv;
 	}
 	
@@ -410,7 +410,7 @@ public class ManageController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("memberlist", memberlist);
 		
-		mv.setViewName("memberManage");  
+		mv.setViewName("admin/adminUser");  
 		return mv;
 	}
 	
@@ -454,7 +454,7 @@ public class ManageController {
 			//에러 처리 진행중인 행사가 없다.
 		}
 		mv.addObject("communitylist",communitylist);
-		mv.setViewName("communityManage");
+		mv.setViewName("admin/adminCommunity");
 		return mv;
 	}
 	
@@ -536,11 +536,12 @@ public class ManageController {
 		List<QnaDTO> qnalist = null;
 		ModelAndView mv = new ModelAndView();
 		qnalist = manageService.qnaManage();
+		System.out.println(qnalist.size()+"Ddd");
 		if(qnalist!=null){
 			//에러 처리 진행중인 행사가 없다.
 		}
 		mv.addObject("qnalist",qnalist);
-		mv.setViewName("qnaManage");
+		mv.setViewName("admin/adminQna");
 		return mv;
 	}
 	
@@ -626,7 +627,7 @@ public class ManageController {
 			//에러 처리 진행중인 행사가 없다.
 		}
 		mv.addObject("donationlist",donationlist);
-		mv.setViewName("donationOrgManage");
+		mv.setViewName("admin/adminDonate");
 		return mv;
 	}
 	

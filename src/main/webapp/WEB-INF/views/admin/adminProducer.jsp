@@ -17,13 +17,15 @@
 													</div>
 												</th>
 												<th class="product-name">이름</th>
-												<th class="product-area">지역</th>
-												<th class="product-age">나이</th>
-												<th class="product-job">직업</th>
+												<th class="product-area">주소</th>
+												<th class="product-age">연락처</th>
+												<th class="product-job">등록날짜</th>
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach items="${producerlist}" var="producer"> 
 											<tr class="cart_item">
+											
 												<td class="product-check">
 													<div class="checks etrans">
 														<input type="checkbox" id="ex_chk1">
@@ -31,18 +33,19 @@
 													</div>
 												</td>
 												<td class="product-name">
-													으아아아아
+													${producer.name}
 												</td>
 												<td class="product-area">
-													<span class="amount">thie</span> 
+													<span class="amount">${producer.addr}</span> 
 												</td>
 												<td class="product-age">
-													<span class="amount">&#36;3.95</span> 
+													<span class="amount">${producer.phone}</span> 
 												</td>
 												<td class="product-job">
-													<span class="amount">thie</span> 
+													<span class="amount">${producer.registerDate}</span> 
 												</td>
 											</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

@@ -6,8 +6,8 @@ public class ProductCertificationDTO {
 	
 	private int no; //상품-인증마크 번호
 	private CertificationDTO certificationDto; //인증마크 번호
-	private List<ProductDTO> productDto; // 상품번호
-	
+	/*private List<ProductDTO> productDto; // 상품번호
+*/	
 	private int certificationNo;
 	private int productNo;
 	
@@ -36,14 +36,14 @@ public class ProductCertificationDTO {
 		this.certificationDto = certificationDto;
 	}
 
-	public List<ProductDTO> getProductDto() {
+	/*public List<ProductDTO> getProductDto() {
 		return productDto;
 	}
 
 	public void setProductDto(List<ProductDTO> productDto) {
 		this.productDto = productDto;
 	}
-
+*/
 	public int getCertificationNo() {
 		return certificationNo;
 	}

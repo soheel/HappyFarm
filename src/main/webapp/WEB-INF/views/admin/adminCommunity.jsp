@@ -31,6 +31,7 @@
 									</div>
 									<!-- 여기까지 농산묻 리스트 불러오는 곳 -->
 									
+									<c:forEach items="${communitylist}" var="community">
 									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
 										<div class="noo-product-inner">
 											<div class="noo-product-thumbnail">
@@ -44,144 +45,14 @@
 												</div>
 											</div>
 											<div class="noo-product-title"> 
-												<h3><a href="#">Broccoli</a></h3>
-												<span class="price"><span class="amount">&#36;2.05</span></span>
+												<h3><a href="#">${community.name }</a></h3>
+												<span class="price"><span class="amount">${community.desc }</span></span>
 												
 											</div>
 										</div>
 									</div>
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#>"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:100%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#>">Brown Bread</a></h3>
-												<span class="price"><span class="amount">&#36;12.00</span></span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#>"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:20%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#>">Carrots</a></h3>
-												<span class="price"><span class="amount">&#36;1.05</span></span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#>"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:0%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#>">Celery</a></h3>
-												<span class="price"><span class="amount">&#36;2.09</span></span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#>"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:0%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#>">Cookie</a></h3>
-												<span class="price"><span class="amount">&#36;15.00</span></span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#>"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:0%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#>">Cucumbers</a></h3>
-												<span class="price"><span class="amount">&#36;1.95</span></span>
-											</div>
-										</div>
-									</div>
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#>"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:0%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#>">French Bread</a></h3>
-												<span class="price"><span class="amount">&#36;10.00</span></span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#>"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:80%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#>">Green Apples</a></h3>
-												<span class="price"><span class="amount">&#36;3.15</span></span>
-												
-											</div>
-										</div>
-									</div>
+									</c:forEach>
+								
 								</div>
 								<div class="pagination list-center">
 									<span class="page-numbers current">1</span>

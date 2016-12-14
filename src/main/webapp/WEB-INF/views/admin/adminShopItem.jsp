@@ -25,6 +25,7 @@
 										</thead>
 										<tbody>
 											<c:forEach items="${productlist}" var="productlist">
+											
 											<tr class="cart_item">
 												<td class="product-check">
 													<div class="checks etrans">
@@ -58,6 +59,7 @@
 													</span> 
 												</td>
 											</tr>
+										
 											</c:forEach>
 										</tbody>
 									</table>

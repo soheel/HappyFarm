@@ -24,6 +24,8 @@
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach items="${memberlist}" var="member"> 
+									
 											<tr class="cart_item">
 												<td class="product-check">
 													<div class="checks etrans">
@@ -32,21 +34,23 @@
 													</div>
 												</td>
 												<td class="product-id">
-													으아아아아
+													${member.email }
 												</td>
 												<td class="product-password">
-													<span class="amount">thie</span> 
+													<span class="amount">${member.pwd }</span> 
 												</td>
 												<td class="product-name">
-													<span class="amount">&#36;3.95</span> 
+													<span class="amount">${member.name }</span> 
 												</td>
 												<td class="product-phone">
-													<span class="amount">thie</span> 
+													<span class="amount">${member.phone }</span> 
 												</td>
 												<td class="product-date">
-													<span class="amount">thie</span> 
+													<span class="amount">${member.registerDate}</span> 
 												</td>
 											</tr>
+											</c:forEach>
+											
 										</tbody>
 									</table>
 								</div>

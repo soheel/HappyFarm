@@ -14,17 +14,11 @@ public class ProductDTO {
 	private int producerNo;
 	private int subCategoryNo;
 	
-	private ProducerDTO producerDto;
-	private List<ProductCertificationDTO> productCertificationDto;
+	private PackageDTO packageDTO;
 	
-	public List<ProductCertificationDTO> getProductCertificationDto() {
-		return productCertificationDto;
-	}
 
-	public void setProductCertificationDto(List<ProductCertificationDTO> productCertificationDto) {
-		this.productCertificationDto = productCertificationDto;
-	}
-
+	private ProducerDTO producerDTO;
+	private List<ProductCertificationDTO> productCertificationDto;
 	private CategorySubcategoryDTO subCategoryDto;
 	private PurchaseProductDTO purchaseProductDto;
 	private CartDTO cartDto;
@@ -45,6 +39,14 @@ public class ProductDTO {
 		this.unit = unit;
 		this.producerNo = producerNo;
 		this.subCategoryNo = subCategoryNo;
+	}
+
+	public PackageDTO getPackageDTO() {
+		return packageDTO;
+	}
+
+	public void setPackageDTO(PackageDTO packageDTO) {
+		this.packageDTO = packageDTO;
 	}
 
 	public int getNo() {
@@ -119,12 +121,20 @@ public class ProductDTO {
 		this.subCategoryNo = subCategoryNo;
 	}
 
-	public ProducerDTO getProducerDto() {
-		return producerDto;
+	public ProducerDTO getProducerDTO() {
+		return producerDTO;
 	}
 
-	public void setProducerDto(ProducerDTO producerDto) {
-		this.producerDto = producerDto;
+	public void setProducerDTO(ProducerDTO producerDTO) {
+		this.producerDTO = producerDTO;
+	}
+
+	public List<ProductCertificationDTO> getProductCertificationDto() {
+		return productCertificationDto;
+	}
+
+	public void setProductCertificationDto(List<ProductCertificationDTO> productCertificationDto) {
+		this.productCertificationDto = productCertificationDto;
 	}
 
 	public CategorySubcategoryDTO getSubCategoryDto() {
@@ -134,10 +144,6 @@ public class ProductDTO {
 	public void setSubCategoryDto(CategorySubcategoryDTO subCategoryDto) {
 		this.subCategoryDto = subCategoryDto;
 	}
-	
-	
-	
-	
 
 	public PurchaseProductDTO getPurchaseProductDto() {
 		return purchaseProductDto;
@@ -150,9 +156,10 @@ public class ProductDTO {
 	public CartDTO getCartDto() {
 		return cartDto;
 	}
-	
+
 	public void setCartDto(CartDTO cartDto) {
 		this.cartDto = cartDto;
 	}
+
 	
 }

@@ -23,6 +23,7 @@
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach items="${donationlist}" var="donation"> 
 											<tr class="cart_item">
 												<td class="product-check">
 													<div class="checks etrans">
@@ -31,18 +32,19 @@
 													</div>
 												</td>
 												<td class="product-name">
-													으아아아아
+													${donation.name}
 												</td>
 												<td class="product-phone">
-													<span class="amount">thie</span> 
+													<span class="amount">${donation.phone}</span> 
 												</td>
 												<td class="product-area">
-													<span class="amount">&#36;3.95</span> 
+													<span class="amount">${donation.addr}</span> 
 												</td>
 												<td class="product-content">
-													<span class="amount">thie</span> 
+													<span class="amount">${donation.desc}</span> 
 												</td>
 											</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

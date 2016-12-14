@@ -49,19 +49,19 @@
 							</a>
 						</li>
 						<li>
-							<a href="<c:url value="/admin/shopItem"/>">개별 상품 관리</a>
+							<a href="<c:url value="/manageController/productManage"/>">개별 상품 관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/admin/packageItem"/>">세트 상품 관리</a>
+							<a href="<c:url value="/manageController/packageManage"/>">세트 상품 관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/admin/producer"/>">생산자 관리</a>
+							<a href="<c:url value="/manageController/producerManage"/>">생산자 관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/admin/donate"/>">기부 업체 관리</a>
+							<a href="<c:url value="/manageController/donationOrgManage"/>">기부 업체 관리</a>
 						</li>
-						<li class="dropdown">
-                  			<a href="#" class="dropdown-toggle" data-toggle="dropdown">매출 관리&nbsp;<span class="caret"></span></a>
+						<li class="dropdown">salesManage
+                  			<a href="<c:url value="/manageController/salesManage"/>" class="dropdown-toggle" data-toggle="dropdown">매출 관리&nbsp;<span class="caret"></span></a>
                   			<ul class="dropdown-menu" role="menu">
                   				<!-- 
                     			<li class="dropdown-header">Dropdown heading</li>
@@ -72,13 +72,13 @@
                   			</ul>
                 		</li>
 						<li>
-							<a href="<c:url value="/admin/user"/>">회원 관리</a>
+							<a href="<c:url value="/manageController/memberManage"/>">회원 관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/admin/cummunity"/>">Community 관리</a>
+							<a href="<c:url value="/manageController/communityManage"/>">Community 관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/admin/qna"/>">Q&A 관리</a>
+							<a href="<c:url value="/manageController/qnaManage"/>">Q&A 관리</a>
 						</li>
 					</ul>
 				</nav>
