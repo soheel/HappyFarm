@@ -1,5 +1,6 @@
 package spring.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.web.dto.CartDTO;
+import spring.web.dto.CartProductDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
@@ -229,6 +231,51 @@ public class UserProductController {
 		mv.addObject("quantity", quantity);
 		
 		return mv;
+	}
+	
+	/**
+	 * 장바구니에서 purchase 클릭했을 때
+	 * */
+	@RequestMapping("purchaseCart")
+	public ModelAndView purchaseCart(CartProductDTO cartProduct, int totalPrice, HttpSession session) {
+		System.out.println("purchaseCart");
+
+		for(CartDTO cart : cartProduct.getList()) {
+			System.out.println(cart.getProductNo() + " _ " + cart.getNum());
+		}
+		System.out.println(totalPrice);
+		
+		return null;
+		/*Map<String, Object> map = null;
+		ModelAndView mv = new ModelAndView();
+		
+		String[] arr = info.split(",");
+		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> productNoList = new ArrayList<Integer>();
+		List<Integer> numList = new ArrayList<Integer>();
+		String email = (String)session.getAttribute("email");
+		for(int i = 0 ; i < arr.length ; i++) {
+			list.add(Integer.parseInt(arr[i]));
+		}
+		for(int i = 0 ; i < list.size() ; i++) {
+			if(i % 2 == 0) {
+				productNoList.add(list.get(i));
+			}else {
+				numList.add(list.get(i));
+			}
+		}
+		List<ProductDTO> productDTOList = null;
+		map = service.purchaseCart(productNoList, email);
+		
+		productDTOList = (List<ProductDTO>)map.get("productDTOList");
+		int mileage = (Integer)map.get("mileage");
+		
+		mv.addObject("productList", productDTOList);
+		mv.addObject("numList", numList);
+		mv.addObject("totalPrice", totalPrice);
+		mv.addObject("mileage", mileage);
+		mv.setViewName("order/orderCardCart");
+		return mv;*/
 	}
 	
 	/**

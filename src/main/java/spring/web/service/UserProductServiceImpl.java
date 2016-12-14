@@ -182,4 +182,19 @@ public class UserProductServiceImpl implements UserProductService{
 		return recentPurchaseNo;
 	}
 
+	@Override
+	public Map<String, Object> purchaseCart(List<Integer> list, String email) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<ProductDTO> productDTOList = new ArrayList<ProductDTO>();
+		for(int i : list) {
+			productDTOList.add(userProductDAO.getProductByProductNo(i));
+		}
+		map.put("productDTOList", productDTOList);
+		int mileage = userProductDAO.getMileage(email);
+		map.put("mileage", mileage);
+		
+		return map;
+	}
+
 }

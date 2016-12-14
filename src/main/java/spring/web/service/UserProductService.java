@@ -49,4 +49,9 @@ public interface UserProductService {
 	 * */
 	int pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductDTO purchaseProductDTO);
 	
+	/**
+	 * 장바구니에서 구매 눌렀을 때
+	 * */
+	Map<String, Object> purchaseCart(List<Integer> list, String email);
+	
 }

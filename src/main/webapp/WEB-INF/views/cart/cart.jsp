@@ -17,6 +17,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="noo-main col-md-12">
+					<form action="<c:url value = '/userProductController/purchaseCart'/>?totalPrice=${totalPrice}" method="post">
 						<table class="shop_table cart">
 							<thead>
 								<tr>
@@ -35,12 +36,12 @@
 							</thead>
 							<tbody>
 							
-							<c:forEach items="${productList}" var="product">
+							<c:forEach items="${productList}" var="product" varStatus="status">
 								<!-- 상품 하나하나 -->
 								<tr class="cart_item">
 									<td class="product-check">
 										<div class="checks etrans checkboxs">
-  											<input type="checkbox" id="ex_chk1${product.no}" checked="true">
+  											<input name = "checkbox" type="checkbox" id="ex_chk1${product.no}" checked="true">
   											<label for="ex_chk1${product.no}"></label> 
   										</div>
 									</td>
@@ -48,7 +49,7 @@
 										<a href="shop-detail.html">
 											<img width="100" height="100" src="<c:url value="/resources/img/product/"/>${product.profile}" alt="" />
 										</a>
-										<input type = "hidden" value = "${product.no }">
+										<input name = "list[${status.index}].productNo" type = "hidden" value = "${product.no }">
 										<a href="shop-detail.html">${product.name} </a> 
 									</td>
 									<td class="product-price">
@@ -56,7 +57,7 @@
 									</td>
 									<td class="product-quantity">
 										<div class="quantity">
-											<input type="number" step="1" min="0" name="qty" value="${product.cartDto.num }" class="input-text qty text" size="4"/>
+											<input type="number" step="1" min="0" name = "list[${status.index}].num" value="${product.cartDto.num }" class="input-text qty text" size="4"/>
 											<input type = "hidden" value = "${product.cartDto.num}"> 
 										</div>
 									</td>
@@ -86,6 +87,7 @@
 								</tr>
 							</tbody>
 						</table>
+						</form>
 					</div>
 				</div>
 			</div>

@@ -123,7 +123,7 @@
 														</div>
 													</div>
 												</li>
-												<li>
+												<li> 
 													<div class="noo_megamenu_widget_area">
 														<div class="widget commerce widget_products">
 															<h3 class="widget-title">계절별 상품</h3>
