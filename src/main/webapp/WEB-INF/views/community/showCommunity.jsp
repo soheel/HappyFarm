@@ -22,8 +22,8 @@
 										<p>Maecenas tristique gravida odio, et sagi ttis justo interdum porta. Duis et lacus mattis, tincidunt eronec dictum non nulla.</p>
 									</div>
 									<div class="noo-product-grid products row product-grid noo-grid-4">
-										<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
 										<c:forEach items="${communityIngList}" var="ing">
+										<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
 											<div class="noo-product-inner">
 											
 												<div class="noo-product-thumbnail">
@@ -37,10 +37,9 @@
 													<span class="date"><span class="amount">${ing.registerDate}</span></span>
 												</div>
 												
-											</div>
-											</c:forEach>
+											</div>											
 										</div>
-										
+										</c:forEach>
 									</div>
 								</div>
 							</div>

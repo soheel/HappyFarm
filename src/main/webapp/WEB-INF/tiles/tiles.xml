@@ -102,16 +102,16 @@
 		<put-attribute name="side" value="/WEB-INF/views/tiles/package/packageSide.jsp"/>
 	</definition>
 	
-	<!-- community 페이지 main-->
-	<definition name="community/*" extends="community">
-		<put-attribute name="content" value="/WEB-INF/views/community/{1}.jsp"/>
-		<put-attribute name="side" value=""/>
-	</definition>
-	
 	<!-- community 페이지  detail-->
 	<definition name="community/*Detail" extends="community">
 		<put-attribute name="content" value="/WEB-INF/views/community/{1}Detail.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/views/tiles/community/communitySide.jsp"/>
+	</definition>
+	
+	<!-- community 페이지 main-->
+	<definition name="community/*" extends="community">
+		<put-attribute name="content" value="/WEB-INF/views/community/{1}.jsp"/>
+		<put-attribute name="side" value=""/>
 	</definition>
 	
 	<!-- info 페이지 -->
