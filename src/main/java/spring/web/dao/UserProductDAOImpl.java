@@ -13,6 +13,9 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
+import spring.web.dto.PurchaseOrderDTO;
+import spring.web.dto.PurchaseProductDTO;
 
 @Repository
 public class UserProductDAOImpl implements UserProductDAO {
@@ -99,6 +102,26 @@ public class UserProductDAOImpl implements UserProductDAO {
 	@Override
 	public int getMileage(String email) {
 		return sqlSession.selectOne("userInfoMapper.getMileage", email);
+	}
+
+	@Override
+	public int registerPurchase(PurchaseDTO purchaseDTO) {
+		return sqlSession.insert("UserProductMapper.registerPurchase", purchaseDTO);
+	}
+
+	@Override
+	public int registerPurchaseOrder(PurchaseOrderDTO purchaseOrderDTO) {
+		return sqlSession.insert("UserProductMapper.registerPurchaseOrder", purchaseOrderDTO);
+	}
+
+	@Override
+	public int registerPurchaseProduct(PurchaseProductDTO purchaseProductDTO) {
+		return sqlSession.insert("UserProductMapper.registerPurchaseProduct", purchaseProductDTO);
+	}
+
+	@Override
+	public int getRecentPurchaseNo() {
+		return sqlSession.selectOne("UserProductMapper.getRecentPurchaseNo");
 	}
 
 }

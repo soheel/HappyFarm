@@ -28,10 +28,11 @@
 								<span class="order_check_title">&lt;주문상품 확인&gt;</span>
 							</p>
 							<p>
-							<input id = "product_no" type = "hidden" value="${product.no}">
+							<input name = "productNo" type = "hidden" value="${product.no}">
 								상품 이름 :<span class="order_check_name"> ${product.name}</span>
 							</p>
 							<p>
+							<input name = "productNum" type = "hidden" value="${quantity}">
 								수량 : <span class="order_check_count"> ${quantity}</span>
 							</p>
 							<p>
@@ -70,20 +71,20 @@
 						<p>
 						<!-- PurchaseOrderDTO의 postcode -->
 							주소 : <span class="addr_check_addr"> 
-							<input type="text" id="sample6_postcode" placeholder="우편번호">
+							<input name = "postCode" type="text" id="sample6_postcode" placeholder="우편번호">
 							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 							<p>
 							<!-- PurchaseOrderDTO의 addr -->
-							&nbsp;&nbsp;&nbsp;<input size = "50" type="text" id="sample6_address" placeholder="주소">
+							&nbsp;&nbsp;&nbsp;<input name = "addr" size = "50" type="text" id="sample6_address" placeholder="주소">
 							<!-- PurchaseOrderDTO의 detailAddr -->
-							<input type="text" size = "30" id="sample6_address2" placeholder="상세주소">
+							<input name = "detailAddr" type="text" size = "30" id="sample6_address2" placeholder="상세주소">
 							</p>
 							</span>
 						</p>
 						<p>
 						<!-- PurchaseOrderDTO의 phone -->
 							연락처 : <span class="addr_check_phone"> 
-							<select>
+							<select name = "phone">
 							<option>010</option><option>011</option><option>016</option>
 							<option>017</option><option>018</option><option>019</option>
 							</select> - <input size = "5" type="text" name="phone">
@@ -121,7 +122,7 @@
 						<p>
 							보유 마일리지 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
 							<!-- PurchaseDTO의 discount -->
-							마일리지 사용 : <input id = "useMileage" type = "text" size = "8"><span>(1000원 단위로 사용이 가능합니다.)</span>
+							마일리지 사용 : <input id = "useMileage" name="discount" type = "number" size = "8"><span>(1000원 단위로 사용이 가능합니다.)</span>
 						</p>
 					</div>
 

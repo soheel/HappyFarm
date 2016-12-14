@@ -10,6 +10,9 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
+import spring.web.dto.PurchaseOrderDTO;
+import spring.web.dto.PurchaseProductDTO;
 
 public interface UserProductDAO {
 	
@@ -104,4 +107,24 @@ public interface UserProductDAO {
 	 * 내 마일리지 가져오기
 	 * */
 	int getMileage(String email);
+	
+	/**
+	 * purchase 테이블에 삽입
+	 * */
+	int registerPurchase(PurchaseDTO purchaseDTO);
+	
+	/**
+	 * purchase_order 테이블에 삽입
+	 * */
+	int registerPurchaseOrder(PurchaseOrderDTO purchaseOrderDTO);
+	
+	/**
+	 * purchase_product 테이블에 삽입
+	 * */
+	int registerPurchaseProduct(PurchaseProductDTO purchaseProductDTO);
+	
+	/**
+	 * purchase 테이블에서 가장 최근에 추가한 purchase_no 가져오기
+	 * */
+	int getRecentPurchaseNo();
 }

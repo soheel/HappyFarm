@@ -9,6 +9,9 @@ import spring.web.dto.CartDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
+import spring.web.dto.PurchaseOrderDTO;
+import spring.web.dto.PurchaseProductDTO;
 
 public interface UserProductService {
 	
@@ -40,5 +43,10 @@ public interface UserProductService {
 	 * productDTO, producerDTO를 map에 넣어 반환
 	 * */
 	Map<String, Object> showPurchase(int productNo, int producerNo, String email);
+	
+	/**
+	 * 결제
+	 * */
+	int pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductDTO purchaseProductDTO);
 	
 }

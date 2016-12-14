@@ -146,4 +146,26 @@ where t.product_no = k.product_no
 select * from product
 where product_name like '%' || #{value} || '%' order by product_no 
 </select>
+
+<!-- purchase 테이블에 삽입 -->
+<insert id="registerPurchase" parameterType="purchaseDTO">
+insert into purchase values(purchase_no.nextval, sysdate, #{price}, #{method}, #{discount}, 1, #{email})
+</insert>
+
+<!-- purchase_order 테이블에 삽입 -->
+<insert id="registerPurchaseOrder" parameterType="purchaseOrderDTO">
+insert into purchase_order values(#{purchaseNo}, #{name}, #{addr}, #{detailAddr}, #{postCode}, #{email}, #{phone})
+</insert>
+
+<!-- purchase_product 테이블에 삽입 -->
+<insert id="registerPurchaseProduct" parameterType="purchaseProductDTO">
+insert into purchase_product values(#{purchaseNo}, #{productNo}, #{productNum})
+</insert>
+
+<!-- purchase 테이블에서 가장 최근에 추가한 purchase_no 가져오기 -->
+<select id="getRecentPurchaseNo" resultType="integer">
+select max(purchase_no)
+from purchase
+</select>
+
 </mapper>

@@ -15,6 +15,9 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
+import spring.web.dto.PurchaseOrderDTO;
+import spring.web.dto.PurchaseProductDTO;
 
 @Service
 public class UserProductServiceImpl implements UserProductService{
@@ -160,6 +163,23 @@ public class UserProductServiceImpl implements UserProductService{
 		map.put("mileage", mileage);
 		
 		return map;
+	}
+
+	@Override
+	public int pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductDTO purchaseProductDTO) {
+		
+		// purchase 테이블에 insert
+		int purchaseResult = userProductDAO.registerPurchase(purchaseDTO);
+		// purchase 테이블에서 가장 최근 purchaseNo 가져오기
+		int recentPurchaseNo = userProductDAO.getRecentPurchaseNo();
+		purchaseOrderDTO.setPurchaseNo(recentPurchaseNo);
+		purchaseProductDTO.setPurchaseNo(recentPurchaseNo);
+		// purchase_order 테이블에 insert
+		int purchaseOrderResult = userProductDAO.registerPurchaseOrder(purchaseOrderDTO);
+		// purchase_product 테이블에 insert
+		int purchaseProductResult = userProductDAO.registerPurchaseProduct(purchaseProductDTO);
+		
+		return recentPurchaseNo;
 	}
 
 }

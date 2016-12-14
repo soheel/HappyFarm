@@ -423,8 +423,8 @@ select * from purchase_order;
 create table purchase_order (
 purchase_no number(5) primary key references purchase(purchase_no) on delete cascade,
 purchase_order_name varchar2(15) not null,
-purchase_order_addr varchar2(50) not null,
-purchase_order_detail_addr varchar2(30) not null,
+purchase_order_addr varchar2(150) not null,
+purchase_order_detail_addr varchar2(90) not null,
 purchase_order_postcode varchar2(10) not null,
 purchase_order_email varchar2(50),
 purchase_order_phone varchar2(15) not null

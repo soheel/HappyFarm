@@ -19,6 +19,7 @@ import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.PurchaseOrderDTO;
+import spring.web.dto.PurchaseProductDTO;
 import spring.web.service.UserProductService;
 
 @Controller
@@ -234,11 +235,40 @@ public class UserProductController {
 	 * 주문화면에서 결제버튼 클릭했을 때
 	 * */
 	@RequestMapping("pay")
-	public String pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, HttpSession session) {
+	public ModelAndView pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductDTO purchaseProductDTO, 
+			HttpSession session) {
 		System.out.println("pay");
-		System.out.println(purchaseDTO.getPrice());
-		System.out.println(purchaseDTO.getMethod());
-		return "order/pay";
+		String email = (String)session.getAttribute("email");
+
+		// purchaseDTO 세팅
+		purchaseDTO.setEmail(email);
+		// purchaseOrderDTO 세팅
+		purchaseOrderDTO.setEmail(email);
+		String phone = purchaseOrderDTO.getPhone().replace(',', '-');
+		purchaseOrderDTO.setPhone(phone);
+		// purchaseProductDTO 세팅
+		// 통합 주소
+		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
+		
+		
+		int result = service.pay(purchaseDTO, purchaseOrderDTO, purchaseProductDTO);
+		purchaseDTO.setNo(result);
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("result", result);
+		
+		mv.addObject("purchase", purchaseDTO);
+		mv.addObject("purchaseOrder", purchaseOrderDTO);
+		mv.addObject("purchaseProduct", purchaseProductDTO);
+		mv.addObject("addr", addr);
+		mv.setViewName("order/pay");
+		return mv;
+	}
+	
+	@RequestMapping("payComplete")
+	public void payComplete(){
+		System.out.println("payComplete");
+		
 	}
 	
 	/**

@@ -48,6 +48,7 @@
 										<a href="shop-detail.html">
 											<img width="100" height="100" src="<c:url value="/resources/img/product/"/>${product.profile}" alt="" />
 										</a>
+										<input type = "hidden" value = "${product.no }">
 										<a href="shop-detail.html">${product.name} </a> 
 									</td>
 									<td class="product-price">
@@ -78,8 +79,8 @@
 											<p>
 												<label>총 금액 : <span id = "totalPrice"><c:url value='${totalPrice}'/></span></label>
 											</p>
-											<input type="submit" class="button" name="update_cart" value="선택상품주문"/>
-											<input type="submit" class="button" name="update_cart" value="전체상품주문"/>
+											<input id = "selectOrder" type="submit" class="button" name="update_cart" value="선택상품주문"/>
+											<input id = "allOrder" type="submit" class="button" name="update_cart" value="전체상품주문"/>
 										</div>
 									</td>
 								</tr>
