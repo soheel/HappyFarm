@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<section class="noo-page-heading eff">
+	<section class="noo-page-heading eff heading-2">
 			<div class="container">
 				<div class="noo-heading-content">
 					<h1 class="page-title eff">Community Page</h1>

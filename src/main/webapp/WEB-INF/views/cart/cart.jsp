@@ -70,9 +70,6 @@
 								</tr>
 							<!-- 상품 하나하나 -->
 							</c:forEach>
-							
-							
-							
 								<!-- 선택 상품들 총 금액 -->
 								<tr>
 									<td colspan="6" class="actions">
@@ -91,5 +88,14 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="noo-footer-shop-now">
+		<div class="container">
+			<div class="col-md-7">
+				<h4>- Every day fresh -</h4>
+				<h3>organic food</h3>
+			</div>
+			<img src="<c:url value="/resources/img/footer/"/>organici-love-me.png" class="noo-image-footer" alt="" />
 		</div>
 	</div>
