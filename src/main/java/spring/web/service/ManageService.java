@@ -6,6 +6,7 @@ import java.util.Map;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
@@ -181,12 +182,12 @@ public interface ManageService {
 	 * 기부업체 DTO
 	 * @return 
 	 * */
-	public List<DonationDTO> donationOrgManage();
+	public List<DonationOrgDTO> donationOrgManage();
 	/**
 	 * 기부업체 관리(등록)
 	 * @return 
 	 * */
-	public int donationOrgRegisterManage(DonationDTO donationDTO);
+	public int donationOrgRegisterManage(DonationOrgDTO donationOrgDTO);
 	
 	/**
 	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
@@ -198,7 +199,7 @@ public interface ManageService {
 	 * 기부업체 관리(수정)
 	 * @return 
 	 * */
-	public int donationOrgModifyManage(DonationDTO donationDTO);
+	public int donationOrgModifyManage(DonationOrgDTO donationOrgDTO);
 	
 	
 	/**

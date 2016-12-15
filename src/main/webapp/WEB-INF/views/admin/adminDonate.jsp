@@ -20,6 +20,7 @@
 												<th class="product-phone">연락처</th>
 												<th class="product-addr">주소</th>
 												<th class="product-content">설명</th>
+												
 											</tr>
 										</thead>
 										<tbody>
@@ -61,7 +62,7 @@
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">
 						<div class="modal-dialog">
-							<form action="" method="">
+							<form name="regDonate" action="<c:url value='/manageController/donationOrgRegisterManage'/>" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -79,7 +80,7 @@
 																기부업체 
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="no" id="no"/>
+															<input type="text" class="input-text" name="name" id="name"/>
 														</div>
 														<div class="form-row form-row-wide">
 															<label for="product-phone">
@@ -101,7 +102,15 @@
 																설명
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="item" id="item" />
+															<input type="text" class="input-text" name="desc" id="desc" />
+														</div>
+														
+														<div class="form-row form-row-wide">
+															<label for="producer_photo">
+																사진
+																<span class="required">*</span>
+															</label>
+															<input type="file" name="profile" id="profile" />
 														</div>
 													</div>
 													<div class="col-md-1"></div>

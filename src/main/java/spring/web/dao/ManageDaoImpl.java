@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
@@ -197,13 +198,13 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public List<DonationDTO> donationOrgManage() {
+	public List<DonationOrgDTO> donationOrgManage() {
 		return sqlsession.selectList("manageMapper.donationOrgManage");
 	}
 
 	@Override
-	public int donationOrgRegisterManage(DonationDTO donationDTO) {
-		return sqlsession.insert("manageMapper.donationOrgRegisterManage",donationDTO);
+	public int donationOrgRegisterManage(DonationOrgDTO donationOrgDTO) {
+		return sqlsession.insert("manageMapper.donationOrgRegisterManage",donationOrgDTO);
 	}
 
 	@Override
@@ -213,8 +214,8 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int donationOrgModifyManage(DonationDTO donationDTO) {
-		return sqlsession.update("manageMapper.donationOrgModifyManage",donationDTO);
+	public int donationOrgModifyManage(DonationOrgDTO donationOrgDTO) {
+		return sqlsession.update("manageMapper.donationOrgModifyManage",donationOrgDTO);
 	}
 
 	@Override

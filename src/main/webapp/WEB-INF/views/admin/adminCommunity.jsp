@@ -72,7 +72,8 @@
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">
 						<div class="modal-dialog">
-							<form action="" method="">
+							<form name="regCommunity" action="<c:url value='/manageController/communityRegisterManage'/>" enctype="multipart/form-data">
+							
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -97,23 +98,16 @@
 																사진
 																<span class="required">*</span>
 															</label>
-															<input type="file" name="photo" id="photo" />
+															<input type="file" name="profile" id="profile" />
 														</div>
 														<div class="form-row form-row-wide">
 															<label for="community_content">
 																내용
 																<span class="required">*</span>
 															</label>
-															<input type="file" name="content" id="content" />
+															<input type="file" name="desc" id="desc" />
 														</div>
-														<div class="form-row form-row-wide">
-															<label for="community_explanation">
-																설명
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="explanation" id="explanation" />
-														</div>
-
+														
 													</div>
 													<div class="col-md-1"></div>
 												</div>

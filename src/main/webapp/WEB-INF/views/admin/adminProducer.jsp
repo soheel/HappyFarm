@@ -62,7 +62,7 @@
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">
 						<div class="modal-dialog">
-							<form name="regProducer" class="btn btn-default" action="post" method="<c:url value='/manageController/producerRegisterManage'/>" enctype="multipart/form-data">
+							<form name="regProducer" action="<c:url value='/manageController/producerRegisterManage'/>" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -75,13 +75,6 @@
 												<div id="customer_login">
 													<div class="col-md-1"></div>
 													<div class="col-md-10">
-														<!-- <div class="form-row form-row-wide">
-															<label for="producer_no">
-																생산자 번호 
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="no" id="no"/>
-														</div> -->
 														<div class="form-row form-row-wide">
 															<label for="producer_name">
 																생산자 이름
@@ -110,21 +103,6 @@
 															</label>
 															<input type="text" class="input-text" name="item" id="item" />
 														</div>
-														<!-- <div class="form-row form-row-wide">
-															<label for="producer_take">
-																총 매출액
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="take" id="take" />
-														</div> -->
-														<!-- <div class="form-row form-row-wide">
-															<label for="producer_email">
-																E-MAIL
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="email" id="email" />
-														</div> -->
-
 														<div class="form-row form-row-wide">
 															<label for="producer_photo">
 																사진

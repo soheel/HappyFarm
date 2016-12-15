@@ -135,10 +135,9 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminQna.js"></script>
 </body>
 <script type="text/javascript">
-$(function(){
+/* $(function(){
 
 	 $("#producerRegister").click(function() {
-		
 			$.ajax({
 				url : "<c:url value = '/manageController/producerRegisterManage'/>",
 				type : "post",
@@ -148,7 +147,7 @@ $(function(){
 					if(result >= 1) {
 						alert("생산자를 추가하였습니다.");
 						$("#insert").hide();
-						location.href="<c:url value='/manageController/producerManage'/>"
+						
 					}else{
 						alert("result가 1이 아님")
 					}
@@ -160,6 +159,6 @@ $(function(){
 		//}
 		
 		}) 
-});
+}); */
 </script>
 </html>

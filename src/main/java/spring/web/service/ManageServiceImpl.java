@@ -10,6 +10,7 @@ import spring.web.dao.ManageDao;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
@@ -254,15 +255,15 @@ public class ManageServiceImpl implements ManageService {
 	 * 기부업체 DTO
 	 * */
 	@Override
-	public List<DonationDTO> donationOrgManage() {
+	public List<DonationOrgDTO> donationOrgManage() {
 		return manageDao.donationOrgManage();
 	}
 	/**
 	 * 기부업체 관리(등록)
 	 **/
 	@Override
-	public int donationOrgRegisterManage(DonationDTO donationDTO) {
-		return manageDao.donationOrgRegisterManage(donationDTO);
+	public int donationOrgRegisterManage(DonationOrgDTO donationOrgDTO) {
+		return manageDao.donationOrgRegisterManage(donationOrgDTO);
 	}
 	/**
 	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
@@ -275,8 +276,8 @@ public class ManageServiceImpl implements ManageService {
 	 * 기부업체 관리(수정)
 	 * */
 	@Override
-	public int donationOrgModifyManage(DonationDTO donationDTO) {
-		return manageDao.donationOrgModifyManage(donationDTO);
+	public int donationOrgModifyManage(DonationOrgDTO donationOrgDTO) {
+		return manageDao.donationOrgModifyManage(donationOrgDTO);
 	}
 	/**
 	 * 기부업체 관리(삭제)
