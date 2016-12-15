@@ -66,7 +66,113 @@
 												<img alt="" src="<c:url value='/resources/img/product/'/>${product.desc }">
 											</div>
 											<div id="tab-2" class="tab-pane fade">
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Maecenas tristique gravida, odio et sagi ttis justo. Susp endisse ultricies nisi vel quam suscipit, et rutrum odio porttitor. Donec dictum non nulla ut lobortis. Maecenas tristique gravida, odio et sagi ttis justo. Aliquam vitae mi a eros tincidunt ultricies. Donec porta gravida arcu. Morbi facilisis lorem felis, eu inerdum quam scelerisque eu. Phasellus vel turpis dictum, pulvinar nulla</p>
+												<div id="comments" class="comments-area">
+						                        	<h2 class="comments-title">3 Comments</h2>
+						                        	<ol class="comments-list">
+									        			<li class="comment">
+						            						<div class="comment-wrap">
+						                						<div class="comment-img">
+						                    						<img alt='' src='http://placehold.it/100x100' height='80' width='80' />
+						                    					</div>
+						                						<article class="comment-block">
+						                    						<header class="comment-header">
+						                        						<cite class="comment-author">
+						                        							admin
+						                        						</cite>
+												                        <div class="comment-meta">
+												                            <span class="time">
+												                                4 months ago
+												                            </span>
+												                        </div>
+						                                            </header>
+						                    						<div class="comment-content">
+						                        						<p>fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus</p>
+						                    						</div>
+						                    						<span class="comment-reply">
+						                        						<a class='comment-reply-link' href='#'><i class="fa fa-reply"></i> Reply</a>
+						                        					</span>
+						                						</article>
+						            						</div>
+						        							<ol class="children">
+						        								<li class="comment">
+						            								<div class="comment-wrap">
+						                								<div class="comment-img">
+						                    								<img alt='' src='http://placehold.it/100x100' height='80' width='80' />
+						                    							</div>
+						                								<article class="comment-block">
+						                    								<header class="comment-header">
+						                        								<cite class="comment-author">
+						                        									admin
+						                                                    	</cite>
+														                        <div class="comment-meta">
+														                            <span class="time">
+														                                4 months ago
+														                            </span>
+														                        </div>
+						                                            		</header>
+														                    <div class="comment-content">
+														                        <p>fSames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus</p>
+														                    </div>
+						                    								<span class="comment-reply">
+								                        						<a class='comment-reply-link' href='#'><i class="fa fa-reply"></i> Reply</a>
+								                        					</span>
+						                								</article>
+														            </div>
+														        </li><!-- #comment-## -->
+															</ol><!-- .children -->
+														</li><!-- #comment-## -->
+												        <li class="comment">
+												            <div class="comment-wrap">
+						                						<div class="comment-img">
+						                    						<img alt='' src='http://placehold.it/100x100' height='80' width='80' />
+						                    					</div>
+						                						<article class="comment-block">
+						                    						<header class="comment-header">
+						                        						<cite class="comment-author">
+						                        							admin
+						                        						</cite>
+												                        <div class="comment-meta">
+												                            <span class="time">
+												                                4 months ago
+												                            </span>
+												                        </div>
+						                                            </header>
+						                    						<div class="comment-content">
+						                        						<p>fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus</p>
+						                    						</div>
+						                    						<span class="comment-reply">
+						                        						<a class='comment-reply-link' href='#'><i class="fa fa-reply"></i> Reply</a>
+						                        					</span>
+						                						</article>
+						            						</div>
+												        </li><!-- #comment-## -->
+													</ol> <!-- /.comments-list -->
+													<div id="respond-wrap">
+						        						<div id="respond" class="comment-respond">
+															<h3 id="reply-title" class="comment-reply-title">
+																<span>Leave your thought</span>
+															</h3>
+															<form class="comment-form">
+																<div class="row">
+																	<div class="comment-form-author col-sm-6">
+																		<input id="author" name="author" type="text" placeholder="Enter Your Name*" class="form-control" value="" size="30" />
+																	</div>
+																	<div class="comment-form-email col-sm-6">
+																		<input id="email" name="email" type="text" placeholder="Enter Your Email*" class="form-control" value="" size="30" />
+																	</div>
+																	<div class="col-sm-12">
+																		<div class="comment-form-comment">
+																			<textarea class="form-control" placeholder="Enter Your Comment" id="comment" name="comment" cols="40" rows="6"></textarea>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-submit">
+																	<input name="submit" type="submit" id="submit" class="submit" value="Post Comments" />
+																</div>
+															</form>
+														</div><!-- #respond -->
+									    			</div>
+						    					</div>
 											</div>
 											<div class="tab-pane fade" id="tab-3">
 												<img style = "width : 200px; height : 200px; margin : auto;" alt="" src="<c:url value='/resources/img/producer/'/>${producer.profile}">
