@@ -130,7 +130,7 @@
 						<!-- info 하나하나 -->
 						<c:forEach items="${infoList }" var="infoList">
 							<div class="product-masonry">
-							<img style = "padding : 10px;" width="644" height="380" src="<c:url value="/resources/img/info/"/>${infoList.profile}" alt="" /> 
+							<img style = "padding : 10px 80px;" width="644" height="380" src="<c:url value="/resources/img/info/"/>${infoList.profile}" alt="" /> 
 							<div class="noo-link">
 								<div class="noo-product-table">
 									<div class="noo-product-table-cell">
