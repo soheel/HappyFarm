@@ -22,6 +22,8 @@
 	<link rel='stylesheet' href='<c:url value="/resources/css/"/>style.css' type='text/css' media='all'/>
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>magnific-popup.css' type='text/css' media='all' />
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>myAccount.css' type='text/css' media='all' />
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+	
 </head>
 <body>
 	<div class="noo-spinner">
@@ -148,6 +150,7 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>myAccount.js"></script>
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	<script type="text/javascript">
 	//버튼의 value값에 따라 결과 나누기
 	$(document).ready(function(){
@@ -172,6 +175,11 @@
 			
 		});
 		
+		
+		/* Data Table */
+		$(document).ready(function(){
+		    $('#myOrderTable').DataTable();
+		});
 	});
 </script>
 </body>
