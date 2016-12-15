@@ -23,6 +23,7 @@ import spring.web.dto.MemberDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
+import spring.web.dto.PurchaseListDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.UserInfoService;
 
@@ -485,10 +486,11 @@ public class UserInfoController {
 	
 	/**
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
-	 * 목록삭제(ajax)
+	 * 목록삭제
 	 * */
 	@RequestMapping("requestCancelButton")
-	public ModelAndView requestCancelButton(String data) {
+	public ModelAndView requestCancelButton(PurchaseListDTO purchaseList) {
+		
 		/**
 		 * 주문/배송 조회 시 나오는 데이터중에
 		 * 특정 데이터를 사용자가 지우기 원할 때
@@ -499,7 +501,10 @@ public class UserInfoController {
 		 * 그에 해당하는 데이터를 지운후 int형태로 리턴을 받아서
 		 * view로 전달 
 		 * */
-		System.out.println(data);
+		System.out.println(purchaseList.getPurchaseList());
+		//System.out.println(purchaseList.getPurchaseList().get(0).getPurchaseStateDto().getName());
+		//System.out.println(purchaseList.getPurchaseList().get(1));
+		//System.out.println(purchaseList.getPurchaseList().get(1).getPurchaseStateDto().getName());
 		//int result = userService.deleteOrderProduct(no);
 		return null;
 	}
