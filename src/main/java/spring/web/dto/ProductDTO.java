@@ -17,7 +17,7 @@ public class ProductDTO {
 	private PackageDTO packageDTO;
 	
 
-	private ProducerDTO producerDTO;
+	private ProducerDTO producerDto;
 	private List<ProductCertificationDTO> productCertificationDto;
 	private CategorySubcategoryDTO subCategoryDto;
 	private PurchaseProductDTO purchaseProductDto;
@@ -121,14 +121,14 @@ public class ProductDTO {
 		this.subCategoryNo = subCategoryNo;
 	}
 
-	public ProducerDTO getProducerDTO() {
-		return producerDTO;
+	public ProducerDTO getProducerDto() {
+		return producerDto;
 	}
-
-	public void setProducerDTO(ProducerDTO producerDTO) {
-		this.producerDTO = producerDTO;
+	
+	public void setProducerDto(ProducerDTO producerDto) {
+		this.producerDto = producerDto;
 	}
-
+	
 	public List<ProductCertificationDTO> getProductCertificationDto() {
 		return productCertificationDto;
 	}

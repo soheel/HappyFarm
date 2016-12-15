@@ -19,25 +19,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="member_mileage" property="mileage"/>
 	</resultMap>
 	
-
-<resultMap type="productDTO" id="productDto">
-	<id column="product_no" property="no"/>
-	<result column="product_name" property="name"/>
-	<result column="product_price" property="price"/>
-	<result column="producer_no" property="producerNo"/>
-	<association property="producerDto" javaType="producerDTO">
-		<id column="producer_no" property="no"/>
-		<result column="producer_name" property="name"/>
-	</association>
+<resultMap type="memberDTO" id="memberDtoJoin">
+	<id column="member_email" property="email"/>
+	<result column="donation_org_no" property="donationOrgNo"/>
+	<association property="donationOrgDto" resultMap="donationOrgDto" />
+	<collection property="purchaseDto" resultMap="purchaseDto1" />
 </resultMap>
-
-<resultMap type="purchaseProductDTO" id="purchaseProductDto">
-	<id column="purchase_no" property="purchaseNo"/>
-	<result column="product_no" property="productNo"/>
-	<result column="purchase_product_num" property="productNum"/>
-	<association property="productDto" resultMap="productDto"></association>
-</resultMap>
-
 <resultMap type="purchaseDTO" id="purchaseDto1">
 	<id column="purchase_no" property="no"/>
 	<result column="purchase_date" property="date" />
@@ -47,25 +34,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<association property="purchaseStateDto" resultMap="purchaseStateDto" />
 	<collection property="purchaseProductDto" resultMap="purchaseProductDto"/>
 </resultMap>
-
-<resultMap type="memberDTO" id="memberDtoJoin">
-	<id column="member_email" property="email"/>
-	<result column="donation_org_no" property="donationOrgNo"/>
-	<association property="donationOrgDto" resultMap="donationOrgDto" />
-	<collection property="purchaseDto" resultMap="purchaseDto1" />
+	<resultMap id="purchaseStateDto" type="purchaseStateDTO">
+				<id column="purchase_state_no" property="no" />
+				<result column="purchase_state_name" property="name" />
+	</resultMap>
+	<resultMap type="purchaseProductDTO" id="purchaseProductDto">
+		<id column="purchase_no" property="purchaseNo"/>
+		<result column="product_no" property="productNo"/>
+		<result column="purchase_product_num" property="productNum"/>
+		<association property="productDto" resultMap="productDto1" />
+		<association property="purchaseDto" javaType="purchaseDto">
+			<id column="purchase_no" property="no"/>
+		</association>
+	</resultMap>
+<resultMap type="productDTO" id="productDto1">
+	<id column="product_no" property="no"/>
+	<result column="product_name" property="name"/>
+	<result column="product_price" property="price"/>
+	<result column="producer_no" property="producerNo"/>
+	<association property="producerDto" javaType="producerDTO">
+		<id column="producer_no" property="no"/>
+		<result column="producer_name" property="name"/>
+	</association>
 </resultMap>
-
 <resultMap type="donationOrgDTO" id="donationOrgDto">
 	<id column="donation_org_no" property="donationOrgNo"/>
 	<collection property="donationDto" resultMap="donationDto" />	
 </resultMap>
-
 <resultMap type="donationDTO" id="donationDto">
 	<id column="donation_date" property="date"/>
 	<result column="donation_org_no" property="donationOrgNo"/>
 	<result column="donation_price" property="price"/>
-</resultMap>
-				
+</resultMap>			
 	
 	<!-- 기본 ProductDTO ResultMap -->
 	<resultMap type="productDTO" id="productResultMap">
@@ -86,11 +86,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 	</resultMap>
 	
-	<resultMap id="purchaseStateDto" type="purchaseStateDTO">
-				<id column="purchase_state_no" property="no" />
-				<result column="purchase_state_name" property="name" />
-	</resultMap>
-	
 	<!-- 기본 ProducerDTO ResultMap -->
 	<resultMap type="producerDTO" id="producerResultMap">
 		<id column="producer_no" property="no"/>
@@ -99,13 +94,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="producer_phone" property="phone"/>
 		<result column="producer_register_date" property="registerDate"/>
 		<result column="producer_profile" property="profile"/>
-	</resultMap>
-	
-	<resultMap type="purchaseDTO" id="purchaseDto">
-		<id column="purchase_no" property="no" />
-			<result column="purchase_price" property="price" />
-			<result column="purchase_date" property="date" />
-			<result column="purchase_discount" property="discount"/>	
 	</resultMap>
 	
 	<!-- 나의 질문목록  -->
@@ -175,7 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where purchase.purchase_no = purchase_product.purchase_no group by purchase_product.product_no order by count(purchase_product.product_no) desc
 	</select>
 	<!-- 기부금액 가져오기(저번달꺼만) -->
-	<select id="getPreviousDonationPrice" resultType="integer">
+	<select id="getPreviousDonationPrice" resultType="int">
 	select donation_price from donation order by donation_date desc
 	</select>
 	<!-- 상품번호(productNo)로 상품DTO(ProductDTO) 가져오기 (테스트완료)-->

@@ -322,17 +322,18 @@ public class UserInfoController {
 	public ModelAndView searchOrderList(HttpSession session,String value) {
 		System.out.println(value);
 		String email = (String)session.getAttribute("email");
-		List<MemberDTO> list = null;
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		int result=0;
 		
 		if(value.equals("전체")){
 			list = userService.myPageOrderListAll(email);
 			
 		}else if(value.equals("3개월")){
-			list = userService.myPageCancelList3(email);
+			list = userService.myPageOrderList3(email);
+			System.out.println(list.size());
 			
 		}else if(value.equals("6개월")){
-			list = userService.myPageCancelList6(email);
+			list = userService.myPageOrderList6(email);
 			
 		}else if(value.equals("1년")){
 			list = userService.myPageOrderList12(email);
@@ -354,7 +355,7 @@ public class UserInfoController {
 	public ModelAndView searchRefundList(HttpSession session,String value) {
 		System.out.println(value);
 		String email = (String)session.getAttribute("email");
-		List<MemberDTO> list = null;
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		
 		
 		if(value.equals("전체")){
@@ -385,7 +386,7 @@ public class UserInfoController {
 	public ModelAndView searchReturnList(HttpSession session,String value) {
 		System.out.println(value);
 		String email = (String)session.getAttribute("email");
-		List<MemberDTO> list = null;
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		
 		
 		if(value.equals("전체")){
