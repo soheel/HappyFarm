@@ -66,7 +66,7 @@
 							<a href="<c:url value="/userInfoController/myPageInfoModify"/>">정보관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/userInfoController/myInfoMileage"/>">마일리지</a>
+							<a href="<c:url value="/userInfoController/myPageMileage"/>">마일리지</a>
 						</li>
 					</ul>
 				</nav>
@@ -169,17 +169,23 @@
 			location.href="<c:url value='/userInfoController/searchReturnList'/>?value="+$(this).val();
 		});
 		
-		$(".searchOrderListCancer").click(function(){
-			var str = $("input[type=checkbox]").next().val()+"나리";
-			alert(str)
-			
-		});
-		
-		
 		/* Data Table */
 		$(document).ready(function(){
 		    $('#myOrderTable').DataTable();
 		});
+		
+		/* $(".checkBox").on("checked", function(){
+			$(".searchOrderListCancer").submit;	
+		}); */
+		$('input:checkbox[name="box"]').each(function() {
+
+		     if(this.checked = true){ 
+				 var str=$(this).parent().next().net().text();
+				alert(str)
+		      }
+
+		 });
+		
 	});
 </script>
 </body>

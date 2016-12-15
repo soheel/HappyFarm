@@ -11,6 +11,8 @@
 <input type="button" value="3개월" name="three_month" class="searchOrderList">
 <input type="button" value="6개월" name="six_month" class="searchOrderList">
 <input type="button" value="1년" name="year_month" class="searchOrderList">
+
+<form id="deleteOrderList" action="<c:url value='/userInfoController/requestCancelButton'/>" method="post">
 <table class="table">
 	<thead>
 		<tr>
@@ -31,16 +33,18 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${list}" var="memberDto">
-		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto">
+		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto" varStatus="state">
 		<tr class="warning">
-			<td><input type="checkbox" name="box"/></td>
+			<td><input type="checkbox" name="box" class="checkBox"/></td>
 			<td>${purchaseDto.date}</td>
+				<input type ="text" value ="${purchaseDto.date}" name ="purchaseList[${state.index}].date" hidden >
 		<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
          	<td>${purchaseProductDto.productDto.name}</td>
          	<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>
          	<td>${purchaseProductDto.productDto.producerDto.name}</td> 
 		</c:forEach>
 			<td>${purchaseDto.purchaseStateDto.name}</td>
+			<input type ="text" value ="${purchaseDto.purchaseStateDto.name}" name ="purchaseList[${state.index}].purchaseStateDto.name" hidden >
 		</tr>
 		</c:forEach>
 		</c:forEach>
@@ -49,4 +53,5 @@
 	</tbody>
 </table>
 <input type="button" value="환불/반품/교환" name="order-action">
-<input type="button" value="취소" name="cancel" class="searchOrderListCancer">
+<input type="submit" value="취소" name="cancel" class="searchOrderListCancer">
+</form>
