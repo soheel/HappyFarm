@@ -62,7 +62,7 @@
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">
 						<div class="modal-dialog">
-							<form name="regProducer" action="<c:url value='/manageController/producerRegisterManage'/>" enctype="multipart/form-data">
+							<form name="regProducer" action="<c:url value='/manageController/producerRegisterManage'/>" method = "post" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
