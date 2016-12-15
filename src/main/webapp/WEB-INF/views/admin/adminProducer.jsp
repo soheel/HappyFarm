@@ -62,7 +62,7 @@
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">
 						<div class="modal-dialog">
-							<form action="" method="">
+							<form name="regProducer" class="btn btn-default" action="post" method="<c:url value='/manageController/producerRegisterManage'/>" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -110,13 +110,13 @@
 															</label>
 															<input type="text" class="input-text" name="item" id="item" />
 														</div>
-														<div class="form-row form-row-wide">
+														<!-- <div class="form-row form-row-wide">
 															<label for="producer_take">
 																총 매출액
 																<span class="required">*</span>
 															</label>
 															<input type="text" class="input-text" name="take" id="take" />
-														</div>
+														</div> -->
 														<div class="form-row form-row-wide">
 															<label for="producer_email">
 																E-MAIL
@@ -130,16 +130,16 @@
 																사진
 																<span class="required">*</span>
 															</label>
-															<input type="file" name="photo" id="photo" />
+															<input type="file" name="profile" id="profile" />
 														</div>
 
-														<div class="form-row form-row-wide">
+														<!-- <div class="form-row form-row-wide">
 															<label for="producer_grade">
 																평점
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="grade" id="grade" />
-														</div>
+															<input type="text" class="input-text" name="grade" id="reg_prograde" />
+														</div> -->
 													</div>
 													<div class="col-md-1"></div>
 												</div>
@@ -147,7 +147,7 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button type="submit" class="btn btn-default">등록</button>
+										<button type="submit" class="btn btn-default" id="producerRegister">등록</button>
 										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 									</div>
 								</div>

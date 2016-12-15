@@ -10,6 +10,7 @@ import spring.web.dao.ManageDao;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -121,7 +122,7 @@ public class ManageServiceImpl implements ManageService {
 	 * 생산자 DTO 리스트
 	 * */
 	@Override
-	public List<ProductDTO> selectAllProducer() {
+	public List<ProducerDTO> selectAllProducer() {
 		return manageDao.selectAllProducer();
 	}
 
@@ -162,7 +163,7 @@ public class ManageServiceImpl implements ManageService {
 	 * 회원 DTO 리스트(오름차순)
 	 * */
 	@Override
-	public List<ProductDTO> selectAllMember() {
+	public List<MemberDTO> selectAllMember() {
 		return manageDao.selectAllMember();
 	}
 	/**

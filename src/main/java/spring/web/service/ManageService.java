@@ -6,6 +6,7 @@ import java.util.Map;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -91,7 +92,7 @@ public interface ManageService {
 	 * 생산자관리 눌렀을 때
 	 * 생산자 DTO 리스트
 	 * */
-	public List<ProductDTO> selectAllProducer();
+	public List<ProducerDTO> selectAllProducer();
 	/**
 	 * 생산자 등록
 	 * */
@@ -115,7 +116,7 @@ public interface ManageService {
 	 * 회원관리
 	 * 회원 DTO 리스트(오름차순)
 	 * */
-	public List<ProductDTO> selectAllMember();
+	public List<MemberDTO> selectAllMember();
 	/**
 	 * 회원관리(삭제)
 	 * */

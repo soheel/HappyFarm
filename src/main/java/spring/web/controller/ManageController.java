@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -285,7 +287,7 @@ public class ManageController {
 		 * 2. proudcerDTO에 있는 정보를 다 받아와서 (producerlist)
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 *  */
-		List<ProductDTO> producerlist = manageService.selectAllProducer();
+		List<ProducerDTO> producerlist = manageService.selectAllProducer();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("producerlist", producerlist);
@@ -299,7 +301,8 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("producerRegisterManage")
-	public String producerRegisterManage(ProducerDTO producerDTO) {
+	@ResponseBody
+	public int producerRegisterManage(HttpServletRequest request, ProducerDTO producerDTO) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 producerDTO 정보를 모두 받아, 
@@ -309,7 +312,8 @@ public class ManageController {
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
-		return "forward:producerManage";
+		System.out.println(result + "!!!!!");
+		return result;
 	}
 	
 	
@@ -405,7 +409,7 @@ public class ManageController {
 		 * select를 하는데 오름차순으로 해준다.
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 *  */
-		List<ProductDTO> memberlist = manageService.selectAllMember();
+		List<MemberDTO> memberlist = manageService.selectAllMember();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("memberlist", memberlist);

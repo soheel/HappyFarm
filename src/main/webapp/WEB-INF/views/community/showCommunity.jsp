@@ -33,7 +33,7 @@
 													</a>
 												</div>
 												<div class="noo-product-title"> 
-													<h3><a href="">${ing.name}</a></h3>
+													<h3><<a href="<c:url value="/userEtcController/communityDetail?no=${ing.no}"/>">${ing.name}</a></h3>
 													<span class="date"><span class="amount">${ing.registerDate}</span></span>
 												</div>
 												

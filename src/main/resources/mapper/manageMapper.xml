@@ -13,12 +13,19 @@
 	<result column="product_unit" property="unit"/>
 	<result column="producer_no" property="producerNo"/>
 	<result column="category_subcategory_no" property="subCategoryNo"/>
-	<association property="packageDTO" resultMap="packageResultMap" javaType="packageDTO"/>
- 	<association property="producerDTO" resultMap="producerResultMap"/>  
-	<collection property="productCertificationDto" resultMap="productCertificationDto"/>
+<!-- 	<association property="packageDTO" resultMap="packageResultMap" javaType="packageDTO"/> -->
+ 	<association property="producerDTO" resultMap="producerResultMap" javaType="producerDTO"/>  
+	<!-- <collection property="productCertificationDto" resultMap="productCertificationDto"/> -->
 </resultMap>
  
-
+<resultMap type="producerDTO" id="producerResultMap">
+	<id column="producer_no" property="no"/>
+	<result column="producer_name" property="name"/>
+	<result column="producer_addr" property="addr"/>
+	<result column="producer_phone" property="phone"/>
+	<result column="producer_register_date" property="registerDate"/>
+	<result column="producer_profile" property="profile"/>
+</resultMap> 
 	
 	
 
@@ -35,16 +42,6 @@
 		<result column="product_profile" property="profile"/> -->
 	</collection> 
 </resultMap>
-
-
-  <resultMap type="producerDTO" id="producerResultMap">
-	<id column="producer_no" property="no"/>
-	<result column="producer_name" property="name"/>
-	<result column="producer_addr" property="addr"/>
-	<result column="producer_phone" property="phone"/>
-	<result column="producer_register_date" property="registerDate"/>
-	<result column="producer_profile" property="profile"/>
-</resultMap> 
  
 <resultMap type="productCertificationDTO" id="productCertificationDto">	
 	<id column="product_certification_no" property="no"/>
@@ -93,10 +90,9 @@
 
 <!-- 1.개별상품관리 - 모든 상품들 정보를 불러온다. -->
 <select id="selectAll" resultMap="productManager">
-	<!-- select pd.product_profile, pd.product_name, pd.product_price, pc.producer_name, certi.certification_no
-	from product pd, producer pc, product_certification certi
-	where pd.producer_no=pc.producer_no and certi.product_no=pd.product_no  -->
-	 select * from product 
+	 select pd.product_profile, pd.product_name, pd.product_price, pc.producer_name
+	 from product pd join producer pc 
+	 on pd.producer_no=pc.producer_no
 </select>
 
 <!-- 2. 개별상품관리 - 등록  -->
@@ -166,7 +162,7 @@
 
 <!-- 6. 생산자 - 등록  -->
 <insert id="producerRegisterManage" parameterType="producerDTO">
-	insert into producer values (producer_no.nextval, #{name}, #{addr}, #{phone}, sysdate)
+	insert into producer values (producer_no.nextval, #{name}, #{addr}, #{phone}, sysdate, #{profile})
 </insert>
 
 <!-- 7. 생산자 정보를 수정한다. -->
