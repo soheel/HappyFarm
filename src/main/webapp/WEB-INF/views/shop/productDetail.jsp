@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-			<section class="noo-page-heading eff heading-6">
+			<section class="noo-page-heading eff heading-2">
 				<div class="container">
 					<div class="noo-heading-content">
 						<h1 class="page-title eff">Shop Detail</h1>

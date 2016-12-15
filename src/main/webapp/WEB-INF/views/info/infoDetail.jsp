@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<section class="noo-page-heading eff">
+	<section class="noo-page-heading eff heading-2">
 		<div class="container">
 			<div class="noo-heading-content">
 				<h1 class="page-title eff">Info Detail Page</h1>
@@ -40,7 +40,7 @@
 				<h4>- Every day fresh -</h4>
 				<h3>organic food</h3>
 			</div>
-			<img src="<c:url value="/resources/images/"/>organici-love-me.png"
+			<img src="<c:url value="/resources/img/footer/"/>organici-love-me.png"
 				class="noo-image-footer" alt="" />
 		</div>
 	</div>

@@ -87,7 +87,7 @@
 	request에서 넘어오는 community_no정보를 받아 그 번호에 해당하는 prfile이미지를 불러온다.
 -->
 <select id="getCommunityProfile" resultMap="communityResultMap" parameterType="int">
-	select community_profile,community_name from community where community_no=#{value}
+	select community_profile,community_name,community_desc from community where community_no=#{value}
 </select>
 
 <!-- 2-2. 화면 밑에는 댓글에 해당하는 댓글 내용이 다 출력되어진다. -->

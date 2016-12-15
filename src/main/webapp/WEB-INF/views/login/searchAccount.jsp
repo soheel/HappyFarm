@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 	<div class="site">
 		<section class="noo-page-heading eff">
 			<div class="container">
@@ -49,9 +49,7 @@
 								</div>
 								<div class="col-md-1"></div>
 							</div>
-						</div>
-						
-						
+						</div>		
 					</div>
 				</div>
 			</div>
@@ -62,7 +60,7 @@
 					<h4>- Every day fresh -</h4>
 					<h3>organic food</h3>
 				</div>
-				<img src="images/organici-love-me.png" class="noo-image-footer" alt="" />
+				<img src="<c:url value="/resources/img/footer/"/>organici-love-me.png" class="noo-image-footer" alt="" />
 			</div>
 		</div>
 	</div>

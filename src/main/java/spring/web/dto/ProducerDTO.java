@@ -1,5 +1,7 @@
 package spring.web.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProducerDTO {
 	private int no;
 	private String name;
@@ -7,6 +9,8 @@ public class ProducerDTO {
 	private String phone;
 	private String registerDate;
 	private String profile;
+	
+	private MultipartFile file;
 	
 	public ProducerDTO() {}
 
@@ -18,6 +22,7 @@ public class ProducerDTO {
 		this.phone = phone;
 		this.registerDate = registerDate;
 		this.profile = profile;
+	
 	}
 
 	public int getNo() {
@@ -59,13 +64,25 @@ public class ProducerDTO {
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;
 	}
-	
+
 	public String getProfile() {
 		return profile;
 	}
-	
+
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	
+	
+	
 	
 }

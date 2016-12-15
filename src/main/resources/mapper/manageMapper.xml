@@ -55,7 +55,7 @@
 	<result column="member_pwd" property="pwd"/>
 	<result column="member_name" property="name"/>
 	<result column="member_phone" property="phone"/>
-	<result column="member_register_date" property="registerDate"/>
+	<result column="memer_register_date" property="registerDate"/>
 	<result column="member_mileage" property="mileage"/>
 	<result column="member_reommand" property="recommand"/>
 </resultMap>
@@ -197,7 +197,7 @@
  
  <!-- 12. community 정보를 등록한다. -->
  <insert id="communityRegisterManage" parameterType="communityDTO">
-	insert into community values (community_no.nextval, #{name}, #{profile}, #{desc}, sysdate, #{state})
+	insert into community values (community_no.nextval, #{name}, #{profile}, #{desc}, sysdate, 1)
 </insert>
 
 <!-- 13. community정보를 수정한다. -->

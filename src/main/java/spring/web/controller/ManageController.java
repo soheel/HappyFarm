@@ -1,20 +1,26 @@
 package spring.web.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
@@ -301,19 +307,28 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("producerRegisterManage")
-	@ResponseBody
-	public int producerRegisterManage(HttpServletRequest request, ProducerDTO producerDTO) {
+	
+	public String producerRegisterManage(HttpServletRequest request, ProducerDTO producerDTO, @RequestParam MultipartFile file, HttpSession session) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 producerDTO 정보를 모두 받아, 
 		 * 3. producer테이블에 추가한다(register)
 		 */
+		String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
+		// 파일정보확인
+		String profile = file.getOriginalFilename();
+		
+		try {
+			file.transferTo(new File(saveDir + "/" + profile));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int result = manageService.producerRegisterManage(producerDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
 		System.out.println(result + "!!!!!");
-		return result;
+		return "forward:producerManage";
 	}
 	
 	
@@ -624,7 +639,7 @@ public class ManageController {
 		/**
 		 * 기부 업체 관리를 클리하면, 해당하는 기부업체 DTO의 정보를 받아서 (select) 뷰에 뿌려준다.
 		 */
-		List<DonationDTO> donationlist = null;
+		List<DonationOrgDTO> donationlist = null;
 		ModelAndView mv = new ModelAndView();
 		donationlist = manageService.donationOrgManage();
 		if(donationlist!=null){
@@ -640,13 +655,13 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("donationOrgRegisterManage")
-	public String donationOrgRegisterManage(DonationDTO donationDTO) {
+	public String donationOrgRegisterManage(DonationOrgDTO donationOrgDTO) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
 		 * 3. community테이블에 추가한다(register)
 		 */
-		int result = manageService.donationOrgRegisterManage(donationDTO);
+		int result = manageService.donationOrgRegisterManage(donationOrgDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
@@ -668,13 +683,13 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("donationOrgModifyManage")
-	public String donationOrgModifyManage(DonationDTO donationDTO) {
+	public String donationOrgModifyManage(DonationOrgDTO donationOrgDTO) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * 그 다음 div태그가 사라지고 다시 community관리를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.donationOrgModifyManage(donationDTO);
+		int result = manageService.donationOrgModifyManage(donationOrgDTO);
 			if(result==0){
 				//request.setAttribute("errorMsg", "수정되지 않았습니다.");	
 			}

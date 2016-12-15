@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<section class="noo-page-heading eff">
+	<section class="noo-page-heading eff heading-2">
 			<div class="container">
 				<div class="noo-heading-content">
 					<h1 class="page-title eff">Community Page</h1>
@@ -18,8 +18,8 @@
 							<div class="col-sm-12">
 								<div class="noo-product-grid-wrap commerce product-style">
 									<div class="noo-sh-title">
-										<h2>Our new products</h2>
-										<p>Maecenas tristique gravida odio, et sagi ttis justo interdum porta. Duis et lacus mattis, tincidunt eronec dictum non nulla.</p>
+										<h2>진행중인 모임들</h2>
+										<p>각 생산자들이 주최하고있는 모임에 참여하세요!</p>
 									</div>
 									<div class="noo-product-grid products row product-grid noo-grid-4">
 										<c:forEach items="${communityIngList}" var="ing">
@@ -28,12 +28,11 @@
 											
 												<div class="noo-product-thumbnail">
 													<a href="<c:url value="/userEtcController/communityDetail?no=${ing.no}"/>">
-						
-														<img width="600" height="760" src='<c:url value="/resources/images/"/>product/${ing.profile}' alt="" />
+														<img width="600" height="760" src='<c:url value="/resources/img/community/"/>${ing.profile}' alt="" />
 													</a>
 												</div>
 												<div class="noo-product-title"> 
-													<h3><<a href="<c:url value="/userEtcController/communityDetail?no=${ing.no}"/>">${ing.name}</a></h3>
+													<h3><a href="<c:url value="/userEtcController/communityDetail?no=${ing.no}"/>">${ing.name}</a></h3>
 													<span class="date"><span class="amount">${ing.registerDate}</span></span>
 												</div>
 												

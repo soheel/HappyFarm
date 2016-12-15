@@ -15,7 +15,7 @@
 </table>
 <hr>
 <h2>진행중인주문</h2>
-<table class="table">
+<table id = "myOrderTable" class="table">
 	<thead>
 		<tr>
 			<th>주문일자</th>

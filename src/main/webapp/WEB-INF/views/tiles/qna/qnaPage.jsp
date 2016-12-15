@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-	<link rel="shortcut icon" href="images/favicon.ico"/>
+	<link rel="shortcut icon" href="<c:url value="/resources/images/"/>favicon.ico"/>
 	<title>QnA</title>
 	
 	<link rel='stylesheet' href='<c:url value="/resources/css/"/>bootstrap.min.css' type='text/css' media='all' />
@@ -63,5 +63,6 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
+	<script type="text/javascript" src='<c:url value="/resources/js/"/>textarea-autoScroll.js'></script>
 </body>
 </html>

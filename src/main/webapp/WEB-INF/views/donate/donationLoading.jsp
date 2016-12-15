@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-	<section class="noo-page-heading eff">
+	<section class="noo-page-heading eff heading-3">
 			<div class="container">
 				<div class="noo-heading-content">
 					<h1 class="page-title eff">Donate Page</h1>
@@ -35,8 +35,11 @@
 	  	
 	  	<h3>기부 업체</h3>
 	  	<div class="related products qna_board">
-			<img alt="" src="<c:url value='/resources/img/donation_org/'/>${donationOrg.profile}">
-			<p>${donationOrg.desc }</p>
+			<a href = "http://www.unicef.or.kr/" target="blank">
+				<img alt="" src="<c:url value='/resources/img/donation_org/'/>${donationOrg.profile}">
+			</a>
+			<br><br>
+			<h6>${donationOrg.desc }</h6>
 		</div>
   	</div>
 	
@@ -48,6 +51,6 @@
 				<h4>- Every day fresh -</h4>
 				<h3>organic food</h3>
 			</div>
-			<img src="<c:url value="/resources/images/"/>organici-love-me.png" class="noo-image-footer" alt="" />
+			<img src="<c:url value="/resources/img/footer/"/>organici-love-me.png" class="noo-image-footer" alt="" />
 		</div>
 	</div>

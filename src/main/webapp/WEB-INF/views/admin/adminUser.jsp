@@ -17,7 +17,6 @@
 													</div>
 												</th>
 												<th class="product-id">아이디(Email)</th>
-												<th class="product-password">비밀번호</th>
 												<th class="product-name">이름</th>
 												<th class="product-phone">연락처</th>
 												<th class="product-date">가입일</th>
@@ -35,9 +34,6 @@
 												</td>
 												<td class="product-id">
 													${member.email }
-												</td>
-												<td class="product-password">
-													<span class="amount">${member.pwd}</span> 
 												</td>
 												<td class="product-name">
 													<span class="amount">${member.name}</span> 

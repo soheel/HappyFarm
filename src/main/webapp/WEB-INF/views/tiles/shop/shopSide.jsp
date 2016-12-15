@@ -81,7 +81,7 @@
 						<h4>- Every day fresh -</h4>
 						<h3>organic food</h3>
 					</div>
-					<img src="<c:url value="/resources/images/"/>organici-love-me.png" class="noo-image-footer" alt="" />
+					<img src="<c:url value="/resources/img/footer/"/>organici-love-me.png" class="noo-image-footer" alt="" />
 				</div>
 			</div>
 		</div>
