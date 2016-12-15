@@ -491,7 +491,7 @@ insert into product_comment values(product_comment_no.nextval, '정말 좋은 상품이
 
 -- community 테이블-------------------------------------------------------------
 drop table community;
-select * from community where community_state=1;
+select * from community
 시퀀스
 drop sequence community_no;
 create sequence community_no;

@@ -88,6 +88,8 @@ public class UserEtcController {
 		mv.addObject("commentlist",commentlist);
 		mv.addObject("communityIngList", communityIngList);
 		mv.setViewName("community/communityDetail");
+		
+		System.out.println(community.getDesc() + "!!!");
 		return mv;
 	}
 	

@@ -146,7 +146,6 @@
 					
 						},
 						error : function(err) {
-							alert("err : " + err);
 						}
 					})
 				})

@@ -35,8 +35,11 @@
 	  	
 	  	<h3>기부 업체</h3>
 	  	<div class="related products qna_board">
-			<img alt="" src="<c:url value='/resources/img/donation_org/'/>${donationOrg.profile}">
-			<p>${donationOrg.desc }</p>
+			<a href = "http://www.unicef.or.kr/" target="blank">
+				<img alt="" src="<c:url value='/resources/img/donation_org/'/>${donationOrg.profile}">
+			</a>
+			<br><br>
+			<h6>${donationOrg.desc }</h6>
 		</div>
   	</div>
 	

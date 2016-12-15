@@ -19,14 +19,10 @@
 								<div class="product">
 									<div class="single-inner">
 										<h1 class="product_title entry-title">${community.name}</h1>
-										<div class="images">
-											<div class="product-simple-image">
-												<a href="http://lorempixel.com/400/300/" data-rel="prettyPhoto">
-													<img width="300" height="381" src="<c:url value="/resources/images/"/>product/${community.profile}/" alt="" />
-												</a>
-											</div>
-										</div>
-										<div class="summary entry-summary">
+										<div class="related products profile_board">
+										<img alt="" src="<c:url value = '/resources/img/community/'/>${community.desc}">
+									</div>
+										<%-- <div class="summary entry-summary">
 											<c:forEach items="${commentlist}" var="communityDTO">
 												<c:forEach items="${communityDTO.communityCommentDTO}" var="comm">
 													<p>${comm.no}</p>
@@ -35,13 +31,8 @@
 													<p>${comm.email}</p>
 												</c:forEach>
 											</c:forEach>
-										</div>
+										</div> --%>
 									</div>
-									
-									<div class="related products profile_board">
-										12389
-									</div>
-									
 									<div class="panel panel-white post">
 										<div class="post-footer">
 											<div class="input-group"> 
