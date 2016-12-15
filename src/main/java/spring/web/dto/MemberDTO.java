@@ -18,7 +18,7 @@ public class MemberDTO {
 	private List<PurchaseDTO> purchaseDto;
 	private ProductDTO productDto;
 	private List<PurchaseProductDTO> purchaseProductDto;
-	private ProducerDTO producerDto;
+	private ProducerDTO producerDto;	
 	
 	public ProducerDTO getProducerDto() {
 		return producerDto;
@@ -26,9 +26,6 @@ public class MemberDTO {
 	public void setProducerDto(ProducerDTO producerDto) {
 		this.producerDto = producerDto;
 	}
-	
-	
-	
 	public List<PurchaseProductDTO> getPurchaseProductDto() {
 		return purchaseProductDto;
 	}
