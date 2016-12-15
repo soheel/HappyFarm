@@ -47,7 +47,7 @@
 											<div class="noo-product-thumbnail">
 												<a href='<c:url value="/userProductController/showProductDetail?productNo=${list.no}"/>'>
 													<!-- 농산물 이미지 -->
-													<img width="600" height="760" src='' alt="" />
+													<img width="600" height="760" src='<c:url value = '/resources/img/product/'/>${list.profile}' alt="" />
 												</a>
 												<div class="noo-rating"> <!-- 평점 -->
 													<div class="star-rating">
