@@ -108,7 +108,7 @@
 																사진
 																<span class="required">*</span>
 															</label>
-															<input type="file" name="profile" id="profile" />
+															<input type="file" name="file" maxlength="60" size="40">
 														</div>
 
 														<!-- <div class="form-row form-row-wide">

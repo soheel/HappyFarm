@@ -10,7 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -305,27 +308,21 @@ public class ManageController {
 	 * */
 	@RequestMapping("producerRegisterManage")
 	
-	public String producerRegisterManage(HttpServletRequest request, ProducerDTO producerDTO, HttpSession session) {
+	public String producerRegisterManage(HttpServletRequest request, ProducerDTO producerDTO, @RequestParam MultipartFile file, HttpSession session) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 producerDTO 정보를 모두 받아, 
 		 * 3. producer테이블에 추가한다(register)
 		 */
-		/*String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
+		String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
+		// 파일정보확인
+		String profile = file.getOriginalFilename();
 		
-		MultipartFile file = producerDTO.getProfile();
-		
-		if(file.getSize()>0){
-			producerDTO.setfName(file.getOriginalFilename());
-			producerDTO.setfSize(file.getSize());
-			
-			try{
-			file.transferTo(new File(saveDir+"/"+producerDTO.getfName()));
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}*/
-		
+		try {
+			file.transferTo(new File(saveDir + "/" + profile));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int result = manageService.producerRegisterManage(producerDTO);
 		if(result==0){
 			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
