@@ -96,13 +96,7 @@
 															</label>
 															<input type="text" class="input-text" name="phone" id="phone" />
 														</div>
-														<div class="form-row form-row-wide">
-															<label for="producer_item">
-																상품
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="item" id="item" />
-														</div>
+														
 														<div class="form-row form-row-wide">
 															<label for="producer_photo">
 																사진
@@ -110,14 +104,6 @@
 															</label>
 															<input type="file" name="file" maxlength="60" size="40">
 														</div>
-
-														<!-- <div class="form-row form-row-wide">
-															<label for="producer_grade">
-																평점
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="grade" id="reg_prograde" />
-														</div> -->
 													</div>
 													<div class="col-md-1"></div>
 												</div>
