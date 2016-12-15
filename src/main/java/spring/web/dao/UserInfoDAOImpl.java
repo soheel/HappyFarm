@@ -239,9 +239,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 내정보 - 마일리지 눌렀을 때
 	 */
 	public Map<String,Object> myPageMileage(String email) {
-		List<MemberDTO> list1 = sqlSession.selectList("userInfoMapper.getMyPageRecommander", email, new RowBounds(0, 5));
-		List<PurchaseDTO> list2= sqlSession.selectList("userInfoMapper.searchMyMileage3", email);
-		
+		List<String> list1 = sqlSession.selectList("userInfoMapper.getMyPageRecommander", email, new RowBounds(0, 5));
+		List<MemberDTO> list2= sqlSession.selectList("userInfoMapper.searchMyMileage3", email);
+		System.out.println("마일리지 : " +list2);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("recommand", list1);
 		map.put("usedMileage", list2);

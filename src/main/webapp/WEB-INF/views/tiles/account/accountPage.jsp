@@ -64,7 +64,7 @@
 							<a href="<c:url value="/userInfoController/myPageInfoModify"/>">정보관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/userInfoController/myInfoMileage"/>">마일리지</a>
+							<a href="<c:url value="/userInfoController/myPageMileage"/>">마일리지</a>
 						</li>
 					</ul>
 				</nav>
@@ -167,10 +167,12 @@
 		});
 		
 		$(".searchOrderListCancer").click(function(){
-			var str = $("input[type=checkbox]").next().val()+"나리";
-			alert(str)
-			
+			var str = $(".checkBox:checked").parent().next().text()+","+$(".checkBox:checked").parent().next().next().next().next().next().text();
+			//alert(str)
+			location.href="<c:url value='/userInfoController/requestCancelButton'/>?data="+str;
+
 		});
+		
 		
 	});
 </script>

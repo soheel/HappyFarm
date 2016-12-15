@@ -476,15 +476,6 @@ public class UserInfoController {
 	}
 	
 	/**
-	 * 주문/배송 조회에서 환불/반품/교환 버튼 클릭했을 때
-	 * 새창으로 폼 띄워주기
-	 * */
-	@RequestMapping("requestRefundButton")
-	public String requestRefundButton() {
-		return "환불/반품/교환 form";
-	}
-	
-	/**
 	 * 환불/반품/교환 폼에서 사유 및 비밀번호 적어서 신청하기
 	 * */
 	@RequestMapping("requestRefund")
@@ -497,7 +488,7 @@ public class UserInfoController {
 	 * 목록삭제(ajax)
 	 * */
 	@RequestMapping("requestCancelButton")
-	public int requestCancelButton(int no) {
+	public ModelAndView requestCancelButton(String data) {
 		/**
 		 * 주문/배송 조회 시 나오는 데이터중에
 		 * 특정 데이터를 사용자가 지우기 원할 때
@@ -508,8 +499,9 @@ public class UserInfoController {
 		 * 그에 해당하는 데이터를 지운후 int형태로 리턴을 받아서
 		 * view로 전달 
 		 * */
-		int result = userService.deleteOrderProduct(no);
-		return result;
+		System.out.println(data);
+		//int result = userService.deleteOrderProduct(no);
+		return null;
 	}
 	
 	
@@ -636,8 +628,15 @@ public class UserInfoController {
 		 * */
 		String email = (String)session.getAttribute("email");
 		Map<String, Object> map = userService.myPageMileage(email);
+		List<String> recommand = (List<String>)map.get("recommand");
+		List<MemberDTO> usedMileage = (List<MemberDTO>)map.get("usedMileage");
 		
-		return null;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("recommand", recommand);
+		mv.addObject("usedMileage", usedMileage);
+		mv.setViewName("account/myInfoMileage");
+		
+		return mv;
 	}
 	
 	/**
@@ -724,4 +723,6 @@ public class UserInfoController {
 		
 		return mv;
 	}
+	
+	
 }

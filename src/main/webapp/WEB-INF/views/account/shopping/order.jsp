@@ -33,7 +33,7 @@
 		<c:forEach items="${list}" var="memberDto">
 		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto">
 		<tr class="warning">
-			<td><input type="checkbox" name="box"/></td>
+			<td><input type="checkbox" name="box" class="checkBox"/></td>
 			<td>${purchaseDto.date}</td>
 		<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
          	<td>${purchaseProductDto.productDto.name}</td>
