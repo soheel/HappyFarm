@@ -110,7 +110,7 @@ producer_register_date date not null
 
 alter table producer add producer_profile varchar2(100)
 
-
+delete from producer where producer_no=6
 삽입
 insert into producer values(producer_no.nextval, '제주농부','제주특별시','999', sysdate);
 insert into producer values(producer_no.nextval, '이천농부','경기도 이천','888', sysdate);

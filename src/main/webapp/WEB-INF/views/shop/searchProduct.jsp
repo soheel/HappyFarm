@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 		<section class="noo-page-heading eff">
 			<div class="container">
 				<div class="noo-heading-content">
@@ -45,7 +47,7 @@
 											<div class="noo-product-thumbnail">
 												<a href='<c:url value="/userProductController/showProductDetail?productNo=${list.no}"/>'>
 													<!-- 농산물 이미지 -->
-													<img width="600" height="760" src='<c:url value="/resources/img/product/"/>${list.profile}' alt="" />
+													<img width="600" height="760" src='' alt="" />
 												</a>
 												<div class="noo-rating"> <!-- 평점 -->
 													<div class="star-rating">
@@ -58,7 +60,7 @@
 												<input id = "product_no" type = "hidden" value = "${list.no}">
 												<h3><a href="<c:url value="/shop/detail"/>">${list.name}</a></h3>
 												<!-- 농산물 가격 -->
-												<span class="price"><span class="amount">${list.price}</span></span>
+												<span class="price"><span class="amount"><fmt:formatNumber value = '${list.price}' pattern = '#,###'/></span> 원</span>
 												<div class="noo-product-action">
 													<div class="noo-action">
 														<!-- 장바구니에 담기 버튼 -->

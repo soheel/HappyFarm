@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
+import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -25,7 +26,7 @@ public class ManageDaoImpl implements ManageDao {
 	public List<ProductDTO> selectAllProduct() {
 		List<ProductDTO> list = sqlsession.selectList("manageMapper.selectAll");
 		System.out.println(list.size()+"ddd");
-		for(ProductDTO p :list){
+		/*for(ProductDTO p :list){
 			System.out.println("product_no : "+p.getNo());//99
 			PackageDTO pd = p.getPackageDTO();
 			System.out.println("package_pk : " + pd.getNo()); //1
@@ -35,7 +36,7 @@ public class ManageDaoImpl implements ManageDao {
 				System.out.println(dto.getNo());
 			}
 			System.out.println("--------------------");
-		}
+		}*/
 		
 		return list;
 	}
@@ -108,7 +109,7 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public List<ProductDTO> selectAllProducer() {
+	public List<ProducerDTO> selectAllProducer() {
 		return sqlsession.selectList("manageMapper.selectAllProducer");
 	}
 
@@ -134,7 +135,7 @@ public class ManageDaoImpl implements ManageDao {
 	}
 	
 	@Override
-	public List<ProductDTO> selectAllMember() {
+	public List<MemberDTO> selectAllMember() {
 		return sqlsession.selectList("manageMapper.selectAllMember");
 	}
 

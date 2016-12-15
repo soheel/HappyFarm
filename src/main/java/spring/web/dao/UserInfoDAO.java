@@ -5,6 +5,7 @@ import java.util.Map;
 
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
+import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -72,6 +73,11 @@ public interface UserInfoDAO {
 	 * producerNo로 ProducerDTO 가져오기
 	 * */
 	ProducerDTO getProducerByProducerNo(int producerNo);
+	
+	/**
+	 * 메인화면에 info 7개 가져오기
+	 * */
+	List<InfomationDTO> infoLoading();
 	
 	// -----------------------------------------------------
 	

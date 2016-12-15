@@ -37,4 +37,19 @@ $(document).ready(function() {
 	$('#order-dialog input[name="cancel"]').click(function(){
 		$("#order-dialog").hide();
 	})
+	
+	
+	var $qnaTable = $(".my_info_qna_table tr:nth-child(2n-1)");
+
+	$qnaTable.click(function(){
+
+		var $tr = $(this).next('tr');
+
+		if($tr.is(":hidden")){
+			$tr.show();	
+		}else{
+			$tr.hide();
+		}
+		
+	});
 });

@@ -43,10 +43,10 @@
 													${productlist.name}
 												</td>
 												<td class="product-price">
-													<span class="amount"><%-- ${productlist.price} --%></span> 
+													<span class="amount">${productlist.price}</span> 
 												</td>
 												<td class="product-producer">
-													<span class="amount"><%-- ${productlist.producerDto.name} --%></span> 
+													<span class="amount"> ${productlist.producerDTO.name}</span> 
 												</td>
 												<td class="product-no">
 													<span class="amount">
@@ -77,7 +77,7 @@
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">
 						<div class="modal-dialog">
-							<form action="" method="">
+							<form action="post" method="">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">

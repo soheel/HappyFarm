@@ -37,13 +37,13 @@
 													${member.email }
 												</td>
 												<td class="product-password">
-													<span class="amount">${member.pwd }</span> 
+													<span class="amount">${member.pwd}</span> 
 												</td>
 												<td class="product-name">
-													<span class="amount">${member.name }</span> 
+													<span class="amount">${member.name}</span> 
 												</td>
 												<td class="product-phone">
-													<span class="amount">${member.phone }</span> 
+													<span class="amount">${member.phone}</span> 
 												</td>
 												<td class="product-date">
 													<span class="amount">${member.registerDate}</span> 

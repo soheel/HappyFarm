@@ -29,6 +29,13 @@
 	background-color: #fff;
 }
 
+/**
+ * Qna Â¦¼ö
+ */
+.my_info_qna_table tr:nth-child(2n){
+  display: none;
+}
+
 
 
 

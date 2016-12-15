@@ -134,4 +134,32 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminShopItem.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminQna.js"></script>
 </body>
+<script type="text/javascript">
+$(function(){
+
+	 $("#producerRegister").click(function() {
+		
+			$.ajax({
+				url : "<c:url value = '/manageController/producerRegisterManage'/>",
+				type : "post",
+				data : "name=" + $("#name").val() + "&addr=" + $("#addr").val() + "&phone=" + $("#phone").val() + "&profile=" + $("#profile").val(),
+				dataType : "text",
+				success : function(result) {
+					if(result >= 1) {
+						alert("생산자를 추가하였습니다.");
+						$("#insert").hide();
+						location.href="<c:url value='/manageController/producerManage'/>"
+					}else{
+						alert("result가 1이 아님")
+					}
+				},
+				error : function(err) {
+					alert("실패하였습니다.");
+				}
+			})
+		//}
+		
+		}) 
+});
+</script>
 </html>
