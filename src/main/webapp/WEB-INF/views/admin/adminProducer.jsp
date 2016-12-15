@@ -75,13 +75,13 @@
 												<div id="customer_login">
 													<div class="col-md-1"></div>
 													<div class="col-md-10">
-														<div class="form-row form-row-wide">
+														<!-- <div class="form-row form-row-wide">
 															<label for="producer_no">
 																생산자 번호 
 																<span class="required">*</span>
 															</label>
 															<input type="text" class="input-text" name="no" id="no"/>
-														</div>
+														</div> -->
 														<div class="form-row form-row-wide">
 															<label for="producer_name">
 																생산자 이름
@@ -117,13 +117,13 @@
 															</label>
 															<input type="text" class="input-text" name="take" id="take" />
 														</div> -->
-														<div class="form-row form-row-wide">
+														<!-- <div class="form-row form-row-wide">
 															<label for="producer_email">
 																E-MAIL
 																<span class="required">*</span>
 															</label>
 															<input type="text" class="input-text" name="email" id="email" />
-														</div>
+														</div> -->
 
 														<div class="form-row form-row-wide">
 															<label for="producer_photo">
