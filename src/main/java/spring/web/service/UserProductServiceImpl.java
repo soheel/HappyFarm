@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import spring.web.dao.UserProductDAO;
 import spring.web.dto.CartDTO;
+import spring.web.dto.CartProductDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
@@ -18,6 +19,7 @@ import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.PurchaseOrderDTO;
 import spring.web.dto.PurchaseProductDTO;
+import spring.web.dto.PurchaseProductListDTO;
 
 @Service
 public class UserProductServiceImpl implements UserProductService{
@@ -183,18 +185,46 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public Map<String, Object> purchaseCart(List<Integer> list, String email) {
+	public Map<String, Object> purchaseCart(CartProductDTO cartProductDTO, String email) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<ProductDTO> productDTOList = new ArrayList<ProductDTO>();
-		for(int i : list) {
-			productDTOList.add(userProductDAO.getProductByProductNo(i));
+		List<ProductDTO> productList = new ArrayList<ProductDTO>();
+		List<Integer> numList = new ArrayList<Integer>();
+		for(CartDTO cart : cartProductDTO.getList()) {
+			ProductDTO productDTO = userProductDAO.getProductByProductNo(cart.getProductNo());
+			productList.add(productDTO);
+			numList.add(cart.getNum());
 		}
-		map.put("productDTOList", productDTOList);
 		int mileage = userProductDAO.getMileage(email);
 		map.put("mileage", mileage);
+		map.put("productList", productList);
+		map.put("numList", numList);
 		
 		return map;
+	}
+
+	@Override
+	public int payCart(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO,
+			PurchaseProductListDTO purchaseProductListDTO) {
+
+		// purchase 테이블에 insert
+		int purchaseResult = userProductDAO.registerPurchase(purchaseDTO);
+		// purchase 테이블에서 가장 최근 purchaseNo 가져오기
+		int recentPurchaseNo = userProductDAO.getRecentPurchaseNo();
+		purchaseOrderDTO.setPurchaseNo(recentPurchaseNo);
+		// purchase_order 테이블에 insert
+		int purchaseOrderResult = userProductDAO.registerPurchaseOrder(purchaseOrderDTO);
+		for(PurchaseProductDTO purchaseProduct : purchaseProductListDTO.getList()) {
+			purchaseProduct.setPurchaseNo(recentPurchaseNo);
+			userProductDAO.registerPurchaseProduct(purchaseProduct);
+		}
+		return recentPurchaseNo;
+	}
+
+	@Override
+	public int setPurchaseStateNo(int no) {
+		int result = userProductDAO.setPurchaseStateNo(no);
+		return result;
 	}
 
 }

@@ -22,6 +22,7 @@ import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.PurchaseOrderDTO;
 import spring.web.dto.PurchaseProductDTO;
+import spring.web.dto.PurchaseProductListDTO;
 import spring.web.service.UserProductService;
 
 @Controller
@@ -240,12 +241,20 @@ public class UserProductController {
 	public ModelAndView purchaseCart(CartProductDTO cartProduct, int totalPrice, HttpSession session) {
 		System.out.println("purchaseCart");
 
-		for(CartDTO cart : cartProduct.getList()) {
-			System.out.println(cart.getProductNo() + " _ " + cart.getNum());
-		}
-		System.out.println(totalPrice);
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = null;
 		
-		return null;
+		String email = (String)session.getAttribute("email");
+		map = service.purchaseCart(cartProduct, email);
+		List<ProductDTO> productList = (List<ProductDTO>)map.get("productList");
+		List<Integer> numList = (List<Integer>)map.get("numList");
+		
+		mv.addObject("productList", productList);
+		mv.addObject("numList", numList);
+		mv.addObject("totalPrice", totalPrice); // 구매하려는 모든 상품들의 총 가격
+		mv.setViewName("order/orderCardCart");
+		
+		return mv;
 		/*Map<String, Object> map = null;
 		ModelAndView mv = new ModelAndView();
 		
@@ -297,7 +306,6 @@ public class UserProductController {
 		// 통합 주소
 		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
 		
-		
 		int result = service.pay(purchaseDTO, purchaseOrderDTO, purchaseProductDTO);
 		purchaseDTO.setNo(result);
 
@@ -312,10 +320,38 @@ public class UserProductController {
 		return mv;
 	}
 	
+	/**
+	 * 장바구니에 저장된 상품들을 결제할 때
+	 * */
+	@RequestMapping("payCart")
+	public ModelAndView payCart(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO,
+			PurchaseProductListDTO purchaseProductListDTO, HttpSession session) {
+		System.out.println("payCart");
+		ModelAndView mv = new ModelAndView();
+		String email = (String)session.getAttribute("email");
+		purchaseDTO.setEmail(email);
+		purchaseOrderDTO.setEmail(email);
+		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
+		int result = service.payCart(purchaseDTO, purchaseOrderDTO, purchaseProductListDTO);
+		purchaseDTO.setNo(result);
+		mv.addObject("result", result);
+		mv.addObject("purchase", purchaseDTO);
+		mv.addObject("purchaseOrder", purchaseOrderDTO);
+		mv.addObject("purchaseProductList", purchaseProductListDTO);
+		mv.addObject("addr", addr);		mv.setViewName("order/pay");
+		return mv;
+	}
+	
 	@RequestMapping("payComplete")
-	public void payComplete(){
+	public void payComplete(int no){
 		System.out.println("payComplete");
+		System.out.println(no + " : " + no);
+		/**
+		 * 카드, 실시간, 휴대폰은 바로 결제가 완료된 상태(state_no = 2) 이므로
+		 * 이를 수정해줘야함
+		 * */
 		
+		int result = service.setPurchaseStateNo(no);
 	}
 	
 	/**

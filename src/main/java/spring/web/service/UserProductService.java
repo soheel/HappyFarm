@@ -6,12 +6,14 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import spring.web.dto.CartDTO;
+import spring.web.dto.CartProductDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.PurchaseOrderDTO;
 import spring.web.dto.PurchaseProductDTO;
+import spring.web.dto.PurchaseProductListDTO;
 
 public interface UserProductService {
 	
@@ -52,6 +54,15 @@ public interface UserProductService {
 	/**
 	 * 장바구니에서 구매 눌렀을 때
 	 * */
-	Map<String, Object> purchaseCart(List<Integer> list, String email);
+	Map<String, Object> purchaseCart(CartProductDTO cartProductDTO, String email);
 	
+	/**
+	 * 장바구니에서 구매하기 누른 후 결제
+	 * */
+	int payCart(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductListDTO purchaseProductListDTO);
+	
+	/**
+	 * 카드, 실시간, 휴대폰 결제시 purchase_state_no 바꾸기
+	 * */
+	int setPurchaseStateNo(int no);
 }

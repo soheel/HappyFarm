@@ -17,9 +17,9 @@
 	<div class="commerce single-product noo-shop-main">
 		<div class="container">
 			<div class="row">
-				<form action = "<c:url value = '/userProductController/pay'/>" method = "post">
+				<form action = "<c:url value = '/userProductController/payCart'/>" method = "post">
 				
-				<c:forEach items="${productList}" var="product" varStatus="index">
+				<c:forEach items="${productList}" var="product" varStatus="status">
 					<!-- 상품 하나하나 -->
 						<div class="col-md-12 order_check_border">
 							<div class="col-md-2">
@@ -30,17 +30,17 @@
 									<span class="order_check_title">&lt;주문상품 확인&gt;</span>
 								</p>
 								<p>
-								<input name = "productNo" type = "hidden" value="${product.no}">
+								<input name = "list[${status.index}].productNo" type = "hidden" value="${product.no}">
 									상품 이름 :<span class="order_check_name"> ${product.name}</span>
 								</p>
 								<p>
-								<input name = "productNum" type = "hidden" value="${numList[index]}">
-									수량 : <span class="order_check_count"> ${numList[index]}</span>
+								<input name = "list[${status.index}].productNum" type = "hidden" value="${numList[status.index]}">
+									수량 : <span class="order_check_count"> ${numList[status.index]}</span>
 								</p>
 								<p>
 								<!-- PurchaseDTO의 price -->
 								<input type = "hidden" name = "price" value = "${totalPrice}">
-									총 금액 : <span class="order_check_total">${totalPrice} (배송비 2500원이 포함된 금액입니다.)</span>
+									총 금액 : <span class="order_check_total">${product.price} (배송비 2500원이 포함된 금액입니다.)</span>
 								</p>
 							</div>
 						</div>

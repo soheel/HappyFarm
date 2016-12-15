@@ -127,4 +127,9 @@ public interface UserProductDAO {
 	 * purchase 테이블에서 가장 최근에 추가한 purchase_no 가져오기
 	 * */
 	int getRecentPurchaseNo();
+	
+	/**
+	 * 카드, 실시간, 휴대폰 결제시 purchase_state_no 바꾸기
+	 * */
+	int setPurchaseStateNo(int no);
 }

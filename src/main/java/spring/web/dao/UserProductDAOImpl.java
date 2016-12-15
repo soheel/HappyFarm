@@ -124,4 +124,9 @@ public class UserProductDAOImpl implements UserProductDAO {
 		return sqlSession.selectOne("UserProductMapper.getRecentPurchaseNo");
 	}
 
+	@Override
+	public int setPurchaseStateNo(int no) {
+		return sqlSession.update("UserProductMapper.setPurchaseStateNo", no);
+	}
+
 }

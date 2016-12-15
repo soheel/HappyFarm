@@ -190,15 +190,6 @@
 					})
 				})
 				
-				/* 선택상품 주문 */
-				$("#selectOrder").click(function() {
-					var arr = $("input[checked=true]").parent().parent().next().next().next().children().children().next();
-					var arr2 = $("input[checked=true]").parent().parent().next().children().next(); /* product_no */
-					
-					alert(arr[0].value);
-					alert(arr2[2].value);
-				})
-				
 			})
 			
 			/* 우편번호 검색 */

@@ -23,7 +23,7 @@ public class HomeController {
 	@Autowired
 	UserInfoService userService;
 	
-	@RequestMapping("")
+	@RequestMapping("/")
 	public ModelAndView home(HttpSession session) {
 		System.out.println("home");
 		ModelAndView mv = new ModelAndView();

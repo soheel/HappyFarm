@@ -168,4 +168,9 @@ select max(purchase_no)
 from purchase
 </select>
 
+<!-- 결제 완료만들기 -->
+<update id="setPurchaseStateNo" parameterType="integer">
+update purchase set purchase_state_no where purchase_no = #{value} 
+</update>
+
 </mapper>
