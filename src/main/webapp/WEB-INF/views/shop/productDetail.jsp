@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 			<section class="noo-page-heading eff heading-6">
 				<div class="container">
 					<div class="noo-heading-content">
@@ -28,7 +30,7 @@
 										<div class="summary entry-summary">
 											<input id = "product_no" type = "hidden" value = "${product.no }">
 											<h1 class="product_title entry-title">${product.name}</h1>
-											<p class="price"><span class="amount">${product.price}</span>원</p>
+											<p class="price"><span class="amount"><fmt:formatNumber value = '${product.price}' pattern = '#,###'/></span> 원</p>
 											<div class="product_meta">
 												<span class="posted_in">Category: <a href="#">${categoryName }</a></span>
 												<span class="posted_in">Unit: <a href="#">${product.unit }</a></span>

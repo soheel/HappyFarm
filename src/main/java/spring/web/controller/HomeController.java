@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.service.UserInfoService;
@@ -32,8 +33,10 @@ public class HomeController {
 		List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
 		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
 		int price = (Integer)map.get("previousMonthDonationPrice");
+		List<InfomationDTO> infoList = (List<InfomationDTO>)map.get("infoList");
 		mv.addObject("bestProduct", list);
 		mv.addObject("bestProducer", list2);
+		mv.addObject("infoList",infoList);
 		session.setAttribute("donationPrice", price);
 		return mv;
 	}

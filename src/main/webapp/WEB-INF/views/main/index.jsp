@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 	<div class="main">
 				<div class="interact-banner">
 					<div class="container">
@@ -99,7 +101,7 @@
 												<div class="noo-product-title"> 
 													<input id = "product_no" type = "hidden" value = "${bestProduct.no }">
 													<h3><a href="<c:url value="/shop/"/>detail">${bestProduct.name }</a></h3>
-													<span class="price"><span class="amount">${bestProduct.price }</span></span>
+													<span class="price"><span class="amount"><fmt:formatNumber value="${bestProduct.price }" pattern="#,###"/> 원</span></span>
 													<div class="noo-product-action">
 														<div class="noo-action" id="addToCartDirect">
 															<input type = "button" value="Add to cart" class="single_add_to_cart_button button">
@@ -125,139 +127,24 @@
 						<p>Maecenas tristique gravida odio, et sagi ttis justo interdum porta</p>
 					</div>
 					<div class="noo-product-masonry columns-3">
-						<div class="product-masonry">
-							<img width="644" height="380" src="<c:url value="/resources/images/"/>product/product_644x380.jpg" alt="" /> 
+						<!-- info 하나하나 -->
+						<c:forEach items="${infoList }" var="infoList">
+							<div class="product-masonry">
+							<img style = "padding : 10px;" width="644" height="380" src="<c:url value="/resources/img/info/"/>${infoList.profile}" alt="" /> 
 							<div class="noo-link">
 								<div class="noo-product-table">
 									<div class="noo-product-table-cell">
-										<h4><a href="#">국산vs수입산 </a></h4>
+										<h4>${infoList.name}</h4>
 										<p>
-											식품 비교&hellip;
+											<a href = "">자세히 보기&hellip;</a>
 										</p>
-										<span class="noo-sh-pmeta">
-											<a href="#" class="button product_type_simple add_to_cart_button">
-												<span>Add to cart</span>
-											</a>
-											<a class="fa fa-link" href="<c:url value="/shop/"/>detail"></a>
-										</span>
 									</div>
 								</div>
 							</div> 
-						</div>
-						<div class="product-masonry">
-							<img width="644" height="380" src="<c:url value="/resources/images/"/>product/product_644x380.jpg" alt="" /> 
-							<div class="noo-link">
-								<div class="noo-product-table">
-									<div class="noo-product-table-cell">
-										<h4><a href="#">Grapes </a></h4>
-										<p>
-											Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin&hellip;
-										</p>
-										<span class="noo-sh-pmeta">
-											<a href="#" class="button product_type_simple add_to_cart_button">
-												<span>Add to cart</span>
-											</a>
-											<a class="fa fa-link" href="<c:url value="/shop/"/>detail"></a>
-										</span>
-									</div>
-								</div>
-							</div> 
-						</div>
-						<div class="product-masonry">
-							<img width="644" height="380" src="<c:url value="/resources/images/"/>product/product_644x760.jpg" alt="" /> 
-							<div class="noo-link">
-								<div class="noo-product-table">
-									<div class="noo-product-table-cell">
-										<h4><a href="#">Jackfruit </a></h4>
-										<p>
-											There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by&hellip;
-										</p>
-										<span class="noo-sh-pmeta">
-											<a href="#" class="button product_type_simple add_to_cart_button">
-												<span>Add to cart</span>
-											</a>
-											<a class="fa fa-link" href="<c:url value="/shop/"/>detail"></a>
-										</span>
-									</div>
-								</div>
-							</div> 
-						</div>
-						<div class="product-masonry">
-							<img width="644" height="380" src="<c:url value="/resources/images/"/>product/product_644x760.jpg" alt="" /> 
-							<div class="noo-link">
-								<div class="noo-product-table">
-									<div class="noo-product-table-cell">
-										<h4><a href="#">Banana </a></h4>
-										<p>
-											There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by&hellip;
-										</p>
-										<span class="noo-sh-pmeta">
-											<a href="#" class="button product_type_simple add_to_cart_button">
-												<span>Add to cart</span>
-											</a>
-											<a class="fa fa-link" href="<c:url value="/shop/"/>detail"></a>
-										</span>
-									</div>
-								</div>
-							</div> 
-						</div>
-						<div class="product-masonry">
-							<img width="644" height="380" src="<c:url value="/resources/images/"/>product/product_644x380.jpg" alt="" /> 
-							<div class="noo-link">
-								<div class="noo-product-table">
-									<div class="noo-product-table-cell">
-										<h4><a href="#">Chicken eggs </a></h4>
-										<p>
-											There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by&hellip;
-										</p>
-										<span class="noo-sh-pmeta">
-											<a href="#" class="button product_type_simple add_to_cart_button">
-												<span>Add to cart</span>
-											</a>
-											<a class="fa fa-link" href="<c:url value="/shop/"/>detail"></a>
-										</span>
-									</div>
-								</div>
-							</div> 
-						</div>
-						<div class="product-masonry">
-							<img width="644" height="380" src="<c:url value="/resources/images/"/>product/product_644x380.jpg" alt="" /> 
-							<div class="noo-link">
-								<div class="noo-product-table">
-									<div class="noo-product-table-cell">
-										<h4><a href="#">Fruits </a></h4>
-										<p>
-											There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by&hellip;
-										</p>
-										<span class="noo-sh-pmeta">
-											<a href="#" class="button product_type_simple add_to_cart_button">
-												<span>Add to cart</span>
-											</a>
-											<a class="fa fa-link" href="<c:url value="/shop/"/>detail"></a>
-										</span>
-									</div>
-								</div>
-							</div> 
-						</div>
-						<div class="product-masonry">
-							<img width="644" height="380" src="<c:url value="/resources/images/"/>product/product_644x380.jpg" alt="" /> 
-							<div class="noo-link">
-								<div class="noo-product-table">
-									<div class="noo-product-table-cell">
-										<h4><a href="#">Peach </a></h4>
-										<p>
-											There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by&hellip;
-										</p>
-										<span class="noo-sh-pmeta">
-											<a href="#" class="button product_type_simple add_to_cart_button">
-												<span>Add to cart</span>
-											</a>
-											<a class="fa fa-link" href="<c:url value="/shop/"/>detail"></a>
-										</span>
-									</div>
-								</div>
-							</div> 
-						</div>
+							</div>
+						</c:forEach>
+						
+					
 					</div>
 				</div>
 				

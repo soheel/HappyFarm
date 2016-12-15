@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import spring.web.dao.UserInfoDAO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
+import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -90,18 +91,23 @@ public class UserInfoServiceImpl implements UserInfoService {
 		
 		List<ProductDTO> bestProductList = new ArrayList<ProductDTO>();
 		List<Integer> list = userInfoDao.getBestProduct();
+		List<InfomationDTO> infoList = null;
+		
 		for(Integer i : list) {
 			bestProductList.add(userInfoDao.getProductByProductNo(i));
 		}
-		map.put("bestProduct", bestProductList);
 		List<ProducerDTO> bestProducerList = new ArrayList<ProducerDTO>();
 		list = userInfoDao.getBestProducer();
 		for(Integer i : list) {
 			bestProducerList.add(userInfoDao.getProducerByProducerNo(i));
 		}
-		map.put("bestProducer", bestProducerList);
+		infoList = userInfoDao.infoLoading();
 		
+		// map에 정보 넣기
+		map.put("bestProduct", bestProductList);
+		map.put("bestProducer", bestProducerList);
 		map.put("previousMonthDonationPrice", userInfoDao.getPreviousDonationPrice());
+		map.put("infoList", infoList);
 		
 		return map;
 	}

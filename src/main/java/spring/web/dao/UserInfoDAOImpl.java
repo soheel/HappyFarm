@@ -11,6 +11,7 @@ import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Repository;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
+import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
@@ -337,6 +338,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		map.put("name", name);
 		
 		return sqlSession.delete("userInfoMapper.deleteMyCartProduct", map);
+	}
+
+	@Override
+	public List<InfomationDTO> infoLoading() {
+		return sqlSession.selectList("userEtcMapper.infoLoading", null, new RowBounds(0, 6));
 	}
 
 }
