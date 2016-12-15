@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 			<section class="noo-page-heading eff">
 				<div class="container">
 					<div class="noo-heading-content">
@@ -57,7 +59,7 @@
 										</div>
 										<div class="summary entry-summary">
 											<h1 class="product_title entry-title">${packageProduct.name}</h1>
-											<p class="price"><span class="amount">${packageProduct.price} 원</span></p>
+											<p class="price"><span class="amount"><fmt:formatNumber value = '${packageProduct.price}' pattern = '#,###'/> 원</span></p>
 											
 											<div class="product_meta">
 												<span class="tagged_as">Unit: <a href="#">${packageProduct.unit}</a></span>
@@ -97,7 +99,7 @@
 																<div class="box-item">
 																	<img width="150" height="150" src="<c:url value="/resources/img/product/"/>${list.profile}" alt="" />
 																	<a href = "<c:url value = '/userProductController/showProductDetail?productNo='/>${list.no}"><strong>${list.name}</strong></a>
-																	<span>${list.price} 원</span>
+																	<span><fmt:formatNumber value = '${list.price}' pattern = '#,###'/> 원</span>
 																</div>
 															</li>
 															<!-- 패키시 상품 내에있는 개별 상품 -->

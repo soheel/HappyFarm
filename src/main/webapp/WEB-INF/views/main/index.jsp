@@ -136,7 +136,7 @@
 									<div class="noo-product-table-cell">
 										<h4>${infoList.name}</h4>
 										<p>
-											<a href = "">자세히 보기&hellip;</a>
+											<a href = "<c:url value='/userEtcController/infoDetail?no=${infoList.no}'/>">자세히 보기&hellip;</a>
 										</p>
 									</div>
 								</div>
