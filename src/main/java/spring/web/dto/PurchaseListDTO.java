@@ -1,9 +1,30 @@
 package spring.web.dto;
 
-class PurchaseListDTO {
+import java.util.List;
 
-	public PurchaseListDTO() {
-		// TODO Auto-generated constructor stub
+public class PurchaseListDTO{
+	
+	private List<PurchaseDTO> purchaseList;
+	
+	public PurchaseListDTO() {}
+
+	public PurchaseListDTO(List<PurchaseDTO> purchaseList) {
+		super();
+		this.purchaseList = purchaseList;
 	}
 
+	public List<PurchaseDTO> getPurchaseList() {
+		return purchaseList;
+	}
+
+	public void setPurchaseList(List<PurchaseDTO> purchaseList) {
+		this.purchaseList = purchaseList;
+	}
+
+	
+	
+	
+	
+	
+	
 }

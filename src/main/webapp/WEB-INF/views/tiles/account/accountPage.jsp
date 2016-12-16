@@ -169,17 +169,23 @@
 			location.href="<c:url value='/userInfoController/searchReturnList'/>?value="+$(this).val();
 		});
 		
-		$(".searchOrderListCancer").click(function(){
-			var str = $(".checkBox:checked").parent().next().text()+","+$(".checkBox:checked").parent().next().next().next().next().next().text();
-			//alert(str)
-			location.href="<c:url value='/userInfoController/requestCancelButton'/>?data="+str;
-
-		});
-		
 		/* Data Table */
 		$(document).ready(function(){
 		    $('#myOrderTable').DataTable();
 		});
+		
+		/* $(".checkBox").on("checked", function(){
+			$(".searchOrderListCancer").submit;	
+		}); */
+		$('input:checkbox[name="box"]').each(function() {
+
+		     if(this.checked = true){ 
+				 var str=$(this).parent().next().net().text();
+				alert(str)
+		      }
+
+		 });
+		
 	});
 </script>
 </body>

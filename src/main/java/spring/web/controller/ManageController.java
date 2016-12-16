@@ -307,16 +307,18 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("producerRegisterManage")
-	
 	public String producerRegisterManage(HttpServletRequest request, ProducerDTO producerDTO, @RequestParam MultipartFile file, HttpSession session) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 producerDTO 정보를 모두 받아, 
 		 * 3. producer테이블에 추가한다(register)
 		 */
+		System.out.println("producerRegisterManage");
 		String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
 		// 파일정보확인
 		String profile = file.getOriginalFilename();
+		System.out.println(profile + "~~~");
+		producerDTO.setProfile(profile);
 		
 		try {
 			file.transferTo(new File(saveDir + "/" + profile));

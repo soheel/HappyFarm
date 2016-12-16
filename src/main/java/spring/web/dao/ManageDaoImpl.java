@@ -121,7 +121,6 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public ProducerDTO producerInfoMangage(String no) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
