@@ -104,6 +104,8 @@ insert into producer values(producer_no.nextval, '박남길','전라남도 여수시 종화�
 insert into producer values(producer_no.nextval, '허영남','강원도 속초시 영랑동 113-13','031-8115-5756', sysdate,'farmer5.jpg');
 insert into producer values(producer_no.nextval, '김순자','강원도 정선군 정선읍 봉양리 1-67','031-7142-2128', sysdate,'farmer6.jpg');
 
+delete producer where producer_no > 0
+
 -- category 테이블--------------------------------------------------------------
 drop table category;
 select * from category;
@@ -357,6 +359,7 @@ member_email varchar2(50) references member(member_email) on delete cascade
 insert into purchase values(purchase_no.nextval, sysdate, 45600, 'card', 0, 2, '박용우');
 insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박태흠');
 
+delete purchase
 -- purchase_order 테이블--------------------------------------------------------
 drop table purchase_order;
 select * from purchase_order;
@@ -389,6 +392,10 @@ primary key(purchase_no, product_no)
 삽입
 insert into purchase_product values(1, 1, 1);
 insert into purchase_product values(1, 2, 1);
+insert into purchase_product values(1, 3, 1);
+
+insert into purchase_product values(2, 2, 1);
+insert into purchase_product values(1, 4, 1);
 
 -- cart 테이블------------------------------------------------------------------
 drop table cart;
@@ -522,6 +529,8 @@ insert into information values(information_no.nextval, '친환경 포도의 품질 & 기�
 insert into information values(information_no.nextval, '양파의 영양분 & 효능', 'yangpa.png', sysdate, 'yangpa_2.png');
 
 -- test
-SELECT * FROM community WHERE community_state= 1;
-delete from community where community_no = 1;
-commit
+
+select p.product_no, p.product_name, p.product_price, '[' || c.category_name || ']' || ' [' || s.category_subcategory_name || ']', r.producer_name
+from product p, category c, category_subcategory s, producer r
+where p.category_subcategory_no = s.category_subcategory_no and c.category_no = s.category_no
+and p.producer_no = r.producer_no

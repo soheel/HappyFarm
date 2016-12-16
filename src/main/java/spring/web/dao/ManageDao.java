@@ -92,7 +92,7 @@ public interface ManageDao {
 	/**
 	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	ProducerDTO producerInfoMangage(String producerno);
+	ProducerDTO producerInfoMangage(int producerno);
 	
 	/**
 	 * 생산자 수정
@@ -198,8 +198,8 @@ public interface ManageDao {
 	 * */
 	int donationOrgDeleteManage(int no);
 	
-	
-	
-	
-	
+	/**
+	 * 생산자별 평점 리스트 가져오기
+	 * */
+	float getProducerEval(int producerNo);
 }

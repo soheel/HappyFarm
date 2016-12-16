@@ -14,8 +14,30 @@
 	<result column="producer_no" property="producerNo"/>
 	<result column="category_subcategory_no" property="subCategoryNo"/>
 <!-- 	<association property="packageDTO" resultMap="packageResultMap" javaType="packageDTO"/> -->
- 	<association property="producerDTO" resultMap="producerResultMap" javaType="producerDTO"/>  
+ 	<association property="producerDto" resultMap="producerResultMap" javaType="producerDto">
+ 		<id column="producer_no" property="no"/>
+ 		<result column="producer_name" property="name"/>
+ 	</association>
+ 	  
 	<!-- <collection property="productCertificationDto" resultMap="productCertificationDto"/> -->
+</resultMap>
+
+<resultMap type="productDto" id="productManagerResultMap">
+	<id column="product_no" property="no"/>
+	<result column="product_name" property="name"/>
+	<result column="product_price" property="price"/>
+	<association property="subCategoryDto" javaType="categorySubcategoryDto">
+		<id column="category_subcategory_no" property="no"/>
+		<result column="category_subcategory_name" property="name"/>
+		<association property="categoryDto" javaType="categoryDto">
+			<id column="category_no" property="no"/>
+			<result column="category_name" property="name"/>
+		</association>	
+	</association>
+	<association property="producerDto" javaType="producerDto">
+		<id column="producer_no" property="no"/>
+		<result column="producer_name" property="name"/>
+	</association>
 </resultMap>
  
 <resultMap type="producerDTO" id="producerResultMap">
@@ -89,15 +111,16 @@
 </resultMap>
 
 <!-- 1.개별상품관리 - 모든 상품들 정보를 불러온다. -->
-<select id="selectAll" resultMap="productManager">
-	 select pd.product_profile, pd.product_name, pd.product_price, pc.producer_name
-	 from product pd join producer pc 
-	 on pd.producer_no=pc.producer_no
+<select id="selectAll" resultMap="productManagerResultMap">
+select p.product_no, p.product_name, p.product_price, c.category_name, s.category_subcategory_name, r.producer_name
+from product p, category c, category_subcategory s, producer r
+where p.category_subcategory_no = s.category_subcategory_no and c.category_no = s.category_no
+and p.producer_no = r.producer_no order by p.product_no desc
 </select>
 
 <!-- 2. 개별상품관리 - 등록  -->
-<insert id="insertProduct" parameterType="productDTO">
-	insert into product values (product_no.nextval, #{name}, #{price}, #{profile}, #{desc}, #{eval},#{unit}, #{producerNo)
+<insert id="productRegisterManage" parameterType="productDTO">
+	insert into product values (product_no.nextval, #{name}, #{price}, #{profile}, #{desc}, 0, #{unit}, #{producerNo}, #{subCategoryNo})
 </insert>
 
 <!-- 3. 개별상품관리 - 수정 -->
@@ -114,7 +137,7 @@
 </update>
 
 <!-- 3.3 개별 상품관리 정보를 삭제한다 -->
-<delete id="productDeleteManage" parameterType="int">
+<delete id="productDeleteManage" parameterType="integer">
 	delete from product where product_no=#{value}
 </delete> 
 
@@ -157,7 +180,7 @@
 
 <!-- 5.생산자관리 - 모든 생산자 정보를 불러온다. -->
 <select id="selectAllProducer" resultMap="producerResultMap">
-	select * from producer
+	select * from producer order by producer_no
 </select>
 
 <!-- 6. 생산자 - 등록  -->
@@ -167,8 +190,8 @@
 
 <!-- 7. 생산자 정보를 수정한다. -->
 <update id="producerModifyManage" parameterType="producerDTO">
-	update producer set producer_name=#{name}, producer_addr=#{addr}, producer_phone=#{phone},
-	producer_register_date=sysdate
+	update producer 
+	set producer_name=#{name}, producer_addr=#{addr}, producer_phone=#{phone}
 	where producer_no=#{no}
 </update>
 
@@ -255,4 +278,9 @@
  <delete id="donationOrgDeleteManage" parameterType="String">
 	delete from donation_org where donation_org_no=#{value}
 </delete> 
+
+<!-- 생산자별 평점 가져오기 -->
+<select id="getProducerEval" parameterType="integer" resultType="float">
+select nvl(avg(product.product_eval), 0) from product, producer where product.producer_no = producer.producer_no and producer.producer_no = #{value}
+</select>
 </mapper>

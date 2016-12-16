@@ -47,7 +47,6 @@
 	<result column="producer_profile" property="profile"/>
 </resultMap>
 
-
 <!-- shopMenuLoading() 관련 쿼리문 -->
 
 <!-- 인기상품 가져오기 (테스트완료)-->

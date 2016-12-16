@@ -15,8 +15,6 @@ public class ProductDTO {
 	private int subCategoryNo;
 	
 	private PackageDTO packageDTO;
-	
-
 	private ProducerDTO producerDto;
 	private List<ProductCertificationDTO> productCertificationDto;
 	private CategorySubcategoryDTO subCategoryDto;

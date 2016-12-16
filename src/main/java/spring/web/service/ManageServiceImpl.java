@@ -1,5 +1,7 @@
 package spring.web.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -123,8 +125,22 @@ public class ManageServiceImpl implements ManageService {
 	 * 생산자 DTO 리스트
 	 * */
 	@Override
-	public List<ProducerDTO> selectAllProducer() {
-		return manageDao.selectAllProducer();
+	public Map<String, Object> selectAllProducer() {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<ProducerDTO> producerDTOList = manageDao.selectAllProducer();
+		List<Integer> producerNoList = new ArrayList<Integer>();
+		for(ProducerDTO producer : producerDTOList) {
+			producerNoList.add(producer.getNo());
+		}
+		List<Float> evalList = new ArrayList<Float>();
+		for(int i : producerNoList) {
+			evalList.add(manageDao.getProducerEval(i));
+		}
+		
+		map.put("producerList", producerDTOList);
+		map.put("evalList", evalList);
+		return map;
 	}
 
 	/**
@@ -139,7 +155,7 @@ public class ManageServiceImpl implements ManageService {
 	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.
 	 */
 	@Override
-	public ProducerDTO producerInfoMangage(String producerno) {
+	public ProducerDTO producerInfoMangage(int producerno) {
 		return manageDao.producerInfoMangage(producerno);
 	}
 

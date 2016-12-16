@@ -40,7 +40,9 @@ public class UserProductServiceImpl implements UserProductService{
 		// getProductByProductNo(int productNo)를 통해 리스트에 있는 productNo들을 전달해줘서
 		// ProductDTO들을 저장하는 리스트를 만들어 컨트롤러로 반환하기
 		for(Integer i : listBestProduct) {
+			System.out.println(i + "!!!");
 			list.add(userProductDAO.getProductByProductNo(i));
+			System.out.println(i + "~~~");
 		}
 		for(int i = 2; i <= 4 ; i++) {
 			list.add(userProductDAO.getProductByProductNo(i));

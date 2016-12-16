@@ -116,12 +116,14 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public int producerRegisterManage(ProducerDTO producerDTO) {
+		System.out.println("けけけけけけけけけけけけけけけけけけけけけけけ");
 		return sqlsession.insert("manageMapper.producerRegisterManage",producerDTO);
 	}
 
 	@Override
-	public ProducerDTO producerInfoMangage(String no) {
-		return null;
+	public ProducerDTO producerInfoMangage(int no) {
+		ProducerDTO producer = sqlsession.selectOne("UserProductMapper.getProducerByProducerNo", no);
+		return producer;
 	}
 
 	@Override
@@ -222,9 +224,8 @@ public class ManageDaoImpl implements ManageDao {
 		return sqlsession.delete("manageMapper.donationOrgDeleteManage",no);
 	}
 
-	
-
-
-	
-
+	@Override
+	public float getProducerEval(int producerNo) {
+		return sqlsession.selectOne("manageMapper.getProducerEval", producerNo);
+	}
 }
