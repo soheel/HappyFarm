@@ -15,6 +15,7 @@
 												<th class="product-age">연락처</th>
 												<th class="product-job">등록날짜</th>
 												<th class="product-name">평점</th>
+												<th class="product-name">문자보내기</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -43,6 +44,9 @@
 															<span style="width:${evalList[state.index] * 20}%"></span>
 														</div>
 													</div>
+												</td>
+												<td class="product-name">
+													<span value = "${producer.no }" style = "padding-left : 50px;color : pink; cursor : pointer;">[전송]</span>
 												</td>
 											</tr>
 											</c:forEach>
