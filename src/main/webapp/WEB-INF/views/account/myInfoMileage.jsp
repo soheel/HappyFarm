@@ -38,7 +38,10 @@
 		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto">
 			<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
 		<tr>
-			<td>${purchaseDto.date}</td>
+			<td>
+				<fmt:parseDate value="${purchaseDto.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
+				<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>
+			</td>
 			<td>${purchaseProductDto.productDto.name}</td>
 			<td>${purchaseDto.discount}</td>
 		</tr>

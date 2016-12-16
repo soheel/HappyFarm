@@ -51,7 +51,6 @@
 										<em>0</em>
 									</span>
 								</a>
-								&nbsp; &#8209; &nbsp; <span class="amount">&#36;0.00</span>
 							</li>
 							<li>
 								<a href="#" class="fa fa-search noo-search" id="noo-search"></a>
@@ -154,12 +153,12 @@
 													</div>
 												</li>
 												<li>
-													<div class="noo_megamenu_widget_area">
+													<div clazss="noo_megamenu_widget_area">
 														<div class="widget commerce widget_products">
 															<h3 class="widget-title">최근 구매 상품</h3>
 															<ul class="product_list_widget">
 																<li>
-																	<a id = "recent_product1_no" href="<c:url value="/shop/"/>detail">
+																	<a id = "recent_product1_no" href="<c:url value="/userInfoController/loginPage"/>" onclick="chk();">
 																		<img id = "recent_product1_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
 																		<span id = "recent_product1_name" class="product-title"></span>
 																	</a>

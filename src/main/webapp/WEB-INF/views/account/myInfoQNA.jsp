@@ -24,7 +24,10 @@
 				<tr class="warning">
 					<td>${qnaDto.name}</td>
 					<td>${qnaDto.desc}</td>
-					<td>${qnaDto.registerdate}</td>
+					<td>
+						<fmt:parseDate value="${qnaDto.registerdate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
+						<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>
+					</td>
 					<td>${qnaDto.answerState}</td>
 				</tr>
 				<tr>
