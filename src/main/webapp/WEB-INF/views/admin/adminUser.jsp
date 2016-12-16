@@ -42,7 +42,10 @@
 													<span class="amount">${member.phone}</span> 
 												</td>
 												<td class="product-date">
-													<span class="amount">${member.registerDate}</span> 
+													<span class="amount">
+													<fmt:parseDate value="${member.registerDate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+													<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>
+													</span> 
 												</td>
 											</tr>
 											</c:forEach>

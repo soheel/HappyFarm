@@ -25,7 +25,11 @@
 	  			<c:forEach items="${requestScope.donationlist }" var="list">
 	  				<tr>
 	  					<td><fmt:formatNumber value="${list.price }"/></td>
-	  					<td>${list.date }</td>
+	  					<td>  
+  						<fmt:parseDate value="${list.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+						<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
+  						</td>  
+
 	  				</tr>
 	  			</c:forEach>
 	  			
