@@ -11,12 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import spring.web.dto.CommunityCommentDTO;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import net.sf.json.JSONObject;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
-import spring.web.dto.ProducerDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.UserEtcService;
 
@@ -35,6 +36,7 @@ public class UserEtcController {
 	 * */
 	@RequestMapping("communityLoading")
 	public ModelAndView communityLoading() {
+		
 		Map<String, Object> communitylist = new HashMap<String, Object>();
 		
 		/**
