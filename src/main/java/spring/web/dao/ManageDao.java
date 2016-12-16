@@ -25,10 +25,9 @@ public interface ManageDao {
 	
 	
 	/**
-	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 해당하는 제품의 정보를 select한다.
-	 *
-	ProductDTO productInfoMangage(String productno);
+	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
 	 */
+	public ProductDTO productInfoMangage(int no);
 	
 	/**
 	 * 개별상품관리 수정 정폼을 div로 띄워줌

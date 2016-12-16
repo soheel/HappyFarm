@@ -26,19 +26,6 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public List<ProductDTO> selectAllProduct() {
 		List<ProductDTO> list = sqlsession.selectList("manageMapper.selectAll");
-		System.out.println(list.size()+"ddd");
-		/*for(ProductDTO p :list){
-			System.out.println("product_no : "+p.getNo());//99
-			PackageDTO pd = p.getPackageDTO();
-			System.out.println("package_pk : " + pd.getNo()); //1
-			List<ProductDTO> li = pd.getProductlist();
-			System.out.println("--------------------");
-			for(ProductDTO dto :li){
-				System.out.println(dto.getNo());
-			}
-			System.out.println("--------------------");
-		}*/
-		
 		return list;
 	}
 
@@ -48,11 +35,6 @@ public class ManageDaoImpl implements ManageDao {
 		
 	}
 
-	/*@Override
-	public ProductDTO productInfoMangage(String no) {
-		return sqlsession.selectOne("userEtcMapper.productInfoMangage", no);
-	}
-*/
 	@Override
 	public int productModifyManage(ProductDTO productDTO) {
 		return sqlsession.update("manageMapper.productModifyManage",productDTO);
@@ -227,5 +209,10 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public float getProducerEval(int producerNo) {
 		return sqlsession.selectOne("manageMapper.getProducerEval", producerNo);
+	}
+
+	@Override
+	public ProductDTO productInfoMangage(int no) {
+		return sqlsession.selectOne("UserProductMapper.getProductByProductNo", no);
 	}
 }

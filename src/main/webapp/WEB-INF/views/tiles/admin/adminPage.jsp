@@ -211,6 +211,32 @@ $(function(){
 		})
 	})
 	
+	/* 해당 상품 수정 */
+	$("span[name=modifyButtonProduct]").click(function() {
+		var productNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/productModifyShowManage'/>",
+			type : "post",
+			data : "no=" + productNo,
+			dataType : "json",
+			success : function(result) {
+				alert(result.eval);
+				$("input[name=no]").val(result.no);
+				$("input[name=name]").val(result.name);
+				$("input[name=price]").val(result.price);
+				$("input[name=unit]").val(result.unit);
+				$("select[name=subCategoryNo]").val(result.subCategoryNo);
+				$("input[name=producerNo]").val(result.producerNo);
+				$("input[name=profile]").val(result.profile);
+				$("input[name=desc]").val(result.desc);
+				$("input[name=eval]").val(result.eval);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	})
+	
 }) 
 
 </script>

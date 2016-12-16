@@ -304,8 +304,8 @@ public class ManageServiceImpl implements ManageService {
 		return manageDao.donationOrgDeleteManage(no);
 	}
 
-	
-
-	
-
+	@Override
+	public ProductDTO productInfoMangage(int no) {
+		return manageDao.productInfoMangage(no);
+	}
 }

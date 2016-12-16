@@ -92,39 +92,86 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		int result = manageService.productRegisterManage(productDTO);
-		
 		return "forward:productManage";
 	}
-	
-	/** div에 정보를 불러와서 ...
-	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	 
-	@RequestMapping("productInfoMangage")
-	public ProductDTO productInfoMangage(String no){
-		ProductDTO product = manageService.productInfoMangage(no);
-		
-		return product;
-	}*/
-	
 	
 	/**
 	 * 개별상품관리 수정
 	 * 수정폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productModifyManage")
-	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO) {
+	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.productModifyManage(productDTO);
-		if(result==0){
-			request.setAttribute("errorMsg", "수정되지 않았습니다.");
-			
+		System.out.println("productModifyManage");
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		productDTO.setProfile(profile);
+		productDTO.setDesc(desc);
+		
+		if(profile.equals("")) {
+			profile = productDTO.getProfile();
+		}else if(desc.equals("")) {
+			desc = productDTO.getDesc();
 		}
+		
+		productDTO.setProfile(profile);
+		productDTO.setDesc(desc);
+
+		// 파일 업로드
+		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
+		File profileFile = new File(saveDir + "/" + profile);
+		File descFile = new File(saveDir + "/" + desc);
+		try {
+			// 폴더에 같은 이름의 파일이 있다면 이름을 변경해줌
+			// 앞에 숫자를 붙인 이유는 System.currentTimeMillis()를 해도 너무 빨라서
+			// 파일 이름이 같아지기 때문
+			if(profileFile.exists()) {
+				profileFile.delete();
+				long tempProfileFileName = System.currentTimeMillis();
+				profile = "1" + tempProfileFileName;
+				profileFile = new File(saveDir + "/" + profile);
+				productDTO.setProfile(profile);
+			}else {
+				profileFile.delete();
+			}
+			if(descFile.exists()) {
+				descFile.delete();
+				long tempDescFileName = System.currentTimeMillis();
+				desc = "2" + tempDescFileName;
+				descFile = new File(saveDir + "/" + desc);
+				productDTO.setDesc(desc);
+			}else {
+				descFile.delete();
+			}
+			
+			fileList.get(0).transferTo(profileFile);
+			fileList.get(1).transferTo(descFile);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int result = manageService.productModifyManage(productDTO);
 		return "forward:productManage";
+	}
+	
+	/**
+	 * 개별 상품 수정을 눌렀을 때, 기존의 정보를 띄워주기
+	 * */
+	@RequestMapping("productModifyShowManage")
+	@ResponseBody
+	public ProductDTO productModifyShowManage(int no) {
+		System.out.println("productModifyShowManage");
+		// 상품번호를 통해 상품DTO 가져오기
+		ProductDTO product = manageService.productInfoMangage(no);
+		System.out.println(product.getEval() + "!!!");
+		return product;
 	}
 	
 	/**
@@ -189,7 +236,6 @@ public class ManageController {
 		
 		mv.setViewName("packageproduct");  
 		return mv;
-		
 	}
 	
 	/**
@@ -320,7 +366,6 @@ public class ManageController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("producerlist", producerlist);
 		mv.addObject("evalList", evalList);
-		
 		mv.setViewName("admin/adminProducer");  
 		return mv;
 	}
@@ -337,8 +382,6 @@ public class ManageController {
 		 * 3. producer테이블에 추가한다(register)
 		 */
 		System.out.println("producerRegisterManage");
-		System.out.println(file.getOriginalFilename() + "~~~");
-		System.out.println(producerDTO.getFile().getOriginalFilename() + "!!!");
 		String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
 		// 파일정보확인
 		String profile = file.getOriginalFilename();
@@ -350,9 +393,6 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		int result = manageService.producerRegisterManage(producerDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
-		}
 		return "forward:producerManage";
 	}
 
@@ -367,26 +407,20 @@ public class ManageController {
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
 		System.out.println("producerModifyManage");
-		System.out.println(producerDTO.getProfile() + "!!!");
-		System.out.println(producerDTO.getProfile() + "~~~");
 		String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
 		String profile = file.getOriginalFilename();
-		
 		if(profile.equals("")) {
 			profile = producerDTO.getProfile();
 		}
+		
+		producerDTO.setProfile(profile);
 		
 		try {
 			file.transferTo(new File(saveDir + "/" + profile));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		int result = manageService.producerModifyManage(producerDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
-			
-		}
 		return "forward:producerManage";
 	}
 	
@@ -397,16 +431,8 @@ public class ManageController {
 	@ResponseBody
 	public ProducerDTO producerModifyShowManage(int no) {
 		System.out.println("producerModifyShowManage");
-		
 		// 생산자번호를 통해 생산자DTO 가져오기
 		ProducerDTO producer = manageService.producerInfoMangage(no);
-		
-		System.out.println(producer.getNo());
-		System.out.println(producer.getName());
-		System.out.println(producer.getAddr());
-		System.out.println(producer.getPhone());
-		System.out.println(producer.getProfile());
-		
 		return producer;
 	}
 	
