@@ -17337,6 +17337,66 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 
 
 
+/**
+	shop Page
+**/
+.icon{
+	position: absolute;
+	left:-26px;
+	top:7%;
+	overflow: hidden;
+	background-image: url("../img/logo/sp_ico.png");
+	text-indent: -999em;
+}
+
+.gap{
+	width:50px;
+	height:50px;
+	background-position: 0px -915px;
+}
+
+.organic_food{
+	overflow: hidden;
+	border: 1px solid #e2e2e2;
+}
+
+.product_detail_header{
+	position: relative;
+	width:100%;	
+}
+
+.product_detail_header div{
+	display: block;
+	text-align: center;
+}
+
+.product_detail ul{
+	list-style:none;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.product_detail ul li{
+	position:relative;
+	padding-left: 36px;
+}
+
+.product_detail ul li dt{
+	font-size:16px;
+	color:#33353d;
+}
+
+.product_detail ul li dd{
+	margin-top: 3px;
+	font-size: 11px;
+	color:#888;
+	line-height:16px;
+}
+
+.product_detail div{
+	width:100%;
+}
+
 
 
 

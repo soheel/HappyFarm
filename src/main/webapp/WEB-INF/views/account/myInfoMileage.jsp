@@ -3,11 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="row">
-		<h2>추천인</h2>
-				<table class="table">
-				<c:choose>
+	<h2>추천인</h2>
+	<table class="table">
+		<c:choose>
 			<c:when test="${empty recommand}">
-			<tr><td>현재 추천인이 없습니다.</td></tr>
+				<tr>
+					<td>현재 추천인이 없습니다.</td>
+				</tr>
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${recommand}" var="recommand">
@@ -15,9 +17,9 @@
 						<td>${recommand}</td>
 					</tr>
 				</c:forEach>
-				</c:otherwise>
-				</c:choose>
-				</table>
+			</c:otherwise>
+		</c:choose>
+	</table>
 </div>
 <h2>마일리지 사용 이력</h2>
 <table class="table">
@@ -31,21 +33,24 @@
 	<tbody>
 		<c:choose>
 			<c:when test="${empty usedMileage}">
-			<tr><td>현재 마일리지 사용내역이 없습니다.</td></tr>
+				<tr>
+					<td>현재 마일리지 사용내역이 없습니다.</td>
+				</tr>
 			</c:when>
 			<c:otherwise>
-		<c:forEach items="${usedMileage}" var="memberDto">
-		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto">
-			<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
-		<tr>
-			<td>${purchaseDto.date}</td>
-			<td>${purchaseProductDto.productDto.name}</td>
-			<td>${purchaseDto.discount}</td>
-		</tr>
-			</c:forEach>
-			</c:forEach>
-		</c:forEach>
-		</c:otherwise>
+				<c:forEach items="${usedMileage}" var="memberDto">
+					<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto">
+						<c:forEach items="${purchaseDto.purchaseProductDto}"
+							var="purchaseProductDto">
+							<tr>
+								<td>${purchaseDto.date}</td>
+								<td>${purchaseProductDto.productDto.name}</td>
+								<td>${purchaseDto.discount}</td>
+							</tr>
+						</c:forEach>
+					</c:forEach>
+				</c:forEach>
+			</c:otherwise>
 		</c:choose>
 	</tbody>
 </table>
