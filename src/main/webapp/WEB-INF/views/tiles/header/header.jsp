@@ -48,6 +48,7 @@
 								<a href="<c:url value="/userInfoController/myCart"/>">
 									<span class="has-cart">
 										<i class="fa fa-shopping-cart"></i>
+										<em>0</em>
 									</span>
 								</a>
 								&nbsp; &#8209; &nbsp; <span class="amount">&#36;0.00</span>
