@@ -60,7 +60,7 @@
 						<li>
 							<a href="<c:url value="/manageController/donationOrgManage"/>">기부 업체 관리</a>
 						</li>
-						<li class="dropdown">salesManage
+						<li class="dropdown">
                   			<a href="<c:url value="/manageController/salesManage"/>" class="dropdown-toggle" data-toggle="dropdown">매출 관리&nbsp;<span class="caret"></span></a>
                   			<ul class="dropdown-menu" role="menu">
                   				<!-- 
