@@ -179,6 +179,7 @@ public class UserInfoController {
 				 *	ModelAndView의 setViewName으로 이동페이지 지정
 				 **/
 				mv.setViewName("admin/admin");
+				session.setAttribute("email", memberDto.getEmail());
 				return mv;
 				
 			}else{
