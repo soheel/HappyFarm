@@ -257,27 +257,27 @@ and p.producer_no = r.producer_no order by p.product_no desc
 </delete> 
  
  
- <!-- 19. 기부정보를 다 불러온다. -->
+ <!-- 19. 기부업체 정보를 다 불러온다. -->
 <select id="donationOrgManage" resultMap="donationOrgResultMap">
  	select donation_org_name, donation_org_phone, donation_org_addr, donation_org_desc, donation_org_profile from donation_org
  </select>
  
- <!-- 20. 기부정보 등록 -->
+ <!-- 20. 기부업체 정보 등록 -->
  <insert id="donationOrgRegisterManage" parameterType="donationOrgDTO">
  	insert into donation_org values (donation_org_no.nextval, #{name}, #{phone}, #{addr}, #{desc}, #{profile})
  </insert> 
  
- <!-- 21.기부 정보 수정 -->
+ <!-- 21.기부업체 정보 수정 -->
   <update id="donationOrgModifyManage" parameterType="donationOrgDTO">
  	update donation_org set donation_org_name=#{name}, donation_org_phone=#{phone}, donation_org_addr=#{addr}, donation_org_desc=#{desc}, donation_org_profile=#{profile}	
  	where donation_org_no=#{no}
  </update>
- 
- 
- <!-- 22. 기부 정보 삭제 -->
- <delete id="donationOrgDeleteManage" parameterType="String">
-	delete from donation_org where donation_org_no=#{value}
-</delete> 
+
+<!-- 22. 해당 기부업체 정보 가져오기 -->
+<select id="donationOrgShowManage" resultMap="donationOrgResultMap">
+ 	select donation_org_name, donation_org_phone, donation_org_addr, donation_org_desc, donation_org_profile from donation_org
+ 	where donation_org_no = 1
+ </select>
 
 <!-- 생산자별 평점 가져오기 -->
 <select id="getProducerEval" parameterType="integer" resultType="float">

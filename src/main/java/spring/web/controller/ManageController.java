@@ -507,7 +507,6 @@ public class ManageController {
 		List<MemberDTO> memberlist = manageService.selectAllMember();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("memberlist", memberlist);
-		
 		mv.setViewName("admin/adminUser");  
 		return mv;
 	}
@@ -715,6 +714,7 @@ public class ManageController {
 		/**
 		 * 기부 업체 관리를 클리하면, 해당하는 기부업체 DTO의 정보를 받아서 (select) 뷰에 뿌려준다.
 		 */
+		System.out.println("donationOrgManage");
 		List<DonationOrgDTO> donationlist = null;
 		ModelAndView mv = new ModelAndView();
 		donationlist = manageService.donationOrgManage();
@@ -745,12 +745,12 @@ public class ManageController {
 	}
 	
 	/**
-	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
+	 * 기부 업체 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	public DonationDTO donationOrgInfoMangage(String donationOrgno){
-		DonationDTO donation = null;
-		donation = manageService.donationOrgInfoMangage(donationOrgno);
-		
+	@RequestMapping("donationOrgModifyShowManage")
+	@ResponseBody
+	public DonationOrgDTO donationOrgShowMangage(){
+		DonationOrgDTO donation = manageService.donationOrgShowMangage();
 		return donation;
 	}
 	
@@ -766,10 +766,7 @@ public class ManageController {
 		 * 그 다음 div태그가 사라지고 다시 community관리를 보는 쪽으로 넘어간다.
 		 */
 		int result = manageService.donationOrgModifyManage(donationOrgDTO);
-			if(result==0){
-				//request.setAttribute("errorMsg", "수정되지 않았습니다.");	
-			}
-			return "forward:donationOrgManage";
+		return "forward:donationOrgManage";
 	}
 	
 	/**

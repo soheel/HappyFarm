@@ -197,7 +197,7 @@ public interface ManageService {
 	/**
 	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	public DonationDTO donationOrgInfoMangage(String donationOrgno);
+	public DonationOrgDTO donationOrgShowMangage();
 	
 	
 	/**

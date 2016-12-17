@@ -220,7 +220,6 @@ $(function(){
 			data : "no=" + productNo,
 			dataType : "json",
 			success : function(result) {
-				alert(result.eval);
 				$("input[name=no]").val(result.no);
 				$("input[name=name]").val(result.name);
 				$("input[name=price]").val(result.price);
@@ -256,6 +255,28 @@ $(function(){
 			},
 			error : function(err) {
 				alert("해당 회원정보 삭제 실패");
+			}
+		})
+	})
+	
+	/* *************************************************************************** */
+	
+	/* 기부 업체 관리 */
+	/* 기부 업체 등록 및 수정 */
+	$("input[name=modifyButtonDonationOrg]").click(function() {
+		$.ajax({
+			url : "<c:url value='/manageController/donationOrgModifyShowManage'/>",
+			type : "post",
+			dataType : "json",
+			success : function(result) {
+				$("input[name=name]").val(result.name);
+				$("input[name=profile]").val(result.profile);
+				$("input[name=desc]").val(result.desc);
+				$("input[name=addr]").val(result.addr);
+				$("input[name=phone]").val(result.phone);
+			},
+			error : function(err) {
+				alert("err : " + err);
 			}
 		})
 	})

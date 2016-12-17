@@ -184,7 +184,7 @@ public interface ManageDao {
 	/**
 	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	DonationDTO donationOrgInfoMangage(String donationOrgno);
+	DonationOrgDTO donationOrgShowMangage();
 	
 	/**
 	 * 기부업체 관리(수정)

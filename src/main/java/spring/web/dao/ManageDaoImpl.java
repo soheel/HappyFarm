@@ -191,9 +191,8 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public DonationDTO donationOrgInfoMangage(String donationOrgno) {
-		// TODO Auto-generated method stub
-		return null;
+	public DonationOrgDTO donationOrgShowMangage() {
+		return sqlsession.selectOne("manageMapper.donationOrgShowManage");
 	}
 
 	@Override

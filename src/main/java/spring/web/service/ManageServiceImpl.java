@@ -285,8 +285,8 @@ public class ManageServiceImpl implements ManageService {
 	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
 	 */
 	@Override
-	public DonationDTO donationOrgInfoMangage(String donationOrgno) {
-		return manageDao.donationOrgInfoMangage(donationOrgno);
+	public DonationOrgDTO donationOrgShowMangage() {
+		return manageDao.donationOrgShowMangage();
 	}
 	/**
 	 * 기부업체 관리(수정)
