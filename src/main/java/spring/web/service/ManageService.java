@@ -40,6 +40,11 @@ public interface ManageService {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	public int productModifyManage(ProductDTO productDTO);
+	
+	/**
+	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
+	 */
+	public ProductDTO productInfoMangage(int no);
 
 	/**
 	 * 개별상품관리 삭제

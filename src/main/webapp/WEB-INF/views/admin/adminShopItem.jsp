@@ -165,7 +165,7 @@
 					<!-- update Modal -->
 					<div class="modal fade" id="update" role="dialog">
 						<div class="modal-dialog">
-							<form action="" method="">
+							<form action="<c:url value='/manageController/productModifyManage'/>" method="post" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -183,6 +183,7 @@
 																상품이름 
 																<span class="required">*</span>
 															</label>
+															<input type = "hidden" name = "no">
 															<input type="text" class="input-text" name="name" id="name"/>
 														</div>
 														<div class="form-row form-row-wide">
@@ -204,41 +205,59 @@
 																사진
 																<span class="required">*</span>
 															</label>
-															<input type="file" name="photo" id="photo" />
+															<input type="hidden" name="profile">
+															<input type="file" name="file" id="photo" />
 														</div>
 														<div class="form-row form-row-wide">
 															<label for="reg_password">
 																설명
+																<input type="hidden" name="desc">
 																<span class="required">*</span>
 															</label>
-															<input type="file" name="content" id="content" />
+															<input type="file" name="file" id="desc" />
 														</div>
 														<div class="form-row form-row-wide">
 															<label for="reg_password">
 																카테고리
 																<span class="required">*</span>
 															</label>
-															<select>
-																<option value="volvo">대분류</option>
-																<option value="saab">Saab</option>
-																<option value="opel">Opel</option>
-																<option value="audi">Audi</option>
+															<select name = "subCategoryNo">
+																<option value="volvo">선택</option>
+																<option value="1">사과,배</option>
+																<option value="2">딸기,블루베리</option>
+																<option value="3">바나나,키위,토마토</option>
+																<option value="4">감/곶감</option>
+																<option value="5">감귤,한라봉</option>
+																<option value="6">땅콩,잣,호두</option>
+																<option value="7">복숭아,자두,포도</option>
+																<option value="8">건과,견과류</option>
+																<option value="9">수박,참외,매실</option>
+																
+																<option value="10">두부,콩나물</option>
+																<option value="11">고구마,감자,당근,연근</option>
+																<option value="12">상추,깻잎,쌈채소</option>
+																<option value="13">양파,마늘,생강,파</option>
+																<option value="14">배추,무,김장채소</option>
+																<option value="15">오이,호박,가지</option>
+																<option value="16">시금치,미나리,아욱,건나물</option>
+																<option value="17">브로콜리,양배추,샐러드,녹즙</option>
+																<option value="18">새송이,느타리,버섯</option>
+																<option value="19">파프리카,피망,고추</option>
+																
+																<option value="20">백미,현미,이유식</option>
+																<option value="21">찹쌀,흑미</option>
+																<option value="22">잡곡,콩,깨</option>
+																<option value="23">고춧가루,미숫가루,곡물가루</option>
 															</select>
-															<select>
-																<option value="volvo">소분류</option>
-																<option value="saab">Saab</option>
-																<option value="opel">Opel</option>
-																<option value="audi">Audi</option>
-															</select>
+															<input type = "hidden" name = "eval">
 														</div>
 														<div class="form-row form-row-wide">
 															<label for="reg_password">
 																생산자번호
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="phone" id="reg_phone" />
+															<input type="text" class="input-text" name="producerNo" id="producer_no" />
 														</div>
-														
 													</div>
 													<div class="col-md-1"></div>
 												</div>
