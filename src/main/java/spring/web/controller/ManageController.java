@@ -769,4 +769,44 @@ public class ManageController {
 		}
 		return "forward:donationOrgManage";
 	}
+	
+	
+	/**
+	 * 문자테스트
+	 * 기부업체 DTO
+	 * @return 
+	 * */
+	@RequestMapping("sendSms")
+	public ModelAndView sendSms() {
+		/**
+		 * 기부 업체 관리를 클리하면, 해당하는 기부업체 DTO의 정보를 받아서 (select) 뷰에 뿌려준다.
+		 */
+		List<DonationOrgDTO> donationlist = null;
+		ModelAndView mv = new ModelAndView();
+		donationlist = manageService.donationOrgManage();
+		if(donationlist!=null){
+			//에러 처리 진행중인 행사가 없다.
+		}
+		mv.addObject("donationlist",donationlist);
+		mv.setViewName("admin/adminMessage");
+		return mv;
+	}
+	
+	/**
+	 * 문자테스트 폼(등록)
+	 * @return 
+	 * */
+	@RequestMapping("sendSmsRegister")
+	public String sendSmsRegister(DonationOrgDTO donationOrgDTO) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
+		 * 3. community테이블에 추가한다(register)
+		 */
+		int result = manageService.donationOrgRegisterManage(donationOrgDTO);
+		if(result==0){
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		}
+		return "forward:donationOrgManage";
+	}
 }
