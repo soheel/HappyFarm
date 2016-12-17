@@ -237,6 +237,28 @@ $(function(){
 		})
 	})
 	
+	/* *************************************************************************** */
+	
+	/* 회원 정보 관리 */
+	/* 회원 정보 삭제 */
+	$("span[name=deleteButtonMember]").click(function() {
+		var memberEmail = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/memberDeleteManage'/>",
+			type : "post",
+			data : "email=" + memberEmail,
+			dataType : "text",
+			success : function(result) {
+				if(result >= 1) {
+					alert(memberEmail + ' 번 회원 정보 삭제 완료');
+					location.href = "<c:url value='/manageController/memberManage'/>";
+				}
+			},
+			error : function(err) {
+				alert("해당 회원정보 삭제 실패");
+			}
+		})
+	})
 }) 
 
 </script>

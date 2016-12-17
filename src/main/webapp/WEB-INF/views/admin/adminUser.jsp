@@ -10,12 +10,6 @@
 									<table class="shop_table cart">
 										<thead>
 											<tr>
-												<th class="product-check">
-													<div class="checks etrans">
-														<input type="checkbox" id="checkAll">
-														<label for="checkAll"></label> 
-													</div>
-												</th>
 												<th class="product-id">아이디(Email)</th>
 												<th class="product-name">이름</th>
 												<th class="product-phone">연락처</th>
@@ -24,16 +18,10 @@
 										</thead>
 										<tbody>
 											<c:forEach items="${memberlist}" var="member"> 
-									
 											<tr class="cart_item">
-												<td class="product-check">
-													<div class="checks etrans">
-														<input type="checkbox" id="ex_chk1">
-														<label for="ex_chk1"></label> 
-													</div>
-												</td>
 												<td class="product-id">
 													${member.email }
+												<span value = "${member.email }" style = "color : pink; cursor : pointer;" name = "deleteButtonMember">[삭제]</span>
 												</td>
 												<td class="product-name">
 													<span class="amount">${member.name}</span> 
@@ -56,7 +44,6 @@
 							</div>
 
 							<div class="adminShopItem-action-btn">
-								<input type="button" value="삭제" name="delete">
 							</div>
 						</div>
 					</div>

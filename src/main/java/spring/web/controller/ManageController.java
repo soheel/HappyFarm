@@ -149,6 +149,7 @@ public class ManageController {
 				descFile.delete();
 			}
 			
+			
 			fileList.get(0).transferTo(profileFile);
 			fileList.get(1).transferTo(descFile);
 			
@@ -188,7 +189,6 @@ public class ManageController {
 		 */
 		System.out.println("productDeleteManage");
 		int result = manageService.productDeleteManage(no);
-		System.out.println(result + "!!!");
 		return result;
 	}
 	
@@ -503,8 +503,8 @@ public class ManageController {
 		 * select를 하는데 오름차순으로 해준다.
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 *  */
+		System.out.println("memberManage");
 		List<MemberDTO> memberlist = manageService.selectAllMember();
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("memberlist", memberlist);
 		
@@ -516,19 +516,16 @@ public class ManageController {
 	 * 회원관리(삭제)
 	 * */
 	@RequestMapping("memberDeleteManage")
-	public String memberDeleteManage(String email) {
+	@ResponseBody
+	public int memberDeleteManage(String email) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * alert로 메시지 뜬다.
 		 */
-		int result =0;
-		result = manageService.memberDeleteManage(email);
-		if(result==0){
-			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
-			
-		}
-		return "forward:memberManage";
+		System.out.println("memberDeleteManage");
+		int result = manageService.memberDeleteManage(email);;
+		return result;
 	}
 	
 	/**
