@@ -34,7 +34,7 @@
 	  			</c:forEach>
 	  			
 	  		</table>
-	  		<input type="button" class="btn btn-success" value="나의 기부 현황"/>
+	  		<a href="<c:url value='/userInfoController/myPageDonation'/>"><input type="button" class="btn btn-success" value="나의 기부 현황" id="GoMyDonation"/></a>
 	  	</div>
 	  	
 	  	<h3>기부 업체</h3>
