@@ -201,7 +201,7 @@ public class UserEtcController {
 		DonationOrgDTO donationOrg = userEtcService.donationLoading2();
 		mv.addObject("donationOrg", donationOrg);
 		
-		System.out.println(donationOrg.getDesc());
+		//System.out.println(donationOrg.getDesc());
 		return mv;
 	}
 	
