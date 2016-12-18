@@ -6,7 +6,7 @@
 <h2>나의 마일리지</h2>
 <table class="table">
 	<tr>
-	 <th>현재 나의 마일리지</th>
+	 <th>현재 나의 기부 point</th>
 	 
 	 <td>${mileage}</td>
 	 

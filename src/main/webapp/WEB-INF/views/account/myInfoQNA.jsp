@@ -14,13 +14,13 @@
 	</thead>
 	<tbody>
 	<c:choose>
-		<c:when test="${empty list}">
+		<c:when test="${empty qnaList}">
 		<td colspan='4'>
 			 <p align="center"><b><span style="font-size:9pt;">현재 등록된 질문이 없습니다.</span></b></p>
 		</td>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${list}" var="qnaDto">
+			<c:forEach items="${qnaList}" var="qnaDto">
 				<tr class="warning">
 					<td>${qnaDto.name}</td>
 					<td>${qnaDto.desc}</td>
@@ -32,9 +32,18 @@
 					<td>${qnaDto.answerState}</td>
 				</tr>
 				<tr>
+					<c:choose>
+					<c:when test="${qnaDto.answerState eq 'N'}">
 					<td colspan="4">
-						asdasd
+						답변이 등록되지 않았습니다.
 					</td>
+					</c:when>
+					<c:otherwise>
+						<td colspan="4">
+							${answer}
+						</td>
+					</c:otherwise>
+					</c:choose>
 				</tr>
 			</c:forEach>
 		</c:otherwise>
