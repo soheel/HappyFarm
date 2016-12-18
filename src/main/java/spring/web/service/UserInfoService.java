@@ -6,6 +6,7 @@ import java.util.Map;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.MemberRequestDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
@@ -43,6 +44,11 @@ public interface UserInfoService {
 	boolean checkId(String email);
 	
 	/**
+	 * 비밀번호 체크
+	 * */
+	String checkPwd(String pwd);
+	
+	/**
 	 * 회원 메인 페이지로 이동할 때 필요한 정보들
 	 * (생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 기부정보(저번달 총 모금액,이번달 총 모금액))
 	 * */
@@ -72,14 +78,25 @@ public interface UserInfoService {
 	int deleteOrderProduct(int no);
 	
 	/**
-	 * 해당 회원에 해당하는 qna 정보 가져오기
+	 * 구매상태에 따른 번호 가져오기
 	 * */
-	List<QnaDTO> myPageQna(String email);
+	int getStateNo(String name);
 	
 	/**
-	 * 해당 qna에 달린 답글 가져오기
+	 * 주문 조회에서 교환/반품/환불 요청시
 	 * */
-	String showAnswer(int no);
+	int insertRequest(MemberRequestDTO memberRequestDto);
+	
+	/**
+	 * 요청결과가 성공일 경우, purchase테이블 update
+	 * */
+	int updateByRequest(PurchaseDTO purchaseDto);
+	
+	/**
+	 * 해당 회원에 해당하는 qna 정보 가져오기
+	 * */
+	Map<String, Object> myPageQna(String email);
+	
 	
 	/**
 	 * 내정보 - 기부버튼 눌렀을 때

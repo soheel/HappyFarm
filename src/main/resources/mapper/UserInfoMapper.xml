@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<association property="donationOrgDto" resultMap="donationOrgDto" />
 	<collection property="purchaseDto" resultMap="purchaseDto1" />
 </resultMap>
+
 <resultMap type="purchaseDTO" id="purchaseDto1">
 	<id column="purchase_no" property="no"/>
 	<result column="purchase_date" property="date" />
@@ -35,10 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<association property="purchaseStateDto" resultMap="purchaseStateDto" />
 	<collection property="purchaseProductDto" resultMap="purchaseProductDto"/>
 </resultMap>
+
 	<resultMap id="purchaseStateDto" type="purchaseStateDTO">
 				<id column="purchase_state_no" property="no" />
 				<result column="purchase_state_name" property="name" />
 	</resultMap>
+	
 	<resultMap type="purchaseProductDTO" id="purchaseProductDto">
 		<id column="purchase_no" property="purchaseNo"/>
 		<result column="product_no" property="productNo"/>
@@ -66,7 +69,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<id column="donation_date" property="date"/>
 	<result column="donation_org_no" property="donationOrgNo"/>
 	<result column="donation_price" property="price"/>
-</resultMap>			
+</resultMap>		
+
+<resultMap type="memberRequestDTO" id="memberRequestDto">
+	<id column="member_request_no" property="requestNo"/>
+	<result column="purchase_state_no" property="stateNo"/>
+	<result column="member_request_desc" property="desc"/>
+	<result column="purchase_no" property="purchaseNo"/>
+	<result column="member_email" property="email"/>
+	<association property="memberDto" resultMap="memberDto" />
+	<association property="purchaseDto" resultMap="purchaseDto1"/>
+	<association property="purchaseStateDto" resultMap="purchaseStateDto"/>
+</resultMap>	
 	
 	<!-- 기본 ProductDTO ResultMap -->
 	<resultMap type="productDTO" id="productResultMap">
@@ -181,6 +195,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkId" parameterType="String" resultMap="memberDto">
 		select member_email from member where member_email=#{mail}
 	</select>
+	
+	<!-- 비밀번호 체크 -->
+	<select id="checkPwd" parameterType="String" resultType="String">
+		select member_email from member where member_pwd=#{pwd}
+	</select>
 
 	<!-- 내정보(MyPage) -->
 	
@@ -273,7 +292,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 3개월 -->
 	<select id="getMyPageRefundList3" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
 		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3 and
@@ -282,7 +301,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 6개월 -->
 	<select id="getMyPageRefundList6" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
 		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3 and
@@ -291,7 +310,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 1년 -->
 	<select id="getMyPageRefundList12" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
 		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3 and
@@ -300,7 +319,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 전체 -->
 	<select id="getMyPageRefundListAll" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
 		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3
@@ -345,19 +364,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where p.purchase_no=pp.purchase_no and pp.product_no= pro.product_no
       and member_email=#{email} and purchase_discount &gt;0
 	</select>
-	
-	
 
 	<!-- 주문/조회 상태에서 주문완료된 상품을 삭제할 때 -->
-	<delete id="deleteOrderList" parameterType="String">
-		delete from purchase pc
-		where pc.member_email=(select m.member_email from member m where m.member_email=#{email})
-		and pc.purchase_no=#{no} and pc.purchase_state_no=1
+	
+	<delete id="deleteOrderList" parameterType="int">
+		 delete from purchase where purchase_no=#{no}
 	</delete>
+	
+	<!-- purchase_state_no 가져오기 -->
+	<select id="getStateNo" parameterType="String" resultType="int">
+		select purchase_state_no from purchase_state where purchase_state_name=#{name}
+	</select>
+	
+	<!-- 환불/ 교환/ 반품 -->
+	<insert id="chageByRequest" parameterType="memberRequestDto">
+		insert into member_request values(member_request_no.nextval,#{stateNo},#{desc},#{purchaseNo},#{email})
+	</insert>
+	
+	<!-- 환불  / 교환 / 반품 시 update-->
+	<update id="updateByRequest" parameterType="purchaseDTO">
+		update purchase set purchase_state_no=#{stateNo} where purchase_no=#{no}
+	</update>
 	
 	<!-- 내정보 - 나의질문내역 가져오기 -->
 	<select id="getMyPageQnaList" parameterType="String" resultMap="getMyPageQnaList">
-		select qna_name,qna_desc,qna_register_date,answer_state from qna where answer_state is not null and qna.member_email=#{email}
+		select qna_no,qna_name,qna_desc,qna_register_date,answer_state from qna where answer_state is not null and qna.member_email=#{email}
 	</select>
 	
 	<!-- 내정보 - 질문내역에 해당하는 답글 가져오기 -->

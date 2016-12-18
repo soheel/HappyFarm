@@ -7,6 +7,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.MemberRequestDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -43,6 +44,12 @@ public interface UserInfoDAO {
 	 * 아이디 중복확인 / 추천인 아이디 중복확인
 	 * */
 	boolean checkId(String email);
+	
+	/**
+	 * 비밀번호 체크
+	 * */
+	String checkPwd(String pwd);
+	 
 	
 	// -----------------------------------------------------
 	
@@ -104,17 +111,28 @@ public interface UserInfoDAO {
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
 	 * 해당 목록 삭제
 	 * */
+	/*List<Integer> getStateNoByStateName(PurchaseDTO purchaseDto);*/
 	int deleteOrderProduct(int no);
+	
+	/**
+	 * 구매상태에 따른 번호 가져오기
+	 * */
+	int getStateNo(String name);
+	
+	/**
+	 * 주문 조회에서 교환/반품/환불 요청시
+	 * */
+	int insertRequest(MemberRequestDTO memberRequestDto);
+	
+	/**
+	 * 요청결과가 성공일 경우, purchase테이블 update
+	 * */
+	int updateByRequest(PurchaseDTO purchaseDto);
 	
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 * */
-	List<QnaDTO> myPageQna(String email);
-	
-	/**
-	 * 해당 qna에 달린 답글 가져오기
-	 * */
-	String showAnswer(int no);
+	Map<String, Object> myPageQna(String email);
 	
 	/**
 	 * 내정보 - 기부버튼 눌렀을 때

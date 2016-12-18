@@ -13,6 +13,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.MemberRequestDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -174,27 +175,76 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	
 
 	/**
+	 * 주문 상태에 대한 no 뽑아오기
+	 * */
+/*	@Override
+	public List<Integer> getStateNoByStateName(PurchaseDTO purchaseDto) {
+		List<Integer> stateNo= sqlSession.selectList("userInfoMapper.getStateNoByStateName", purchaseDto.getPurchaseStateDto().getName());
+		
+		return stateNo;
+	}*/
+	/**
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때 해당 목록 삭제
 	 */
-	@Override
 	public int deleteOrderProduct(int no) {
+		
 		return sqlSession.delete("userInfoMapper.deleteOrderList", no);
-	}
+	};
+	
+	/**
+	 * 비밀번호 체크
+	 * */
+	@Override
+	public String checkPwd(String pwd) {
+		 return sqlSession.selectOne("userInfoMapper.checkPwd", pwd);
 
+	}
+	
+	/**
+	 * 구매 상태에 따른 번호 가져오기
+	 * */
+	@Override
+	public int getStateNo(String name) {
+		return sqlSession.selectOne("userInfoMapper.getStateNo", name);
+	}
+	
+	/**
+	 * 주문 조회에서 교환/반품/환불 요청시
+	 * */
+	@Override
+	public int insertRequest(MemberRequestDTO memberRequestDto) {
+		int result = sqlSession.insert("userInfoMapper.chageByRequest", memberRequestDto);
+		return result;
+	}
+	
+	@Override
+	public int updateByRequest(PurchaseDTO purchaseDto){
+		return sqlSession.update("userInfoMapper.updateByRequest", purchaseDto);
+	}
+	
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 */
 	@Override
-	public List<QnaDTO> myPageQna(String email) {
-		return sqlSession.selectList("userInfoMapper.getMyPageQnaList", email);
-	}
-
-	/**
-	 * 해당 질문글에 달린 답글 가져오기
-	 */
-	@Override
-	public String showAnswer(int no) {
-		return sqlSession.selectOne("userInfoMapper.getQnaAnswer", no);
+	public Map<String, Object> myPageQna(String email) {
+		List<QnaDTO> QnaList =  sqlSession.selectList("userInfoMapper.getMyPageQnaList", email);
+		String answer = null;
+		
+			for(QnaDTO dto : QnaList){
+				String answerState = dto.getAnswerState();
+				if(answerState.equals("Y")){
+					int no = dto.getNo();
+					System.out.println("no = "+no);
+					answer =  sqlSession.selectOne("userInfoMapper.getQnaAnswer", no);
+					System.out.println("answer : "+answer);
+				}
+			}
+			
+		Map<String, Object>	map = new HashMap<String, Object>();
+		map.put("QnaList", QnaList);
+		map.put("answer", answer);
+		
+		return map;
 	}
 
 	/**

@@ -30,8 +30,10 @@ $(document).ready(function() {
 		$('#wrapper').toggleClass('toggled');
 	});
 
-	$('input[name="order-action"]').click(function() {
-		$("#order-dialog").show();
+	$(document).on("click","#refundCheckBtn", function(){
+		
+			$("#order-dialog").show();
+			
 	});	
 	
 	$('#order-dialog input[name="cancel"]').click(function(){
