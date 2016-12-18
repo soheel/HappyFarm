@@ -82,6 +82,18 @@
 		        	alert(msg);
 			        location.href = "<c:url value = '/userProductController/payComplete'/>?no=" + no;
 		        }else if(method == 'vbank') {
+		        	var bankNum=rsp.vbank_num;
+		        	var bankName = rsp.vbank_name;
+		        	var bankHolder = rsp.vbank_holder;
+		        	var bank
+		        	
+		        	 $.ajax({
+						 url:"<c:url value = '/userProductController/paySendSms'/>",
+						 type : "post",
+						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
+							 "bankName" : bankName, "bankHolder" : bankHolder}
+					 })
+			         
 		        	msg += '<p>가상계좌 입금 계좌번호 : ' + rsp.vbank_num + '</p>';
 		        	msg += '<p>가상계좌 은행명 : ' + rsp.vbank_name + '</p>';
 		        	msg += '<p>가상계좌 예금주 : ' + rsp.vbank_holder + '</p>';
@@ -97,7 +109,8 @@
 		        }
 		        document.getElementById("show_pay_complete").innerHTML = msg;
 		        document.getElementById("show_pay_complete2").innerHTML = msg2;
-
+                 		        
+		        
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;

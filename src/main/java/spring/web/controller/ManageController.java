@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.web.dto.CommunityCommentDTO;
@@ -47,13 +49,11 @@ public class ManageController {
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 * 
 		 */
+		System.out.println("productManage");
 		List<ProductDTO> productlist = manageService.selectAllProduct();
-		//System.out.println(productlist.get(1).getName());
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
-		
-		mv.setViewName("admin/adminShopItem");  
+		mv.setViewName("admin/adminShopItem");
 		return mv;
 	}
 	
@@ -62,48 +62,117 @@ public class ManageController {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productRegisterManage")
-	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO ) {
+	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 productDTO 정보를 모두 받아, 
 		 * 3. product테이블에 추가한다(register)
 		 */
-		int result = manageService.productRegisterManage(productDTO);
-		if(result==0){
-			request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		System.out.println("productRegisterManage");
+		/**
+		 * fileList에는 순서대로 profile, desc 파일명이 들어있음
+		 * 이를 각각 꺼내어 productDTO에 세팅
+		 * */
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		productDTO.setProfile(profile);
+		productDTO.setDesc(desc);
+		
+		if(profile.equals("") || desc.equals("")) {
+			return "forward:productManage";
 		}
+		
+		// 파일 업로드
+		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
+		try {
+			fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int result = manageService.productRegisterManage(productDTO);
 		return "forward:productManage";
 	}
-	
-	/** div에 정보를 불러와서 ...
-	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	 
-	@RequestMapping("productInfoMangage")
-	public ProductDTO productInfoMangage(String no){
-		ProductDTO product = manageService.productInfoMangage(no);
-		
-		return product;
-	}*/
-	
 	
 	/**
 	 * 개별상품관리 수정
 	 * 수정폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productModifyManage")
-	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO) {
+	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.productModifyManage(productDTO);
-		if(result==0){
-			request.setAttribute("errorMsg", "수정되지 않았습니다.");
-			
+		System.out.println("productModifyManage");
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		productDTO.setProfile(profile);
+		productDTO.setDesc(desc);
+		
+		if(profile.equals("")) {
+			profile = productDTO.getProfile();
+		}else if(desc.equals("")) {
+			desc = productDTO.getDesc();
 		}
+		
+		productDTO.setProfile(profile);
+		productDTO.setDesc(desc);
+
+		// 파일 업로드
+		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
+		File profileFile = new File(saveDir + "/" + profile);
+		File descFile = new File(saveDir + "/" + desc);
+		try {
+			// 폴더에 같은 이름의 파일이 있다면 이름을 변경해줌
+			// 앞에 숫자를 붙인 이유는 System.currentTimeMillis()를 해도 너무 빨라서
+			// 파일 이름이 같아지기 때문
+			if(profileFile.exists()) {
+				profileFile.delete();
+				long tempProfileFileName = System.currentTimeMillis();
+				profile = "1" + tempProfileFileName;
+				profileFile = new File(saveDir + "/" + profile);
+				productDTO.setProfile(profile);
+			}else {
+				profileFile.delete();
+			}
+			if(descFile.exists()) {
+				descFile.delete();
+				long tempDescFileName = System.currentTimeMillis();
+				desc = "2" + tempDescFileName;
+				descFile = new File(saveDir + "/" + desc);
+				productDTO.setDesc(desc);
+			}else {
+				descFile.delete();
+			}
+			
+			
+			fileList.get(0).transferTo(profileFile);
+			fileList.get(1).transferTo(descFile);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int result = manageService.productModifyManage(productDTO);
 		return "forward:productManage";
+	}
+	
+	/**
+	 * 개별 상품 수정을 눌렀을 때, 기존의 정보를 띄워주기
+	 * */
+	@RequestMapping("productModifyShowManage")
+	@ResponseBody
+	public ProductDTO productModifyShowManage(int no) {
+		System.out.println("productModifyShowManage");
+		// 상품번호를 통해 상품DTO 가져오기
+		ProductDTO product = manageService.productInfoMangage(no);
+		System.out.println(product.getEval() + "!!!");
+		return product;
 	}
 	
 	/**
@@ -111,19 +180,16 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("productDeleteManage")
-	public String productDeleteManage(HttpServletRequest request, int no) {
+	@ResponseBody
+	public int productDeleteManage(int no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
-		int result =0;
-		result = manageService.productDeleteManage(no);
-		if(result==0){
-			request.setAttribute("errorMsg", "삭제되지 않았습니다.");
-			
-		}
-		return "forward:productManage";
+		System.out.println("productDeleteManage");
+		int result = manageService.productDeleteManage(no);
+		return result;
 	}
 	
 	/**
@@ -170,7 +236,6 @@ public class ManageController {
 		
 		mv.setViewName("packageproduct");  
 		return mv;
-		
 	}
 	
 	/**
@@ -293,11 +358,14 @@ public class ManageController {
 		 * 2. proudcerDTO에 있는 정보를 다 받아와서 (producerlist)
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 *  */
-		List<ProducerDTO> producerlist = manageService.selectAllProducer();
+		Map<String, Object> map = manageService.selectAllProducer();
+		
+		List<ProducerDTO> producerlist = (List<ProducerDTO>)map.get("producerList");
+		List<Integer> evalList = (List<Integer>)map.get("evalList");
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("producerlist", producerlist);
-		
+		mv.addObject("evalList", evalList);
 		mv.setViewName("admin/adminProducer");  
 		return mv;
 	}
@@ -307,16 +375,17 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("producerRegisterManage")
-	
 	public String producerRegisterManage(HttpServletRequest request, ProducerDTO producerDTO, @RequestParam MultipartFile file, HttpSession session) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 producerDTO 정보를 모두 받아, 
 		 * 3. producer테이블에 추가한다(register)
 		 */
+		System.out.println("producerRegisterManage");
 		String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
 		// 파일정보확인
 		String profile = file.getOriginalFilename();
+		producerDTO.setProfile(profile);
 		
 		try {
 			file.transferTo(new File(saveDir + "/" + profile));
@@ -324,40 +393,47 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		int result = manageService.producerRegisterManage(producerDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
-		}
-		System.out.println(result + "!!!!!");
 		return "forward:producerManage";
 	}
-	
-	
-	/**
-	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.producerno
-	 */
-	public ProducerDTO producerInfoMangage(String no){
-		ProducerDTO producer = null;
-		producer = manageService.producerInfoMangage(no);
-		
-		return producer;
-	}
+
 	/**
 	 * 생산자 수정
 	 * */
 	@RequestMapping("producerModifyManage")
-	public String producerModifyManage(ProducerDTO producerDTO) {
+	public String producerModifyManage(HttpServletRequest request, ProducerDTO producerDTO, @RequestParam MultipartFile file, HttpSession session) {
 		/**
 		 * 특정 생산자의 번호를 받아와 producerno
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
 		 */
-
-		int result = manageService.producerModifyManage(producerDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
-			
+		System.out.println("producerModifyManage");
+		String saveDir = session.getServletContext().getRealPath("/resources/img/producer");
+		String profile = file.getOriginalFilename();
+		if(profile.equals("")) {
+			profile = producerDTO.getProfile();
 		}
+		
+		producerDTO.setProfile(profile);
+		
+		try {
+			file.transferTo(new File(saveDir + "/" + profile));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int result = manageService.producerModifyManage(producerDTO);
 		return "forward:producerManage";
+	}
+	
+	/**
+	 * 생산자 수정(해당 생산자 dto를 뷰로 보내어 수정폼에 뿌려주기)
+	 * */
+	@RequestMapping("producerModifyShowManage")
+	@ResponseBody
+	public ProducerDTO producerModifyShowManage(int no) {
+		System.out.println("producerModifyShowManage");
+		// 생산자번호를 통해 생산자DTO 가져오기
+		ProducerDTO producer = manageService.producerInfoMangage(no);
+		return producer;
 	}
 	
 	/**
@@ -365,19 +441,22 @@ public class ManageController {
 	 * (alert)
 	 * */
 	@RequestMapping("producerDeleteManage")
-	public String producerDeleteManage(int no) {
+	@ResponseBody
+	public int producerDeleteManage(int no) {
 		/**
-		 * 특정 상품의 번호를 받아와  (인수 : producerno)
+		 * 특정 상품의 번호를 받아와  (인수 : no)
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * alert로 메시지 뜬다.
 		 */
-		int result =0;
+		System.out.println("producerDeleteManage");
+		System.out.println(no);
+		int result = 0;
 		result = manageService.producerDeleteManage(no);
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
 		}
-		return "forward:producerManage";
+		return result;
 	}
 	
 	/**
@@ -424,8 +503,8 @@ public class ManageController {
 		 * select를 하는데 오름차순으로 해준다.
 		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
 		 *  */
+		System.out.println("memberManage");
 		List<MemberDTO> memberlist = manageService.selectAllMember();
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("memberlist", memberlist);
 		
@@ -437,19 +516,16 @@ public class ManageController {
 	 * 회원관리(삭제)
 	 * */
 	@RequestMapping("memberDeleteManage")
-	public String memberDeleteManage(String email) {
+	@ResponseBody
+	public int memberDeleteManage(String email) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * alert로 메시지 뜬다.
 		 */
-		int result =0;
-		result = manageService.memberDeleteManage(email);
-		if(result==0){
-			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
-			
-		}
-		return "forward:memberManage";
+		System.out.println("memberDeleteManage");
+		int result = manageService.memberDeleteManage(email);;
+		return result;
 	}
 	
 	/**
@@ -713,6 +789,46 @@ public class ManageController {
 		if(result==0){
 			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
 			
+		}
+		return "forward:donationOrgManage";
+	}
+	
+	
+	/**
+	 * 문자테스트
+	 * 기부업체 DTO
+	 * @return 
+	 * */
+	@RequestMapping("sendSms")
+	public ModelAndView sendSms() {
+		/**
+		 * 기부 업체 관리를 클리하면, 해당하는 기부업체 DTO의 정보를 받아서 (select) 뷰에 뿌려준다.
+		 */
+		List<DonationOrgDTO> donationlist = null;
+		ModelAndView mv = new ModelAndView();
+		donationlist = manageService.donationOrgManage();
+		if(donationlist!=null){
+			//에러 처리 진행중인 행사가 없다.
+		}
+		mv.addObject("donationlist",donationlist);
+		mv.setViewName("admin/adminMessage");
+		return mv;
+	}
+	
+	/**
+	 * 문자테스트 폼(등록)
+	 * @return 
+	 * */
+	@RequestMapping("sendSmsRegister")
+	public String sendSmsRegister(DonationOrgDTO donationOrgDTO) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
+		 * 3. community테이블에 추가한다(register)
+		 */
+		int result = manageService.donationOrgRegisterManage(donationOrgDTO);
+		if(result==0){
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
 		return "forward:donationOrgManage";
 	}

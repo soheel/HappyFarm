@@ -25,10 +25,9 @@ public interface ManageDao {
 	
 	
 	/**
-	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 해당하는 제품의 정보를 select한다.
-	 *
-	ProductDTO productInfoMangage(String productno);
+	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
 	 */
+	public ProductDTO productInfoMangage(int no);
 	
 	/**
 	 * 개별상품관리 수정 정폼을 div로 띄워줌
@@ -92,7 +91,7 @@ public interface ManageDao {
 	/**
 	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	ProducerDTO producerInfoMangage(String producerno);
+	ProducerDTO producerInfoMangage(int producerno);
 	
 	/**
 	 * 생산자 수정
@@ -198,8 +197,8 @@ public interface ManageDao {
 	 * */
 	int donationOrgDeleteManage(int no);
 	
-	
-	
-	
-	
+	/**
+	 * 생산자별 평점 리스트 가져오기
+	 * */
+	float getProducerEval(int producerNo);
 }

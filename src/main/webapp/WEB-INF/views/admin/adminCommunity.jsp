@@ -6,68 +6,80 @@
 						<div class="row">
 							<div class="noo-main col-md-12">
 								<h3 class="widget-title">Community 관리</h3>
-								<!-- 여기부터 농산묻 리스트 불러오는 곳 -->
-								<div class="products row product-grid">
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href='#'  data-toggle="modal" data-target="#update">
-													<!-- 농산물 이미지 -->
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:0%"></span>
+								<div class="row">	
+									<table>
+										<tr>
+											<th><input type="checkbox" name=""></th>
+											<th>사진</th>
+											<th>이름</th>
+											<th>desc..?</th>
+											<th>별점</th> 
+										</tr>
+										<c:forEach items="${communitylist}" var="community">
+											<tr>
+												<td><input type="checkbox" name=""></td>
+												<td>
+													<img width="600" height="760" src="http://lorempixel.com/150/150/">
+												</td>
+												<td>
+													<h3>
+														<a href="#" data-toggle="modal" data-target="#update">${community.name }</a>
+													</h3>
+												</td>
+												<td>
+													<span class="price">
+														<span class="amount">${community.desc }</span>
+													</span>
+												</td>
+												<td>
+													<div class="noo-rating">
+														<div class="star-rating">
+															<span style="width:60%"></span>
+														</div>
 													</div>
-												</div>
-											</div>
-											<div class="noo-product-title">
-												<!-- 농산물 이름 --> 
-												<h3><a href="#">Apples</a></h3>
-												<!-- 농산물 가격 -->
-												<span class="price"><span class="amount">&#36;3.95</span></span>
-											</div>
-										</div>
-									</div>
-									<!-- 여기까지 농산묻 리스트 불러오는 곳 -->
-									
-									<c:forEach items="${communitylist}" var="community">
-									<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
-										<div class="noo-product-inner">
-											<div class="noo-product-thumbnail">
-												<a href="#"  data-toggle="modal" data-target="#update">
-													<img width="600" height="760" src="http://lorempixel.com/260/330/">
-												</a>
-												<div class="noo-rating">
-													<div class="star-rating">
-														<span style="width:60%"></span>
-													</div>
-												</div>
-											</div>
-											<div class="noo-product-title"> 
-												<h3><a href="#">${community.name }</a></h3>
-												<span class="price"><span class="amount">${community.desc }</span></span>
-												
-											</div>
-										</div>
-									</div>
-									</c:forEach>
+												</td>
+											</tr>
+										</c:forEach>
+									</table>
+								</div>
 								
-								</div>
-								<div class="pagination list-center">
-									<span class="page-numbers current">1</span>
-									<a class="page-numbers" href="#">2</a>
-									<a class="page-numbers" href="#">3</a>
-									<a class="next page-numbers" href="#"><i class="fa fa-long-arrow-right"></i></a>
-								</div>
+								<%-- <div class="products row product-grid">
+									<!-- 여기부터 농산묻 리스트 불러오는 곳 -->
+									<c:forEach items="${communitylist}" var="community">
+										<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
+											<div class="noo-product-inner">
+												<div class="noo-product-thumbnail">
+													<a href="#"  data-toggle="modal" data-target="#update">
+														<img width="600" height="760" src="http://lorempixel.com/260/330/">
+													</a>
+													<div class="noo-rating">
+														<div class="star-rating">
+															<span style="width:60%"></span>
+														</div>
+													</div>
+												</div>
+												<div class="noo-product-title"> 
+													<h3><a href="#">${community.name }</a></h3>
+													<span class="price"><span class="amount">${community.desc }</span></span>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+									<!-- 여기까지 농산묻 리스트 불러오는 곳 -->
+								</div> --%>
+							</div>
+							<div class="adminShopItem-action-btn">
+								<input type="button" value="등록" name="insert" data-toggle="modal" data-target="#insert">
+								<input type="button" value="삭제" name="delete">
 							</div>
 						</div>
 					</div>
 
 					<!-- add btn -->
+					<!-- 
 					<div class="round-button">
 						<a href="#"  data-toggle="modal" data-target="#insert">+</a>
-					</div>
+					</div> -->
 
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">

@@ -1,6 +1,6 @@
 package spring.web.controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,13 +9,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.nurigo.java_sdk.Coolsms;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import spring.web.dto.CartDTO;
 import spring.web.dto.CartProductDTO;
 import spring.web.dto.CertificationDTO;
-import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
@@ -51,6 +54,8 @@ public class UserProductController {
 		 * 이 3가지 메소드를 모두 서비스의 showMenuLoading에서 불러줘서 이를 
 		 * list에 넣어서 컨트롤러로 반환
 		 * */
+		
+	   
 		String email = (String)session.getAttribute("email");
 		System.out.println(email);
 		if(email == null) {
@@ -352,6 +357,34 @@ public class UserProductController {
 		 * */
 		
 		int result = service.setPurchaseStateNo(no);
+	}
+	
+	@RequestMapping("paySendSms")
+	public void paySendSms(@RequestParam String name, @RequestParam String phone, @RequestParam String bankNum,
+			@RequestParam String bankName, @RequestParam String bankHolder){
+		String api_key = " NCS58438B39BFA5E";
+        String api_secret = "0146B928483C7BC3FBD71788007A3DF0";
+       
+        Message coolsms = new Message(api_key, api_secret);
+
+        String str=name+"님 결제 되었습니다.\n"+bankName+" " + bankNum+" " + bankHolder + "로 입금 부탁드립니다.";
+        
+        // 4 params(to, from, type, text) are mandatory. must be filled
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("to", phone);
+        params.put("from", "01090786137");
+        params.put("type", "SMS");
+        params.put("text", str);
+      
+        try {
+         org.json.simple.JSONObject obj= coolsms.send(params);
+         
+          System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+          System.out.println(e.getMessage());
+          System.out.println(e.getCode());
+        }
+
 	}
 	
 	/**

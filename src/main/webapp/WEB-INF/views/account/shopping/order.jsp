@@ -35,11 +35,13 @@
 		<c:forEach items="${list}" var="memberDto">
 		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto" varStatus="state">
 		<tr class="warning">
+
 		<td>
          <fmt:parseDate value="${purchaseDto.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
          <fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>         
          </td>
 		<input type ="text" value ="${purchaseDto.no}" name ="purchaseList[${state.index}].no" id="purchaseNo" hidden >
+
 		<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
          	<td>${purchaseProductDto.productDto.name}</td>
          	<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>

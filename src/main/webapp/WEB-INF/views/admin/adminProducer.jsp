@@ -7,33 +7,24 @@
 							<h3 class="widget-title">생산자 관리</h3>
 							<div class="row">
 								<div class="noo-main col-md-12">
-									<table class="shop_table cart">
+									<table id = "producerManageTable" class="shop_table cart">
 										<thead>
 											<tr>
-												<th class="product-check">
-													<div class="checks etrans">
-														<input type="checkbox" id="checkAll">
-														<label for="checkAll"></label> 
-													</div>
-												</th>
 												<th class="product-name">이름</th>
 												<th class="product-area">주소</th>
 												<th class="product-age">연락처</th>
 												<th class="product-job">등록날짜</th>
+												<th class="product-name">평점</th>
+												<th class="product-name">문자보내기</th>
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach items="${producerlist}" var="producer"> 
+										<c:forEach items="${producerlist}" var="producer" varStatus="state"> 
 											<tr class="cart_item">
-											
-												<td class="product-check">
-													<div class="checks etrans">
-														<input type="checkbox" id="ex_chk1">
-														<label for="ex_chk1"></label> 
-													</div>
-												</td>
 												<td class="product-name">
-													${producer.name}
+													<span style = "font-weight : bold;">${producer.name}</span> 
+													<span value = "${producer.no }" style = "color : pink; cursor : pointer;" name = "modifyButton" data-toggle="modal" data-target="#update">[수정]</span>
+													<span value = "${producer.no }" style = "color : pink; cursor : pointer;" name = "deleteButton">[삭제]</span>
 												</td>
 												<td class="product-area">
 													<span class="amount">${producer.addr}</span> 
@@ -42,7 +33,20 @@
 													<span class="amount">${producer.phone}</span> 
 												</td>
 												<td class="product-job">
-													<span class="amount">${producer.registerDate}</span> 
+													<span class="amount">  
+													<fmt:parseDate value="${producer.registerDate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+													<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
+													</span> 
+												</td>
+												<td class="product-name">
+													<div class="noo-rating">
+														<div class="star-rating">
+															<span style="width:${evalList[state.index] * 20}%"></span>
+														</div>
+													</div>
+												</td>
+												<td class="product-name">
+													<span value = "${producer.no }" style = "padding-left : 50px;color : pink; cursor : pointer;">[전송]</span>
 												</td>
 											</tr>
 											</c:forEach>
@@ -53,8 +57,6 @@
 
 							<div class="adminShopItem-action-btn">
 								<input type="button" value="등록" name="insert" data-toggle="modal" data-target="#insert">
-								<input type="button" value="수정" name="update" data-toggle="modal" data-target="#update">
-								<input type="button" value="삭제" name="delete">
 							</div>
 						</div>
 					</div>
@@ -62,7 +64,7 @@
 					<!-- insert Modal -->
 					<div class="modal fade" id="insert" role="dialog">
 						<div class="modal-dialog">
-							<form name="regProducer" action="<c:url value='/manageController/producerRegisterManage'/>" enctype="multipart/form-data">
+							<form name="regProducer" action="<c:url value='/manageController/producerRegisterManage'/>" method = "post" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -118,13 +120,10 @@
 							</form>
 						</div>
 					</div>
-
-
-
 					<!-- update Modal -->
 					<div class="modal fade" id="update" role="dialog">
 						<div class="modal-dialog">
-							<form action="" method="">
+							<form action="<c:url value='/manageController/producerModifyManage'/>" method="post" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -166,19 +165,12 @@
 															<input type="text" class="input-text" name="phone" id="phone" />
 														</div>
 														<div class="form-row form-row-wide">
-															<label for="producer_email">
-																E-MAIL
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="email" id="email" />
-														</div>
-
-														<div class="form-row form-row-wide">
 															<label for="producer_photo">
 																사진
 																<span class="required">*</span>
 															</label>
-															<input type="file" name="photo" id="photo" />
+															<input type="hidden" name="profile">
+															<input type="file" name="file" id="file"/>
 														</div>
 													</div>
 													<div class="col-md-1"></div>

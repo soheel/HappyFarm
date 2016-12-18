@@ -23,6 +23,7 @@
 			</div>
 			<div class="col-md-4">
 				<a href="<c:url value="/manageController/donationOrgManage"/>">
+				<%-- <a href="<c:url value="/manageController/sendSms"/>"> --%>
 					<div class="admin-btn admin-color-chocolate">기부 업체 관리</div>
 				</a>
 			</div>

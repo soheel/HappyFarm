@@ -51,7 +51,7 @@
 									<div class="commerce-tabs">
 										<ul class="nav nav-tabs tabs">
 									    	<li class="active">
-									    		<a data-toggle="tab" href="#tab-1">Description</a>
+									    		<a data-toggle="tab" href="#tab-1">Product</a>
 									    	</li>
 									    	<li>
 									    		<a data-toggle="tab" href="#tab-2">Reviews</a>
@@ -63,6 +63,37 @@
 										<div class="tab-content">
 										
 											<div class="tab-pane fade in active" id="tab-1">
+												<div class="row">
+													<div class="col-md-12 organic_food">
+														<div class="product_detail_header">
+															<div class="name">
+																GAP(농산물우수관리) | 저탄소 
+															</div>
+															<div class="no">
+																제1004042호 | 제2015-006호
+															</div>
+														</div>
+														<div class="product_detail">
+															<ul>
+																<li>
+																	<span class="icon gap">asd</span>
+																	<dl>
+																		<dt>GAP(농산물우수관리)</dt>
+																		<dd>안전성을 확보위하여 농산물의 생산, 수확 후 관리 (농산물의 저장·세척·건조·선별·절단·조제·포장 등을 포함) 및 유통의 각 단계에서 작물이 재배되는 농경지 및 농업용수 등의 농업환경과 농산물에 잔류할 수 있는 농약, 중금속, 잔류성 유기오염물질 또는 유해생물 등의 위해요소를 적절하게 관리하는 것</dd>
+																	</dl>
+																</li>
+																
+																<li>
+																	<span class="icon gap">asd</span>
+																	<dl>
+																		<dt>GAP(농산물우수관리)</dt>
+																		<dd>안전성을 확보위하여 농산물의 생산, 수확 후 관리 (농산물의 저장·세척·건조·선별·절단·조제·포장 등을 포함) 및 유통의 각 단계에서 작물이 재배되는 농경지 및 농업용수 등의 농업환경과 농산물에 잔류할 수 있는 농약, 중금속, 잔류성 유기오염물질 또는 유해생물 등의 위해요소를 적절하게 관리하는 것</dd>
+																	</dl>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
 												<img alt="" src="<c:url value='/resources/img/product/'/>${product.desc }">
 											</div>
 											<div id="tab-2" class="tab-pane fade">

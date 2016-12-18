@@ -40,6 +40,11 @@ public interface ManageService {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	public int productModifyManage(ProductDTO productDTO);
+	
+	/**
+	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
+	 */
+	public ProductDTO productInfoMangage(int no);
 
 	/**
 	 * 개별상품관리 삭제
@@ -93,7 +98,7 @@ public interface ManageService {
 	 * 생산자관리 눌렀을 때
 	 * 생산자 DTO 리스트
 	 * */
-	public List<ProducerDTO> selectAllProducer();
+	public Map<String, Object> selectAllProducer();
 	/**
 	 * 생산자 등록
 	 * */
@@ -102,7 +107,7 @@ public interface ManageService {
 	/**
 	 * 생산자 수정을 위해 해당 생산자에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	public ProducerDTO producerInfoMangage(String producerno);
+	public ProducerDTO producerInfoMangage(int producerno);
 	
 	/**
 	 * 생산자 수정

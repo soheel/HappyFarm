@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>adminShopItem.css' type='text/css' media='all' />
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>adminCommunity.css' type='text/css' media='all' />
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>adminQna.css' type='text/css' media='all' />
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
 </head>
 <body>
 	<div class="noo-spinner">
@@ -60,7 +61,7 @@
 						<li>
 							<a href="<c:url value="/manageController/donationOrgManage"/>">기부 업체 관리</a>
 						</li>
-						<li class="dropdown">salesManage
+						<li class="dropdown">
                   			<a href="<c:url value="/manageController/salesManage"/>" class="dropdown-toggle" data-toggle="dropdown">매출 관리&nbsp;<span class="caret"></span></a>
                   			<ul class="dropdown-menu" role="menu">
                   				<!-- 
@@ -133,32 +134,132 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>myAccount.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminShopItem.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminQna.js"></script>
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 </body>
 <script type="text/javascript">
-/* $(function(){
-
-	 $("#producerRegister").click(function() {
-			$.ajax({
-				url : "<c:url value = '/manageController/producerRegisterManage'/>",
-				type : "post",
-				data : "name=" + $("#name").val() + "&addr=" + $("#addr").val() + "&phone=" + $("#phone").val() + "&profile=" + $("#profile").val(),
-				dataType : "text",
-				success : function(result) {
-					if(result >= 1) {
-						alert("생산자를 추가하였습니다.");
-						$("#insert").hide();
-						
-					}else{
-						alert("result가 1이 아님")
-					}
-				},
-				error : function(err) {
-					alert("실패하였습니다.");
-				}
-			})
-		//}
+$(function(){
+	
+	/* 테이블 페이징 */
+	/* Data Table */
+		$(document).ready(function(){
+		    $('#productManageTable').DataTable();
+		    $('#producerManageTable').DataTable();
+		});
+	
+	/* 생산자 정보 관리 */
+	/* 해당 생산자의 정보 삭제 */
+	$("span[name=deleteButton]").click(function() {
+		var producerNo = $(this).attr("value");
 		
-		}) 
-}); */
+		$.ajax({
+			url : "<c:url value='/manageController/producerDeleteManage'/>",
+			type : "post",
+			data : "no=" + producerNo,
+			dataType : "text",
+			success : function(result) {
+				if(result>=1) {
+					alert(producerNo + ' 번 생산자 정보 삭제 완료');
+					location.href = "<c:url value='/manageController/producerManage'/>"
+				}
+			},
+			error : function(err) {
+				alert("해당 회원정보 삭제 실패");
+			}
+		})
+	})
+	/* 해당회원의 정보 수정 */
+	$("span[name=modifyButton]").click(function() {
+		var producerNo = $(this).attr("value");
+		
+		$.ajax({
+			url : "<c:url value='/manageController/producerModifyShowManage'/>",
+			type : "post",
+			data : "no=" + producerNo,
+			dataType : "json",
+			success : function(result) {
+				$("input[name=no]").val(result.no);
+				$("input[name=name]").val(result.name);
+				$("input[name=addr]").val(result.addr);
+				$("input[name=phone]").val(result.phone);
+				$("input[name=profile]").val(result.profile);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	})
+	/* *************************************************************************** */
+	
+	/* 상품 정보 관리 */
+	/* 해당 상품 등록 */
+	$("span[name=deleteButtonProduct]").click(function() {
+		var productNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/productDeleteManage'/>",
+			type : "post",
+			data : "no=" + productNo,
+			dataType : "text",
+			success : function(result) {
+				if(result >= 1) {
+					alert(productNo + ' 번 상품 정보 삭제 완료');
+					location.href = "<c:url value='/manageController/productManage'/>"
+				}
+			},
+			error : function(err) {
+				alert("해당 상품정보 삭제 실패");
+			}
+		})
+	})
+	
+	/* 해당 상품 수정 */
+	$("span[name=modifyButtonProduct]").click(function() {
+		var productNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/productModifyShowManage'/>",
+			type : "post",
+			data : "no=" + productNo,
+			dataType : "json",
+			success : function(result) {
+				alert(result.eval);
+				$("input[name=no]").val(result.no);
+				$("input[name=name]").val(result.name);
+				$("input[name=price]").val(result.price);
+				$("input[name=unit]").val(result.unit);
+				$("select[name=subCategoryNo]").val(result.subCategoryNo);
+				$("input[name=producerNo]").val(result.producerNo);
+				$("input[name=profile]").val(result.profile);
+				$("input[name=desc]").val(result.desc);
+				$("input[name=eval]").val(result.eval);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	})
+	
+	/* *************************************************************************** */
+	
+	/* 회원 정보 관리 */
+	/* 회원 정보 삭제 */
+	$("span[name=deleteButtonMember]").click(function() {
+		var memberEmail = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/memberDeleteManage'/>",
+			type : "post",
+			data : "email=" + memberEmail,
+			dataType : "text",
+			success : function(result) {
+				if(result >= 1) {
+					alert(memberEmail + ' 번 회원 정보 삭제 완료');
+					location.href = "<c:url value='/manageController/memberManage'/>";
+				}
+			},
+			error : function(err) {
+				alert("해당 회원정보 삭제 실패");
+			}
+		})
+	})
+}) 
+
 </script>
 </html>

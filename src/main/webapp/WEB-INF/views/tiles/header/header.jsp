@@ -48,10 +48,9 @@
 								<a href="<c:url value="/userInfoController/myCart"/>">
 									<span class="has-cart">
 										<i class="fa fa-shopping-cart"></i>
-										<em>0</em>
 									</span>
 								</a>
-								&nbsp; &#8209; &nbsp; <span class="amount">&#36;0.00</span>
+								
 							</li>
 							<li>
 								<a href="#" class="fa fa-search noo-search" id="noo-search"></a>
@@ -159,21 +158,21 @@
 															<h3 class="widget-title">최근 구매 상품</h3>
 															<ul class="product_list_widget">
 																<li>
-																	<a id = "recent_product1_no" href="<c:url value="/shop/"/>detail">
+																	<a id = "recent_product1_no" href="<c:url value="/userInfoController/loginPage"/>" onclick="chk();"> 
 																		<img id = "recent_product1_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
 																		<span id = "recent_product1_name" class="product-title"></span>
 																	</a>
 																	<span id = "recent_product1_price" class="amount"></span>
 																</li>
 																<li>
-																	<a id = "recent_product2_no" href="<c:url value="/shop/"/>detail">
+																	<a id = "recent_product1_no" href="<c:url value="/userInfoController/loginPage"/>" onclick="chk();"> 
 																		<img id = "recent_product2_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
 																		<span id = "recent_product2_name" class="product-title"></span>
 																	</a>
 																	<span id = "recent_product2_price" class="amount"></span>
 																</li>
 																<li>
-																	<a id = "recent_product3_no" href="<c:url value="/shop/"/>detail">
+																	<a id = "recent_product1_no" href="<c:url value="/userInfoController/loginPage"/>" onclick="chk();"> 
 																		<img id = "recent_product3_profile" width="100" height="100" src="<c:url value="/resources/images/"/>product/product_100x100.jpg" alt="" /> 
 																		<span id = "recent_product3_name" class="product-title"></span>
 																	</a>
