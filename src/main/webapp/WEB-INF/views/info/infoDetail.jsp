@@ -34,7 +34,31 @@
 		</div>
 	</div>
 	
-	
+	<div class="noo-product-grid-wrap commerce product-style">  
+									<div class="noo-sh-title">  
+									<h2>연관된 상품 </h2>  
+								</div>  
+								<div class="noo-product-grid products row product-grid noo-grid-4">  
+									<c:forEach items="${relatedProduct}" var="product">  
+									<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">  
+											<div class="noo-product-inner">  
+										  
+											<div class="noo-product-thumbnail">  
+													<a href="<c:url value="/userProductController/showProductDetail?no=${product.no}"/>">  
+													<img width="600" height="760" src='<c:url value="/resources/img/community/"/>${product.profile}' alt="" />  
+													</a>  
+												</div>  
+											<div class="noo-product-title">   
+												<h3><a href="<c:url value="/userEtcController/communityDetail?no=${past.no}"/>">${product.name}</a></h3>  
+											</div>
+												
+											</div>											
+										</div>
+										</c:forEach>
+									</div>
+								</div>
+								
+								
 	<div class="noo-footer-shop-now">
 		<div class="container">
 			<div class="col-md-7">
