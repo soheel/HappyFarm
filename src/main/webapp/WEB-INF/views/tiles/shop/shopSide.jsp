@@ -67,8 +67,13 @@
 								<div class="widget commerce widget_products">
 									<h3 class="widget-title">Certification mark</h3>
 									<div>
-										<a href="#"><img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce"></a>
+										<a href="<c:url value='/userProductController/showCertificationInfo?no=${product.no}'/>">
+											<img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce">
+										</a>
 									</div>
+									
+									<div>
+										<a href="http://www.enviagro.go.kr/portal/info/Info_certifi_spe.do" target="_blank"> 유기농 인증 정보 검색하러 가기</a>
 								</div>
 							</div>
 						</div>

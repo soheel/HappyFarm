@@ -33,7 +33,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<div class="noo-footer-shop-now">
 		<div class="container">
 			<div class="col-md-7">

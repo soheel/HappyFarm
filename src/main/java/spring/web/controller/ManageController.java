@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -436,6 +438,34 @@ public class ManageController {
 		return producer;
 	}
 	
+	
+	
+	@RequestMapping("producerSendMessage")
+	public String producerSendMessage(@RequestParam String phone, @RequestParam String adminMessage){
+		
+		String api_key = " NCS58438B39BFA5E";
+        String api_secret = "0146B928483C7BC3FBD71788007A3DF0";
+       
+        Message coolsms = new Message(api_key, api_secret);
+
+        // 4 params(to, from, type, text) are mandatory. must be filled
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("to", phone);
+        params.put("from", "01090786137");
+        params.put("type", "SMS");
+        params.put("text", adminMessage);
+      
+        try {
+         org.json.simple.JSONObject obj= coolsms.send(params);
+         
+          System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+          System.out.println(e.getMessage());
+          System.out.println(e.getCode());
+        }
+        return "forward:producerManage";
+	}
+
 	/**
 	 * 생산자 삭제
 	 * (alert)
