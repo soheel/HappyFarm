@@ -14,7 +14,6 @@
 												<th class="product-phone">연락처</th>
 												<th class="product-addr">주소</th>
 												<th class="product-content">설명</th>
-												
 											</tr>
 										</thead>
 										<tbody>
@@ -47,7 +46,7 @@
 					<!-- update Modal -->
 					<div class="modal fade" id="update" role="dialog">
 						<div class="modal-dialog">
-							<form action="<c:url value = '/manageController/donationOrgManage'/>" method="post" enctype="multipart/form-data">
+							<form action="<c:url value = '/manageController/donationOrgModifyManage'/>" method="post" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">

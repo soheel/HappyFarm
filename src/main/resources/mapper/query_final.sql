@@ -358,6 +358,25 @@ member_email varchar2(50) references member(member_email) on delete cascade
 삽입
 insert into purchase values(purchase_no.nextval, sysdate, 45600, 'card', 0, 2, '박용우');
 insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '박태흠');
+insert into purchase values(purchase_no.nextval, '20160101', 15000, 'card', 0, 2, '이소희');
+insert into purchase values(purchase_no.nextval, '20160201', 20000, 'card', 0, 2, '임근묵');
+insert into purchase values(purchase_no.nextval, '20160301', 5000, 'card', 0, 2, '김나리');
+insert into purchase values(purchase_no.nextval, '20160401', 30000, 'card', 0, 2, '김태호');
+insert into purchase values(purchase_no.nextval, '20160501', 9000, 'card', 0, 2, '박태흠');
+insert into purchase values(purchase_no.nextval, '20160601', 80000, 'card', 0, 2, '박태흠');
+insert into purchase values(purchase_no.nextval, '20160701', 50000, 'card', 0, 2, '박용우');
+insert into purchase values(purchase_no.nextval, '20160801', 10000, 'card', 0, 2, '이소희');
+insert into purchase values(purchase_no.nextval, '20160901', 120000, 'card', 0, 2, '김태호');
+insert into purchase values(purchase_no.nextval, '20161001', 35000, 'card', 0, 2, '임근묵');
+insert into purchase values(purchase_no.nextval, '20161101', 10000, 'card', 0, 2, '임근묵');
+insert into purchase values(purchase_no.nextval, '20160301', 70000, 'card', 0, 2, '김나리');
+insert into purchase values(purchase_no.nextval, '20160801', 20000, 'card', 0, 2, '박태흠');
+insert into purchase values(purchase_no.nextval, '20160501', 8000, 'card', 0, 2, '김나리');
+insert into purchase values(purchase_no.nextval, '20161101', 10000, 'card', 0, 2, '박용우');
+insert into purchase values(purchase_no.nextval, '20160101', 20000, 'card', 0, 2, '박용우');
+insert into purchase values(purchase_no.nextval, '20160301', 20000, 'card', 0, 2, '김태호');
+insert into purchase values(purchase_no.nextval, '20160301', 100000, 'card', 0, 2, '이소희');
+
 
 delete purchase
 -- purchase_order 테이블--------------------------------------------------------
@@ -438,7 +457,7 @@ insert into product_comment values(product_comment_no.nextval, '정말 좋은 상품이
 
 -- community 테이블-------------------------------------------------------------
 drop table community;
-select * from community where community_state=1;
+select * from community;
 시퀀스
 drop sequence community_no;
 create sequence community_no;
@@ -450,16 +469,19 @@ community_name varchar2(30) not null,
 community_profile varchar2(100),
 community_desc varchar2(100),
 community_register_date date,
-community_state number(1) not null
+community_state number(1) not null,
+community_producer_no number(5) references producer(producer_no) on delete cascade
 )
 
 삽입
-insert into community values(community_no.nextval, '김장체험', 'kimjang.jpg', 'kimjang1.png', sysdate, 1);
-insert into community values(community_no.nextval, '감자캐기', 'potato.png', 'potato1.png', sysdate, 1);
-insert into community values(community_no.nextval, '냉이채취행사', 'nangyee.jpg', 'nangyee1.png', sysdate, 1);
-insert into community values(community_no.nextval, '밤줍기', 'bam.png', 'bam1.png', sysdate, 2);
-insert into community values(community_no.nextval, '사과따기', 'apple.png', 'apple1.png', sysdate, 2);
-insert into community values(community_no.nextval, '포도수확', 'podo.jpg', 'podo1.png', sysdate, 2);
+insert into community values(community_no.nextval, '김장체험', 'kimjang.jpg', 'kimjang1.png', sysdate, 1,1);
+insert into community values(community_no.nextval, '감자캐기', 'potato.png', 'potato1.png', sysdate, 1,2);
+insert into community values(community_no.nextval, '냉이채취행사', 'nangyee.jpg', 'nangyee1.png', sysdate, 1,3);
+insert into community values(community_no.nextval, '밤줍기', 'bam.png', 'bam1.png', sysdate, 2,4);
+insert into community values(community_no.nextval, '사과따기', 'apple.png', 'apple1.png', sysdate, 2,5);
+insert into community values(community_no.nextval, '포도수확', 'podo.jpg', 'podo1.png', sysdate, 2,6);
+
+delete community where community_no > 16
 
 -- community_comment 테이블-----------------------------------------------------
 drop table community_comment;
@@ -530,7 +552,16 @@ insert into information values(information_no.nextval, '양파의 영양분 & 효능', '
 
 -- test
 
-select p.product_no, p.product_name, p.product_price, '[' || c.category_name || ']' || ' [' || s.category_subcategory_name || ']', r.producer_name
-from product p, category c, category_subcategory s, producer r
-where p.category_subcategory_no = s.category_subcategory_no and c.category_no = s.category_no
-and p.producer_no = r.producer_no
+select to_char(purchase_date, 'MM'), sum(purchase_price)
+from purchase
+where to_char(purchase_date, 'YYYYMM') between '201601' and '201612'
+group by to_char(purchase_date,'MM')
+order by to_char(purchase_date,'MM')
+
+
+select sc.category_subcategory_name, count(*)
+from purchase p, purchase_product pp, product t, category_subcategory sc
+where p.purchase_no = pp.purchase_no
+ and pp.product_no = t.product_no
+ and t.category_subcategory_no = sc.category_subcategory_no
+group by sc.category_subcategory_name

@@ -1,6 +1,7 @@
 package spring.web.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -465,9 +466,24 @@ public class ManageController {
 	 * 총매출, 총지출, 순이익
 	 * */
 	@RequestMapping("salesManage")
-	public void salesManage() {
+	public String salesManage() {
+		System.out.println("salesManage");
 		
+		return "admin/adminSales";
 	}
+	
+	@RequestMapping("salesMonthManage")
+	@ResponseBody
+	public List<Integer> salesMonthManage() {
+		System.out.println("salesMonthManage");
+		List<Integer> list = new ArrayList<Integer>();
+		list = manageService.getMonthSales();
+		return list;
+	}
+	
+	@RequestMapping("salesProductManage")
+	@ResponseBody
+	public 
 	
 	/**
 	 * 매출관리
@@ -556,43 +572,119 @@ public class ManageController {
 	 * 모임관리(등록)
 	 * */
 	@RequestMapping("communityRegisterManage")
-	public String communityRegisterManage(CommunityDTO communityDTO) {
+	public String communityRegisterManage(HttpServletRequest request, CommunityDTO communityDTO, MultipartHttpServletRequest multipartRequest, HttpSession session) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
 		 * 3. community테이블에 추가한다(register)
 		 */
-		int result = manageService.communityRegisterManage(communityDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
+		System.out.println("communityRegisterManage");
+		System.out.println(communityDTO.getName());
+		System.out.println(communityDTO.getProfile());
+		System.out.println(communityDTO.getDesc());
+		System.out.println(communityDTO.getProducerNo());
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		communityDTO.setProfile(profile);
+		communityDTO.setDesc(desc);
+		
+		System.out.println(communityDTO.getProfile());
+		System.out.println(communityDTO.getDesc());
+		
+		if(profile.equals("") || desc.equals("")) {
+			return "forward:communityManage";
 		}
+		
+		// 파일 업로드
+		String saveDir = session.getServletContext().getRealPath("/resources/img/community");
+		try {
+			fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int result = manageService.communityRegisterManage(communityDTO);
+		System.out.println(result);
 		return "forward:communityManage";
 	}
-	/**
-	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.(comunityno)
 	
-	public CommunityDTO communityInfoMangage(String no){
-		CommunityDTO community = null;
-		community = manageService.communityInfoMangage(no);
-		
+	/**
+	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.
+	 * */
+	@RequestMapping("communityModifyShowManage")
+	@ResponseBody
+	public CommunityDTO communityShowMangage(int no){
+		CommunityDTO community = manageService.communityShowMangage(no);
 		return community;
-	} */
+	}
 	
 	/**
 	 * 모임관리(수정)(comunityno)
 	 * @return 
 	 * */
 	@RequestMapping("communityModifyManage")
-	public String communityModifyManage(CommunityDTO communityDTO) {
+	public String communityModifyManage(HttpServletRequest request, CommunityDTO communityDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
 		 * 그 다음 div태그가 사라지고 다시 community를 보는 쪽으로 넘어간다.
 		 */
-		int result = manageService.communityModifyManage(communityDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
-			
+		System.out.println("communityModifyManage");
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		System.out.println(communityDTO.getDesc() + "!!!");
+		
+		if(!(profile.equals(""))) {
+			communityDTO.setProfile(profile);
+		}
+		if(!(desc.equals(""))) {
+			communityDTO.setDesc(desc);
+		}
+		
+		System.out.println(communityDTO.getProfile());
+		System.out.println(communityDTO.getDesc());
+		
+		String saveDir = session.getServletContext().getRealPath("/resources/img/community");
+		int result = 0;
+		File descFile = new File(saveDir + "/" + desc);
+		File profileFile = new File(saveDir + "/" + profile);
+		try {
+			if(profile.equals("") && desc.equals("")) {
+				System.out.println("profile, desc 모두 새로 올리지 않은 경우");
+				System.out.println(communityDTO.getProfile());
+				System.out.println(communityDTO.getDesc());
+				result = manageService.communityModifyManage(communityDTO);
+			}else if(profile.equals("")) {
+				if(descFile.exists()) { // desc를 업로드 하려 했는데, 이미 그 파일이 폴더에 존재할 경우
+					result = manageService.communityModifyManage(communityDTO);
+				}else { // 업로드 하려는 desc 파일이 폴더에 중복되지 않을 경우
+					fileList.get(1).transferTo(descFile);
+					result = manageService.communityModifyManage(communityDTO);
+				}
+			}else if(desc.equals("")) {
+				System.out.println("desc 없을 때");
+				System.out.println(communityDTO.getDesc());
+				if(profileFile.exists()) {
+					result = manageService.communityModifyManage(communityDTO);
+				}else {
+					fileList.get(0).transferTo(profileFile);
+					result = manageService.communityModifyManage(communityDTO);
+				}
+			}else {
+				System.out.println("여기");
+				System.out.println(communityDTO.getNo());
+				System.out.println(communityDTO.getProfile());
+				System.out.println(communityDTO.getDesc());
+				fileList.get(1).transferTo(descFile);
+				fileList.get(0).transferTo(profileFile);
+				result = manageService.communityModifyManage(communityDTO);
+				System.out.println(result);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return "forward:communityManage";
 	}
@@ -602,19 +694,16 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("communityDeleteManage")
-	public String communityDeleteManage(String no) {
+	@ResponseBody
+	public int communityDeleteManage(String no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.
 		 * 그 다음 div태그가 사라지고 다시 community관리를 보는 쪽으로 넘어간다.
 		 */
-		int result =0;
-		result = manageService.communityDeleteManage(no);
-		if(result==0){
-			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
-			
-		}
-		return "forward:communityManage";
+		System.out.println("communityDeleteManage");
+		int result = manageService.communityDeleteManage(no);
+		return result;
 	}
 	
 	/**
@@ -727,25 +816,7 @@ public class ManageController {
 	}
 	
 	/**
-	 * 기부업체 관리(등록)
-	 * @return 
-	 * */
-	@RequestMapping("donationOrgRegisterManage")
-	public String donationOrgRegisterManage(DonationOrgDTO donationOrgDTO) {
-		/**
-		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
-		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
-		 * 3. community테이블에 추가한다(register)
-		 */
-		int result = manageService.donationOrgRegisterManage(donationOrgDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
-		}
-		return "forward:donationOrgManage";
-	}
-	
-	/**
-	 * 기부 업체 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
+	 * 기부 업체 수정을 위해 정보를 불러와서 폼에 보여준다.
 	 */
 	@RequestMapping("donationOrgModifyShowManage")
 	@ResponseBody
@@ -759,33 +830,59 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("donationOrgModifyManage")
-	public String donationOrgModifyManage(DonationOrgDTO donationOrgDTO) {
-		/**
-		 * 특정 상품의 번호를 받아와 
-		 * 그 번호에 일치하는 정보를 삭제한다.
-		 * 그 다음 div태그가 사라지고 다시 community관리를 보는 쪽으로 넘어간다.
-		 */
-		int result = manageService.donationOrgModifyManage(donationOrgDTO);
-		return "forward:donationOrgManage";
+	public String donationOrgModifyManage(HttpServletRequest request, DonationOrgDTO donationOrgDTO, @RequestParam MultipartFile file, HttpSession session) {
+		System.out.println("donationOrgModifyManage");
+		if(!(file.getOriginalFilename().equals(""))) { // 새로운 사진을 업로드 한 경우
+			donationOrgDTO.setProfile(file.getOriginalFilename());
+			String saveDir = session.getServletContext().getRealPath("/resources/img/donation_org");	
+			try {
+				file.transferTo(new File(saveDir + "/" + donationOrgDTO.getProfile()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			int result = manageService.donationOrgModifyManage(donationOrgDTO);
+			return "forward:donationOrgManage";
+		}else { // 새로운 사진을 업로드하지 않아서 기존의 사진을 그대로 사용할 경우
+			int result = manageService.donationOrgModifyManage(donationOrgDTO);
+			return "forward:donationOrgManage";
+		}
 	}
-	
+
 	/**
-	 * 기부업체 관리(삭제)
+	 * 문자테스트
 	 * 기부업체 DTO
 	 * @return 
 	 * */
-	@RequestMapping("donationOrgDeleteManage")
-	public String donationOrgDeleteManage(int no) {
+	@RequestMapping("sendSms")
+	public ModelAndView sendSms() {
 		/**
-		 * 특정 기부업체 번호를 받아와 
-		 * 그 번호에 일치하는 정보를 삭제한다.
-		 * 그 다음 div태그가 사라지고 다시 donation관리를 보는 쪽으로 넘어간다.
+		 * 기부 업체 관리를 클리하면, 해당하는 기부업체 DTO의 정보를 받아서 (select) 뷰에 뿌려준다.
 		 */
-		int result =0;
-		result = manageService.donationOrgDeleteManage(no);
+		List<DonationOrgDTO> donationlist = null;
+		ModelAndView mv = new ModelAndView();
+		donationlist = manageService.donationOrgManage();
+		if(donationlist!=null){
+			//에러 처리 진행중인 행사가 없다.
+		}
+		mv.addObject("donationlist",donationlist);
+		mv.setViewName("admin/adminMessage");
+		return mv;
+	}
+	
+	/**
+	 * 문자테스트 폼(등록)
+	 * @return 
+	 * */
+	@RequestMapping("sendSmsRegister")
+	public String sendSmsRegister(DonationOrgDTO donationOrgDTO) {
+		/**
+		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
+		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communityDTO 정보를 모두 받아, 
+		 * 3. community테이블에 추가한다(register)
+		 */
+		int result = manageService.donationOrgRegisterManage(donationOrgDTO);
 		if(result==0){
-			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
-			
+			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
 		}
 		return "forward:donationOrgManage";
 	}

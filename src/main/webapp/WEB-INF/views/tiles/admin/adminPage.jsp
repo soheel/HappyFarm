@@ -135,6 +135,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminShopItem.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminQna.js"></script>
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+	
 </body>
 <script type="text/javascript">
 $(function(){
@@ -280,7 +281,56 @@ $(function(){
 			}
 		})
 	})
-}) 
 
+	/* *************************************************************************** */
+	
+	/* 커뮤니티 관리 */
+	/* 커뮤니티 삭제 */
+	$("span[name=deleteButtonCommunity]").click(function() {
+		var communityNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/communityDeleteManage'/>",
+			type : "post",
+			data : "no=" + communityNo,
+			dataType : "text",
+			success : function(result) {
+				if(result >= 1) {
+					alert(communityNo + ' 번 커뮤니티 정보 삭제 완료');
+					location.href = "<c:url value='/manageController/communityManage'/>";
+				}
+			},
+			error : function(err) {
+				alert("해당 커뮤니티 삭제 실패");
+			}
+		})
+	})
+	
+	/* 커뮤니티 수정 */
+	$("span[name=modifyButtonCommunity]").click(function() {
+		var communityNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/communityModifyShowManage'/>",
+			type : "post",
+			data : "no=" + communityNo,
+			dataType : "json",
+			success : function(result) {
+				alert(result.desc);
+				$("input[name=no]").val(result.no);
+				$("input[name=name]").val(result.name);
+				$("input[name=producerNo]").val(result.producerDTO.no);
+				$("input[name=profile]").val(result.profile);
+				$("input[name=desc]").val(result.desc);
+				$("input[name=state]").val(result.state);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	})
+	
+	/* *************************************************************************** */
+	
+    
+}) 
 </script>
 </html>

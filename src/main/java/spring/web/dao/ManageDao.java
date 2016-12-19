@@ -130,7 +130,7 @@ public interface ManageDao {
 	/**
 	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	CommunityDTO communityInfoMangage(String communityno);
+	CommunityDTO communityShowMangage(int communityno);
 	
 	/**
 	 * 모임관리(수정)
@@ -201,4 +201,9 @@ public interface ManageDao {
 	 * 생산자별 평점 리스트 가져오기
 	 * */
 	float getProducerEval(int producerNo);
+	
+	/**
+	 * 월별 매출 가져오기
+	 * */
+	List<Integer> getMonthSales();
 }
