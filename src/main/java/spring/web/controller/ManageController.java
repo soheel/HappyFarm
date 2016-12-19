@@ -513,7 +513,9 @@ public class ManageController {
 	
 	/*@RequestMapping("salesProductManage")
 	@ResponseBody
-	public 
+	public void salesProductManage(){
+		
+	}
 	
 	*//**
 	 * 매출관리

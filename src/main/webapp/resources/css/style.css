@@ -17397,16 +17397,6 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 	width:100%;
 }
 
-.certification_form{
-	position: fixed;
-	bottom: 12px;
-	right: 12px;
-	width: 350px;
-	background-color: #fff;
-	border: 1px solid #f4eede;
-	display: none;
-}
-
 .certification_form .cetication_title{
 	background-color: #e6e6e6;
 	padding: 7px 15px;

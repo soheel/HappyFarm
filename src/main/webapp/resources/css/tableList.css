@@ -1,0 +1,16 @@
+@media screen and (max-width: 767px) {
+	#item_list,
+	#item_list thead,
+	#item_list tbody,
+	#item_list tr,
+	#item_list th,
+	#item_list td {
+		display: block;
+	}
+
+	#item_list th,
+	#item_list td {
+		border-top: none;
+		border-bottom: none;
+	}
+}

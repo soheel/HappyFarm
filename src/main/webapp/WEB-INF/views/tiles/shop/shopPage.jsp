@@ -23,6 +23,8 @@
 	<link rel='stylesheet' href='<c:url value="/resources/css/"/>style.css' type='text/css' media='all'/>
 	<link rel='stylesheet' href='<c:url value="/resources/css/"/>custom.css' type='text/css' media='all'/>
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>magnific-popup.css' type='text/css' media='all' />
+	<link rel="stylesheet" href='<c:url value="/resources/css/"/>tableList.css' type='text/css' media='all' />
+	<link rel="stylesheet" href='<c:url value="/resources/css/"/>dialogCenter.css' type='text/css' media='all' />
 </head>
 <body>
 		
@@ -66,6 +68,5 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
-	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop.js'></script>
 </body>
 </html>
