@@ -120,9 +120,9 @@
 							<span class="payment_title">&lt;마일리지&gt;</span>
 						</p>
 						<p>
-							보유 마일리지 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
+							보유 마일리지 : <span value='${mileage}'><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
 							<!-- PurchaseDTO의 discount -->
-							마일리지 사용 : <input id = "useMileage" name="discount" type = "number" size = "8"><span>(1000원 단위로 사용이 가능합니다.)</span>
+							마일리지 사용 : <input id = "useMileage" name="discount" type ="number" size = "8"><span>(1000원 단위로 사용이 가능합니다.)</span>
 						</p>
 					</div>
 
@@ -132,7 +132,7 @@
 						</div>
 						<div class="col-md-6 final_check_border">
 							<p>
-								최종 결제 금액 <h3><span id = "amount" class="amount"></span><fmt:formatNumber value="${totalPrice }" pattern="#,###" /> 원</h3>
+								최종 결제 금액 <h3><span id = "amount" class="amount" value='${totalPrice}'><fmt:formatNumber value="${totalPrice}" pattern="#,###" /> 원</span></h3>
 							</p>
 							<input type="submit" value="결제"> 
 							<input type="button" value="취소" name="cancle">

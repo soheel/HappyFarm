@@ -136,9 +136,16 @@ public interface UserProductDAO {
 	int getRecentPurchaseNo();
 	
 	/**
+	 * 장바구니 물품 삭제
+	 */
+	int removeCartProduct(PurchaseDTO purchaseDTO);
+	
+	/**
 	 * 카드, 실시간, 휴대폰 결제시 purchase_state_no 바꾸기
 	 * */
 	int setPurchaseStateNo(int no);
+
+	
 
 	
 }

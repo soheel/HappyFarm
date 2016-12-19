@@ -189,6 +189,10 @@ select max(purchase_no)
 from purchase
 </select>
 
+<delete id="removeCartProduct" parameterType="purchaseDTO">
+	delete from cart where member_email=#{email}
+
+</delete>
 <!-- 결제 완료만들기 -->
 <update id="setPurchaseStateNo" parameterType="integer">
 update purchase set purchase_state_no where purchase_no = #{value} 

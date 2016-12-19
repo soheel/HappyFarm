@@ -161,13 +161,18 @@ public class UserProductController {
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품과 갯수를 insert한다.
 		 * */
-		
+		int result=0;
 		String email = (String)session.getAttribute("email");
+		if(email==null){
+			result = -2;
+		}
 		cart.setEmail(email);
 		System.out.println(cart.getEmail());
 		System.out.println(cart.getProductNo());
 		System.out.println(cart.getNum());
-		int result = service.addCart(cart);
+		if(email!=null){
+			result = service.addCart(cart);
+		}
 		
 		System.out.println("result : " + result);
 		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
@@ -183,16 +188,21 @@ public class UserProductController {
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품을 insert한다. (개수는 1)
 		 * */
-		
+		int result=0;
 		String email = (String)session.getAttribute("email");
 		cart.setEmail(email);
+		if(email==null){
+			result = -2;
+		}
 		cart.setNum(1);
 		System.out.println(cart.getEmail());
 		System.out.println(cart.getProductNo());
 		System.out.println(cart.getNum());
 		
 		//cart.setEmail(email);
-		int result = service.addCartDirect(cart);
+		if(email!=null){
+			result = service.addCartDirect(cart);
+		}
 		System.out.println(result + " result 값");
 		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
 	}
@@ -238,6 +248,7 @@ public class UserProductController {
 		ProductDTO productDTO = (ProductDTO)map.get("productDTO");
 		ProducerDTO producerDTO = (ProducerDTO)map.get("producerDTO");
 		int mileage = (Integer)map.get("mileage");
+				
 		mv.addObject("product", productDTO);
 		mv.addObject("producer", producerDTO);
 		mv.addObject("mileage", mileage);
@@ -263,10 +274,16 @@ public class UserProductController {
 		
 		String email = (String)session.getAttribute("email");
 		map = service.purchaseCart(cartProduct, email);
+		
+		
+		
 		List<ProductDTO> productList = (List<ProductDTO>)map.get("productList");
 		List<Integer> numList = (List<Integer>)map.get("numList");
+		int mileage = (Integer)map.get("mileage");
+		
 		
 		mv.addObject("productList", productList);
+		mv.addObject("mileage", mileage);
 		mv.addObject("numList", numList);
 		mv.addObject("totalPrice", totalPrice); // 구매하려는 모든 상품들의 총 가격
 		mv.setViewName("order/orderCardCart");
@@ -311,10 +328,12 @@ public class UserProductController {
 	public ModelAndView pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductDTO purchaseProductDTO, 
 			HttpSession session) {
 		System.out.println("pay");
+		//System.out.println("discount : "+purchaseDTO.getDiscount());
 		String email = (String)session.getAttribute("email");
 
 		// purchaseDTO 세팅
 		purchaseDTO.setEmail(email);
+		
 		// purchaseOrderDTO 세팅
 		purchaseOrderDTO.setEmail(email);
 		String phone = purchaseOrderDTO.getPhone().replace(',', '-');
@@ -322,6 +341,7 @@ public class UserProductController {
 		// purchaseProductDTO 세팅
 		// 통합 주소
 		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
+		
 		
 		int result = service.pay(purchaseDTO, purchaseOrderDTO, purchaseProductDTO);
 		purchaseDTO.setNo(result);

@@ -225,8 +225,9 @@ public class UserProductServiceImpl implements UserProductService{
 		int purchaseOrderResult = userProductDAO.registerPurchaseOrder(purchaseOrderDTO);
 		for(PurchaseProductDTO purchaseProduct : purchaseProductListDTO.getList()) {
 			purchaseProduct.setPurchaseNo(recentPurchaseNo);
-			userProductDAO.registerPurchaseProduct(purchaseProduct);
+			userProductDAO.registerPurchaseProduct(purchaseProduct);	
 		}
+		userProductDAO.removeCartProduct(purchaseDTO);
 		return recentPurchaseNo;
 	}
 

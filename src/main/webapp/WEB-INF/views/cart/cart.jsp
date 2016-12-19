@@ -78,7 +78,6 @@
 												<label>총 금액 : <span id = "totalPrice"><c:url value='${totalPrice}'/></span></label>
 											</p>
 											<input id = "selectOrder" type="submit" class="button" name="update_cart" value="선택상품주문"/>
-											<input id = "allOrder" type="submit" class="button" name="update_cart" value="전체상품주문"/>
 										</div>
 									</td>
 								</tr>

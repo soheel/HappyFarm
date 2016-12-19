@@ -66,6 +66,19 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#useMileage").keyup(function(){
+				//alert(11);
+				var discount = $("#useMileage").val();
+				//alert(discount);
+				var point = $("#amount").attr("value");
+				//alert(point)
+				var total= point-discount;
+				$("#amount").html(total);
+			});
+		});
+	</script>
 	
 </body>
 </html>

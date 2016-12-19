@@ -132,9 +132,16 @@ public class UserProductDAOImpl implements UserProductDAO {
 	}
 
 	@Override
+	public int removeCartProduct(PurchaseDTO purchaseDTO) {
+		return sqlSession.delete("UserProductMapper.removeCartProduct",purchaseDTO);
+	}
+	
+	@Override
 	public int setPurchaseStateNo(int no) {
 		return sqlSession.update("UserProductMapper.setPurchaseStateNo", no);
 	}
+
+	
 
 	
 
