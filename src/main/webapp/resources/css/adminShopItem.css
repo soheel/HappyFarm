@@ -26,29 +26,3 @@
     font-size:23px;
     font-style: normal;
 }
-
-
-
-.modal {
-  text-align: center;
-  padding: 0!important;
-  z-index: 105000;
-}
-
-.modal:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -4px;
-}
-
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
-}
-
-.modal-backdrop{
-	z-index: 104000;
-}
