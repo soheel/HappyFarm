@@ -313,4 +313,9 @@ public class ManageServiceImpl implements ManageService {
 	public List<Integer> getMonthSales() {
 		return manageDao.getMonthSales();
 	}
+
+	@Override
+	public List<HashMap<String, String>> getSalesProduct() {
+		return manageDao.getSalesProduct();
+	}
 }

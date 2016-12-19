@@ -373,9 +373,11 @@ public class UserProductController {
 	
 	@RequestMapping("paySendSms")
 	public void paySendSms(@RequestParam String name, @RequestParam String phone, @RequestParam String bankNum,
-			@RequestParam String bankName, @RequestParam String bankHolder){
+	
+		@RequestParam String bankName, @RequestParam String bankHolder){
 		String api_key = "NCS58573A4F7EE6C";
         String api_secret = "B1BAFF5BE67B7DA379FB7F71821038F4";
+
        
         Message coolsms = new Message(api_key, api_secret);
 

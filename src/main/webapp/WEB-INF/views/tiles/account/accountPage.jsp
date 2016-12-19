@@ -66,7 +66,7 @@
 							<a href="<c:url value="/userInfoController/myPageInfoModify"/>">정보관리</a>
 						</li>
 						<li>
-							<a href="<c:url value="/userInfoController/myPageMileage"/>">마일리지</a>
+							<a href="<c:url value="/userInfoController/myPageMileage"/>">MyPoint</a>
 						</li>
 					</ul>
 				</nav>

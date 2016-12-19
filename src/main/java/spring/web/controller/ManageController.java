@@ -1,10 +1,14 @@
 package spring.web.controller;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -511,21 +515,43 @@ public class ManageController {
 		return list;
 	}
 	
-	/*@RequestMapping("salesProductManage")
+	@RequestMapping("salesProductManage")
 	@ResponseBody
-	public void salesProductManage(){
+	public List<Integer> salesProductManage() {
+		System.out.println("salesProdcutManage");
+		Integer[] arr = new Integer[23];
+		for(int i = 0 ; i < 23 ; i++) {
+			arr[i] = 0;
+		}
+		List<HashMap<String, String>> list = manageService.getSalesProduct();
 		
+		for(Map<String, String> map : list) {
+			System.out.println(String.valueOf(map.get("COUNT")) + "!!!");
+			String countStr = String.valueOf(map.get("COUNT"));
+			String noStr = String.valueOf(map.get("NO"));
+			int count = Integer.parseInt(countStr);
+			int no = Integer.parseInt(noStr);
+			
+			if(count != 0) {
+				arr[no - 1] = count;
+			}
+		}
+		for(int i : arr) {
+			System.out.println(i);
+		}
+		List<Integer> resultList = new ArrayList<Integer>(Arrays.asList(arr));
+		return resultList;
 	}
 	
-	*//**
+	/**2
 	 * 매출관리
 	 * 월별매출
 	 * 차트
-	 * *//*
+	 * */
 	@RequestMapping("salesByMonthsManage")
 	public void salesByMonthsManage() {
 		
-	}*/
+	}
 	
 	/**
 	 * 매출관리
