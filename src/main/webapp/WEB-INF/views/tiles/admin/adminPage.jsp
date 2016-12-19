@@ -140,6 +140,14 @@
 <script type="text/javascript">
 $(function(){
 	
+	 $("#adminType").change(function(){
+	        var textAreaContent = $("#adminMessage").val();  //VALUE OF TEXTAREA
+	        var selectBoxVal = $(this).val();    //VALUE OF SELECT BOX
+	       $("#adminMessage").val(selectBoxVal);   //ADD THE VALUE INSIDE TEXTAREA
+	    });
+
+	 
+	 
 	/* 테이블 페이징 */
 	/* Data Table */
 		$(document).ready(function(){
@@ -189,6 +197,26 @@ $(function(){
 			}
 		})
 	})
+	
+	/** 해당 회원에게 메시지 보내기*/
+	$("span[name=sendButton]").click(function() {
+		var producerNo = $(this).attr("value");
+		
+		$.ajax({
+			url : "<c:url value='/manageController/producerModifyShowManage'/>",
+			type : "post",
+			data : "no=" + producerNo,
+			dataType : "json",
+			success : function(result) {
+				$("input[name=name]").val(result.name);
+				$("input[name=phone]").val(result.phone);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	})
+	
 	/* *************************************************************************** */
 	
 	/* 상품 정보 관리 */

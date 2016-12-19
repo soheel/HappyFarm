@@ -20,6 +20,7 @@ import spring.web.dto.CartDTO;
 import spring.web.dto.CartProductDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -121,6 +122,20 @@ public class UserProductController {
 		return mv;
 	}
 	
+	/**
+	 * 상품을 눌렀을 때 인증마크 폼 띄어주기
+	 */
+	@RequestMapping("showCertificationInfo")
+	@ResponseBody
+	public List<ProductCertificationDTO> showCertificationInfo(int no){
+		System.out.println(no+"Ddd");
+		List<ProductCertificationDTO> productCerti = service.showCertificationInfo(no);
+		for(ProductCertificationDTO  list: productCerti){
+			System.out.println(list.getCertificationDTO().getName()+"Dddd");
+		}
+		return productCerti;
+		
+	}
 	/**
 	 * 개별상품에서 생산자 정보 클릭했을 때
 	 * 새창에서 생산자 정보 알려주기

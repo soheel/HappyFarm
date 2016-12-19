@@ -13,6 +13,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.MemberRequestDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -149,21 +150,37 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userInfoDao.deleteOrderProduct(no);
 	}
 	
+	@Override
+	public int getStateNo(String name) {
+		return userInfoDao.getStateNo(name);
+	}
+	
+	@Override
+	public String checkPwd(String pwd) {
+		return userInfoDao.checkPwd(pwd);
+	}
+	
+	/**
+	 * 주문 조회에서 교환/반품/환불 요청시
+	 * */
+	@Override
+	public int insertRequest(MemberRequestDTO memberRequestDto) {
+		return userInfoDao.insertRequest(memberRequestDto);
+	}
+	
+	@Override
+	public int updateByRequest(PurchaseDTO purchaseDto) {
+		return userInfoDao.updateByRequest(purchaseDto);
+	}
+	
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 * */
 	@Override
-	public List<QnaDTO> myPageQna(String email) {
+	public Map<String, Object> myPageQna(String email) {
 		return userInfoDao.myPageQna(email);
 	}
 	
-	/**
-	 * 해당 질문글에 달린 답글 가져오기
-	 * */
-	@Override
-	public String showAnswer(int no) {
-		return userInfoDao.showAnswer(no);
-	}
 	
 	/**
 	 * 내정보 - 기부페이지 눌렀을 때

@@ -8,6 +8,7 @@ import spring.web.dto.CartDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -52,6 +53,7 @@ public interface UserProductDAO {
 	 * */
 	List<ProductCommentDTO> getProductCommentByProductNo(int productNo);
 
+	
 	/**
 	 * showProductDetail(int productNo)
 	 * productNo로 CertificationDTO 가져오기
@@ -68,6 +70,11 @@ public interface UserProductDAO {
 	 * 상품 상세보기에서 해당 상품의 카테고리 가져오기
 	 * */
 	String getCategoryName(int subcategoryNo);
+	
+	/**
+	 * 유기농 인증 정보 불러오기
+	 */
+	List<ProductCertificationDTO> showCertificationInfo(int no);
 	
 	/**
 	 * addCart(int productNo, int num, HttpSession session)
@@ -132,4 +139,6 @@ public interface UserProductDAO {
 	 * 카드, 실시간, 휴대폰 결제시 purchase_state_no 바꾸기
 	 * */
 	int setPurchaseStateNo(int no);
+
+	
 }

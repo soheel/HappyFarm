@@ -46,7 +46,7 @@
 													</div>
 												</td>
 												<td class="product-name">
-													<span value = "${producer.no }" style = "padding-left : 50px;color : pink; cursor : pointer;">[전송]</span>
+													<span value = "${producer.no }" style = "padding-left : 50px;color : pink; cursor : pointer;" name = "sendButton" data-toggle="modal" data-target="#sendMessage">[전송]</span>
 												</td>
 											</tr>
 											</c:forEach>
@@ -178,6 +178,10 @@
 											</div>
 										</div>
 									</div>
+									
+					
+									
+									
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-default">수정</button>
 										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -186,3 +190,63 @@
 							</form>
 						</div>
 					</div>
+					
+					
+					<!-- 문자 전송 Modal -->
+					<div class="modal fade" id="sendMessage" role="dialog">
+						<div class="modal-dialog">
+							<form name="sendProducer" action="<c:url value='/manageController/producerSendMessage'/>" method = "post" enctype="multipart/form-data">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">문자 전송</h4>
+									</div>
+									<div class="modal-body shop-dialog">
+										<div class="row">
+											<div class="noo-main col-md-12">
+												<div id="customer_login">
+													<div class="col-md-1"></div>
+													<div class="col-md-10">
+														<div class="form-row form-row-wide">
+															<label for="producer_name">
+																생산자 이름
+																<span class="required">*</span>
+															</label>
+															<input type="text" class="input-text" name="name" id="name" />
+														</div>
+				
+														<div class="form-row form-row-wide">
+															<label for="producer_phone">
+																연락처
+																<span class="required">*</span>
+															</label>
+															<input type="text" class="input-text" name="phone" id="phone" />
+														</div>
+														
+														<div class="form-row form-row-wide">
+														<select id="adminType">
+														    <option value="생산자는 평점이 낮습니다.한번 더 경고를 받으시면 물건을 판매할 수 없습니다.">경고 문자</option>
+														    <option value="커뮤니티 참여 인원이 달성하였습니다.">알림 문자</option>
+														</select>
+														</div>
+														
+														<div class="form-row form-row-wide">
+														<textarea id="adminMessage" name="adminMessage" cols="50" row="5">생산자는 평점이 낮습니다.한번 더 경고를 받으시면 물건을 판매할 수 없습니다.</textarea>
+																
+														</div>
+													</div>
+													<div class="col-md-1"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-default"  onclick="alert('문자가 전송되었습니다.');">전송</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+									

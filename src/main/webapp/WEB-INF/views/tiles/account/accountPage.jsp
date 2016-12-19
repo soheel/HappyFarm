@@ -100,26 +100,26 @@
 			<div class="col-lg-3"></div>
 	    	<div class="col-lg-6 col-centered">
 				<div class="form-row form-row-wide dialog">
-					<form class="find-profile order">
-						<input type="radio" name="type" value="refund">환불
-						<input type="radio" name="type" value="return">반품
-						<input type="radio" name="type" value="change">교환
+					<form class="find-profile order" method="post">
+						<input type="radio" name="type" value="refund" class="refundBtn">환불
+						<input type="radio" name="type" value="return" class="refundBtn">반품
+						<input type="radio" name="type" value="change" class="refundBtn">교환
 						<br>
 						<label for="find_id">
 						사유
 							<span class="required">*</span>
 						</label>
-						<input type="text" class="input-text" name="id" id="order_board" value=""/>
+						<input type="text" class="input-text" name="desc" id="order_board" value=""/>
 						<br>
-											
+									
 						<label for="find_pw">
 						비밀번호 확인 
 						<span class="required">*</span>
 						</label>
-						<input type="password" class="input-text" name="name" id="order_pw" value=""/>
+						<input type="password" class="input-text" name="pwd" id="order_pw" value=""/>
 						
 						<br>	
-						<input type="submit" class="button" name="select" value="확인" />
+						<input type="submit" class="button" name="select" value="확인" id="requsetChange"/>
 						<input type="button" class="button" name="cancel" value="취소" />
 					</form>
 				</div>
@@ -174,19 +174,63 @@
 		    $('#myOrderTable').DataTable();
 		});
 		
-		/* $(".checkBox").on("checked", function(){
-			$(".searchOrderListCancer").submit;	
-		}); */
-		$('input:checkbox[name="box"]').each(function() {
-
-		     if(this.checked = true){ 
-				 var str=$(this).parent().next().net().text();
-				alert(str)
-		      }
-
-		 });
-		
-	});
+		 $(document).on("click","#searchOrderListCancer", function(){
+			 var no = $(this).attr("value");
+			 //alert(str);
+		 	 $.ajax({
+		         url:"requestCancelButton",
+		           type:"post",
+		           dataType:"text",
+		           data:"no="+no,
+		           success:(function(result){
+		        	   if(result==1){
+							alert("삭제성공");
+							location.href="<c:url value='/userInfoController/searchOrderList'/>";
+						}else{
+							alert("삭제실패");
+						}
+		           }),
+		           error: function(err){
+		              alert("err :" + err)
+		           } 
+		      
+		      	})  
+		   	})
+		   	
+		   	
+		   	
+		   	$(document).on("click","#refundCheckBtn", function(){
+		   		var no = $(this).attr("value");
+		   		
+		   		$("#requsetChange").click(function(){
+				   		 var state = $(".refundBtn:checked").val();
+				   		//alert(state); 
+				   		//no+=$(".refundBtn:checked").val()+"/";
+				   var desc = $("#order_board").val();
+				  // no+= $("#order_board").val() +"/";
+				   var pwd = $("#order_pw").val();
+		   		//alert(no)
+		   		//alert(no);
+		   	   $.ajax({
+		         url:"requestRefund",
+		           type:"post",
+		           dataType:"text",
+		           data:"no="+no+"&state="+state+"&desc="+desc+"&pwd="+pwd,
+		           success:(function(result){
+		        	   if(result==1){
+							alert("성공");
+							location.href="<c:url value='/userInfoController/myPageOrderList'/>";
+						}else{
+							alert("실패");
+						}
+		           })/* ,
+		           error: function(err){
+		              alert("err :" + err);
+		           } */
+		  			})
+		   		}) 
+		   	});
+		 })
 </script>
 </body>
 </html>

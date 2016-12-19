@@ -11,6 +11,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
 public interface UserEtcService {
@@ -44,6 +45,13 @@ public interface UserEtcService {
 	 * 행사 상세 정보 로딩
 	 */
 	InfomationDTO infoDetail(int no);
+	
+	/**
+	 * 정보 관련된 상품 보여주기
+	 */
+	List<ProductDTO> infoRelatedProduct(String name);
+
+	
 	/**
 	 * 기부 목록 5개 + 차트 로딩
 	 */
@@ -69,5 +77,4 @@ public interface UserEtcService {
 	 * 기부단체정보
 	 * */
 	DonationOrgDTO donationLoading2();
-
 }
