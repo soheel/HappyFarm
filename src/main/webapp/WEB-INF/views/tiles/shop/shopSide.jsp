@@ -82,32 +82,6 @@
 </div>
 
 <!-- centigication 클릭했을때 나오는 영역 -->
-<%-- <div class="certification_form">
-	<div class="cetication_title">
-		유기농 인증 정보
-		<div class="certification_form_exit">
-			<i class="fa fa-times" aria-hidden="true"></i>
-		</div>
-	</div>
-	<div class="cetication_content">
-		<table class="table">
-			<tr>
-				<td rowspan="3"><img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce"></td>
-				<td>이름</td>
-			</tr>
-			
-			<tr>
-				<td>설명</td>
-			</tr>
-			
-			<tr>
-				<td>번호</td>
-			</tr>
-		</table>
-	</div>
-</div> --%>
-
-<!-- insert Modal -->
 <div class="modal fade" id="certification" role="dialog">
 	<div class="modal-dialog">
 		<form name="regCommunity" action="" method = "post" enctype="multipart/form-data">
