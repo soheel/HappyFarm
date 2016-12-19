@@ -658,14 +658,19 @@ public class UserInfoController {
 		 * 이 두 결과값을 map에 저장한 후 리턴한다.
 		 * 페이지는 이동할 필요없으므로 그냥 Controller에서 리턴을 map으로함 
 		 * */
+		int extra = 0;
 		String email = (String)session.getAttribute("email");
 		Map<String, Object> map = userService.myPageMileage(email);
 		List<String> recommand = (List<String>)map.get("recommand");
+		if(recommand.size()>5){
+			extra = recommand.size()-5;
+		}
 		List<MemberDTO> usedMileage = (List<MemberDTO>)map.get("usedMileage");
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("recommand", recommand);
 		mv.addObject("usedMileage", usedMileage);
+		mv.addObject("extra", extra);
 		mv.setViewName("account/myInfoMileage");
 		
 		return mv;

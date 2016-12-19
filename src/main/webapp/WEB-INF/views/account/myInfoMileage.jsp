@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div class="row">
 	<h2>추천인</h2>
 	<table class="table">
@@ -12,21 +13,28 @@
 				</tr>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${recommand}" var="recommand">
+				<c:forEach items="${recommand}" var="recommand" varStatus="state">
+					<c:if test="${state.index lt 5}">
 					<tr>
 						<td>${recommand}</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+				<c:if test="${fn:length(recommand)>5}">
+					<tr>
+						<td>외 ${extra}</td>
+					</tr>
+				</c:if>
 	</table>
 </div>
-<h2>마일리지 사용 이력</h2>
+<h2>point 사용 이력</h2>
 <table class="table">
 	<thead>
 		<tr>
 			<th>사용 날짜</th>
-			<th>사용처</th>
+			<th>구매번호</th>
 			<th>사용량</th>
 		</tr>
 	</thead>
@@ -34,7 +42,7 @@
 		<c:choose>
 			<c:when test="${empty usedMileage}">
 				<tr>
-					<td>현재 마일리지 사용내역이 없습니다.</td>
+					<td>현재 사용내역이 없습니다.</td>
 				</tr>
 			</c:when>
 			<c:otherwise>
@@ -47,7 +55,7 @@
 								<fmt:parseDate value="${purchaseDto.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
 								<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
 								</td>  
-								<td>${purchaseProductDto.productDto.name}</td>
+								<td>${purchaseDto.no}</td>
 								<td>${purchaseDto.discount}</td>
 							</tr>
 						</c:forEach>
