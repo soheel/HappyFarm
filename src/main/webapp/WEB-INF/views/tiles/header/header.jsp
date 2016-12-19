@@ -38,8 +38,15 @@
 										<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
 									</c:when>
 									<c:otherwise>
-										<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
-										<a href="<c:url value='/userInfoController/logout'/>">&nbsp;|&nbsp;Logout</a>
+										<c:choose>
+											<c:when test="${sessionScope.email == 'admin' }">
+												<a href="<c:url value='/userInfoController/adminPage'/>">ManagePage</a>
+											</c:when>
+											<c:otherwise>
+												<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
+											</c:otherwise>
+										</c:choose>
+											<a href="<c:url value='/userInfoController/logout'/>">&nbsp;|&nbsp;Logout</a>
 									</c:otherwise>
 								</c:choose>
 								

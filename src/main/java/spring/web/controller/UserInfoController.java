@@ -233,6 +233,14 @@ public class UserInfoController {
 	}
 	
 	/**
+	 * admin 페이지로 이동
+	 * */
+	@RequestMapping("adminPage")
+	public String adminPage() {
+		return "admin/admin";
+	}
+	
+	/**
 	 * 메인로딩
 	 * 로그아웃 후 메인으로 이동하기 위해 필요
 	 * */
