@@ -50,12 +50,12 @@ public interface ManageDao {
 	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
 	 * (새창)
 	 * */
-	List<ProductDTO> packageShowManage(String packagename);
+	public List<String> packageShowManage(int packagePk);
 	
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 	 */
-	ProductDTO packageSearchProduct(String productname);
+	List<ProductDTO> packageSearchProduct(String productname);
 	
 	/** 세트 상품 등록*/
 	int packageRegisterManage(Map<String, Object> packageRegister);

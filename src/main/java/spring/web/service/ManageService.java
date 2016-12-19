@@ -64,7 +64,7 @@ public interface ManageService {
 	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
 	 * (새창)
 	 * */
-	public List<ProductDTO> packageShowManage(String packagename);
+	public List<String> packageShowManage(int packagePk);
 	
 	/**패키지 추가*/
 	public int packageRegisterManage(Map<String, Object> packageRegister);
@@ -73,7 +73,7 @@ public interface ManageService {
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 	 */
-	public ProductDTO packageSearchProduct(String productname);
+	public List<ProductDTO> packageSearchProduct(String productname);
 	
 	/** div에 정보를 불러와서 ...
 	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		

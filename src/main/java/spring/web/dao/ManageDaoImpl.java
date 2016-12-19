@@ -52,37 +52,31 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public List<ProductDTO> packageShowManage(String name) {
-		return sqlsession.selectList("manageMapper.packageShowManage",name);
+	public List<String> packageShowManage(int packagePk) {
+		return sqlsession.selectList("manageMapper.packageShowManage",packagePk);
 		
 	}
 
 	@Override
 	public int packageRegisterManage(Map<String, Object> packageRegister) {
-		
 		int result1=sqlsession.insert("manageMapper.packageRegisterManage",packageRegister);
 		int result2=sqlsession.insert("manageMapper.packageRegisterPackage",packageRegister);
 		int result3=sqlsession.insert("manageMapper.packageRegisterPackageProduct",packageRegister);
-		
 		return result3;
 	}
 	
-	
 	@Override
-	public ProductDTO packageSearchProduct(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductDTO> packageSearchProduct(String name) {
+		return sqlsession.selectList("manageMapper.packageSearchProduct", name);
 	}
 
 	@Override
 	public ProductDTO packageInfoMangage(String no) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int packageModifyManage(Map<String, Object> modifyinfo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	

@@ -209,15 +209,22 @@ public class ManageController {
 		 * 1. 세트 상품 관리를 누르면
 		 * 2. packageDTO에 있는 정보를 다 받아와서 (packagelist) 
 		 * * 정보 관련 :  package테이블의 package_name, 세트 가격은 product에 있는 price, 포함상품은package_product에 있는 product_no를 다 찾는다.
-		 * 3.테이블 형식으로 뿌려준다. 페이징(Datatable로 페이징)?
-		 * 
 		 */
 		List<PackageDTO> packagelist = manageService.packageManage();
-		
+		List<String> packageProductList = new ArrayList<String>();
+		String products = "";
+		for(PackageDTO packageDTO : packagelist) {
+			List<String> list = manageService.packageShowManage(packageDTO.getPackageNo());
+			for(String str : list) {
+				products += "[" + str + "] ";
+			}
+			packageProductList.add(products);
+			products = "";
+		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("packagelist", packagelist);
-		
-		mv.setViewName("admin/packageItem");  
+		mv.addObject("packageProductList", packageProductList);
+		mv.setViewName("admin/adminPackageItem");  
 		return mv;
 	}
 	
@@ -228,29 +235,15 @@ public class ManageController {
 	 * */
 	@RequestMapping("packageShowManage")
 	public ModelAndView packageShowManage(String name) {
-		/**
-		 * 1.세프 상품 정보 list에서 package이름을 누르면 해당하는 패키지 이름을 받아온다.
-		 * 2.package에 있는 package_no를 찾고 일치하는 package_product에 있는 product_no를 모두 찾는다.
-		 * 3.product에 있는 product_name, price, producer_no(no를 찾아 producer테이블의 name)을 찾고, product_no에 일치하는 certification_no를 찾는다.
-		 */
-		
-		//packagename에 일치하는 package_no를 찾고 package_product에 있는 product_no를 찾는다.
-		List<ProductDTO> packageproduct = manageService.packageShowManage(name);
-		//다른 건 다 조인해서 받아올수있는건가...ㅎ
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("packageproduct", packageproduct);
-		
-		mv.setViewName("packageproduct");  
-		return mv;
+		return null;
 	}
-	
+
 	/**
 	 * 세트상품관리 등록
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("packageRegisterManage")
-	public String packageRegisterManage(PackageDTO packageDTO, String name) {
+	public String packageRegisterManage(HttpServletRequest request, PackageDTO packageDTO, ProductDTO productDTO, MultipartHttpServletRequest multipartRequest, HttpSession session, String products) {
 		Map<String, Object> packageRegister = new HashMap<String, Object>();
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
@@ -259,15 +252,11 @@ public class ManageController {
 		 * 상품검색 : product_name에 일치하는 product를 찾아준다
 		 * 밑에 상품이 productDTO들이 insert된다.
 		 */
-		ProductDTO productDTO = packageSearchProduct(name);
-		
-		packageRegister.put("productDTO", productDTO);
-		packageRegister.put("packageDTO", packageDTO);
-		
-		int result = manageService.packageRegisterManage(packageRegister);
-		if(result==0){
-			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
-		}
+		System.out.println("packageRegisterManage");
+		System.out.println(products);
+		System.out.println(productDTO.getName());
+		System.out.println(productDTO.getPrice());
+		//int result = manageService.packageRegisterManage(packageRegister);
 		return "forward:packageproduct";
 	}
 	
@@ -276,13 +265,14 @@ public class ManageController {
 	 * 상품번호, 상품이름 아래에 추가
 	 * */
 	@RequestMapping("packageSearchProduct")
-	public ProductDTO packageSearchProduct(String name) {
+	@ResponseBody
+	public List<ProductDTO> packageSearchProduct(String name) {
 		/**
 		 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 		 */
-		ProductDTO productDTO = manageService.packageSearchProduct(name);
-		
-		return productDTO;
+		System.out.println(name);
+		List<ProductDTO> list = manageService.packageSearchProduct(name);
+		return list;
 	}
 	
 	//div태그이므로, 할 필요 없을 것이다. 정보 저장되어 있기 떄문에
@@ -637,19 +627,11 @@ public class ManageController {
 		 * 3. community테이블에 추가한다(register)
 		 */
 		System.out.println("communityRegisterManage");
-		System.out.println(communityDTO.getName());
-		System.out.println(communityDTO.getProfile());
-		System.out.println(communityDTO.getDesc());
-		System.out.println(communityDTO.getProducerNo());
 		List<MultipartFile> fileList = multipartRequest.getFiles("file");
 		String profile = fileList.get(0).getOriginalFilename();
 		String desc = fileList.get(1).getOriginalFilename();
 		communityDTO.setProfile(profile);
 		communityDTO.setDesc(desc);
-		
-		System.out.println(communityDTO.getProfile());
-		System.out.println(communityDTO.getDesc());
-		
 		if(profile.equals("") || desc.equals("")) {
 			return "forward:communityManage";
 		}
@@ -663,7 +645,6 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		int result = manageService.communityRegisterManage(communityDTO);
-		System.out.println(result);
 		return "forward:communityManage";
 	}
 	
@@ -690,30 +671,20 @@ public class ManageController {
 		 */
 		System.out.println("communityModifyManage");
 		List<MultipartFile> fileList = multipartRequest.getFiles("file");
-		
 		String profile = fileList.get(0).getOriginalFilename();
 		String desc = fileList.get(1).getOriginalFilename();
-		System.out.println(communityDTO.getDesc() + "!!!");
-		
 		if(!(profile.equals(""))) {
 			communityDTO.setProfile(profile);
 		}
 		if(!(desc.equals(""))) {
 			communityDTO.setDesc(desc);
 		}
-		
-		System.out.println(communityDTO.getProfile());
-		System.out.println(communityDTO.getDesc());
-		
 		String saveDir = session.getServletContext().getRealPath("/resources/img/community");
 		int result = 0;
 		File descFile = new File(saveDir + "/" + desc);
 		File profileFile = new File(saveDir + "/" + profile);
 		try {
 			if(profile.equals("") && desc.equals("")) {
-				System.out.println("profile, desc 모두 새로 올리지 않은 경우");
-				System.out.println(communityDTO.getProfile());
-				System.out.println(communityDTO.getDesc());
 				result = manageService.communityModifyManage(communityDTO);
 			}else if(profile.equals("")) {
 				if(descFile.exists()) { // desc를 업로드 하려 했는데, 이미 그 파일이 폴더에 존재할 경우
@@ -723,8 +694,6 @@ public class ManageController {
 					result = manageService.communityModifyManage(communityDTO);
 				}
 			}else if(desc.equals("")) {
-				System.out.println("desc 없을 때");
-				System.out.println(communityDTO.getDesc());
 				if(profileFile.exists()) {
 					result = manageService.communityModifyManage(communityDTO);
 				}else {
@@ -732,14 +701,9 @@ public class ManageController {
 					result = manageService.communityModifyManage(communityDTO);
 				}
 			}else {
-				System.out.println("여기");
-				System.out.println(communityDTO.getNo());
-				System.out.println(communityDTO.getProfile());
-				System.out.println(communityDTO.getDesc());
 				fileList.get(1).transferTo(descFile);
 				fileList.get(0).transferTo(profileFile);
 				result = manageService.communityModifyManage(communityDTO);
-				System.out.println(result);
 			}
 		}catch(Exception e){
 			e.printStackTrace();

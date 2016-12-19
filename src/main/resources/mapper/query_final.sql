@@ -274,6 +274,8 @@ insert into package values(package_no.nextval, 100, 1);
 insert into package values(package_no.nextval, 100, 2);
 insert into package values(package_no.nextval, 100, 3);
 
+delete package where package_pk > 0
+
 -- certiifcation 테이블---------------------------------------------------------
 drop table certification;
 select * from certification;
@@ -552,16 +554,6 @@ insert into information values(information_no.nextval, '양파의 영양분 & 효능', '
 
 -- test
 
-select to_char(purchase_date, 'MM'), sum(purchase_price)
-from purchase
-where to_char(purchase_date, 'YYYYMM') between '201601' and '201612'
-group by to_char(purchase_date,'MM')
-order by to_char(purchase_date,'MM')
-
-
-select sc.category_subcategory_no, count(*)
-from purchase p, purchase_product pp, product t, category_subcategory sc
-where p.purchase_no = pp.purchase_no
- and pp.product_no = t.product_no
- and t.category_subcategory_no = sc.category_subcategory_no
-group by sc.category_subcategory_no
+select product_no, product_name
+from product
+where product_name like '%패%'

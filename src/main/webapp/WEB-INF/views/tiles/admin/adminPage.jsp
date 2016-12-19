@@ -359,6 +359,43 @@ $(function(){
 	
 	/* *************************************************************************** */
 	
+	/* 패키지 상품 관리 */
+	/* 패키지 상품 등록시 개별 상품 검색 */
+    $("input[name=productSearch]").click(function() {
+    	var productName = $("input[name=search]").val();
+    	
+    	$.ajax({
+    		url : "<c:url value='/manageController/packageSearchProduct'/>",
+			type : "post",
+			data : "name=" + productName,
+			dataType : "json",
+			success : function(result) {
+				var content = "";
+				$.each(result, function(index, item) {
+					content += "<span style='cursor:pointer' class = 'test' value='" + item.no + "'>" + item.name + " (상품번호 : " + item.no + ")</span><br>";
+				})
+				$("#searchResult").html(content);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+    	})
+    })
+    
+    var arr = new Array();
+    $(document).on("click", ".test", function() {
+    	var selectProduct = $(this).attr('value');
+    	
+    	if(arr.indexOf(selectProduct) != -1) {
+    		alert("이미 등록하신 상품입니다.");
+    	}else {
+    		alert(selectProduct + '번 상품이 추가되었습니다.');
+    		var content = "";
+        	content += "<input type = 'text' readonly name='products' value='" + selectProduct + "'/>";
+        	$("#select_product").append(content);
+        	arr[arr.length] = selectProduct;
+    	}
+    })
     
 }) 
 </script>
