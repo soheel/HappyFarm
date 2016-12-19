@@ -8,11 +8,13 @@ public class CommunityDTO {
 	private String profile;
 	private String desc;
 	private String registerDate;
-	private String state;
+	private int state;
+	private String producerNo;
 	/*
 	private CommunityCommentDTO communityCommentDto;
 	*/
 	private List<CommunityCommentDTO> communityCommentDTO;
+	private ProducerDTO producerDTO;
 	
 	/*public CommunityDTO(int no, String name, String profile, String desc, String registerDate, String state) {
 		super();
@@ -26,8 +28,7 @@ public class CommunityDTO {
 */
 	public CommunityDTO() {}
 
-	/*public CommunityDTO(int no, String name, String profile, String desc, String registerDate, String state,
-			List<CommunityCommentDTO> communityCommentDto) {
+	public CommunityDTO(int no, String name, String profile, String desc, String registerDate, int state, String producerNo) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -35,8 +36,8 @@ public class CommunityDTO {
 		this.desc = desc;
 		this.registerDate = registerDate;
 		this.state = state;
-		this.communityCommentDto = communityCommentDto;
-	}*/
+		this.producerNo = producerNo;
+	}
 
 	
 	
@@ -99,13 +100,28 @@ public class CommunityDTO {
 		this.registerDate = registerDate;
 	}
 
-	public String getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 	
+	public String getProducerNo() {
+		return producerNo;
+	}
+	
+	public void setProducerNo(String producerNo) {
+		this.producerNo = producerNo;
+	}
+	
+	public ProducerDTO getProducerDTO() {
+		return producerDTO;
+	}
+	
+	public void setProducerDTO(ProducerDTO producerDTO) {
+		this.producerDTO = producerDTO;
+	}
 	
 }

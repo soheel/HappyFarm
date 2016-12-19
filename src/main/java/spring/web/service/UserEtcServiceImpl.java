@@ -13,6 +13,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
 @Service
@@ -65,6 +66,15 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public InfomationDTO infoDetail(int no) {
 		return userEtcDao.infoDetail(no);
 	}
+	
+	/**
+	 * 정보 관련된 상품 보여주기
+	 */
+	@Override
+	public List<ProductDTO> infoRelatedProduct(String name) {
+		return userEtcDao.infoRelatedProduct(name);
+	}
+	
 	/**
 	 * 기부 목록 5개 + 차트 로딩
 	 */
@@ -99,5 +109,6 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public DonationOrgDTO donationLoading2() {
 		return userEtcDao.donationLoading2();
 	}
+	
 
 }

@@ -9,6 +9,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
 public interface UserEtcDao {
@@ -25,6 +26,8 @@ public interface UserEtcDao {
 
 	InfomationDTO infoDetail(int no);
 
+	List<ProductDTO> infoRelatedProduct(String name);
+	
 	List<DonationDTO> donationLoading();
 
 	Map<String, Object> producerDetail(int no);
@@ -34,5 +37,7 @@ public interface UserEtcDao {
 	List<CommunityCommentDTO> commmentList(int no);*/
 	
 	DonationOrgDTO donationLoading2();
+
+	
 
 }

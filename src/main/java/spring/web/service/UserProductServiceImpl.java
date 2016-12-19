@@ -14,6 +14,7 @@ import spring.web.dto.CartProductDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -89,6 +90,12 @@ public class UserProductServiceImpl implements UserProductService{
 		map.put("categoryName", categoryName);
 		return map;
 	}
+	
+	@Override
+	public List<ProductCertificationDTO> showCertificationInfo(int no) {
+		return userProductDAO.showCertificationInfo(no);
+	}
+	
 
 	@Override
 	public ProducerDTO showProducerInfo(int producerNo) {
@@ -228,5 +235,7 @@ public class UserProductServiceImpl implements UserProductService{
 		int result = userProductDAO.setPurchaseStateNo(no);
 		return result;
 	}
+
+	
 
 }

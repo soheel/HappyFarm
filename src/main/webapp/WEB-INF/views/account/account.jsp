@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<h2>나의 마일리지</h2>
+<h2>나의 기부 point</h2>
 <table class="table">
 	<tr>
-	 <th>현재 나의 마일리지</th>
+	 <th>현재 기부 point</th>
 	 
 	 <td>${mileage}</td>
 	 
@@ -35,7 +35,11 @@
 	<c:forEach items="${list}" var="list">
 			<c:forEach items="${list.purchaseDto}" var="purchaseDto">
 			<tr class="warning">
-				<td>${purchaseDto.date}</td>
+				<td>  
+				<fmt:parseDate value="${purchaseDto.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+				<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
+				</td>  
+
 				<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
          		<td>${purchaseProductDto.productDto.name}</td>
          		<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>

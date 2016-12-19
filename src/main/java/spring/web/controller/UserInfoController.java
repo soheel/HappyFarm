@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ import oracle.net.aso.s;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
+import spring.web.dto.MemberRequestDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.PurchaseListDTO;
+import spring.web.dto.PurchaseStateDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.UserInfoService;
 
@@ -304,7 +307,8 @@ public class UserInfoController {
 		 * */
 		ModelAndView mv = new ModelAndView();
 		String email = (String)session.getAttribute("email");
-		//System.out.println(email);
+		System.out.println(email);
+		
 		Map<String, Object>  map = userService.myPageLoading(email);
 		mv.addObject("mileage", map.get("mileage"));
 	
@@ -313,6 +317,9 @@ public class UserInfoController {
 		mv.addObject("list", map.get("list"));
 	
 		mv.setViewName("account/account");
+		if(email==null){
+			mv.setViewName("login/login");
+		}
 		
 		return mv;
 	}
@@ -322,17 +329,19 @@ public class UserInfoController {
 	 * */
 	@RequestMapping("searchOrderList")
 	public ModelAndView searchOrderList(HttpSession session,String value) {
-		System.out.println(value);
+		//System.out.println(value+"wwwwwwwwwwwwwwww");
 		String email = (String)session.getAttribute("email");
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		int result=0;
-		
+		if(value==null){
+			value="3개월";
+		}
 		if(value.equals("전체")){
 			list = userService.myPageOrderListAll(email);
 			
 		}else if(value.equals("3개월")){
 			list = userService.myPageOrderList3(email);
-			System.out.println(list.size());
+			//System.out.println(list.size());
 			
 		}else if(value.equals("6개월")){
 			list = userService.myPageOrderList6(email);
@@ -340,8 +349,6 @@ public class UserInfoController {
 		}else if(value.equals("1년")){
 			list = userService.myPageOrderList12(email);
 			
-		}else if(value.equals("취소")){
-			//result = userService.deleteOrderProduct(1);
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
@@ -382,7 +389,7 @@ public class UserInfoController {
 	}    
 
 	/**
-	 * 조회에관한 12가지 기능별 처리 - 환불내역 조회
+	 * 조회에관한 12가지 기능별 처리 - 취소내역 조회
 	 * */
 	@RequestMapping("searchReturnList")
 	public ModelAndView searchReturnList(HttpSession session,String value) {
@@ -427,6 +434,7 @@ public class UserInfoController {
 		 * purchase테이블에서 현시점으로부터 3개월전의 데이터들을 모두 가져와서
 		 * 테이블의 형태로 view에 뿌려준다.
 		 * */
+		System.out.println("1111111111111");
 		String email = (String)session.getAttribute("email");
 		List<MemberDTO> list = userService.myPageOrderList3(email);
 		ModelAndView mv = new ModelAndView();
@@ -481,17 +489,55 @@ public class UserInfoController {
 	 * 환불/반품/교환 폼에서 사유 및 비밀번호 적어서 신청하기
 	 * */
 	@RequestMapping("requestRefund")
-	public void requestRefund() {
+	@ResponseBody
+	public int requestRefund(Integer no, String state, String desc, String pwd)throws Throwable {
+		/*System.out.println("들어옴");
+			System.out.println(no);
+			System.out.println(desc);
+			System.out.println(pwd);
+			System.out.println(state);*/
+		int lastResult = 0;
+		String name=null;
+		if(state.equals("refund")){
+			name="환불";
+		}else if(state.equals("return")){
+			name="반품";
+		}else if(state.equals("change")){
+			name="교환";
+		}
+		int stateNo = userService.getStateNo(name);
 		
-	}
+		String email = userService.checkPwd(pwd);
+		if(email==null){
+			throw new Exception("비밀번호가 일치하지 않습니다.");
+		}
+	
+		MemberRequestDTO memberRequestDto = new MemberRequestDTO();
+		memberRequestDto.setEmail(email);
+		memberRequestDto.setStateNo(stateNo);
+		memberRequestDto.setDesc(desc);
+		memberRequestDto.setPurchaseNo(no);
+		
+		int result = userService.insertRequest(memberRequestDto);
+		System.out.println(result+"aaaaaa");
+		if(result==1){
+			PurchaseDTO purchaseDto = new PurchaseDTO();
+			purchaseDto.setNo(no);
+			purchaseDto.setStateNo(stateNo);
+			lastResult = userService.updateByRequest(purchaseDto);
+		}
+		return lastResult;
+		//return result;
+		}
 	
 	/**
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때
 	 * 목록삭제
 	 * */
 	@RequestMapping("requestCancelButton")
-	public ModelAndView requestCancelButton(PurchaseListDTO purchaseList) {
-		
+	@ResponseBody
+	public int requestCancelButton(int no){
+		System.out.println(no+">>>>>>>>>>>>>>>>>>>>>>>111111111111111111");
 		/**
 		 * 주문/배송 조회 시 나오는 데이터중에
 		 * 특정 데이터를 사용자가 지우기 원할 때
@@ -502,12 +548,8 @@ public class UserInfoController {
 		 * 그에 해당하는 데이터를 지운후 int형태로 리턴을 받아서
 		 * view로 전달 
 		 * */
-		System.out.println(purchaseList.getPurchaseList());
-		//System.out.println(purchaseList.getPurchaseList().get(0).getPurchaseStateDto().getName());
-		//System.out.println(purchaseList.getPurchaseList().get(1));
-		//System.out.println(purchaseList.getPurchaseList().get(1).getPurchaseStateDto().getName());
-		//int result = userService.deleteOrderProduct(no);
-		return null;
+		int result = userService.deleteOrderProduct(no);
+		return result;
 	}
 	
 	
@@ -527,34 +569,18 @@ public class UserInfoController {
 		 * 리턴받은 값을 바로 view로 보내준다.
 		 * */
 		String email = (String)session.getAttribute("email");
-		List<QnaDTO> list = userService.myPageQna(email);
+		Map<String, Object> map = userService.myPageQna(email);
+		List<QnaDTO> qnaList= (List<QnaDTO>)map.get("QnaList");
+		String answer = (String)map.get("answer");
+		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("list", list);
+		mv.addObject("qnaList", qnaList);
+		mv.addObject("answer", answer);
 		mv.setViewName("account/myInfoQNA");
+		
 		return mv;
 	}
 	
-	/**
-	 * Q&A 내역에서 글 제목을 클릭했을 때
-	 * 새창띄워서 답변내용 보여주기
-	 * */
-	@RequestMapping("showAnswer")
-	public String showAnswer(int no) {
-		/**
-		 * session에 담긴 email과 view에서 인수로 qna글번호도 같이 받는다.
-		 * 아이디와 글번호를 Dto에 담아서 service로 보낸다
-		 * 
-		 * 질문글 답변이 올라왔을 경우
-		 * 글을 클릭하면 답변 form을 보여준다(화면이동x)
-		 * 질문에 해당하는 답변을 view로 보내준다.
-		 * 
-		 * view에서 ajax로 답변을 받아서 처리
-		 */
-		
-		String result = userService.showAnswer(no);
-		
-		return result;
-	}
 	
 	/**
 	 * 내정보에서 기부 버튼 클릭했을 때
@@ -632,14 +658,19 @@ public class UserInfoController {
 		 * 이 두 결과값을 map에 저장한 후 리턴한다.
 		 * 페이지는 이동할 필요없으므로 그냥 Controller에서 리턴을 map으로함 
 		 * */
+		int extra = 0;
 		String email = (String)session.getAttribute("email");
 		Map<String, Object> map = userService.myPageMileage(email);
 		List<String> recommand = (List<String>)map.get("recommand");
+		if(recommand.size()>5){
+			extra = recommand.size()-5;
+		}
 		List<MemberDTO> usedMileage = (List<MemberDTO>)map.get("usedMileage");
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("recommand", recommand);
 		mv.addObject("usedMileage", usedMileage);
+		mv.addObject("extra", extra);
 		mv.setViewName("account/myInfoMileage");
 		
 		return mv;

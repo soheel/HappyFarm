@@ -14,27 +14,28 @@
 			<th>주문상품정보</th>
 			<th>상품금액(수량)</th>
 			<th>생산자</th>
-			<th>현상황</th>
 		</tr>
 	</thead>
 	<tbody>
 	<c:choose>
 	<c:when test="${empty list}">
 	<td colspan='5'>
-		 <p align="center"><b><span style="font-size:9pt;"> 해당 환불 내역이 없습니다.</span></b></p>
+		 <p align="center"><b><span style="font-size:9pt;"> 해당 내역이 없습니다.</span></b></p>
 	</td>
 	</c:when>
 	<c:otherwise>
 	<c:forEach items="${list}" var="list">
 			<c:forEach items="${list.purchaseDto}" var="purchaseDto">
 			<tr class="warning">
-				<td>${purchaseDto.date}</td>
+				<td>  
+				<fmt:parseDate value="${purchaseDto.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+				<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
+				</td>  
 				<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
          		<td>${purchaseProductDto.productDto.name}</td>
          		<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>
          		<td>${purchaseProductDto.productDto.producerDto.name}</td> 
 				</c:forEach> 
-				<td>${purchaseDto.purchaseStateDto.name}</td>
 			</tr>
 			</c:forEach>
 	</c:forEach>

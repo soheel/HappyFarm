@@ -150,6 +150,22 @@
 					})
 				})
 				
+				function chk(){  
+									  
+				    if($("#recent_product1_profile").val()!=null){  
+				        location.href = "<c:url value="/shop/"/>detail";  
+				        return true;  
+				    }else if($("#recent_product2_profile").val()!=null){  
+				        location.href = "<c:url value="/shop/"/>detail";  
+				        return true;  
+				    }else if($("#recent_product3_profile").val()!=null){  
+				        location.href = "<c:url value="/shop/"/>detail";  
+				        return true;  
+				    } else {  
+				    	location.href="<c:url value='/userInfoController/loginPage'/>";  
+				    }  
+				}  
+
 				/* 장바구니 추가 */
 				$(document).on("click", "#addToCart",function() {
 					$.ajax({

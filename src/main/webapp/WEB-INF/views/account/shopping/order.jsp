@@ -12,16 +12,16 @@
 <input type="button" value="6개월" name="six_month" class="searchOrderList">
 <input type="button" value="1년" name="year_month" class="searchOrderList">
 
-<form id="deleteOrderList" action="<c:url value='/userInfoController/requestCancelButton'/>" method="post">
+<form id="deleteOrderList" method="post">
 <table class="table">
 	<thead>
 		<tr>
-			<th>&nbsp;</th>
 			<th>주문일자</th>
 			<th>주문상품정보</th>
 			<th>상품금액(수량)</th>
 			<th>생산자</th>
 			<th>현상태</th>
+			<th>&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -35,9 +35,13 @@
 		<c:forEach items="${list}" var="memberDto">
 		<c:forEach items="${memberDto.purchaseDto}" var="purchaseDto" varStatus="state">
 		<tr class="warning">
-			<td><input type="checkbox" name="box" class="checkBox"/></td>
-			<td>${purchaseDto.date}</td>
-				<input type ="text" value ="${purchaseDto.date}" name ="purchaseList[${state.index}].date" hidden >
+
+		<td>
+         <fmt:parseDate value="${purchaseDto.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
+         <fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>         
+         </td>
+		<input type ="text" value ="${purchaseDto.no}" name ="purchaseList[${state.index}].no" id="purchaseNo" hidden >
+
 		<c:forEach items="${purchaseDto.purchaseProductDto}" var="purchaseProductDto">
          	<td>${purchaseProductDto.productDto.name}</td>
          	<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>
@@ -45,6 +49,18 @@
 		</c:forEach>
 			<td>${purchaseDto.purchaseStateDto.name}</td>
 			<input type ="text" value ="${purchaseDto.purchaseStateDto.name}" name ="purchaseList[${state.index}].purchaseStateDto.name" hidden >
+			<c:choose>
+			
+			<c:when test="${purchaseDto.purchaseStateDto.name eq '주문완료'}">
+			<td><span id="searchOrderListCancer" value="${purchaseDto.no}">취소</span></td>
+			</c:when>
+			<c:when test="${purchaseDto.purchaseStateDto.name eq '취소'}">
+			<td>&nbsp;</td>
+			</c:when>
+			<c:otherwise>
+				<td><span id="refundCheckBtn" value="${purchaseDto.no}">환불/반품/교환</span></td>
+			</c:otherwise>
+			</c:choose>
 		</tr>
 		</c:forEach>
 		</c:forEach>
@@ -52,6 +68,6 @@
 		</c:choose>
 	</tbody>
 </table>
-<input type="button" value="환불/반품/교환" name="order-action">
-<input type="submit" value="취소" name="cancel" class="searchOrderListCancer">
+
+
 </form>

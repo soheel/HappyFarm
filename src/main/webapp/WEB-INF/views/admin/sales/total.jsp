@@ -10,25 +10,17 @@
 									<table class="shop_table cart">
 										<thead>
 											<tr>
-												<th class="product-name">상품이름</th>
-												<th class="product-count">수량</th>
-												<th class="product-sales">품목매출</th>
-												<th class="product-total">합계</th>
+												<th class="product-name">월별 총 매출액</th>
+												<th class="product-count">판매 상품 비율</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr class="cart_item">
-												<td class="product-name">
-													으아아아아
-												</td>
 												<td class="product-count">
-													<span class="amount">thie</span> 
+													<div>차트</div> 
 												</td>
 												<td class="product-sales">
-													<span class="amount">&#36;3.95</span> 
-												</td>
-												<td class="product-total">
-													<span class="amount">thie</span> 
+													<div>차트</div> 
 												</td>
 											</tr>
 										</tbody>
