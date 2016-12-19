@@ -511,19 +511,19 @@ public class ManageController {
 		return list;
 	}
 	
-	@RequestMapping("salesProductManage")
+	/*@RequestMapping("salesProductManage")
 	@ResponseBody
 	public 
 	
-	/**
+	*//**
 	 * 매출관리
 	 * 월별매출
 	 * 차트
-	 * */
+	 * *//*
 	@RequestMapping("salesByMonthsManage")
 	public void salesByMonthsManage() {
 		
-	}
+	}*/
 	
 	/**
 	 * 매출관리
