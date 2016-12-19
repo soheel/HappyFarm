@@ -51,11 +51,12 @@
 	<result column="certification_no" property="certificationNo"/>
 	<result column="product_no" property="productNo"/>
 	
-	<association property="productDTO" resultMap="productDTO" javaType="productDTO">
+	<association property="productDTO" resultMap="productResultMap" javaType="productDTO">
  		<id column="product_no" property="no"/>
  	</association>
  	
  	<association property="certificationDTO" javaType="certificationDTO">
+ 		<result column="certification_image" property="image"/>
  		<result column="certification_name" property="name"/>
 		<result column="certification_desc" property="desc"/>
  	</association>
@@ -100,7 +101,7 @@ where product_no = #{value}
 
 <!-- 상품에 해당하는 인증 정보 가져오기 -->
 <select id="getProductCertification" resultMap="showCertification" parameterType="integer">
-	select certi.certification_no, certi.certification_name, certi.CERTIFICATION_DESC
+	select certi.certification_no, certi.certification_name, certi.CERTIFICATION_DESC, certi.certification_image
 	from product_certification pc, certification certi, product p
 	where pc.product_no= p.product_no and certi.certification_no = pc.certification_no and p.product_no=#{no}
 </select>

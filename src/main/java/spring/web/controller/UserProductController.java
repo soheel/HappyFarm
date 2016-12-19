@@ -113,29 +113,26 @@ public class UserProductController {
 		ProducerDTO producer = (ProducerDTO)map.get("producer");
 		String categoryName = (String)map.get("categoryName");
 		
+		
+		/**
+		 * 상품을 눌렀을 때 인증마크 폼 띄어주기
+		 */
+		List<ProductCertificationDTO> productCerti = service.showCertificationInfo(productNo);
+		
+		for(ProductCertificationDTO  list: productCerti){
+			System.out.println(list.getCertificationDTO().getName()+"Dddd");
+		}
+		
 		mv.addObject("product", product);
 		mv.addObject("productCommentList", productCommentList);
 		mv.addObject("certificationList", certificationList);
 		mv.addObject("producer", producer);
 		mv.addObject("categoryName", categoryName);
+		mv.addObject("productCerti",productCerti);
 		mv.setViewName("shop/productDetail");
 		return mv;
 	}
 	
-	/**
-	 * 상품을 눌렀을 때 인증마크 폼 띄어주기
-	 */
-	@RequestMapping("showCertificationInfo")
-	@ResponseBody
-	public List<ProductCertificationDTO> showCertificationInfo(int no){
-		System.out.println(no+"Ddd");
-		List<ProductCertificationDTO> productCerti = service.showCertificationInfo(no);
-		for(ProductCertificationDTO  list: productCerti){
-			System.out.println(list.getCertificationDTO().getName()+"Dddd");
-		}
-		return productCerti;
-		
-	}
 	/**
 	 * 개별상품에서 생산자 정보 클릭했을 때
 	 * 새창에서 생산자 정보 알려주기
