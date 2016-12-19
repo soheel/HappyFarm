@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.nurigo.java_sdk.api.Message;
@@ -122,18 +124,28 @@ public class UserEtcController {
 	 * Q&A 글쓰기
 	 * */
 	@RequestMapping("qnaWrite")
-	public String qnaWrite(HttpServletRequest request, QnaDTO qnaDTO) throws Exception{
+	@ResponseBody
+	public String qnaWrite(HttpServletRequest request, String desc) throws Exception{
 		/**
 		 * 1.Q&A write폼에서 등록을 누르면 정보를 받아와서
 		 * 2.정보를 insert한 후 
 		 * 3.Q&A 로딩하는 화면으로 이동한다.
 		 */
-		int result = userEtcService.registerQnA(qnaDTO);
+		System.out.println(desc);
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		
+		QnaDTO qnaDto = new QnaDTO();
+		qnaDto.setDesc(desc);
+		qnaDto.setEmail(email);
+		
+		int result = userEtcService.registerQnA(qnaDto);
+		System.out.println("result = "+result);
 		if(result==0){
-			request.setAttribute("errorMsg","삽입하지 못했습니다.");
 			throw new Exception();
 		}
-		return "qna/qnaLoading";
+		
+		return "forward:qnaLoading";
 		
 	}
 	

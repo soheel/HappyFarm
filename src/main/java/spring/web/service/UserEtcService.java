@@ -29,7 +29,7 @@ public interface UserEtcService {
 	/**
 	 * Q&A 등록
 	 */
-	int registerQnA(QnaDTO qnaDTO);
+	int registerQnA(QnaDTO qnaDto);
 	/**
 	 * Q&A 등록폼이 뜨고 + 목록 
 	 * @return

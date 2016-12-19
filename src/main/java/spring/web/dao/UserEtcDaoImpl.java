@@ -59,11 +59,11 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	      
 	      return communityDetailList;
 	   }
-
+	
 	@Override
-	public int registerQnA(QnaDTO qnaDTO) {
+	public int registerQnA(QnaDTO qnaDto) {
 		//Q&A 해당하는 session에 저장되어있는 email을 통해 이메일 을 얻은 후 해당하는 email에 qnaDTo를 추가한다.
-		return sqlsession.insert("userEtcMapper.registerQnA",qnaDTO);
+		return sqlsession.insert("userEtcMapper.registerQnA",qnaDto);
 	}
 
 	@Override

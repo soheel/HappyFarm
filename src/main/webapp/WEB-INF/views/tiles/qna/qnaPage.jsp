@@ -64,5 +64,32 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>textarea-autoScroll.js'></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#qnaRegisterBtn").click(function(){
+				var comment = $("#comment").val();
+				//alert(s);
+				//alert(11)
+				 $.ajax({
+			         url:"qnaWrite",
+			           type:"post",
+			           dataType:"text",
+			           data:"desc="+comment,
+			           success:(function(result){
+			        	  /*  
+			   				$("input[name=no]").val(result.desc);
+			   				$("input[name=name]").val(result.name);
+			   				$("input[name=addr]").val(result.addr);
+			   				$("input[name=phone]").val(result.phone);
+			   				$("input[name=profile]").val(result.profile); */
+			           }),
+			           error: function(err){
+			              alert("err :" + err)
+			           } 
+			      
+			      	})  
+			});
+		});
+	</script>
 </body>
 </html>
