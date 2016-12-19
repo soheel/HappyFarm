@@ -60,11 +60,17 @@
 				</div>
 			</form>
 		</div>
+		
+	
 		<div class="widget commerce widget_products certification_img">
 			<h3 class="widget-title">Certification mark</h3>
 			<div>
-				<img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce" data-toggle="modal" data-target="#certification">
+				<img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce" data-toggle="modal" data-target="#certification" id="certi">
 			</div>
+		</div>
+		
+		<div>
+			<a href="http://www.enviagro.go.kr/portal/info/Info_certifi_spe.do" target="_blank"> 유기농 인증 정보 검색하러 가기</a>
 		</div>
 	</div>
 </div>
@@ -122,18 +128,24 @@
 						<div class="certification_form">
 							<div class="cetication_content">
 								<table class="table">
+									<c:forEach items="${productCerti}" var="certi">
 									<tr>
-										<td rowspan="3"><img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce"></td>
-										<td>이름</td>
+										<td rowspan="3"><img src='<c:url value="/resources/img/certification/${certi.certificationDTO.image}"/>' alt="agricultural produce"></td>
+										<td><h3>번호 </h3> ${certi.certificationNo}
+										</td>
 									</tr>
 									
 									<tr>
-										<td>설명</td>
+										<td>
+										<h3>이름</h3> ${certi.certificationDTO.name}
+										</td>
 									</tr>
 									
 									<tr>
-										<td>번호</td>
+										<td><h3>설명</h3> ${certi.certificationDTO.desc}</td>
+								
 									</tr>
+									</c:forEach>
 								</table>
 							</div>
 						</div>
@@ -148,3 +160,11 @@
 	</div>
 </div>
 </div>
+<script type="text/javascript">
+$(function(){
+	
+	
+})
+
+
+</script>
