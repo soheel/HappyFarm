@@ -5,9 +5,9 @@
 	<section class="noo-page-heading eff">
 			<div class="container">
 				<div class="noo-heading-content">
-					<h1 class="page-title eff">Community Page</h1>
+					<h1 class="page-title eff">My Cart</h1>
 					<div class="noo-page-breadcrumb eff">
-						<a href="./" class="home">Organici</a>/<span>Community</span>
+						<a href="./" class="home">HappyFarm</a>/<span>Cart</span>
 					</div>
 				</div>
 			</div>
