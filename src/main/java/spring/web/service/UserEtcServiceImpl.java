@@ -40,8 +40,8 @@ public class UserEtcServiceImpl implements UserEtcService{
 	 * Q&A 등록
 	 */
 	@Override
-	public int registerQnA(QnaDTO qnaDTO) {
-		return userEtcDao.registerQnA(qnaDTO);
+	public int registerQnA(QnaDTO qnaDto) {
+		return userEtcDao.registerQnA(qnaDto);
 	}
 	/**
 	 * Q&A 등록폼이 뜨고 + 목록 

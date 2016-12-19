@@ -22,8 +22,8 @@
 					<form action="" method="post">
 						 <div class="form-group">
   							<label for="comment">Question : </label>
- 							<textarea class="form-control qna-question-area" rows="1" id="comment" name="question" style="resize: vertical"></textarea>
- 							<input type="button" class="btn btn-success" value="등록"/>
+ 							<textarea class="form-control qna-question-area" rows="1" id="comment" name="desc" style="resize: vertical"></textarea>
+ 							<input type="button" class="btn btn-success" id="qnaRegisterBtn" value="등록"/>
 						</div>
 					</form>
 				</div>
@@ -36,66 +36,36 @@
 				</div>
 				<div class="related products qna_board">
 					<div class="panel-group" id="accordion">
+    					
+    					<c:forEach items="${qnaList}" var="qna" varStatus="status">
+    					
     					<div class="panel panel-info">
       						<div class="panel-heading">
         						<h4 class="panel-title">
-          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">상품 결제와 동시에 기부가 이루어지나요???</a>
+          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}">${qna.desc}</a>
         						</h4>
       						</div>
-      						<div id="collapse1" class="panel-collapse collapse in">
-        						<div class="panel-body">네~ 그렇습니다..</div>
-      						</div>
+      						<c:choose>
+      							<c:when test="${qna.answerState eq'N'}">
+      								<div id="collapse${status.count}" class="panel-collapse collapse">
+      									<div class="panel-body">답변이 달려있지 않습니다.</div>
+      								</div>
+      							</c:when>
+      							<c:otherwise>
+      							<c:forEach items="${answerList}" var="answer" >
+      							<c:if test="${answerList}">
+      								<div id="collapse${status.count}" class="panel-collapse collapse">
+        								<div class="panel-body">${state.index}</div>
+      								</div>
+      								</c:if>
+      								</c:forEach>
+      							</c:otherwise>
+      						</c:choose>
+      						
     					</div>
-    					<div class="panel panel-info">
-      						<div class="panel-heading">
-        						<h4 class="panel-title">
-          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">상품 결제와 동시에 기부가 이루어지나요???</a>
-        						</h4>
-      						</div>
-      						<div id="collapse2" class="panel-collapse collapse">
-        						<div class="panel-body">네~ 그렇습니다..</div>
-      						</div>
-    					</div>
-    					<div class="panel panel-info">
-      						<div class="panel-heading">
-        						<h4 class="panel-title">
-          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">상품 결제와 동시에 기부가 이루어지나요???</a>
-        						</h4>
-      						</div>
-      						<div id="collapse3" class="panel-collapse collapse">
-        						<div class="panel-body">네~ 그렇습니다..</div>
-      						</div>
-    					</div>
-    					<div class="panel panel-info">
-      						<div class="panel-heading">
-        						<h4 class="panel-title">
-          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">상품 결제와 동시에 기부가 이루어지나요???</a>
-        						</h4>
-      						</div>
-      						<div id="collapse4" class="panel-collapse collapse">
-        						<div class="panel-body">네~ 그렇습니다..</div>
-      						</div>
-    					</div>
-    					<div class="panel panel-info">
-      						<div class="panel-heading">
-        						<h4 class="panel-title">
-          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">상품 결제와 동시에 기부가 이루어지나요???</a>
-        						</h4>
-      						</div>
-      						<div id="collapse5" class="panel-collapse collapse">
-        						<div class="panel-body">네~ 그렇습니다..</div>
-      						</div>
-    					</div>
-    					<div class="panel panel-info">
-      						<div class="panel-heading">
-        						<h4 class="panel-title">
-          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">상품 결제와 동시에 기부가 이루어지나요???</a>
-        						</h4>
-      						</div>
-      						<div id="collapse6" class="panel-collapse collapse">
-        						<div class="panel-body">네~ 그렇습니다..</div>
-      						</div>
-    					</div>
+    					
+    					</c:forEach>
+    					
   					</div> 
 				</div>
 			</div>

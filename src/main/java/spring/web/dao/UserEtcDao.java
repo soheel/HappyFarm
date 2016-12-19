@@ -18,7 +18,7 @@ public interface UserEtcDao {
 
 	Map<String, Object> communityDetail(int no);
 
-	int registerQnA(QnaDTO qnaDTO);
+	int registerQnA(QnaDTO qnaDto);
 
 	List<QnaDTO> qnaLoading();
 
