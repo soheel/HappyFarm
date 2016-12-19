@@ -23,8 +23,8 @@
 							<button type="submit" class="button">Filter</button>
 							<div class="price_label" style="display:none;">
 								Price: <span class="from"></span> &mdash; <span class="to"></span>
-							</div>
-						<div class="clear"></div>
+							<div class="clear"></div>
+						</div>
 					</div>
 				</div>
 			</form>
