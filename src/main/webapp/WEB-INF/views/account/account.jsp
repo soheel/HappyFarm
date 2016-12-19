@@ -6,9 +6,9 @@
 <h2>나의 기부 point</h2>
 <table class="table">
 	<tr>
-	 <th>현재 기부 point</th>
+	 <th id='mypageIntroPoint'>현재 기부 point</th>
 	 
-	 <td>${mileage}</td>
+	 <td id='mypageIntroMileage'>${mileage}</td>
 	 
 	</tr>
 

@@ -22,7 +22,7 @@
 	<!-- <collection property="productCertificationDto" resultMap="productCertificationDto"/> -->
 </resultMap>
 
-<resultMap type="productDto" id="productManagerResultMap">
+<resultMap type="productDTO" id="productManagerResultMap">
 	<id column="product_no" property="no"/>
 	<result column="product_name" property="name"/>
 	<result column="product_price" property="price"/>

@@ -444,8 +444,8 @@ public class ManageController {
 	@RequestMapping("producerSendMessage")
 	public String producerSendMessage(@RequestParam String phone, @RequestParam String adminMessage){
 		
-		String api_key = " NCS58438B39BFA5E";
-        String api_secret = "0146B928483C7BC3FBD71788007A3DF0";
+		String api_key = "NCS58572ED8CFE73";
+        String api_secret = "EE505BEE4AB4F81D35D2E6F41554794C";
        
         Message coolsms = new Message(api_key, api_secret);
 
@@ -510,31 +510,31 @@ public class ManageController {
 		list = manageService.getMonthSales();
 		return list;
 	}
-	
+/*	
 	@RequestMapping("salesProductManage")
 	@ResponseBody
 	public 
 	
-	/**
+	*//**
 	 * 매출관리
 	 * 월별매출
 	 * 차트
-	 * */
+	 * *//*
 	@RequestMapping("salesByMonthsManage")
 	public void salesByMonthsManage() {
 		
 	}
 	
-	/**
+	*//**
 	 * 매출관리
 	 * 인기순
 	 * 도넛차트
-	 * */
+	 * *//*
 	@RequestMapping("salesByBestManage")
 	public void salesByBestManage() {
 		
 	}
-	
+	*/
 	/**
 	 * 회원관리
 	 * 회원 DTO 리스트(오름차순)
