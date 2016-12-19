@@ -559,9 +559,9 @@ group by to_char(purchase_date,'MM')
 order by to_char(purchase_date,'MM')
 
 
-select sc.category_subcategory_name, count(*)
+select sc.category_subcategory_no, count(*)
 from purchase p, purchase_product pp, product t, category_subcategory sc
 where p.purchase_no = pp.purchase_no
  and pp.product_no = t.product_no
  and t.category_subcategory_no = sc.category_subcategory_no
-group by sc.category_subcategory_name
+group by sc.category_subcategory_no

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="commerce commerce-page commerce-cart noo-shop-main">
 						<div class="container">
-							<h3 class="widget-title">총 매출</h3>
+							<h3 class="widget-title">매출 관리</h3>
 							<div class="row">
 								<div class="noo-main col-md-12">
 									<table class="shop_table cart">
@@ -77,7 +77,7 @@
 							        drilldown: {
 							            name: '과일/견과',
 							            categories: ['사과/배', '딸기/블루베리', '바나나/키위/토마토', '감/곶감', '감귤/한라봉', '땅콩/잣/호두', '복숭아/자두/포도', '건과/견과류', '수박/참외/매실'],
-							            data: [1.06, 0.5, 17.2, 8.11, 5.33, 24.13], // DB로부터 가져오기
+							            data: [result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8]], // DB로부터 가져오기
 							            color: colors[0]
 							        }
 							    }, {
@@ -86,7 +86,7 @@
 							        drilldown: {
 							            name: '채소',
 							            categories: ['두부/콩나물', '고구마/감자/당근/연근', '상추/깻잎/쌈채소', '양파/마늘/생강/파', '배추/무/김장채소', '오이/호박/가지', '시금치/미나리/아욱/건나물', '브로콜리/양배추/샐러드/녹즙', '새송이/느타리/버섯', '파프리카/피망/고추'],
-							            data: [0.33, 0.15, 0.22, 1.27, 2.76, 2.32, 2.31, 1.02], // DB로부터 가져오기
+							            data: [result[9], result[10], result[11], result[12], result[13], result[14], result[15], result[16], result[17], result[18]], // DB로부터 가져오기
 							            color: colors[1]
 							        }
 							    }, {
@@ -95,7 +95,7 @@
 							        drilldown: {
 							            name: '쌀/잡곡',
 							            categories: ['백미/현미/이유식', '찹쌀/흑미', '잡곡/콩/깨', '고춧가루/미숫가루/곡물가루'],
-							            data: [0.14, 1.24, 0.55, 0.19, 0.14, 0.85, 2.53, 0.38, 0.6, 2.96, 5, 4.32, 3.68, 1.45],// DB로부터 가져오기
+							            data: [result[19], result[20], result[21], result[22]],// DB로부터 가져오기
 							            color: colors[2]
 							        }
 							    }],
@@ -136,7 +136,7 @@
 							        type: 'pie'
 							    },
 							    title: {
-							        text: '해피팜 2016.12' // 날짜 불러오기
+							        text: '판매상품' // 날짜 불러오기
 							    },
 							    subtitle: {
 							        text: 'Source: <a href="http://netmarketshare.com/">netmarketshare.com</a>'

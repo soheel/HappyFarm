@@ -1,5 +1,6 @@
 package spring.web.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -218,4 +219,9 @@ public interface ManageService {
 	 * 월별 매출 가져오기
 	 * */
 	List<Integer> getMonthSales();
+	
+	/**
+	 * 판매상품 비중 가져오기
+	 * */
+	List<HashMap<String, String>> getSalesProduct();
 }

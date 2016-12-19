@@ -1,5 +1,6 @@
 package spring.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -217,5 +218,10 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public List<Integer> getMonthSales() {
 		return sqlsession.selectList("manageMapper.getMonthSales");
+	}
+
+	@Override
+	public List<HashMap<String, String>> getSalesProduct() {
+		return sqlsession.selectList("manageMapper.getSalesProduct");
 	}
 }
