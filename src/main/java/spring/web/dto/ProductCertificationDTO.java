@@ -5,10 +5,24 @@ import java.util.List;
 public class ProductCertificationDTO {
 	
 	private int no; //상품-인증마크 번호
-	private CertificationDTO certificationDto; //인증마크 번호
+	
+	
+	private CertificationDTO certificationDTO; //인증마크 번호
+	private ProductDTO productDTO;
 	/*private List<ProductDTO> productDto; // 상품번호
 */	
 	private int certificationNo;
+	
+
+	
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
+
 	private int productNo;
 	
 	public ProductCertificationDTO() {}
@@ -28,22 +42,16 @@ public class ProductCertificationDTO {
 		this.no = no;
 	}
 
-	public CertificationDTO getCertificationDto() {
-		return certificationDto;
+	
+	
+	public CertificationDTO getCertificationDTO() {
+		return certificationDTO;
 	}
 
-	public void setCertificationDto(CertificationDTO certificationDto) {
-		this.certificationDto = certificationDto;
+	public void setCertificationDTO(CertificationDTO certificationDTO) {
+		this.certificationDTO = certificationDTO;
 	}
 
-	/*public List<ProductDTO> getProductDto() {
-		return productDto;
-	}
-
-	public void setProductDto(List<ProductDTO> productDto) {
-		this.productDto = productDto;
-	}
-*/
 	public int getCertificationNo() {
 		return certificationNo;
 	}

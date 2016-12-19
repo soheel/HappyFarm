@@ -135,13 +135,12 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public int communityRegisterManage(CommunityDTO communityDTO) {
-		return sqlsession.insert("manageMapper.communityRegisterManage");
+		return sqlsession.insert("manageMapper.communityRegisterManage", communityDTO);
 	}
 
 	@Override
-	public CommunityDTO communityInfoMangage(String no) {
-		// TODO Auto-generated method stub
-		return null;
+	public CommunityDTO communityShowMangage(int no) {
+		return sqlsession.selectOne("manageMapper.communityModifyShowManage", no);
 	}
 
 	@Override
@@ -191,9 +190,8 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public DonationDTO donationOrgInfoMangage(String donationOrgno) {
-		// TODO Auto-generated method stub
-		return null;
+	public DonationOrgDTO donationOrgShowMangage() {
+		return sqlsession.selectOne("manageMapper.donationOrgShowManage");
 	}
 
 	@Override
@@ -214,5 +212,10 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public ProductDTO productInfoMangage(int no) {
 		return sqlsession.selectOne("UserProductMapper.getProductByProductNo", no);
+	}
+
+	@Override
+	public List<Integer> getMonthSales() {
+		return sqlsession.selectList("manageMapper.getMonthSales");
 	}
 }

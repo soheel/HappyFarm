@@ -211,8 +211,8 @@ public class ManageServiceImpl implements ManageService {
 	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.
 	 */
 	@Override
-	public CommunityDTO communityInfoMangage(String communityno) {
-		return manageDao.communityInfoMangage(communityno);
+	public CommunityDTO communityShowMangage(int communityno) {
+		return manageDao.communityShowMangage(communityno);
 	}
 	/**
 	 * 모임관리(수정)
@@ -285,8 +285,8 @@ public class ManageServiceImpl implements ManageService {
 	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
 	 */
 	@Override
-	public DonationDTO donationOrgInfoMangage(String donationOrgno) {
-		return manageDao.donationOrgInfoMangage(donationOrgno);
+	public DonationOrgDTO donationOrgShowMangage() {
+		return manageDao.donationOrgShowMangage();
 	}
 	/**
 	 * 기부업체 관리(수정)
@@ -307,5 +307,10 @@ public class ManageServiceImpl implements ManageService {
 	@Override
 	public ProductDTO productInfoMangage(int no) {
 		return manageDao.productInfoMangage(no);
+	}
+
+	@Override
+	public List<Integer> getMonthSales() {
+		return manageDao.getMonthSales();
 	}
 }

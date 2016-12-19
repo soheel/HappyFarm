@@ -14,6 +14,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
 @Repository
@@ -77,6 +78,12 @@ public class UserEtcDaoImpl implements UserEtcDao {
 		return sqlsession.selectList("userEtcMapper.infoLoading");
 	}
 
+	//관련 상품 보여주기.
+	@Override
+	public List<ProductDTO> infoRelatedProduct(String name) {
+		return sqlsession.selectList("userEtcMapper.infoRelatedProduct",name);
+	}
+	
 	@Override
 	public InfomationDTO infoDetail(int no) {
 		//information_no를 request에서 받아 그것에 해당하는 정보를 하나 받는다.
@@ -116,5 +123,7 @@ public class UserEtcDaoImpl implements UserEtcDao {
 	public DonationOrgDTO donationLoading2() {
 		return sqlsession.selectOne("userEtcMapper.getDonationOrg");
 	}
+
+	
 
 }

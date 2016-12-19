@@ -18,6 +18,7 @@ import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
+import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.UserEtcService;
 
@@ -170,13 +171,16 @@ public class UserEtcController {
 		 * 2. 받은 인수(communityNo)를 dao로 넘겨서 CommunityDTO 정보를 받아 반환
 		 */
 		InfomationDTO infomationDTO = userEtcService.infoDetail(no);
-		
+	
+		//연관된 상품 보여주기
+		//List<ProductDTO> relatedProduct = userEtcService.infoRelatedProduct(infomationDTO.getName());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("info",infomationDTO);
+		//mv.addObject("relatedProduct", relatedProduct);
 		mv.setViewName("info/infoDetail");
 		return mv;
 	}
-	
+
 	// 기부
 	
 	/**

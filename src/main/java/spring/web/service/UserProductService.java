@@ -9,6 +9,7 @@ import spring.web.dto.CartDTO;
 import spring.web.dto.CartProductDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.PurchaseOrderDTO;
@@ -22,7 +23,9 @@ public interface UserProductService {
 	public List<ProductDTO> showMenuListLoading(int categoryNo);
 	
 	public Map<String, Object> showProductDetail(int productNo);
-	 
+	
+	public List<ProductCertificationDTO> showCertificationInfo(int no);
+	
 	public ProducerDTO showProducerInfo(int producerNo);
 	
 	public int addCart(CartDTO cart);
@@ -65,4 +68,6 @@ public interface UserProductService {
 	 * 카드, 실시간, 휴대폰 결제시 purchase_state_no 바꾸기
 	 * */
 	int setPurchaseStateNo(int no);
+
+	
 }

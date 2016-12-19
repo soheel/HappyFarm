@@ -11,6 +11,7 @@ import spring.web.dto.CartDTO;
 import spring.web.dto.CertificationDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductCommentDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -62,6 +63,12 @@ public class UserProductDAOImpl implements UserProductDAO {
 	@Override
 	public ProducerDTO getProducerByProducerNo(int producerNo) {
 		return sqlSession.selectOne("UserProductMapper.getProducerByProducerNo", producerNo);
+	}
+	
+	@Override
+	public List<ProductCertificationDTO> showCertificationInfo(int no) {
+		return sqlSession.selectList("UserProductMapper.getProductCertification", no);
+
 	}
 
 	@Override
@@ -128,5 +135,7 @@ public class UserProductDAOImpl implements UserProductDAO {
 	public int setPurchaseStateNo(int no) {
 		return sqlSession.update("UserProductMapper.setPurchaseStateNo", no);
 	}
+
+	
 
 }

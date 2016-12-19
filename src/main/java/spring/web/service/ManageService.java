@@ -144,7 +144,7 @@ public interface ManageService {
 	/**
 	 * 모임관리 수정을 위해 해당 모임에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	public CommunityDTO communityInfoMangage(String communityno);
+	public CommunityDTO communityShowMangage(int communityno);
 	
 	/**
 	 * 모임관리(수정)
@@ -197,7 +197,7 @@ public interface ManageService {
 	/**
 	 * 기부 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
 	 */
-	public DonationDTO donationOrgInfoMangage(String donationOrgno);
+	public DonationOrgDTO donationOrgShowMangage();
 	
 	
 	/**
@@ -214,13 +214,8 @@ public interface ManageService {
 	 * */
 	public int donationOrgDeleteManage(int no);
 
-	
-
-	
-
-	
-
-	
-	
-
+	/**
+	 * 월별 매출 가져오기
+	 * */
+	List<Integer> getMonthSales();
 }

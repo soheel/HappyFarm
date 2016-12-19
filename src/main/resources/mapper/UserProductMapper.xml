@@ -47,6 +47,20 @@
 	<result column="producer_profile" property="profile"/>
 </resultMap>
 
+<resultMap type="productCertificationDTO" id="showCertification">
+	<result column="certification_no" property="certificationNo"/>
+	<result column="product_no" property="productNo"/>
+	
+	<association property="productDTO" resultMap="productResultMap" javaType="productDTO">
+ 		<id column="product_no" property="no"/>
+ 	</association>
+ 	
+ 	<association property="certificationDTO" javaType="certificationDTO">
+ 		<result column="certification_name" property="name"/>
+		<result column="certification_desc" property="desc"/>
+ 	</association>
+</resultMap>
+
 <!-- shopMenuLoading() 관련 쿼리문 -->
 
 <!-- 인기상품 가져오기 (테스트완료)-->
@@ -82,6 +96,13 @@ select * from product where product_no = #{value}
 select *
 from product_comment
 where product_no = #{value}
+</select>
+
+<!-- 상품에 해당하는 인증 정보 가져오기 -->
+<select id="getProductCertification" resultMap="showCertification" parameterType="integer">
+	select certi.certification_no, certi.certification_name, certi.CERTIFICATION_DESC
+	from product_certification pc, certification certi, product p
+	where pc.product_no= p.product_no and certi.certification_no = pc.certification_no and p.product_no=#{no}
 </select>
 
 <!-- productNo를 이용해 Certification DTO 가져오기 (테스트완료)-->

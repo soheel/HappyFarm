@@ -10,28 +10,15 @@
 									<table class="shop_table cart">
 										<thead>
 											<tr>
-												<th class="product-check">
-													<div class="checks etrans">
-														<input type="checkbox" id="checkAll">
-														<label for="checkAll"></label> 
-													</div>
-												</th>
 												<th class="product-name">기부업체</th>
 												<th class="product-phone">연락처</th>
 												<th class="product-addr">주소</th>
 												<th class="product-content">설명</th>
-												
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${donationlist}" var="donation"> 
 											<tr class="cart_item">
-												<td class="product-check">
-													<div class="checks etrans">
-														<input type="checkbox" id="ex_chk1">
-														<label for="ex_chk1"></label> 
-													</div>
-												</td>
 												<td class="product-name">
 													${donation.name}
 												</td>
@@ -52,87 +39,14 @@
 							</div>
 
 							<div class="adminShopItem-action-btn">
-								<input type="button" value="등록" name="insert" data-toggle="modal" data-target="#insert">
-								<input type="button" value="수정" name="update" data-toggle="modal" data-target="#update">
-								<input type="button" value="삭제" name="delete">
+								<input type="button" value="등록/수정" name="modifyButtonDonationOrg" data-toggle="modal" data-target="#update">
 							</div>
 						</div>
 					</div>
-
-					<!-- insert Modal -->
-					<div class="modal fade" id="insert" role="dialog">
-						<div class="modal-dialog">
-							<form name="regDonate" action="<c:url value='/manageController/donationOrgRegisterManage'/>" enctype="multipart/form-data">
-								<!-- Modal content-->
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">기부업체 등록</h4>
-									</div>
-									<div class="modal-body shop-dialog">
-										<div class="row">
-											<div class="noo-main col-md-12">
-												<div id="customer_login">
-													<div class="col-md-1"></div>
-													<div class="col-md-10">
-														<div class="form-row form-row-wide">
-															<label for="product-name">
-																기부업체 
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="name" id="name"/>
-														</div>
-														<div class="form-row form-row-wide">
-															<label for="product-phone">
-																연락처
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="phone" id="phone" />
-														</div>
-														<div class="form-row form-row-wide">
-															<label for="product-addr">
-																주소
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="addr" id="addr" />
-														</div>
-														
-														<div class="form-row form-row-wide">
-															<label for="product-content">
-																설명
-																<span class="required">*</span>
-															</label>
-															<input type="text" class="input-text" name="desc" id="desc" />
-														</div>
-														
-														<div class="form-row form-row-wide">
-															<label for="producer_photo">
-																사진
-																<span class="required">*</span>
-															</label>
-															<input type="file" name="profile" id="profile" />
-														</div>
-													</div>
-													<div class="col-md-1"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="submit" class="btn btn-default">등록</button>
-										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-
-
-
 					<!-- update Modal -->
 					<div class="modal fade" id="update" role="dialog">
 						<div class="modal-dialog">
-							<form action="" method="">
+							<form action="<c:url value = '/manageController/donationOrgModifyManage'/>" method="post" enctype="multipart/form-data">
 								<!-- Modal content-->
 								<div class="modal-content">
 									<div class="modal-header">
@@ -150,29 +64,36 @@
 																기부업체 
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="no" id="no"/>
+															<input type="text" class="input-text" name="name"/>
 														</div>
 														<div class="form-row form-row-wide">
 															<label for="product-phone">
 																연락처
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="phone" id="phone" />
+															<input type="text" class="input-text" name="phone"/>
 														</div>
 														<div class="form-row form-row-wide">
 															<label for="product-addr">
 																주소
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="addr" id="addr" />
+															<input type="text" class="input-text" name="addr"/>
 														</div>
-														
 														<div class="form-row form-row-wide">
 															<label for="product-content">
 																설명
 																<span class="required">*</span>
 															</label>
-															<input type="text" class="input-text" name="item" id="item" />
+															<input type="text" class="input-text" name="desc"/>
+														</div>
+														<div class="form-row form-row-wide">
+															<label for="producer_photo">
+																기부업체로고
+																<span class="required">*</span>
+															</label>
+															<input type="hidden" name="profile">
+															<input type="file" name="file" id="file"/>
 														</div>
 													</div>
 													<div class="col-md-1"></div>
