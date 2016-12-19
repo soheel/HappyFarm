@@ -51,7 +51,7 @@
 	<result column="certification_no" property="certificationNo"/>
 	<result column="product_no" property="productNo"/>
 	
-	<association property="productDTO" resultMap="productResultMap" javaType="productDTO">
+	<association property="productDTO" resultMap="productDTO" javaType="productDTO">
  		<id column="product_no" property="no"/>
  	</association>
  	

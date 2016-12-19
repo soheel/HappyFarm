@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>adminShopItem.css' type='text/css' media='all' />
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>adminCommunity.css' type='text/css' media='all' />
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>adminQna.css' type='text/css' media='all' />
+	<link rel="stylesheet" href='<c:url value="/resources/css/"/>dialogCenter.css' type='text/css' media='all' />
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
 </head>
 <body>
