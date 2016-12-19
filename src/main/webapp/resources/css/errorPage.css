@@ -1,0 +1,42 @@
+#errorView {
+	position: absolute;
+	right: 50%;
+	bottom: 50%;
+	transform: translate(50%, 50%);
+}
+
+#errorView .error_content {
+	padding: 15px;
+}
+
+#errorView .error_content p {
+	color: #696969;
+	font-size: 15px;
+}
+
+#errorView .error_content p:first-child {
+	text-transform: uppercase;
+	font-size: 80px;
+	font-weight: bold;
+}
+
+#errorView .error_img img {
+	width: 94%;
+	padding: 3%;
+	text-align: right;
+}
+
+#errorView .error_content input[type="button"] {
+	transition: 0.2s background;
+	width: 160px;
+	height: 40px;
+	margin-top: 60px;
+	border-radius: 10px;
+	background-color: #ff6000;
+	color: #fff;
+	border: none;
+}
+
+#errorView .error_content input[type="button"]:hover {
+	background-color: #ff9900;
+}

@@ -509,23 +509,26 @@ public class ManageController {
 		List<Integer> list = new ArrayList<Integer>();
 		list = manageService.getMonthSales();
 		return list;
-	}
-/*	
+	}	
+
+	
 	@RequestMapping("salesProductManage")
 	@ResponseBody
-	public 
+	public void salesProductManage(){
+		
+	}
 	
-	*//**
+	/**
 	 * 매출관리
 	 * 월별매출
 	 * 차트
-	 * *//*
-	@RequestMapping("salesByMonthsManage")
+	 * */
+	 @RequestMapping("salesByMonthsManage")
 	public void salesByMonthsManage() {
 		
 	}
 	
-	*//**
+	/**
 	 * 매출관리
 	 * 인기순
 	 * 도넛차트
