@@ -153,7 +153,7 @@ public class UserProductServiceImpl implements UserProductService{
 		System.out.println(productDTO.getName());
 		System.out.println(productDTO.getProducerNo());
 		// 패키지 상품 내에있는 상품 리스트 가져오기
-		List<ProductDTO> list = userProductDAO.getPackageInnerProductList();
+		List<ProductDTO> list = userProductDAO.getPackageInnerProductList(productNo);
 		map.put("list", list);
 		
 		return map;

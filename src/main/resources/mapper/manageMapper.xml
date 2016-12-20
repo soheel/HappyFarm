@@ -55,6 +55,8 @@
 		<id column="product_no" property="no"/>
 		<result column="product_name" property="name"/>
 		<result column="product_price" property="price"/>
+		<result column="product_profile" property="profile"/>
+		<result column="product_desc" property="desc"/>
 	</association>
 </resultMap>
  
@@ -144,13 +146,19 @@ and p.producer_no = r.producer_no order by p.product_no desc
 select distinct  k.package_no , p.product_name, p.product_price
 from  product p join package k
 on p.product_no = k.package_no
-
 </select>
 
 <!-- 4.1 package상품에 있는 개별 상품 정보들을 불러온다.-->
 <!-- product_no에 일치하는 certification_no를 찾는다.-->
 <select id="packageShowManage" resultType="string" parameterType="integer">
 select t.product_name
+from product t, package k
+where t.product_no = k.product_no and k.package_no = ${value}
+</select>
+
+<!-- 4.1 package상품에 있는 개별 상품 정보들을 불러온다. (상품 번호를 가져옴)-->
+<select id="getPackageProductNo" resultType="integer" parameterType="integer">
+select t.product_no
 from product t, package k
 where t.product_no = k.product_no and k.package_no = ${value}
 </select>
@@ -173,6 +181,13 @@ insert into package values (package_no.nextval, #{packageNo}, #{productNo})
 
 <!-- 패키지 상품 삭제 -->
 <!-- 3-3인 개별 상품 삭제를 이용하면 된다. -->
+
+<!-- 특정 패키지상품 정보 가져오기 -->
+<select id="getPackageByPackageNo" resultMap="packageResultMap" parameterType="integer">
+select distinct  k.package_no , p.product_name, p.product_price, p.product_profile, p.product_desc
+from  product p join package k
+on p.product_no = k.package_no and k.package_no = #{value}
+</select>
 
 <!-- 4.2 package상품을 등록한다. -->
 <!-- <insert id="packageRegisterManage" parameterType="productDTO">
@@ -332,5 +347,19 @@ select product_no, product_name
 from product
 where product_name like '%' || #{value} || '%' and producer_no is not null
 </select>
+
+<!-- 패키지 상품 수정위한 update -->
+<update id="packageModifyManage" parameterType="productDTO">
+update product set product_name = #{name}, product_price = #{price}, product_profile = #{profile},
+product_desc = #{desc} where product_no = #{no}
+</update>
+<!-- 패키지 상품 수정위한 delete -->
+<delete id="packageModifyDeleteManage" parameterType="integer">
+delete package where package_no = #{value}
+</delete>
+<!-- 패키지 상품 수정위한 insert -->
+<insert id="packageModifyInsertManage" parameterType="map">
+insert into package values(package_no.nextval, #{packageNo}, #{productNo})
+</insert>
 
 </mapper>

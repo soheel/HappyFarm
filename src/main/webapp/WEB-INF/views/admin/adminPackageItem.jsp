@@ -86,7 +86,7 @@
 											<div id = "searchResult"></div>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="reg_password"> 상품 <span class="required">*</span>
+										<label for="reg_password"> 상품(클릭시 삭제) <span class="required">*</span>
 										</label>
 										<div id = "select_product"></div>
 									</div>
@@ -144,10 +144,13 @@
 											<div id = "searchResult2"></div>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="reg_password"> 상품 <span class="required">*</span>
+										<label for="reg_password"> 상품(클릭시 삭제) <span class="required">*</span>
 										</label>
 										<div id = "select_product2"></div>
 									</div>
+									<input type = "hidden" name = "no">
+									<input type = "hidden" name = "profile">
+									<input type = "hidden" name = "desc">
 								</div>
 								<div class="col-md-1"></div>
 							</div>

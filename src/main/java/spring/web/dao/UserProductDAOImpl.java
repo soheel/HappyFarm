@@ -104,8 +104,8 @@ public class UserProductDAOImpl implements UserProductDAO {
 	}
 
 	@Override
-	public List<ProductDTO> getPackageInnerProductList() {
-		return sqlSession.selectList("UserProductMapper.getPackageInnerProductList");
+	public List<ProductDTO> getPackageInnerProductList(int productNo) {
+		return sqlSession.selectList("UserProductMapper.getPackageInnerProductList", productNo);
 	}
 
 	@Override

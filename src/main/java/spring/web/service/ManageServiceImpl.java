@@ -122,22 +122,27 @@ public class ManageServiceImpl implements ManageService {
 	public List<ProductDTO> packageSearchProduct(String productname) {
 		return manageDao.packageSearchProduct(productname);
 	}
-	/**
-	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	 */
-	@Override
-	public ProductDTO packageInfoMangage(int packagePk) {
-		return manageDao.packageInfoMangage(packagePk);
-	}
+	
 
 	/**
 	 * 세트상품관리 수정
-	 * 수정폼을 div로 띄워줌
 	 * */
 	@Override
-	public int packageModifyManage(Map<String, Object> modifyinfo) {
-		return manageDao.packageModifyManage(modifyinfo);
+	public int packageModifyManage(ProductDTO product, String products) {
+		// 1. update product
+		int resultUpdate = manageDao.packageModifyManage(product);
+		// 2. delete package
+		int resultDelete = manageDao.packageModifyDeleteManage(product.getNo());
+		// 3. insert package
+		String[] str = products.split(",");
+		for(String s : str) {
+			int i = Integer.parseInt(s);
+			int resultInsert = manageDao.packageModifyInsertManage(product.getNo(), i);
+			if(resultInsert < 1) {
+				return 0;
+			}
+		}
+		return 1;
 	}
 	/**
 	 * 세트상품관리 삭제
@@ -345,13 +350,14 @@ public class ManageServiceImpl implements ManageService {
 		return manageDao.getSalesProduct();
 	}
 
-	
-
 	@Override
-	public ProductDTO packageInfoMangage(String productno) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> packageModifyShowManage(int no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		PackageDTO packageDTO = manageDao.getPackageByPackageNo(no);
+		List<Integer> productList = manageDao.getPackageProductNo(no);
+		map.put("package", packageDTO);
+		map.put("productList", productList);
+		return map;
 	}
-
 	
 }

@@ -562,8 +562,10 @@ select * from product;
 select * from package;
 select * from member;
 
-select distinct  k.package_no, p.product_name, p.product_price
+select distinct  k.package_no , p.product_name, p.product_price
 from  product p join package k
-on p.product_no = k.package_no
+on p.product_no = k.package_no and k.package_no = 56
 
-
+select t.product_no, t.product_profile, t.product_name, t.product_price
+from product t, package k
+where t.product_no = k.product_no

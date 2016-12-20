@@ -360,6 +360,13 @@ $(function(){
 	/* *************************************************************************** */
 	
 	/* 패키지 상품 관리 */
+	
+	/* 등록 폼 초기화 */
+	$("input[name=insert]").click(function() {
+		$("input[name=name]").val("");
+		$("input[name=price]").val("");
+	})
+	
 	/* 패키지 상품 등록시 개별 상품 검색 */
     $("input[name=productSearch]").click(function() {
     	var productName = $("input[name=search]").val();
@@ -408,9 +415,9 @@ $(function(){
     $("span[name=deleteButtonPackage]").click(function() {
 		var packageNo = $(this).attr("value");
 		$.ajax({
-			url : "<c:url value='/manageController/packageDeleteManage'/>",
+			url : "<c:url value='/manageController/productDeleteManage'/>",
 			type : "post",
-			data : "packageNo=" + packageNo,
+			data : "no=" + packageNo,
 			dataType : "text",
 			success : function(result) {
 				if(result >= 1) {
@@ -429,14 +436,14 @@ $(function(){
     $(document).on("click", ".test", function() {
     	var selectProduct = $(this).attr('value');
     	
-    	if(arr.indexOf(selectProduct) != -1) {
+    	if(arr.indexOf(parseInt(selectProduct)) != -1) {
     		alert("이미 등록하신 상품입니다.");
     	}else {
     		alert(selectProduct + '번 상품이 추가되었습니다.');
     		var content = "";
-        	content += "<input type = 'text' readonly name='products' value='" + selectProduct + "'/>";
+        	content += "<input class = 'selected' type = 'text' readonly name='products' value='" + selectProduct + "'/>";
         	$("#select_product").append(content);
-        	arr[arr.length] = selectProduct;
+        	arr[arr.length] = parseInt(selectProduct);
     	}
     })
     
@@ -445,14 +452,14 @@ $(function(){
     $(document).on("click", ".test2", function() {
     	var selectProduct = $(this).attr('value');
     	
-    	if(arr2.indexOf(selectProduct) != -1) {
+    	if(arr2.indexOf(parseInt(selectProduct)) != -1) {
     		alert("이미 등록하신 상품입니다.");
     	}else {
     		alert(selectProduct + '번 상품이 추가되었습니다.');
     		var content = "";
-        	content += "<input type = 'text' readonly name='products' value='" + selectProduct + "'/>";
+        	content += "<input class = 'selected' type = 'text' readonly name='products' value='" + selectProduct + "'/>";
         	$("#select_product2").append(content);
-        	arr[arr.length] = selectProduct;
+        	arr2[arr2.length] = parstInt(selectProduct);
     	}
     })
     
@@ -466,12 +473,29 @@ $(function(){
 			data : "no=" + productNo,
 			dataType : "json",
 			success : function(result) {
-				alert(result);
+				$("input[name=no]").val(result.package.packageNo);
+				$("input[name=name]").val(result.package.productDTO.name);
+				$("input[name=price]").val(result.package.productDTO.price);
+				$("input[name=profile]").val(result.package.productDTO.profile);
+				$("input[name=desc]").val(result.package.productDTO.desc);
+				var content = "";
+				$.each(result.productList, function(index, item) {
+					content += "<input class = 'selected' type = 'text' readonly name='products' value='" + item + "'/>";
+					if(arr2.indexOf(item) == -1) {
+						arr2[arr2.length] = parseInt(item);
+					}
+				})
+	        	$("#select_product2").html(content);
 			},
 			error : function(err) {
 				alert("err : " + err);
 			}
 		})
+	})
+	
+	/* 패키지 상품 내의 개별 상품을 검색하여 추가했는데 다시 삭제하고 싶을 때*/
+	$(document).on("click", ".selected", function() {
+		$(this).remove();
 	})
     
 }) 

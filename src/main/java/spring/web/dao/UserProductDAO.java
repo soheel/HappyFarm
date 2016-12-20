@@ -102,7 +102,7 @@ public interface UserProductDAO {
 	/**
 	 * 패키지 상품 내에 포함되어 있는 상품들 띄워주기
 	 * */
-	List<ProductDTO> getPackageInnerProductList();
+	List<ProductDTO> getPackageInnerProductList(int productNo);
 	
 	/**
 	 * search(String keyword)

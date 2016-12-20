@@ -60,17 +60,12 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public List<PackageDTO> packageManage() {
 		List<PackageDTO> list = sqlsession.selectList("manageMapper.packageManage");
-		System.out.println(list.size() + "@@@22222222222222");
-		System.out.println(list.get(0).getPackageNo());
-		System.out.println(list.get(0).getProductDTO().getName());
-		System.out.println(list.get(0).getProductDTO().getPrice());
 		return list;
 	}
 
 	@Override
-	public List<String> packageShowManage(int packagePk) {
-		return sqlsession.selectList("manageMapper.packageShowManage",packagePk);
-		
+	public List<String> packageShowManage(int packageNo) {
+		return sqlsession.selectList("manageMapper.packageShowManage",packageNo);
 	}
 
 	@Override
@@ -88,11 +83,6 @@ public class ManageDaoImpl implements ManageDao {
 		return null;
 	}
 
-	@Override
-	public int packageModifyManage(Map<String, Object> modifyinfo) {
-		return 0;
-	}
-	
 	@Override
 	public int packageDeleteManage(String name) {
 		return 0;
@@ -244,7 +234,32 @@ public class ManageDaoImpl implements ManageDao {
 		return sqlsession.insert("manageMapper.packageProductRegisterManage", map);
 	}
 
-	
+	@Override
+	public List<Integer> getPackageProductNo(int no) {
+		return sqlsession.selectList("manageMapper.getPackageProductNo", no);
+	}
 
+	@Override
+	public PackageDTO getPackageByPackageNo(int no) {
+		return sqlsession.selectOne("manageMapper.getPackageByPackageNo", no);
+	}
+
+	@Override
+	public int packageModifyManage(ProductDTO product) {
+		return sqlsession.update("manageMapper.packageModifyManage", product);
+	}
+
+	@Override
+	public int packageModifyDeleteManage(int packageNo) {
+		return sqlsession.delete("manageMapper.packageModifyDeleteManage", packageNo);
+	}
+
+	@Override
+	public int packageModifyInsertManage(int packageNo, int productNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("packageNo", packageNo);
+		map.put("productNo", productNo);
+		return sqlsession.insert("manageMapper.packageModifyInsertManage", map);
+	}
 	
 }
