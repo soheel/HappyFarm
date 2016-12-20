@@ -177,6 +177,7 @@ $(function(){
 			}
 		})
 	})
+	
 	/* 해당회원의 정보 수정 */
 	$("span[name=modifyButton]").click(function() {
 		var producerNo = $(this).attr("value");
@@ -343,7 +344,6 @@ $(function(){
 			data : "no=" + communityNo,
 			dataType : "json",
 			success : function(result) {
-				alert(result.desc);
 				$("input[name=no]").val(result.no);
 				$("input[name=name]").val(result.name);
 				$("input[name=producerNo]").val(result.producerDTO.no);
@@ -382,6 +382,29 @@ $(function(){
     	})
     })
     
+    /* 패키지 상품 수정시 개별 상품 검색 */
+    $("input[name=productSearch2]").click(function() {
+    	var productName = $("input[name=search2]").val();
+    	
+    	$.ajax({
+    		url : "<c:url value='/manageController/packageSearchProduct'/>",
+			type : "post",
+			data : "name=" + productName,
+			dataType : "json",
+			success : function(result) {
+				var content = "";
+				$.each(result, function(index, item) {
+					content += "<span style='cursor:pointer' class = 'test2' value='" + item.no + "'>" + item.name + " (상품번호 : " + item.no + ")</span><br>";
+				})
+				$("#searchResult2").html(content);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+    	})
+    })
+    
+    /* 패키지 상품 삭제 */
     $("span[name=deleteButtonPackage]").click(function() {
 		var packageNo = $(this).attr("value");
 		$.ajax({
@@ -401,7 +424,7 @@ $(function(){
 		})
 	})
     
-    /* 패키지 상품에 포함될 개별 상품들 검색 */
+    /* 패키지 상품에 포함될 개별 상품들 선택 */
     var arr = new Array();
     $(document).on("click", ".test", function() {
     	var selectProduct = $(this).attr('value');
@@ -416,6 +439,40 @@ $(function(){
         	arr[arr.length] = selectProduct;
     	}
     })
+    
+    /* 패키지 상품에 포함될 개별 상품들 선택 (수정폼) */
+    var arr2 = new Array();
+    $(document).on("click", ".test2", function() {
+    	var selectProduct = $(this).attr('value');
+    	
+    	if(arr2.indexOf(selectProduct) != -1) {
+    		alert("이미 등록하신 상품입니다.");
+    	}else {
+    		alert(selectProduct + '번 상품이 추가되었습니다.');
+    		var content = "";
+        	content += "<input type = 'text' readonly name='products' value='" + selectProduct + "'/>";
+        	$("#select_product2").append(content);
+        	arr[arr.length] = selectProduct;
+    	}
+    })
+    
+    /* 해당 패키지 상품 수정 불러오기 */
+    /* 커뮤니티 수정 */
+	$("span[name=modifyButtonPackage]").click(function() {
+		var productNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/packageModifyShowManage'/>",
+			type : "post",
+			data : "no=" + productNo,
+			dataType : "json",
+			success : function(result) {
+				alert(result);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	})
     
 }) 
 </script>

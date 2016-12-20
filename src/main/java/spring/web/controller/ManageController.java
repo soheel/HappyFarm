@@ -230,16 +230,6 @@ public class ManageController {
 		mv.setViewName("admin/adminPackageItem");  
 		return mv;
 	}
-	
-	/**
-	 * 세트상품 상세정보 packagename을 인수로 받는다.
-	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
-	 * (새창)
-	 * */
-	@RequestMapping("packageShowManage")
-	public ModelAndView packageShowManage(String name) {
-		return null;
-	}
 
 	/**
 	 * 세트상품관리 등록
@@ -301,20 +291,14 @@ public class ManageController {
 		return list;
 	}
 	
-	//div태그이므로, 할 필요 없을 것이다. 정보 저장되어 있기 떄문에
-	/** div에 정보를 불러와서 ...productno를 받는다.
-	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
-		ProductDTO product = manageService.selectByPackageName(productDTO)
-	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	
-	@RequestMapping("packageInfoMangage")
-	public ProductDTO packageInfoMangage(String no){
-		ProductDTO product = null;
-		product = manageService.packageInfoMangage(no);
+	/**
+	 * 패키지 상품을 수정할 때, 기존의 정보를 수정폼에 뿌려준다.
+	 * */
+	@RequestMapping("packageModifyShowManage")
+	@ResponseBody
+	public void packageModifyShowManage(int no) {
 		
-		return product;
-	} */
+	}
 	
 	/**
 	 * 세트상품관리 수정 (productname을 인수로 받음)

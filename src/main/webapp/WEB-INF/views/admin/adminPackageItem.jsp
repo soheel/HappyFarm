@@ -82,7 +82,7 @@
 									<div class="form-row form-row-wide">
 										<label for="reg_password"> 상품검색(이름) <span class="required">*</span>
 										</label> <input type="text" class="input-text" name="search"
-											id="search" /><input type = "button" value = "검색" name = "productSearch">
+											/><input type = "button" value = "검색" name = "productSearch">
 											<div id = "searchResult"></div>
 									</div>
 									<div class="form-row form-row-wide">
@@ -107,7 +107,7 @@
 <!-- update Modal -->
 <div class="modal fade" id="update" role="dialog">
 	<div class="modal-dialog">
-		<form action="" method="">
+		<form action="<c:url value='/manageController/packageModifyManage'/>" method = "post" enctype="multipart/form-data">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
@@ -131,21 +131,22 @@
 									</div>
 									<div class="form-row form-row-wide">
 										<label for="package_unit"> 사진 <span class="required">*</span>
-										</label> <input type="file" name="photo" id="photo" />
+										</label> <input type="file" name="file"/>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="package_photo"> 설명 <span class="required">*</span>
-										</label> <input type="text" class="input-text" name="content"
-											id="content" />
+										<label for="package_unit"> 설명 이미지 <span class="required">*</span>
+										</label> <input type="file" name="file"/>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="reg_password"> 상품검색 <span class="required">*</span>
-										</label> <input type="text" class="input-text" name="search"
-											id="search" />
+										<label for="reg_password"> 상품검색(이름) <span class="required">*</span>
+										</label> <input type="text" class="input-text" name="search2"
+											/><input type = "button" value = "검색" name = "productSearch2">
+											<div id = "searchResult2"></div>
 									</div>
 									<div class="form-row form-row-wide">
 										<label for="reg_password"> 상품 <span class="required">*</span>
-										</label> <input type="text" class="input-text" name="item" id="item" />
+										</label>
+										<div id = "select_product2"></div>
 									</div>
 								</div>
 								<div class="col-md-1"></div>
