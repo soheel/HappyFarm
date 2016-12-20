@@ -211,6 +211,7 @@ public class ManageController {
 		 * * 정보 관련 :  package테이블의 package_name, 세트 가격은 product에 있는 price, 포함상품은package_product에 있는 product_no를 다 찾는다.
 		 */
 		List<PackageDTO> packagelist = manageService.packageManage();
+		System.out.println(packagelist.size() + "!!!");
 		List<String> packageProductList = new ArrayList<String>();
 		String products = "";
 		for(PackageDTO packageDTO : packagelist) {
@@ -244,7 +245,6 @@ public class ManageController {
 	 * */
 	@RequestMapping("packageRegisterManage")
 	public String packageRegisterManage(HttpServletRequest request, PackageDTO packageDTO, ProductDTO productDTO, MultipartHttpServletRequest multipartRequest, HttpSession session, String products) {
-		Map<String, Object> packageRegister = new HashMap<String, Object>();
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
@@ -253,11 +253,35 @@ public class ManageController {
 		 * 밑에 상품이 productDTO들이 insert된다.
 		 */
 		System.out.println("packageRegisterManage");
-		System.out.println(products);
-		System.out.println(productDTO.getName());
-		System.out.println(productDTO.getPrice());
-		//int result = manageService.packageRegisterManage(packageRegister);
-		return "forward:packageproduct";
+		List<MultipartFile> fileList =  multipartRequest.getFiles("file");
+		List<Integer> productsNoList = new ArrayList<Integer>();
+		String[] strArr = products.split(",");
+		for(String s : strArr) {
+			productsNoList.add(Integer.parseInt(s));
+		}
+		System.out.println("productsNoList size : " + productsNoList.size());
+		
+		packageDTO.setProductDTO(productDTO);
+		
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		productDTO.setProfile(profile);
+		productDTO.setDesc(desc);
+		
+		if(profile.equals("") || desc.equals("")) {
+			return "forward:packageManage";
+		}
+		
+		// 파일 업로드
+		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
+		try {
+			fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int result = manageService.packageRegisterManage(packageDTO, productsNoList);
+		return "forward:packageManage";
 	}
 	
 	/**
@@ -320,7 +344,7 @@ public class ManageController {
 			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
 			
 		}
-		return "forward:packageproduct";
+		return "forward:packageProduct";
 	}
 	
 	/**

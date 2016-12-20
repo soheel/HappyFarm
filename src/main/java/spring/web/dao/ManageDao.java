@@ -57,8 +57,10 @@ public interface ManageDao {
 	 */
 	List<ProductDTO> packageSearchProduct(String productname);
 	
-	/** 세트 상품 등록*/
-	int packageRegisterManage(Map<String, Object> packageRegister);
+	/**
+	 * 세트상품 등록
+	 * */
+	int packageRegisterManage(PackageDTO packageDTO);
 	
 	/**
 	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
@@ -77,6 +79,16 @@ public interface ManageDao {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	int packageDeleteManage(String name);
+	
+	/**
+	 * 방금 막 등록한 패키지 상품 번호 가져오기
+	 * */
+	int getRecentPackageNo();
+	
+	/**
+	 * 패키지 상품 내의 개별 상품 등록
+	 * */
+	int packageProductRegisterManage(int packageNo, int productNo);
 	
 	/**
 	 * 생산자관리 눌렀을 때

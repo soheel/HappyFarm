@@ -328,12 +328,9 @@ public class UserProductController {
 	public ModelAndView pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductDTO purchaseProductDTO, 
 			HttpSession session) {
 		System.out.println("pay");
-		//System.out.println("discount : "+purchaseDTO.getDiscount());
 		String email = (String)session.getAttribute("email");
-
 		// purchaseDTO 세팅
 		purchaseDTO.setEmail(email);
-		
 		// purchaseOrderDTO 세팅
 		purchaseOrderDTO.setEmail(email);
 		String phone = purchaseOrderDTO.getPhone().replace(',', '-');
@@ -341,14 +338,10 @@ public class UserProductController {
 		// purchaseProductDTO 세팅
 		// 통합 주소
 		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
-		
-		
 		int result = service.pay(purchaseDTO, purchaseOrderDTO, purchaseProductDTO);
 		purchaseDTO.setNo(result);
-
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("result", result);
-		
 		mv.addObject("purchase", purchaseDTO);
 		mv.addObject("purchaseOrder", purchaseOrderDTO);
 		mv.addObject("purchaseProduct", purchaseProductDTO);
@@ -418,7 +411,17 @@ public class UserProductController {
           System.out.println(e.getMessage());
           System.out.println(e.getCode());
         }
-
+	}
+	
+	/**
+	 * 무통장 거래의 경우 가상계좌를 발급 받고나서 ajax로 바로 마일리지 차감
+	 * 이 외의 경우 결제 후 state를 바꾸는 과정에서 마일리지 차감을 동시에 진행함
+	 * */
+	@RequestMapping("reduceMileage")
+	public void reduceMileage(int useMileage, HttpSession session) {
+		System.out.println("reduceMileage");
+		String email = (String)session.getAttribute("email");
+		int result = service.reduceMileage(useMileage, email);
 	}
 	
 	/**
@@ -465,10 +468,10 @@ public class UserProductController {
 	 * 패키지DTO
 	 * */
 	@RequestMapping("showPackageDetail")
-	public ModelAndView showPackageDetail() {
+	public ModelAndView showPackageDetail(int productNo) {
 		System.out.println("showPackageDetail 메소드");
 		ModelAndView mv = new ModelAndView();
-		Map<String, Object> map = service.getPackageDetail();
+		Map<String, Object> map = service.getPackageDetail(productNo);
 		ProductDTO productDTO = (ProductDTO)map.get("productDTO");
 		List<ProductDTO> list = (List<ProductDTO>)map.get("list");
 		mv.addObject("packageProduct", productDTO);

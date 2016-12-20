@@ -83,8 +83,21 @@ public class ManageServiceImpl implements ManageService {
 	
 	/**세트 상품 등록*/
 	@Override
-	public int packageRegisterManage(Map<String, Object> packageRegister) {
-		return manageDao.packageRegisterManage(packageRegister);
+	public int packageRegisterManage(PackageDTO packageDTO, List<Integer> list) {
+		int result = manageDao.packageRegisterManage(packageDTO);
+		if(result >= 1) {
+			int recentPackageNo = manageDao.getRecentPackageNo();
+			System.out.println("recentPackageNo : " + recentPackageNo);
+			
+			for(int productNo : list) {
+				int result2 = manageDao.packageProductRegisterManage(recentPackageNo, productNo);
+				
+				if(result2 < 1) {
+					return 0;
+				}
+			}
+		}
+		return 1;
 	}
 	
 	

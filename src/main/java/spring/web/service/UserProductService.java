@@ -41,7 +41,7 @@ public interface UserProductService {
 	/**
 	 * 패키지 상품 상세보기
 	 * */
-	Map<String, Object> getPackageDetail();
+	Map<String, Object> getPackageDetail(int productNo);
 	
 	/**
 	 * purchase
@@ -69,5 +69,8 @@ public interface UserProductService {
 	 * */
 	int setPurchaseStateNo(int no);
 
-	
+	/**
+	 * 구매 후 마일리지 차감
+	 * */
+	int reduceMileage(int useMileage, String email);
 }

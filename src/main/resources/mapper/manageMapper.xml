@@ -48,7 +48,7 @@
 </resultMap> 
 
 <resultMap type="packageDTO" id="packageResultMap">
-	<id column="package_pk" property="no"/>
+	<id column="package_pk" property="pk"/>
 	<result column="package_no" property="packageNo"/>
 	<association property="productDTO" javaType="productDTO">
 		<id column="product_no" property="no"/>
@@ -59,7 +59,7 @@
  
 <resultMap type="productCertificationDTO" id="productCertificationDto">	
 	<id column="product_certification_no" property="no"/>
-	<result column="certification_no" property="certificationNo"/>
+	<result column="certification_no" property="certificationNo"/>	
 	<result column="product_no" property="productNo"/>
 </resultMap>	
 	 
@@ -145,6 +145,22 @@ select t.product_name
 from product t, package k
 where t.product_no = k.product_no and k.package_no = ${value}
 </select>
+
+<!-- 4-2 package 등록 -->
+<insert id="packageRegisterManage" parameterType="productDTO">
+insert into product values(product_no.nextval, #{name}, #{price}, #{profile}, #{desc}, 0, '세트', null, null)
+</insert>
+
+<!-- 4-3 최근 등록한 패키지 상품 번호 가져오기 -->
+<select id="getRecentPackageNo" resultType="integer">
+select max(product_no)
+from product
+</select>
+
+<!--  패키지 상품의 개별 상품 등록 -->
+<insert id="packageProductRegisterManage" parameterType="map">
+insert into package values (package_no.nextval, #{packageNo}, #{productNo})
+</insert>
 
 <!-- 4.2 package상품을 등록한다. -->
 <!-- <insert id="packageRegisterManage" parameterType="productDTO">
@@ -302,7 +318,7 @@ group by sc.category_subcategory_no
 <select id="packageSearchProduct" resultMap="productManager" parameterType="string">
 select product_no, product_name
 from product
-where product_name like '%' || #{value} || '%'
+where product_name like '%' || #{value} || '%' and producer_no is not null
 </select>
 
 </mapper>

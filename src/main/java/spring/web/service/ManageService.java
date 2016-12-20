@@ -67,7 +67,7 @@ public interface ManageService {
 	public List<String> packageShowManage(int packagePk);
 	
 	/**패키지 추가*/
-	public int packageRegisterManage(Map<String, Object> packageRegister);
+	public int packageRegisterManage(PackageDTO packageDTO, List<Integer> list);
 	
 	
 	/**

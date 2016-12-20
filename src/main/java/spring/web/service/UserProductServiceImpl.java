@@ -145,10 +145,10 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public Map<String, Object> getPackageDetail() {
+	public Map<String, Object> getPackageDetail(int productNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 패키지 상품 상세보기
-		ProductDTO productDTO = userProductDAO.getPackageDetail();
+		ProductDTO productDTO = userProductDAO.getPackageDetail(productNo);
 		map.put("productDTO", productDTO);
 		System.out.println(productDTO.getName());
 		System.out.println(productDTO.getProducerNo());
@@ -237,6 +237,8 @@ public class UserProductServiceImpl implements UserProductService{
 		return result;
 	}
 
-	
-
+	@Override
+	public int reduceMileage(int useMileage, String email) {
+		return userProductDAO.reduceMileage(useMileage, email);
+	}
 }

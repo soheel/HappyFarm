@@ -17,7 +17,7 @@
 	<div class="commerce single-product noo-shop-main">
 		<div class="container">
 			<div class="row">
-				<form action = "<c:url value = '/userProductController/payCart'/>" method = "post">
+				<form action = "<c:url value = '/userProductController/payCart'/>" method = "post" onSubmit='return orderCheck()'>
 				
 				<c:forEach items="${productList}" var="product" varStatus="status">
 					<!-- 상품 하나하나 -->
@@ -39,7 +39,7 @@
 								</p>
 								<p>
 								<!-- PurchaseDTO의 price -->
-								<input type = "hidden" name = "price" value = "${totalPrice}">
+								<input type = "hidden" id = "totalPrice" name = "price" value = "${totalPrice}">
 									총 금액 : <span class="order_check_total">${product.price} (배송비 2500원이 포함된 금액입니다.)</span>
 								</p>
 							</div>
@@ -53,7 +53,7 @@
 						</p>
 						<p>
 						<!-- PurchaseOrderDTO의 name -->
-							수취인 : <span class="addr_check_name"> <input type="text"
+							수취인 : <span class="addr_check_name" id = "addressee"> <input type="text"
 								name="name">
 							</span>
 						</p>
@@ -76,8 +76,8 @@
 							<select name = "phone">
 							<option>010</option><option>011</option><option>016</option>
 							<option>017</option><option>018</option><option>019</option>
-							</select> - <input size = "5" type="text" name="phone">
-								- <input size = "5" type="text" name="phone">
+							</select> - <input size = "5" type="text" name="phone" id = "phone1">
+								- <input size = "5" type="text" name="phone" id = "phone2">
 							</span>
 						</p>
 						<p>
@@ -109,9 +109,10 @@
 							<span class="payment_title">&lt;마일리지&gt;</span>
 						</p>
 						<p>
+							<input type = "hidden" value = "${mileage}" id = "hiddenMileage"/>
 							보유 마일리지 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
 							<!-- PurchaseDTO의 discount -->
-							마일리지 사용 : <input id = "useMileage" name="discount" type = "number" size = "8"><span>(1000원 단위로 사용이 가능합니다.)</span>
+							마일리지 사용 : <input id = "useMileage" name="discount" type = "number" value = "0" size = "8"><span>(1000원 이상부터 사용이 가능합니다.)</span>
 						</p>
 					</div>
 

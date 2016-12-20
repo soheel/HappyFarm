@@ -48,7 +48,12 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public List<PackageDTO> packageManage() {
-		return sqlsession.selectList("manageMapper.packageManage");
+		List<PackageDTO> list = sqlsession.selectList("manageMapper.packageManage");
+		System.out.println(list.size() + "@@@");
+		System.out.println(list.get(0).getPackageNo());
+		System.out.println(list.get(0).getProductDTO().getName());
+		System.out.println(list.get(0).getProductDTO().getPrice());
+		return list;
 	}
 
 	@Override
@@ -58,11 +63,8 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int packageRegisterManage(Map<String, Object> packageRegister) {
-		int result1=sqlsession.insert("manageMapper.packageRegisterManage",packageRegister);
-		int result2=sqlsession.insert("manageMapper.packageRegisterPackage",packageRegister);
-		int result3=sqlsession.insert("manageMapper.packageRegisterPackageProduct",packageRegister);
-		return result3;
+	public int packageRegisterManage(PackageDTO packageDTO) {
+		return sqlsession.insert("manageMapper.packageRegisterManage", packageDTO.getProductDTO());
 	}
 	
 	@Override
@@ -217,5 +219,18 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public List<HashMap<String, String>> getSalesProduct() {
 		return sqlsession.selectList("manageMapper.getSalesProduct");
+	}
+
+	@Override
+	public int getRecentPackageNo() {
+		return sqlsession.selectOne("manageMapper.getRecentPackageNo");
+	}
+
+	@Override
+	public int packageProductRegisterManage(int packageNo, int productNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("packageNo", packageNo);
+		map.put("productNo", productNo);
+		return sqlsession.insert("manageMapper.packageProductRegisterManage", map);
 	}
 }
