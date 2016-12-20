@@ -86,13 +86,30 @@
 		        	var bankName = rsp.vbank_name;
 		        	var bankHolder = rsp.vbank_holder;
 		        	var bank
-
-		        	 $.ajax({
+		        	
+		        	/* 결제 완료 후 문자 전송 */
+		        	  $.ajax({
 						 url:"<c:url value = '/userProductController/paySendSms'/>",
 						 type : "post",
 						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
 							 "bankName" : bankName, "bankHolder" : bankHolder}
+
 					 })
+					 
+					 /* 결제 완료 후 마일리지 차감 */
+					 $.ajax({
+						url : "<c:url value = '/userProductController/reduceMileage'/>",
+						type : "post",
+						data : "useMileage=" + document.getElementById("useMileage").value
+					 })
+					 
+					 /* 결제 완료 후 장바구니에서 해당 상품 제거 */
+					 $.ajax({
+						url : "<c:url value = '/userProductController/deleteCartProductAfterPurchase'/>",
+						type : "post",
+						data : "purchaseNo=" + document.getElementById("no").value
+					 })
+					 
 			         
 		        	msg += '<p>가상계좌 입금 계좌번호 : ' + rsp.vbank_num + '</p>';
 		        	msg += '<p>가상계좌 은행명 : ' + rsp.vbank_name + '</p>';

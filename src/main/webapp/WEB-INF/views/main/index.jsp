@@ -82,7 +82,7 @@
 									<div class="noo-product-grid products row product-grid noo-grid-4">
 									
 										
-										<c:forEach items="${bestProduct }" var="bestProduct">
+										<c:forEach items="${bestProduct }" var="bestProduct" varStatus="state">
 											<!-- 상품 하나하나 -->
 											<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
 											<div class="noo-product-inner">
@@ -99,13 +99,13 @@
 													</div>
 												</div>
 												<div class="noo-product-title"> 
-													<input id = "product_no" type = "hidden" value = "${bestProduct.no }">
 													<h3><a href="<c:url value="/shop/"/>detail">${bestProduct.name }</a></h3>
 													<span class="price"><span class="amount"><fmt:formatNumber value="${bestProduct.price }" pattern="#,###"/> 원</span></span>
 													<div class="noo-product-action">
 														<div class="noo-action" id="addToCartDirect">
 															<input type = "button" value="Add to cart" class="single_add_to_cart_button button">
 														</div>
+														<input type = "hidden" value = "${bestProduct.no }">
 													</div>
 												</div>
 											</div>

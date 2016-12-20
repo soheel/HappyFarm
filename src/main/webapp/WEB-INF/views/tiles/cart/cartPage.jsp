@@ -81,6 +81,7 @@
 			/* var chagnedtotalPrice = $("#totalPrice").text() + (changedNum * price);
 			changedPrice를 $("#totalPrice")에 넣어주기 */
 			$("#totalPrice").text((parseInt(totalPrice) + (changedNum * price)));
+			$("input[name=totalPrice]").val((parseInt(totalPrice) + (changedNum * price)));
 		});
 		
 		/* 상품별 체크박스 */

@@ -190,10 +190,11 @@
 				
 				/* 장바구니추가(direct) */
 				$(document).on("click", "#addToCartDirect",function() {
+					alert($(this).next().val());
 					$.ajax({
 						url : "<c:url value='/userProductController/addCartDirect'/>",
 						type : "post",
-						data : "productNo=" + $("#product_no").val(),
+						data : "productNo=" + $(this).next().val(),
 						dataType : "text",
 						success : function(result) {
 							if(result >= 1) {
