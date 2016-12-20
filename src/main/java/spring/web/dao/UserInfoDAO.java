@@ -195,4 +195,10 @@ public interface UserInfoDAO {
 	List<MemberDTO> getmyPageMileage12(String email);
 	List<MemberDTO> getmyPageMileageAll(String email);
 	
+	
+	/**
+	 * 추천받은 회원의 마일리지 500원 증가시키기
+	 * */
+	int modifyRecommandedMember(String email);
+	
 }

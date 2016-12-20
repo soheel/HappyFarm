@@ -31,7 +31,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * */
 	@Override
 	public int registerMember(MemberDTO memberDto) {
-		return userInfoDao.registerMember(memberDto);
+		int result = userInfoDao.registerMember(memberDto);
+		if(result < 1) {
+			return 0;
+		}
+		
+		if(memberDto.getRecommand() != "") {
+			result = userInfoDao.modifyRecommandedMember(memberDto.getRecommand());
+		}
+		return result;
 	}
 	
 	/**

@@ -395,4 +395,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		return sqlSession.selectList("userEtcMapper.infoLoading", null, new RowBounds(0, 6));
 	}
 
+	@Override
+	public int modifyRecommandedMember(String email) {
+		return sqlSession.update("userInfoMapper.modifyRecommandedMember", email);
+	}
+
 }
