@@ -49,7 +49,7 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public List<PackageDTO> packageManage() {
 		List<PackageDTO> list = sqlsession.selectList("manageMapper.packageManage");
-		System.out.println(list.size() + "@@@");
+		System.out.println(list.size() + "@@@22222222222222");
 		System.out.println(list.get(0).getPackageNo());
 		System.out.println(list.get(0).getProductDTO().getName());
 		System.out.println(list.get(0).getProductDTO().getPrice());
@@ -84,7 +84,6 @@ public class ManageDaoImpl implements ManageDao {
 	
 	@Override
 	public int packageDeleteManage(String name) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

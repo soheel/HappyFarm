@@ -205,13 +205,7 @@ public class ManageController {
 	 * */
 	@RequestMapping("packageManage")
 	public ModelAndView packageManage() {
-		/**
-		 * 1. 세트 상품 관리를 누르면
-		 * 2. packageDTO에 있는 정보를 다 받아와서 (packagelist) 
-		 * * 정보 관련 :  package테이블의 package_name, 세트 가격은 product에 있는 price, 포함상품은package_product에 있는 product_no를 다 찾는다.
-		 */
 		List<PackageDTO> packagelist = manageService.packageManage();
-		System.out.println(packagelist.size() + "!!!");
 		List<String> packageProductList = new ArrayList<String>();
 		String products = "";
 		for(PackageDTO packageDTO : packagelist) {
@@ -352,19 +346,11 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌 (alert)
 	 * */
 	@RequestMapping("packageDeleteManage")
-	public String packageDeleteManage(String name) {
-		/**
-		 * 특정 상품의 번호를 받아와 
-		 * 그 번호에 일치하는 정보를 수정한다.
-		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
-		 */
-		int result =0;
-		result = manageService.packageDeleteManage(name);
-		if(result==0){
-			//request.setAttribute("errorMsg", "삭제되지 않았습니다.");
-			
-		}
-		return "forward:packageproduct";
+	@ResponseBody
+	public int packageDeleteManage(int packageNo) {
+		System.out.println("packageDeleteManage");
+		int result = manageService.productDeleteManage(packageNo);
+		return result;
 	}
 	
 	/**

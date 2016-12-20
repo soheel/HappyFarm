@@ -393,7 +393,7 @@ public class UserProductController {
 	 * */
 	@RequestMapping("deleteCartProductAfterPurchase")
 	public void deleteCartProductAfterPurchase(int purchaseNo) {
-		System.out.println(purchaseNo + "!!!");
+		
 	}
 	
 	/**
