@@ -12,7 +12,7 @@
 	<input id = "phone" type = "hidden" value = "${purchaseOrder.phone }"/>
 	<input id = "addr" type = "hidden" value = "${addr }"/>
 	<input id = "postCode" type = "hidden" value = "${purchaseOrder.postCode }"/>
-	
+	<input id = "useMileage" type = "hidden" value = "${purchase.discount }"/>
 	
 	<section class="noo-page-heading eff heading-6">
 	<div class="container">
@@ -88,12 +88,11 @@
 		        	var bank
 		        	
 		        	/* 결제 완료 후 문자 전송 */
-		        	  $.ajax({
+		        	$.ajax({
 						 url:"<c:url value = '/userProductController/paySendSms'/>",
 						 type : "post",
 						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
 							 "bankName" : bankName, "bankHolder" : bankHolder}
-
 					 })
 					 
 					 /* 결제 완료 후 마일리지 차감 */
@@ -101,13 +100,6 @@
 						url : "<c:url value = '/userProductController/reduceMileage'/>",
 						type : "post",
 						data : "useMileage=" + document.getElementById("useMileage").value
-					 })
-					 
-					 /* 결제 완료 후 장바구니에서 해당 상품 제거 */
-					 $.ajax({
-						url : "<c:url value = '/userProductController/deleteCartProductAfterPurchase'/>",
-						type : "post",
-						data : "purchaseNo=" + document.getElementById("no").value
 					 })
 					 
 			         

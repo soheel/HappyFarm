@@ -6,9 +6,9 @@
 		<section class="noo-page-heading eff">
 			<div class="container">
 				<div class="noo-heading-content">
-					<h1 class="page-title eff">Shop Grid</h1>
+					<h1 class="page-title eff">Shop</h1>
 					<div class="noo-page-breadcrumb eff">
-						<a href="./" class="home">Organici</a>/<span>Shop Grid</span>
+						<a href="./" class="home">HappyFarm</a>/<span>Shop</span>
 					</div>
 				</div>
 			</div>
@@ -20,19 +20,10 @@
 						<div class="noo-main col-md-9">
 							<div class="noo-catalog">
 								<p class="commerce-result-count">Showing 1&ndash;9 of 18 results</p>
-								<div class="product-style-control pull-right">
+								<!-- <div class="product-style-control pull-right">
 									<span class="noo-list"><a href="shop-list.html"><i class="fa fa-th-list"></i></a></span>
 									<span class="noo-grid active"><i class="fa fa-th-large"></i></span>
-								</div>
-								<form class="commerce-ordering">
-									<select name="orderby" class="orderby">
-										<option value="" selected='selected'>Default sorting</option>
-										<option value="">Sort by popularity</option>
-										<option value="">Sort by average rating</option>
-										<option value="">Sort by newness</option>
-										<option value="">Sort by price: low to high</option>
-									</select>
-								</form>
+								</div> -->
 							</div>
 							
 							
