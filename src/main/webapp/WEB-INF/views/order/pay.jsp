@@ -12,7 +12,7 @@
 	<input id = "phone" type = "hidden" value = "${purchaseOrder.phone }"/>
 	<input id = "addr" type = "hidden" value = "${addr }"/>
 	<input id = "postCode" type = "hidden" value = "${purchaseOrder.postCode }"/>
-	<input id = "useMileage" type = "hidden" value = "${purchase.discount }"/>
+	
 	
 	<section class="noo-page-heading eff heading-6">
 	<div class="container">
@@ -45,6 +45,7 @@
 
 <script type="text/javascript">
 	window.onload = function() {
+		
 		// 입력 정보
 		var no = document.getElementById("no").value;
 		var method = document.getElementById("method").value;
@@ -87,12 +88,13 @@
 		        	var bank
 		        	
 		        	/* 결제 완료 후 문자 전송 */
-		        	/*  $.ajax({
+		        	  $.ajax({
 						 url:"<c:url value = '/userProductController/paySendSms'/>",
 						 type : "post",
 						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
 							 "bankName" : bankName, "bankHolder" : bankHolder}
-					 }) */
+
+					 })
 					 
 					 /* 결제 완료 후 마일리지 차감 */
 					 $.ajax({
@@ -124,7 +126,7 @@
 		        }
 		        document.getElementById("show_pay_complete").innerHTML = msg;
 		        document.getElementById("show_pay_complete2").innerHTML = msg2;
-                 		     
+                 		        
 		        
 		    } else {
 		        var msg = '결제에 실패하였습니다.';

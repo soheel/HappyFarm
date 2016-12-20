@@ -325,6 +325,10 @@ public class UserProductController {
 		String email = (String)session.getAttribute("email");
 		purchaseDTO.setEmail(email);
 		purchaseOrderDTO.setEmail(email);
+		
+		String phone = purchaseOrderDTO.getPhone().replace(',', '-');
+		purchaseOrderDTO.setPhone(phone);
+		
 		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
 		int result = service.payCart(purchaseDTO, purchaseOrderDTO, purchaseProductListDTO);
 		purchaseDTO.setNo(result);
@@ -355,7 +359,7 @@ public class UserProductController {
 		String api_key = "NCS58573A4F7EE6C";
         String api_secret = "B1BAFF5BE67B7DA379FB7F71821038F4";
 
-       
+       System.out.println("phone:번호 : "+ phone);
         Message coolsms = new Message(api_key, api_secret);
 
         String str=name+"님 결제 되었습니다.\n"+bankName+" " + bankNum+" " + bankHolder + "로 입금 부탁드립니다.";

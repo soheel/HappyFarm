@@ -33,6 +33,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.ManageService;
@@ -69,7 +70,7 @@ public class ManageController {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productRegisterManage")
-	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
+	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO, ProductCertificationDTO productCertificationDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 productDTO 정보를 모두 받아, 
@@ -99,6 +100,13 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		int result = manageService.productRegisterManage(productDTO);
+		
+		//이름에 해당하는 번호 찾기
+		int productNo = manageService.productNoFind(productDTO.getName());
+		productCertificationDTO.setProductNo(productNo);
+		System.out.println("상품 번호 : " + productNo);
+		int result2 = manageService.productCertiRegisterManage(productCertificationDTO);
+		
 		return "forward:productManage";
 	}
 	
