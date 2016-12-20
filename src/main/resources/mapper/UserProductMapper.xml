@@ -191,7 +191,6 @@ from purchase
 
 <delete id="removeCartProduct" parameterType="purchaseDTO">
 	delete from cart where member_email=#{email}
-
 </delete>
 <!-- 결제 완료만들기 -->
 <update id="setPurchaseStateNo" parameterType="integer">

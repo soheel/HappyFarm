@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!doctype html>
 <html lang="en-US">
@@ -74,8 +75,9 @@
 			$("#useMileage").keyup(function(){
 				var discount = $("#useMileage").val();
 				var point = $("#totalPrice").val();
-				var total= point-discount;
-				$("#amount").html(total);
+				var total= point-parseInt(discount);
+				var result = numberWithCommas(total) + " 원";
+				$("#amount").html(result);
 				
 				if(discount > parseInt(point)) {
 					$("#amount").html(0);

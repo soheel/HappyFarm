@@ -39,8 +39,7 @@
 								</p>
 								<p>
 								<!-- PurchaseDTO의 price -->
-								<input type = "hidden" id = "totalPrice" name = "price" value = "${totalPrice}">
-									총 금액 : <span class="order_check_total">${product.price} (배송비 2500원이 포함된 금액입니다.)</span>
+									총 금액 : <span class="order_check_total">${product.price * numList[status.index]} (배송비 2500원이 포함된 금액입니다.)</span>
 								</p>
 							</div>
 						</div>
@@ -106,13 +105,14 @@
 					
 					<div class="col-md-12 payment_check_border">
 						<p>
-							<span class="payment_title">&lt;마일리지&gt;</span>
+							<span class="payment_title">&lt;기부포인트&gt;</span>
 						</p>
 						<p>
 							<input type = "hidden" value = "${mileage}" id = "hiddenMileage"/>
-							보유 마일리지 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
+							보유 기부포인트 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
 							<!-- PurchaseDTO의 discount -->
-							마일리지 사용 : <input id = "useMileage" name="discount" type = "number" value = "0" size = "8"><span>(1000원 이상부터 사용이 가능합니다.)</span>
+							기부포인트 사용 : <input id = "useMileage" name="discount" type = "number" value = "0" size = "8"><span>(1000원 이상부터 사용이 가능합니다.)</span><br>
+							<span>[결제 금액의 20% 까지만 기부포인트로 결제 가능합니다.]</span>
 						</p>
 					</div>
 
@@ -122,7 +122,8 @@
 						</div>
 						<div class="col-md-6 final_check_border">
 							<p>
-								최종 결제 금액 <h3><span id = "amount" class="amount"></span><fmt:formatNumber value="${totalPrice }" pattern="#,###" /> 원</h3>
+								<input type = "hidden" id = "totalPrice" name = "price" value = "${totalPrice}">
+								최종 결제 금액 <h3><span id = "amount" class="amount"><fmt:formatNumber value="${totalPrice }" pattern="#,###" /> 원</span></h3>
 							</p>
 							<input type="submit" value="결제"> 
 							<input type="button" value="취소" name="cancle">

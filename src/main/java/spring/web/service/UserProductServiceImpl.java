@@ -200,6 +200,9 @@ public class UserProductServiceImpl implements UserProductService{
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		List<Integer> numList = new ArrayList<Integer>();
 		for(CartDTO cart : cartProductDTO.getList()) {
+			if(cart.getNum() == 0) {
+				continue;
+			}
 			ProductDTO productDTO = userProductDAO.getProductByProductNo(cart.getProductNo());
 			productList.add(productDTO);
 			numList.add(cart.getNum());

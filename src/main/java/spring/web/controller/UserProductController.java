@@ -268,20 +268,14 @@ public class UserProductController {
 	@RequestMapping("purchaseCart")
 	public ModelAndView purchaseCart(CartProductDTO cartProduct, int totalPrice, HttpSession session) {
 		System.out.println("purchaseCart");
-
+		System.out.println(totalPrice);
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = null;
-		
 		String email = (String)session.getAttribute("email");
 		map = service.purchaseCart(cartProduct, email);
-		
-		
-		
 		List<ProductDTO> productList = (List<ProductDTO>)map.get("productList");
 		List<Integer> numList = (List<Integer>)map.get("numList");
 		int mileage = (Integer)map.get("mileage");
-		
-		
 		mv.addObject("productList", productList);
 		mv.addObject("mileage", mileage);
 		mv.addObject("numList", numList);
@@ -289,36 +283,6 @@ public class UserProductController {
 		mv.setViewName("order/orderCardCart");
 		
 		return mv;
-		/*Map<String, Object> map = null;
-		ModelAndView mv = new ModelAndView();
-		
-		String[] arr = info.split(",");
-		List<Integer> list = new ArrayList<Integer>();
-		List<Integer> productNoList = new ArrayList<Integer>();
-		List<Integer> numList = new ArrayList<Integer>();
-		String email = (String)session.getAttribute("email");
-		for(int i = 0 ; i < arr.length ; i++) {
-			list.add(Integer.parseInt(arr[i]));
-		}
-		for(int i = 0 ; i < list.size() ; i++) {
-			if(i % 2 == 0) {
-				productNoList.add(list.get(i));
-			}else {
-				numList.add(list.get(i));
-			}
-		}
-		List<ProductDTO> productDTOList = null;
-		map = service.purchaseCart(productNoList, email);
-		
-		productDTOList = (List<ProductDTO>)map.get("productDTOList");
-		int mileage = (Integer)map.get("mileage");
-		
-		mv.addObject("productList", productDTOList);
-		mv.addObject("numList", numList);
-		mv.addObject("totalPrice", totalPrice);
-		mv.addObject("mileage", mileage);
-		mv.setViewName("order/orderCardCart");
-		return mv;*/
 	}
 	
 	/**
@@ -422,6 +386,14 @@ public class UserProductController {
 		System.out.println("reduceMileage");
 		String email = (String)session.getAttribute("email");
 		int result = service.reduceMileage(useMileage, email);
+	}
+	
+	/**
+	 * 결제 완료 후, 장바구니에서 구매한 상품 제거(무통장거래)
+	 * */
+	@RequestMapping("deleteCartProductAfterPurchase")
+	public void deleteCartProductAfterPurchase(int purchaseNo) {
+		System.out.println(purchaseNo + "!!!");
 	}
 	
 	/**
