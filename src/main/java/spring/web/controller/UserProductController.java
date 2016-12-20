@@ -356,8 +356,8 @@ public class UserProductController {
 	public void paySendSms(@RequestParam String name, @RequestParam String phone, @RequestParam String bankNum,
 	
 		@RequestParam String bankName, @RequestParam String bankHolder){
-		String api_key = "NCS58573A4F7EE6C";
-        String api_secret = "B1BAFF5BE67B7DA379FB7F71821038F4";
+		String api_key = "NCS5858E6CD5BBE0";
+        String api_secret = "D8DF0FFFB9647A8AE4A87BF4EEA6E62A";
 
        System.out.println("phone:¹øÈ£ : "+ phone);
         Message coolsms = new Message(api_key, api_secret);
@@ -367,7 +367,7 @@ public class UserProductController {
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", phone);
-        params.put("from", "01043236137");
+        params.put("from", "01050958468");
         params.put("type", "SMS");
         params.put("text", str);
       

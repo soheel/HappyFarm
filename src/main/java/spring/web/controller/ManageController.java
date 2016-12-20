@@ -470,15 +470,15 @@ public class ManageController {
 	@RequestMapping("producerSendMessage")
 	public String producerSendMessage(@RequestParam String phone, @RequestParam String adminMessage){
 		
-		String api_key = " NCS58438B39BFA5E";
-        String api_secret = "0146B928483C7BC3FBD71788007A3DF0";
+		String api_key = "NCS5858E6CD5BBE0";
+        String api_secret = "D8DF0FFFB9647A8AE4A87BF4EEA6E62A";
        
         Message coolsms = new Message(api_key, api_secret);
 
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", phone);
-        params.put("from", "01090786137");
+        params.put("from", "01050958468");
         params.put("type", "SMS");
         params.put("text", adminMessage);
       
