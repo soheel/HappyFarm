@@ -11,6 +11,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -23,8 +24,8 @@ public interface ManageDao {
 	 * 개별상품관리 등록(등록폼을 div로 띄워줌)
 	 * */
 	int productRegisterManage(ProductDTO productDTO);
-	
-	
+	int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO);
+	int productNoFind(String name);
 	/**
 	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
 	 */
@@ -224,4 +225,6 @@ public interface ManageDao {
 	 * 판매상품 비중 가져오기
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
+	
+	
 }

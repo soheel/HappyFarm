@@ -16,6 +16,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -39,7 +40,19 @@ public class ManageServiceImpl implements ManageService {
 	public int productRegisterManage(ProductDTO productDTO) {
 		return manageDao.productRegisterManage(productDTO);
 	}
-
+	@Override
+	public int productNoFind(String name) {
+		return manageDao.productNoFind(name);
+	}
+	
+	/**
+	 * 개별상품관리 등록(유기농 인증 번호 )
+	 * */
+	@Override
+	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO) {
+		return manageDao.productCertiRegisterManage(productCertificationDTO);
+	}
+	
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 해당하는 제품의 정보를 select한다.
 	 * 
@@ -331,4 +344,14 @@ public class ManageServiceImpl implements ManageService {
 	public List<HashMap<String, String>> getSalesProduct() {
 		return manageDao.getSalesProduct();
 	}
+
+	
+
+	@Override
+	public ProductDTO packageInfoMangage(String productno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

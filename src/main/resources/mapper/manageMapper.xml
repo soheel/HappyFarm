@@ -119,6 +119,13 @@ and p.producer_no = r.producer_no order by p.product_no desc
 	insert into product values (product_no.nextval, #{name}, #{price}, #{profile}, #{desc}, 0, #{unit}, #{producerNo}, #{subCategoryNo})
 </insert>
 
+<select id="productNoFind" parameterType="String" resultType="int">
+	select product_no from product where product_name=#{value}
+</select>
+<insert id="productCertiRegisterManage" parameterType="productCertificationDTO">
+	insert into product_certification values (product_certification_no.nextval, #{certificationNo}, #{productNo})
+</insert>
+
 <!-- 3.2. 개별 상품관리 정보를 수정한다. -->
 <update id="productModifyManage" parameterType="productDTO">
 	update product set product_name=#{name}, product_price=#{price}, product_profile=#{profile},

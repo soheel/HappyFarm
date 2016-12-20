@@ -12,7 +12,7 @@
 	<input id = "phone" type = "hidden" value = "${purchaseOrder.phone }"/>
 	<input id = "addr" type = "hidden" value = "${addr }"/>
 	<input id = "postCode" type = "hidden" value = "${purchaseOrder.postCode }"/>
-	<input id = "useMileage" type = "hidden" value = "${purchase.discount }"/>
+	
 	
 	<section class="noo-page-heading eff heading-6">
 	<div class="container">
@@ -45,6 +45,7 @@
 
 <script type="text/javascript">
 	window.onload = function() {
+		
 		// 입력 정보
 		var no = document.getElementById("no").value;
 		var method = document.getElementById("method").value;
@@ -85,18 +86,12 @@
 		        	var bankName = rsp.vbank_name;
 		        	var bankHolder = rsp.vbank_holder;
 		        	var bank
-		        	
-		        	/*  $.ajax({
+
+		        	 $.ajax({
 						 url:"<c:url value = '/userProductController/paySendSms'/>",
 						 type : "post",
 						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
 							 "bankName" : bankName, "bankHolder" : bankHolder}
-					 }) */
-					 
-					 $.ajax({
-						url : "<c:url value = '/userProductController/reduceMileage'/>",
-						type : "post",
-						data : "useMileage=" + document.getElementById("useMileage").value
 					 })
 			         
 		        	msg += '<p>가상계좌 입금 계좌번호 : ' + rsp.vbank_num + '</p>';
@@ -114,7 +109,7 @@
 		        }
 		        document.getElementById("show_pay_complete").innerHTML = msg;
 		        document.getElementById("show_pay_complete2").innerHTML = msg2;
-                 		     
+                 		        
 		        
 		    } else {
 		        var msg = '결제에 실패하였습니다.';

@@ -11,6 +11,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -28,6 +29,11 @@ public interface ManageService {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	public int productRegisterManage(ProductDTO productDTO);
+	public int productNoFind(String name);
+	/**
+	 * 유기농 인증 번호 등록하기
+	 */
+	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO);
 	
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
@@ -224,4 +230,7 @@ public interface ManageService {
 	 * 판매상품 비중 가져오기
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
+
+	
+	
 }

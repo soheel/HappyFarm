@@ -15,6 +15,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -36,6 +37,16 @@ public class ManageDaoImpl implements ManageDao {
 		
 	}
 
+	@Override
+	public int productNoFind(String name) {
+		return sqlsession.selectOne("manageMapper.productNoFind",name);
+	}
+	
+	@Override
+	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO) {
+		return sqlsession.insert("manageMapper.productCertiRegisterManage",productCertificationDTO);
+	}
+	
 	@Override
 	public int productModifyManage(ProductDTO productDTO) {
 		return sqlsession.update("manageMapper.productModifyManage",productDTO);
@@ -233,4 +244,8 @@ public class ManageDaoImpl implements ManageDao {
 		map.put("productNo", productNo);
 		return sqlsession.insert("manageMapper.packageProductRegisterManage", map);
 	}
+
+	
+
+	
 }
