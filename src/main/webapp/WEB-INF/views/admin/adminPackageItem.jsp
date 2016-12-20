@@ -24,11 +24,11 @@
 								<td class="product-price"><span style="font-weight: bold;">${packagelist.productDTO.name }</span>
 									<span value="${packagelist.packageNo }"
 									style="color: pink; cursor: pointer;"
-									name="modifyButtonProduct" data-toggle="modal"
+									name="modifyButtonPackage" data-toggle="modal"
 									data-target="#update">[수정]</span> <span
 									value="${packagelist.packageNo }"
 									style="color: pink; cursor: pointer;"
-									name="deleteButtonProduct">[삭제]</span></td>
+									name="deleteButtonPackage">[삭제]</span></td>
 								<td class="product-producer"><span class="amount">${packagelist.productDTO.price }</span>
 								</td>
 								<td class="product-producer">

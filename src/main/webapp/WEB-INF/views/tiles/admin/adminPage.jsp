@@ -221,7 +221,7 @@ $(function(){
 	/* *************************************************************************** */
 	
 	/* 상품 정보 관리 */
-	/* 해당 상품 등록 */
+	/* 해당 상품 삭제 */
 	$("span[name=deleteButtonProduct]").click(function() {
 		var productNo = $(this).attr("value");
 		$.ajax({
@@ -382,6 +382,26 @@ $(function(){
     	})
     })
     
+    $("span[name=deleteButtonPackage]").click(function() {
+		var packageNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/packageDeleteManage'/>",
+			type : "post",
+			data : "packageNo=" + packageNo,
+			dataType : "text",
+			success : function(result) {
+				if(result >= 1) {
+					alert(packageNo + ' 번 패키지 상품 정보 삭제 완료');
+					location.href = "<c:url value='/manageController/packageManage'/>"
+				}
+			},
+			error : function(err) {
+				alert("해당 패키지 상품정보 삭제 실패");
+			}
+		})
+	})
+    
+    /* 패키지 상품에 포함될 개별 상품들 검색 */
     var arr = new Array();
     $(document).on("click", ".test", function() {
     	var selectProduct = $(this).attr('value');
