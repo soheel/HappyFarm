@@ -68,10 +68,11 @@
 				<img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce" data-toggle="modal" data-target="#certification" id="certi">
 			</div>
 		</div>
-		
-		<div>
+			
+		<div style="margin: 25px 25px 15px 0px; padding: 20px; font-weight: bold; text-decoration:underline">
 			<a href="http://www.enviagro.go.kr/portal/info/Info_certifi_spe.do" target="_blank"> 유기농 인증 정보 검색하러 가기</a>
 		</div>
+		
 	</div>
 </div>
 </div>

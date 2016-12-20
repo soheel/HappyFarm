@@ -31,7 +31,7 @@ public interface UserInfoService {
 	/**
 	 * 계정찾기(pwd)
 	 * */
-	String searchPwd(String code);
+	String searchPwd(String email);
 	
 	/**
 	 * 로그인하기

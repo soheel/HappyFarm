@@ -54,8 +54,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 계정찾기(pwd)
 	 * */
 	@Override
-	public String searchPwd(String code) {
-		return userInfoDao.searchPwd(code);
+	public String searchPwd(String email) {
+		return userInfoDao.searchPwd(email);
 	}
 	
 	/**

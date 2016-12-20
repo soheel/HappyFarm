@@ -124,15 +124,16 @@ public class UserInfoController {
 	 * 계정찾기(pwd)
 	 * 지정된 메일로 인증코드 보내기(ajax)
 	 * */
-	@RequestMapping("searchPwdSendCode")
+	@RequestMapping("searchPwd")
 	@ResponseBody
-	public String searchPwdSendCode(String email) {
+	public String searchPwd(String email) {
 		/**
 		 * 사용자가 비밀번호를 찾을 때,
 		 * 아이디를 입력한 후 해당 아이디가 존재하는 지 체크 후
 		 * 존재할 경우 본인인증코드를 이메일로 발송
 		 * */
-		String result = userService.searchPwdSendCode(email);
+		String result = userService.searchPwd(email);
+		System.out.println("비밀번호 : " + result);
 		return result;
 	}
 	

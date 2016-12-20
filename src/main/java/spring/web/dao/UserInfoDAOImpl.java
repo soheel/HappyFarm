@@ -57,8 +57,8 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 계정찾기(pwd)
 	 */
 	@Override
-	public String searchPwd(String code) {
-		return sqlSession.selectOne("userInfoMapper.searchPwd", code);
+	public String searchPwd(String email) {
+		return sqlSession.selectOne("userInfoMapper.searchPwd", email);
 	}
 
 	/**
