@@ -122,7 +122,7 @@ public class ManageServiceImpl implements ManageService {
 	public List<ProductDTO> packageSearchProduct(String productname) {
 		return manageDao.packageSearchProduct(productname);
 	}
-	
+
 
 	/**
 	 * 技飘惑前包府 荐沥

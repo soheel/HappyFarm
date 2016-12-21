@@ -367,6 +367,7 @@ public class ManageController {
 			int result = manageService.packageModifyManage(productDTO, products);
 		}catch(Exception e){
 			e.printStackTrace();
+
 		}
 
 		return "forward:packageManage";

@@ -184,10 +184,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 * */
 	@Override
-	public Map<String, Object> myPageQna(String email) {
+	public List<QnaDTO> myPageQna(String email) {
 		return userInfoDao.myPageQna(email);
 	}
 	
+	@Override
+	public String getAnswerByNo(int no) {
+		
+		String answer = userInfoDao.getAnswerByNo(no);
+		System.out.println("service answer :"+answer);
+		return answer;
+	}
 	
 	/**
 	 * 내정보 - 기부페이지 눌렀을 때
