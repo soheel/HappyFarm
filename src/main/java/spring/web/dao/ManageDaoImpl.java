@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -43,6 +44,12 @@ public class ManageDaoImpl implements ManageDao {
 	}
 	
 	@Override
+	public List<CertificationDTO> selectCertification() {
+		return sqlsession.selectList("manageMapper.selectCertification");
+	}
+
+	
+	@Override
 	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO) {
 		return sqlsession.insert("manageMapper.productCertiRegisterManage",productCertificationDTO);
 	}
@@ -51,10 +58,7 @@ public class ManageDaoImpl implements ManageDao {
 	public int productModifyManage(ProductDTO productDTO) {
 		return sqlsession.update("manageMapper.productModifyManage",productDTO);
 	}
-	@Override
-	public int productCertiModifyManage(ProductCertificationDTO productCertificationDTO) {
-		return sqlsession.update("manageMapper.productCertiModifyManage",productCertificationDTO);
-	}
+	
 	@Override
 	public int productDeleteManage(int no) {
 		return sqlsession.delete("manageMapper.productDeleteManage",no);
@@ -247,6 +251,7 @@ public class ManageDaoImpl implements ManageDao {
 		return sqlsession.insert("manageMapper.packageProductRegisterManage", map);
 	}
 
+	
 	
 
 	

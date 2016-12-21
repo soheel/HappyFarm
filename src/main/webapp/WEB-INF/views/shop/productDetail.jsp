@@ -77,7 +77,8 @@
 																<li>
 																	<img src='<c:url value="/resources/img/certification/${certi.certificationDTO.image}"/>' alt="agricultural produce">
 																	<dl>
-																		<dt> ${certi.certificationDTO.name} (제${certi.certificationNo}호)</dt>
+																		<dt> 유기농 고유 번호 : ${certi.no}</dt>
+																		<dd> ${certi.certificationDTO.name} (제${certi.certificationNo}호)</dd>
 																		<dd>${certi.certificationDTO.desc}</dd>
 																	</dl>
 																</li>

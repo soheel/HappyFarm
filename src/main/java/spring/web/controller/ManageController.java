@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -59,8 +60,20 @@ public class ManageController {
 		 */
 		System.out.println("productManage");
 		List<ProductDTO> productlist = manageService.selectAllProduct();
+		
+		Map<String, Object> map = manageService.selectAllProducer();
+		
+		List<ProducerDTO> producerlist = (List<ProducerDTO>)map.get("producerList");
+		
+		//모든 인증마크 종류 불러오기.
+		List<CertificationDTO> certificationList = manageService.selectCertification();
+				
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
+		mv.addObject("producerlist", producerlist);
+		mv.addObject("certificationList", certificationList);
+		
 		mv.setViewName("admin/adminShopItem");
 		return mv;
 	}
@@ -101,8 +114,10 @@ public class ManageController {
 		}
 		int result = manageService.productRegisterManage(productDTO);
 		
+		
 		//이름에 해당하는 번호 찾기
 		int productNo = manageService.productNoFind(productDTO.getName());
+		
 		productCertificationDTO.setProductNo(productNo);
 		System.out.println("상품 번호 : " + productNo);
 		int result2 = manageService.productCertiRegisterManage(productCertificationDTO);
@@ -173,10 +188,7 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		
-		productCertificationDTO.setProductNo(productDTO.getNo());
-		
 		int result = manageService.productModifyManage(productDTO);
-		int result2 = manageService.productCertiModifyManage(productCertificationDTO);
 		
 		return "forward:productManage";
 	}

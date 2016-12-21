@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import spring.web.dao.ManageDao;
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -52,6 +53,10 @@ public class ManageServiceImpl implements ManageService {
 	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO) {
 		return manageDao.productCertiRegisterManage(productCertificationDTO);
 	}
+	@Override
+	public List<CertificationDTO> selectCertification() {
+		return manageDao.selectCertification();
+	}
 	
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 해당하는 제품의 정보를 select한다.
@@ -69,11 +74,6 @@ public class ManageServiceImpl implements ManageService {
 		return manageDao.productModifyManage(productDTO);
 	}
 
-	@Override
-	public int productCertiModifyManage(ProductCertificationDTO productCertificationDTO) {
-		return manageDao.productCertiModifyManage(productCertificationDTO);
-	}
-	
 	/**
 	 * 개별상품관리 삭제  - 수정폼을 div로 띄워줌 (alert)
 	 * */
@@ -357,6 +357,8 @@ public class ManageServiceImpl implements ManageService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 

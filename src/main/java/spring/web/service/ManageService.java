@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -30,6 +31,12 @@ public interface ManageService {
 	 * */
 	public int productRegisterManage(ProductDTO productDTO);
 	public int productNoFind(String name);
+	
+	/**
+	 * 유기농 인증 종류들 불러오기
+	 * @return
+	 */
+	public List<CertificationDTO> selectCertification();
 	/**
 	 * 유기농 인증 번호 등록하기
 	 */
@@ -47,7 +54,6 @@ public interface ManageService {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	public int productModifyManage(ProductDTO productDTO);
-	public int productCertiModifyManage(ProductCertificationDTO productCertificationDTO);
 
 	/**
 	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
@@ -231,6 +237,8 @@ public interface ManageService {
 	 * 판매상품 비중 가져오기
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
+
+	
 
 	
 	

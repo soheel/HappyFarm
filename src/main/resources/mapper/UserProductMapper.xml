@@ -48,6 +48,7 @@
 </resultMap>
 
 <resultMap type="productCertificationDTO" id="showCertification">
+	<id column="product_certification_no" property="no"/>
 	<result column="certification_no" property="certificationNo"/>
 	<result column="product_no" property="productNo"/>
 	
@@ -101,7 +102,7 @@ where product_no = #{value}
 
 <!-- 상품에 해당하는 인증 정보 가져오기 -->
 <select id="getProductCertification" resultMap="showCertification" parameterType="integer">
-	select certi.certification_no, certi.certification_name, certi.CERTIFICATION_DESC, certi.certification_image
+	select pc.product_certification_no, certi.certification_no, certi.certification_name, certi.CERTIFICATION_DESC, certi.certification_image
 	from product_certification pc, certification certi, product p
 	where pc.product_no= p.product_no and certi.certification_no = pc.certification_no and p.product_no=#{no}
 </select>

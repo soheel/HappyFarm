@@ -416,6 +416,24 @@ $(function(){
         	arr[arr.length] = selectProduct;
     	}
     })
+   
+    $("#certification_Info").change(function(){
+    	   var selectCertiVal = $(this).val(); 
+    	   $("#certificationNo").val(selectCertiVal)
+    })
+    
+    /* 생산자 select누르면 값 넣어주기 */
+    $("#producer_Info").change(function(){
+    	   var selectProducerVal = $(this).val(); 
+    	   $("#reg_producerNo").val(selectProducerVal)
+    })
+    
+    /* 생산자 select누르면 값 넣어주기 */
+    $("#producer_Info2").change(function(){
+    	   var selectProducerVal2 = $(this).val(); 
+    	   $("#reg_producerNo2").val(selectProducerVal2)
+    })
+    
     
 }) 
 </script>

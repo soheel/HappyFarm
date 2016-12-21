@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -26,6 +27,7 @@ public interface ManageDao {
 	int productRegisterManage(ProductDTO productDTO);
 	int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO);
 	int productNoFind(String name);
+	List<CertificationDTO> selectCertification();
 	/**
 	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
 	 */
@@ -35,7 +37,7 @@ public interface ManageDao {
 	 * 개별상품관리 수정 정폼을 div로 띄워줌
 	 * */
 	int productModifyManage(ProductDTO productDTO);
-	int productCertiModifyManage(ProductCertificationDTO productCertificationDTO);
+	
 	/**
 	 * 개별상품관리 삭제  - 수정폼을 div로 띄워줌 (alert)
 	 * */
@@ -225,6 +227,7 @@ public interface ManageDao {
 	 * 판매상품 비중 가져오기
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
+	
 	
 	
 	

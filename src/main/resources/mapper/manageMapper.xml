@@ -63,6 +63,13 @@
 	<result column="certification_no" property="certificationNo"/>	
 	<result column="product_no" property="productNo"/>
 </resultMap>	
+
+<resultMap type="certificationDTO" id="certificationDTO">	
+	<id column="certification_no" property="no"/>
+	<result column="certification_image" property="image"/>	
+	<result column="certification_name" property="name"/>
+	<result column="certification_desc" property="desc"/>
+</resultMap>	
 	 
 <resultMap type="memberDTO" id="memberResultMap">
 	<id column="member_no" property="no"/>
@@ -123,8 +130,12 @@ and p.producer_no = r.producer_no order by p.product_no desc
 <select id="productNoFind" parameterType="String" resultType="int">
 	select product_no from product where product_name=#{value}
 </select>
+
+<select id="selectCertification" resultMap="certificationDTO">
+	select certification_no, certification_image,certification_name, certification_desc from certification
+</select>
 <insert id="productCertiRegisterManage" parameterType="productCertificationDTO">
-	insert into product_certification values (product_certification_no.nextval, #{certificationNo}, #{productNo})
+	insert into product_certification values (#{no}, #{certificationNo}, #{productNo})
 </insert>
 
 <!-- 3.2. 개별 상품관리 정보를 수정한다. -->
@@ -133,11 +144,6 @@ and p.producer_no = r.producer_no order by p.product_no desc
 	product_desc=#{desc},product_eval=#{eval}, product_unit=#{unit}, producer_no=#{producerNo} 
 	where product_no=#{no}
 </update>
-
-<update id="productCertiModifyManage" parameterType="productCertificationDTO">
-	update product_certification set certification_no=#{certificationNo} where product_no=#{productNo}
-</update>
-
 
 <!-- 3.3 개별 상품관리 정보를 삭제한다 -->
 <delete id="productDeleteManage" parameterType="integer">
