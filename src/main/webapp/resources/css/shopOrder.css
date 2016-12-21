@@ -32,3 +32,29 @@
 	padding: 15px 0px;
 	margin:10px 0px;
 }
+
+.box_shadow {
+	border : 0.6px outset gray;
+	box-shadow : 5px 5px;
+}
+
+.order_check_title, .seller_check_title, .addr_check_title, .payment_title {
+	font-weight : bold;
+	color : black;
+	font-size : 14pt;
+}
+
+.mileage_desc {
+	font-weight : bold;
+	color : pink;
+}
+
+.my_mileage {
+	font-size : 12pt;
+	font-weight : bold;
+	color : black;
+}
+
+.order_final_info {
+	text-align : center ;
+}
