@@ -32,9 +32,9 @@
 /**
  * Qna Â¦¼ö
  */
-.my_info_qna_table tr:nth-child(2n){
-  display: none;
-}
+	 .my_info_qna_table tr:nth-child(2n){
+	  display: none;
+	} 
 
 #mypageIntroPoint{
 	width:30%;

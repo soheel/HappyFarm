@@ -157,10 +157,10 @@ from product t, package k
 where t.product_no = k.package_no and t.product_no = #{value}
 </select>
 <!-- 패키지 상품 내에있는 개별상품 가져오기 -->
-<select id="getPackageInnerProductList" resultMap="productResultMap">
+<select id="getPackageInnerProductList" resultMap="productResultMap" parameterType="integer">
 select t.product_no, t.product_profile, t.product_name, t.product_price
 from product t, package k
-where t.product_no = k.product_no
+where t.product_no = k.product_no and k.package_no = #{value}
 </select>
 
 <!-- 검색 -->

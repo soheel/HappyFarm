@@ -43,15 +43,16 @@ $(document).ready(function() {
 	
 	var $qnaTable = $(".my_info_qna_table tr:nth-child(2n-1)");
 
-	$qnaTable.click(function(){
+/*	$qnaTable.click(function(){
 
 		var $tr = $(this).next('tr');
 
 		if($tr.is(":hidden")){
-			$tr.show();	
+		
+		  			$tr.show();	
 		}else{
 			$tr.hide();
 		}
 		
-	});
+	});*/
 });

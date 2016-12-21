@@ -132,7 +132,8 @@ public interface UserInfoDAO {
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 * */
-	Map<String, Object> myPageQna(String email);
+	List<QnaDTO> myPageQna(String email);
+	String getAnswerByNo(int no);
 	
 	/**
 	 * 내정보 - 기부버튼 눌렀을 때
@@ -194,5 +195,11 @@ public interface UserInfoDAO {
 	List<MemberDTO> getmyPageMileage6(String email);
 	List<MemberDTO> getmyPageMileage12(String email);
 	List<MemberDTO> getmyPageMileageAll(String email);
+	
+	
+	/**
+	 * 추천받은 회원의 마일리지 500원 증가시키기
+	 * */
+	int modifyRecommandedMember(String email);
 	
 }

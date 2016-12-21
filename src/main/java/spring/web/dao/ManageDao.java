@@ -53,7 +53,12 @@ public interface ManageDao {
 	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
 	 * (새창)
 	 * */
-	public List<String> packageShowManage(int packagePk);
+	public List<String> packageShowManage(int packageNo);
+	
+	/**
+	 * 해당 패키지 상품 내에 있는 상품들의 번호를 가져온다.
+	 * */
+	public List<Integer> getPackageProductNo(int no);
 	
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
@@ -73,9 +78,20 @@ public interface ManageDao {
 	
 	/**
 	 * 세트상품관리 수정
-	 * 수정폼을 div로 띄워줌
 	 * */
-	int packageModifyManage(Map<String, Object> modifyinfo);
+	int packageModifyManage(ProductDTO product);
+	
+	/**
+	 * 세트상품관리 수정
+	 * 기존의 패키지 상품 삭제
+	 * */
+	int packageModifyDeleteManage(int packageNo);
+	
+	/**
+	 * 세트상품관리 수정
+	 * 새로운 데이터 주입
+	 * */
+	int packageModifyInsertManage(int packageNo, int productNo);
 	
 	/**
 	 * 세트상품관리 삭제
@@ -228,6 +244,10 @@ public interface ManageDao {
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
 	
+	/**
+	 * 해당 패키지상품 정보 가져오기
+	 * */
+	PackageDTO getPackageByPackageNo(int no);
 	
 	
 	

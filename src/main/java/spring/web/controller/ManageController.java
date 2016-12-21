@@ -252,16 +252,6 @@ public class ManageController {
 		mv.setViewName("admin/adminPackageItem");  
 		return mv;
 	}
-	
-	/**
-	 * 세트상품 상세정보 packagename을 인수로 받는다.
-	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
-	 * (새창)
-	 * */
-	@RequestMapping("packageShowManage")
-	public ModelAndView packageShowManage(String name) {
-		return null;
-	}
 
 	/**
 	 * 세트상품관리 등록
@@ -299,6 +289,17 @@ public class ManageController {
 		// 파일 업로드
 		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
 		try {
+			File profileSaveFile = new File(saveDir + "/" + profile);
+			if(profileSaveFile.exists()) {
+				profile = profile + "_" + System.currentTimeMillis();
+			}
+			productDTO.setProfile(profile);
+			File descSaveFile = new File(saveDir + "/" + desc);
+			if(descSaveFile.exists()) {
+				desc = desc + "_" + System.currentTimeMillis();
+			}
+			productDTO.setDesc(desc);
+			
 			fileList.get(0).transferTo(new File(saveDir + "/" + profile));
 			fileList.get(1).transferTo(new File(saveDir + "/" + desc));
 		} catch (Exception e) {
@@ -323,20 +324,16 @@ public class ManageController {
 		return list;
 	}
 	
-	//div태그이므로, 할 필요 없을 것이다. 정보 저장되어 있기 떄문에
-	/** div에 정보를 불러와서 ...productno를 받는다.
-	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
-		ProductDTO product = manageService.selectByPackageName(productDTO)
-	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	
-	@RequestMapping("packageInfoMangage")
-	public ProductDTO packageInfoMangage(String no){
-		ProductDTO product = null;
-		product = manageService.packageInfoMangage(no);
-		
-		return product;
-	} */
+	/**
+	 * 패키지 상품을 수정할 때, 기존의 정보를 수정폼에 뿌려준다.
+	 * */
+	@RequestMapping("packageModifyShowManage")
+	@ResponseBody
+	public Map<String, Object> packageModifyShowManage(int no) {
+		System.out.println("packageModifyShowManage");
+		Map<String, Object> map = manageService.packageModifyShowManage(no);
+		return map;
+	}
 	
 	/**
 	 * 세트상품관리 수정 (productname을 인수로 받음)
@@ -344,31 +341,52 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("packageModifyManage")
-	public String packageModifyManage(ProductDTO productDTO, String name) {
-		
-		Map<String, Object> modifyinfo = new HashMap<String, Object>();
-		/**
-		 * 패키지 이름을 누르고 수정을 누르면 등록폼과 같은 div가 띄어진다.
-		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
-		 * 가격,사진,설명 : product테이블에 있는 price, profile, desc
-		 * 상품검색 : product_name에 일치하는 product를 찾아준다
-		 * 밑에 상품이 productDTO들이 modify된다.
-		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
-		 */
-		
-		//수정폼에서 상품 검색하기 위해서 필요한 메소드
-		ProductDTO searchlist = packageSearchProduct(name);
-		
-		modifyinfo.put("productDTO", productDTO);
-		modifyinfo.put("searchlist", searchlist);
-		
-		int result = manageService.packageModifyManage(modifyinfo);
-		
-		if(result==0){
-			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
-			
+	public String packageModifyManage(HttpServletRequest request, ProductDTO productDTO, String products, MultipartHttpServletRequest multipartRequest, HttpSession session) {
+		System.out.println("packageModifyManage");
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
+
+		try {
+			if(profile.equals("") && desc.equals("")) {
+				
+			}else if(profile.equals("")) { // profile만 수정하지 않은 경우
+				File descFile = new File(saveDir + "/" + desc);
+				if(descFile.exists()) {
+					desc = desc + "_" + System.currentTimeMillis();
+				}
+				productDTO.setDesc(desc);
+				fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+			}else if(desc.equals("")) {
+				File profileFile = new File(saveDir + "/" + profile);
+				if(profileFile.exists()) {
+					profile = profile + "_" + System.currentTimeMillis();
+				}
+				productDTO.setProfile(profile);
+				fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			}else {
+				File descFile = new File(saveDir + "/" + desc);
+				if(descFile.exists()) {
+					desc = desc + "_" + System.currentTimeMillis();
+				}
+				productDTO.setDesc(desc);
+				fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+				
+				File profileFile = new File(saveDir + "/" + profile);
+				if(profileFile.exists()) {
+					profile = profile + "_" + System.currentTimeMillis();
+				}
+				productDTO.setProfile(profile);
+				fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			}
+			int result = manageService.packageModifyManage(productDTO, products);
+		}catch(Exception e){
+			e.printStackTrace();
+
 		}
-		return "forward:packageProduct";
+
+		return "forward:packageManage";
 	}
 	
 	/**

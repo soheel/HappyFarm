@@ -9,8 +9,25 @@ public class QnaDTO {
 	private String email;
 	private int qnaParent;
 	private String answerState;
+	private String answer;
+	
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 	
 	private MemberDTO memberDto;
+	private QnaDTO qnaDto;
+	
+	public QnaDTO getQnaDto() {
+		return qnaDto;
+	}
+	
+	public void setQnaDto(QnaDTO qnaDto) {
+		this.qnaDto = qnaDto;
+	}
 	
 	public QnaDTO() {
 		super();

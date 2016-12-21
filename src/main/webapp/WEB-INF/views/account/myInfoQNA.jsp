@@ -6,7 +6,6 @@
 <table class="table my_info_qna_table">
 	<thead>
 		<tr>
-			<th>질문제목</th>
 			<th>문의내용</th>
 			<th>등록일</th>
 			<th>답변</th>
@@ -14,39 +13,30 @@
 	</thead>
 	<tbody>
 	<c:choose>
-		<c:when test="${empty qnaList}">
-		<td colspan='4'>
+		<c:when test="${empty list}">
+		<tr>
+		<td colspan='3'>
 			 <p align="center"><b><span style="font-size:9pt;">현재 등록된 질문이 없습니다.</span></b></p>
 		</td>
+		</tr>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${qnaList}" var="qnaDto">
-				<tr class="warning">
-					<td>${qnaDto.name}</td>
-					<td>${qnaDto.desc}</td>
-					<td>  
-					<fmt:parseDate value="${qnaDto.registerdate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
-					<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
-					</td>  
+			<c:forEach items="${list}" var="list" varStatus="asd" >
 
-					<td>${qnaDto.answerState}</td>
+				<tr class="warning"  id='appendTr'>
+					<td>${list.desc}</td>
+					<td>  
+					<fmt:parseDate value="${list.registerdate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+					<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
+					</td>   
+					
+					<td><span id="showAnswerByNumber" value='${list.no}'>${list.answerState}</span></td>
 				</tr>
-				<tr>
-					<c:choose>
-					<c:when test="${qnaDto.answerState eq 'N'}">
-					<td colspan="4">
-						답변이 등록되지 않았습니다.
-					</td>
-					</c:when>
-					<c:otherwise>
-						<td colspan="4">
-							${answer}
-						</td>
-					</c:otherwise>
-					</c:choose>
-				</tr>
+				<tr></tr>
+							
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>	
+	
 	</tbody>
 </table>
