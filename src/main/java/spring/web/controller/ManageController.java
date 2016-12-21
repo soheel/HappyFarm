@@ -115,7 +115,7 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productModifyManage")
-	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
+	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO, ProductCertificationDTO productCertificationDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
@@ -173,7 +173,11 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		
+		productCertificationDTO.setProductNo(productDTO.getNo());
+		
 		int result = manageService.productModifyManage(productDTO);
+		int result2 = manageService.productCertiModifyManage(productCertificationDTO);
+		
 		return "forward:productManage";
 	}
 	

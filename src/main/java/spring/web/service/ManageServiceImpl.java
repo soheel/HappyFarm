@@ -69,6 +69,11 @@ public class ManageServiceImpl implements ManageService {
 		return manageDao.productModifyManage(productDTO);
 	}
 
+	@Override
+	public int productCertiModifyManage(ProductCertificationDTO productCertificationDTO) {
+		return manageDao.productCertiModifyManage(productCertificationDTO);
+	}
+	
 	/**
 	 * 개별상품관리 삭제  - 수정폼을 div로 띄워줌 (alert)
 	 * */
@@ -352,6 +357,8 @@ public class ManageServiceImpl implements ManageService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 }

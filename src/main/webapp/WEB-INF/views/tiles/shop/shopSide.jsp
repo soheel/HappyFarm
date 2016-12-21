@@ -105,7 +105,7 @@
 								<table class="table">
 									<c:forEach items="${productCerti}" var="certi">
 									<tr>
-										<td rowspan="3"><img src='<c:url value="/resources/img/certification/${certi.certificationDTO.image}"/>' alt="agricultural produce"></td>
+										<td rowspan="3"><img src='<c:url value="/resources/img/certification/${certi.certificationDTO.image}"/>' alt="agricultural produce" width="400" height="400"></td>
 										<td><h3>번호 </h3> ${certi.certificationNo}
 										</td>
 									</tr>

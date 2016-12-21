@@ -14,7 +14,7 @@
 												<th class="product-name">상품이름</th>
 												<th class="product-price">상품가격</th>
 												<th class="product-no">카테고리</th>
-												<th class="product-producer">생산자</th>					
+												<th class="product-producer">생산자</th>			
 											</tr>
 										</thead>
 										<tbody>
@@ -38,6 +38,7 @@
 												<td class="product-producer">
 													${productlist.producerDto.name }
 												</td>
+												
 											</tr>
 										
 											</c:forEach>
@@ -266,6 +267,16 @@
 															</label>
 															<input type="text" class="input-text" name="producerNo" id="producer_no" />
 														</div>
+														
+														<div class="form-row form-row-wide">
+															<label for="reg_certification">
+																유기농 인증 번호
+																<span class="required">*</span>
+															</label>
+															<input type="text" class="input-text" name="certificationNo" id="reg_certification" />
+														</div>
+														
+														
 													</div>
 													<div class="col-md-1"></div>
 												</div>

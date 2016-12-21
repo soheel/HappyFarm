@@ -134,6 +134,11 @@ and p.producer_no = r.producer_no order by p.product_no desc
 	where product_no=#{no}
 </update>
 
+<update id="productCertiModifyManage" parameterType="productCertificationDTO">
+	update product_certification set certification_no=#{certificationNo} where product_no=#{productNo}
+</update>
+
+
 <!-- 3.3 개별 상품관리 정보를 삭제한다 -->
 <delete id="productDeleteManage" parameterType="integer">
 	delete from product where product_no=#{value}

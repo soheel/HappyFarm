@@ -562,8 +562,8 @@ select * from product;
 select * from package;
 select * from member;
 
-select distinct  k.package_no, p.product_name, p.product_price
-from  product p join package k
-on p.product_no = k.package_no
+select distinct k.package_no, p.product_name, p.product_price
+from package k, product p
+where p.product_no = k.package_no
 
-
+update member set member_mileage = member_mileage-500 where member_email = '¹Ú¿ë¿ì'

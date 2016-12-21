@@ -35,7 +35,7 @@ public interface ManageDao {
 	 * 개별상품관리 수정 정폼을 div로 띄워줌
 	 * */
 	int productModifyManage(ProductDTO productDTO);
-	
+	int productCertiModifyManage(ProductCertificationDTO productCertificationDTO);
 	/**
 	 * 개별상품관리 삭제  - 수정폼을 div로 띄워줌 (alert)
 	 * */
@@ -225,6 +225,7 @@ public interface ManageDao {
 	 * 판매상품 비중 가져오기
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
+	
 	
 	
 }

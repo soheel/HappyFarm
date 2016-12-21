@@ -67,29 +67,22 @@
 													<div class="col-md-12 organic_food">
 														<div class="product_detail_header">
 															<div class="name">
-																GAP(농산물우수관리) | 저탄소 
+																해당 상품의 유기농 인증 정보 
 															</div>
-															<div class="no">
-																제1004042호 | 제2015-006호
-															</div>
+							
 														</div>
 														<div class="product_detail">
 															<ul>
+															<c:forEach items="${productCerti}" var="certi">
 																<li>
-																	<span class="icon gap">asd</span>
+																	<img src='<c:url value="/resources/img/certification/${certi.certificationDTO.image}"/>' alt="agricultural produce">
 																	<dl>
-																		<dt>GAP(농산물우수관리)</dt>
-																		<dd>안전성을 확보위하여 농산물의 생산, 수확 후 관리 (농산물의 저장·세척·건조·선별·절단·조제·포장 등을 포함) 및 유통의 각 단계에서 작물이 재배되는 농경지 및 농업용수 등의 농업환경과 농산물에 잔류할 수 있는 농약, 중금속, 잔류성 유기오염물질 또는 유해생물 등의 위해요소를 적절하게 관리하는 것</dd>
+																		<dt> ${certi.certificationDTO.name} (제${certi.certificationNo}호)</dt>
+																		<dd>${certi.certificationDTO.desc}</dd>
 																	</dl>
 																</li>
-																
-																<li>
-																	<span class="icon gap">asd</span>
-																	<dl>
-																		<dt>GAP(농산물우수관리)</dt>
-																		<dd>안전성을 확보위하여 농산물의 생산, 수확 후 관리 (농산물의 저장·세척·건조·선별·절단·조제·포장 등을 포함) 및 유통의 각 단계에서 작물이 재배되는 농경지 및 농업용수 등의 농업환경과 농산물에 잔류할 수 있는 농약, 중금속, 잔류성 유기오염물질 또는 유해생물 등의 위해요소를 적절하게 관리하는 것</dd>
-																	</dl>
-																</li>
+															</c:forEach>	
+														
 															</ul>
 														</div>
 													</div>

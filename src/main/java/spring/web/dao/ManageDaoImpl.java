@@ -51,7 +51,10 @@ public class ManageDaoImpl implements ManageDao {
 	public int productModifyManage(ProductDTO productDTO) {
 		return sqlsession.update("manageMapper.productModifyManage",productDTO);
 	}
-
+	@Override
+	public int productCertiModifyManage(ProductCertificationDTO productCertificationDTO) {
+		return sqlsession.update("manageMapper.productCertiModifyManage",productCertificationDTO);
+	}
 	@Override
 	public int productDeleteManage(int no) {
 		return sqlsession.delete("manageMapper.productDeleteManage",no);
@@ -243,6 +246,8 @@ public class ManageDaoImpl implements ManageDao {
 		map.put("productNo", productNo);
 		return sqlsession.insert("manageMapper.packageProductRegisterManage", map);
 	}
+
+	
 
 	
 
