@@ -17,7 +17,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="noo-main col-md-12">
-					<form action="<c:url value = '/userProductController/purchaseCart'/>?totalPrice=${totalPrice}" method="post">
+					<form action="<c:url value = '/userProductController/purchaseCart'/>" method="post">
 						<table class="shop_table cart">
 							<thead>
 								<tr>
@@ -75,6 +75,7 @@
 									<td colspan="6" class="actions">
 										<div class="cart-action">
 											<p>
+												<input type = "hidden" name = "totalPrice" value = "${totalPrice }">
 												<label>총 금액 : <span id = "totalPrice"><c:url value='${totalPrice}'/></span></label>
 											</p>
 											<input id = "selectOrder" type="submit" class="button" name="update_cart" value="선택상품주문"/>

@@ -150,16 +150,16 @@ from product t, package k
 where t.product_no = k.package_no
 </select>
 <!-- 패키지 상품 상세보기 -->
-<select id="getPackageDetail" resultMap="productResultMap">
+<select id="getPackageDetail" resultMap="productResultMap" parameterType="integer">
 select distinct t.product_no, t.product_profile, t.product_name, t.product_price, t.product_eval, t.product_desc, t.product_unit
 from product t, package k
-where t.product_no = k.package_no
+where t.product_no = k.package_no and t.product_no = #{value}
 </select>
 <!-- 패키지 상품 내에있는 개별상품 가져오기 -->
-<select id="getPackageInnerProductList" resultMap="productResultMap">
+<select id="getPackageInnerProductList" resultMap="productResultMap" parameterType="integer">
 select t.product_no, t.product_profile, t.product_name, t.product_price
 from product t, package k
-where t.product_no = k.product_no
+where t.product_no = k.product_no and k.package_no = #{value}
 </select>
 
 <!-- 검색 -->
@@ -191,11 +191,15 @@ from purchase
 
 <delete id="removeCartProduct" parameterType="purchaseDTO">
 	delete from cart where member_email=#{email}
-
 </delete>
 <!-- 결제 완료만들기 -->
 <update id="setPurchaseStateNo" parameterType="integer">
 update purchase set purchase_state_no where purchase_no = #{value} 
+</update>
+
+<!-- 구매 후 마일리지 차감 -->
+<update id="reduceMileage" parameterType="map">
+update member set member_mileage = member_mileage-#{useMileage} where member_email = #{email}
 </update>
 
 </mapper>

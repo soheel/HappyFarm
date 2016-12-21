@@ -11,6 +11,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -28,6 +29,11 @@ public interface ManageService {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	public int productRegisterManage(ProductDTO productDTO);
+	public int productNoFind(String name);
+	/**
+	 * 유기농 인증 번호 등록하기
+	 */
+	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO);
 	
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
@@ -66,28 +72,26 @@ public interface ManageService {
 	 * */
 	public List<String> packageShowManage(int packagePk);
 	
+	/**
+	 * 해당 패키지 상품 상세보기
+	 * */
+	public Map<String, Object> packageModifyShowManage(int no);
+	
+	
 	/**패키지 추가*/
-	public int packageRegisterManage(Map<String, Object> packageRegister);
+	public int packageRegisterManage(PackageDTO packageDTO, List<Integer> list);
 	
 	
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 	 */
 	public List<ProductDTO> packageSearchProduct(String productname);
-	
-	/** div에 정보를 불러와서 ...
-	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
-		ProductDTO product = manageService.selectByPackageName(productDTO)
-	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	 */
-	public ProductDTO packageInfoMangage(String productno);
-	
+		
 	/**
 	 * 세트상품관리 수정
 	 * 수정폼을 div로 띄워줌
 	 * */
-	public int packageModifyManage(Map<String, Object> modifyinfo);
+	public int packageModifyManage(ProductDTO product, String products);
 	
 	/**
 	 * 세트상품관리 삭제
@@ -224,4 +228,7 @@ public interface ManageService {
 	 * 판매상품 비중 가져오기
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
+
+	
+	
 }

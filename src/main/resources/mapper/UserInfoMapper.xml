@@ -444,6 +444,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      and ca.product_no=(select pdt.product_no from product pdt where pdt.product_name=#{name})
 	</delete>
 	
-
+<!-- 추천받은 회원 마일리지 500원 증가시키기 -->
+<update id="modifyRecommandedMember" parameterType="string">
+update member set member_mileage = member_mileage + 500 where member_email = #{value}
+</update>
 
 </mapper>

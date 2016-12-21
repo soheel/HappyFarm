@@ -11,6 +11,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -23,8 +24,8 @@ public interface ManageDao {
 	 * 개별상품관리 등록(등록폼을 div로 띄워줌)
 	 * */
 	int productRegisterManage(ProductDTO productDTO);
-	
-	
+	int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO);
+	int productNoFind(String name);
 	/**
 	 * 상품 수정을 위해 해당 상품에 대한 정보를 불러와서 폼에 보여준다.
 	 */
@@ -50,15 +51,22 @@ public interface ManageDao {
 	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
 	 * (새창)
 	 * */
-	public List<String> packageShowManage(int packagePk);
+	public List<String> packageShowManage(int packageNo);
+	
+	/**
+	 * 해당 패키지 상품 내에 있는 상품들의 번호를 가져온다.
+	 * */
+	public List<Integer> getPackageProductNo(int no);
 	
 	/**
 	 * 상품검색은 상품이름을 입력하면, 검색된 것을 찾아 ajax로 밑에 있는 상품에 추가한다.
 	 */
 	List<ProductDTO> packageSearchProduct(String productname);
 	
-	/** 세트 상품 등록*/
-	int packageRegisterManage(Map<String, Object> packageRegister);
+	/**
+	 * 세트상품 등록
+	 * */
+	int packageRegisterManage(PackageDTO packageDTO);
 	
 	/**
 	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
@@ -68,15 +76,36 @@ public interface ManageDao {
 	
 	/**
 	 * 세트상품관리 수정
-	 * 수정폼을 div로 띄워줌
 	 * */
-	int packageModifyManage(Map<String, Object> modifyinfo);
+	int packageModifyManage(ProductDTO product);
+	
+	/**
+	 * 세트상품관리 수정
+	 * 기존의 패키지 상품 삭제
+	 * */
+	int packageModifyDeleteManage(int packageNo);
+	
+	/**
+	 * 세트상품관리 수정
+	 * 새로운 데이터 주입
+	 * */
+	int packageModifyInsertManage(int packageNo, int productNo);
 	
 	/**
 	 * 세트상품관리 삭제
 	 * 수정폼을 div로 띄워줌
 	 * */
 	int packageDeleteManage(String name);
+	
+	/**
+	 * 방금 막 등록한 패키지 상품 번호 가져오기
+	 * */
+	int getRecentPackageNo();
+	
+	/**
+	 * 패키지 상품 내의 개별 상품 등록
+	 * */
+	int packageProductRegisterManage(int packageNo, int productNo);
 	
 	/**
 	 * 생산자관리 눌렀을 때
@@ -212,4 +241,10 @@ public interface ManageDao {
 	 * 판매상품 비중 가져오기
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
+	
+	/**
+	 * 해당 패키지상품 정보 가져오기
+	 * */
+	PackageDTO getPackageByPackageNo(int no);
+	
 }

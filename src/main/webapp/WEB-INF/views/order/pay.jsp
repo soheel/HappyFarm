@@ -12,7 +12,8 @@
 	<input id = "phone" type = "hidden" value = "${purchaseOrder.phone }"/>
 	<input id = "addr" type = "hidden" value = "${addr }"/>
 	<input id = "postCode" type = "hidden" value = "${purchaseOrder.postCode }"/>
-	
+	<input id = "originalPrice" type = "hidden" value = "${purchase.price }"/>
+	<input id = "useMileage" type = "hidden" value = "${purchase.discount }"/>
 	
 	<section class="noo-page-heading eff heading-6">
 	<div class="container">
@@ -87,13 +88,24 @@
 		        	var bankHolder = rsp.vbank_holder;
 		        	var bank
 		        	
-		        	 $.ajax({
+		        	/* 결제 완료 후 문자 전송 */
+		        	$.ajax({
 						 url:"<c:url value = '/userProductController/paySendSms'/>",
 						 type : "post",
 						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
 							 "bankName" : bankName, "bankHolder" : bankHolder}
 					 })
-			         
+					 
+					 /*
+					 결제 완료 후 마일리지 차감
+					 및 결제함으로써 마일리지 적립
+					 */
+					 $.ajax({
+						url : "<c:url value = '/userProductController/reduceMileage'/>",
+						type : "post",
+						data : "useMileage=" + document.getElementById("useMileage").value;
+					 })
+					
 		        	msg += '<p>가상계좌 입금 계좌번호 : ' + rsp.vbank_num + '</p>';
 		        	msg += '<p>가상계좌 은행명 : ' + rsp.vbank_name + '</p>';
 		        	msg += '<p>가상계좌 예금주 : ' + rsp.vbank_holder + '</p>';

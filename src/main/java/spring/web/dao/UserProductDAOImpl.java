@@ -1,6 +1,8 @@
 package spring.web.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -97,13 +99,13 @@ public class UserProductDAOImpl implements UserProductDAO {
 	}
 
 	@Override
-	public ProductDTO getPackageDetail() {
-		return sqlSession.selectOne("UserProductMapper.getPackageDetail");
+	public ProductDTO getPackageDetail(int productNo) {
+		return sqlSession.selectOne("UserProductMapper.getPackageDetail", productNo);
 	}
 
 	@Override
-	public List<ProductDTO> getPackageInnerProductList() {
-		return sqlSession.selectList("UserProductMapper.getPackageInnerProductList");
+	public List<ProductDTO> getPackageInnerProductList(int productNo) {
+		return sqlSession.selectList("UserProductMapper.getPackageInnerProductList", productNo);
 	}
 
 	@Override
@@ -141,8 +143,11 @@ public class UserProductDAOImpl implements UserProductDAO {
 		return sqlSession.update("UserProductMapper.setPurchaseStateNo", no);
 	}
 
-	
-
-	
-
+	@Override
+	public int reduceMileage(int useMileage, String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("useMileage", useMileage);
+		map.put("email", email);
+		return sqlSession.update("UserProductMapper.reduceMileage", map);
+	}
 }

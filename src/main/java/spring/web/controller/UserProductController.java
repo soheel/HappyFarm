@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +87,6 @@ public class UserProductController {
 		System.out.println(list.size() + " : list의 size");
 		mv.addObject("list", list);
 		mv.setViewName("shop/searchProduct");
-		
 		return mv;
 	}
 	
@@ -112,17 +112,13 @@ public class UserProductController {
 		List<CertificationDTO> certificationList = (List<CertificationDTO>)map.get("certification");
 		ProducerDTO producer = (ProducerDTO)map.get("producer");
 		String categoryName = (String)map.get("categoryName");
-		
-		
 		/**
 		 * 상품을 눌렀을 때 인증마크 폼 띄어주기
 		 */
 		List<ProductCertificationDTO> productCerti = service.showCertificationInfo(productNo);
-		
 		for(ProductCertificationDTO  list: productCerti){
 			System.out.println(list.getCertificationDTO().getName()+"Dddd");
 		}
-		
 		mv.addObject("product", product);
 		mv.addObject("productCommentList", productCommentList);
 		mv.addObject("certificationList", certificationList);
@@ -143,11 +139,10 @@ public class UserProductController {
 		 * 1. 뷰에서 생산자 이름을 클릭했을 때, 생산자 번호가 함께 인수로 전달됨
 		 * 2. 인수를 dao로 보내어 생산자 DTO(ProducerDTO)를 받아 이를 뷰로 반환
 		 * */
-		
 		ProducerDTO producerDTO = service.showProducerInfo(producerNo);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("producer",producerDTO);
-		mv.setViewName("producerInfo"); // producerInfo.jsp를 만들어야함
+		mv.setViewName("producerInfo");
 		return mv;
 	}
 	
@@ -167,15 +162,10 @@ public class UserProductController {
 			result = -2;
 		}
 		cart.setEmail(email);
-		System.out.println(cart.getEmail());
-		System.out.println(cart.getProductNo());
-		System.out.println(cart.getNum());
 		if(email!=null){
 			result = service.addCart(cart);
 		}
-		
-		System.out.println("result : " + result);
-		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
+		return result;
 	}
 	
 	/**
@@ -188,6 +178,7 @@ public class UserProductController {
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품을 insert한다. (개수는 1)
 		 * */
+		System.out.println("addCartDirectAop");
 		int result=0;
 		String email = (String)session.getAttribute("email");
 		cart.setEmail(email);
@@ -195,27 +186,21 @@ public class UserProductController {
 			result = -2;
 		}
 		cart.setNum(1);
-		System.out.println(cart.getEmail());
-		System.out.println(cart.getProductNo());
-		System.out.println(cart.getNum());
-		
-		//cart.setEmail(email);
 		if(email!=null){
 			result = service.addCartDirect(cart);
 		}
-		System.out.println(result + " result 값");
 		return result; // 뷰에서 반환값이 1이상이 아니면 장바구니담기 실패라고 alert 띄워주기
 	}
 
 	/**
 	 * 상품 상세보기 화면에서 주문하기 버튼 눌렀을 때
 	 * */
-	@RequestMapping("order")
+  /*@RequestMapping("order")
 	public ModelAndView order(int productNo, int num) {
-		/**
+		*//**
 		 * 1. 뷰에서 상품번호(product_no)와 구매하려는 개수를 받아온다.
 		 * 2. 상품번호를 이용해 상품DTO와 생산자DTO, 개수를 map에 담아 다시 뷰로 보낸다.
-		 * */
+		 * *//*
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = service.order(productNo, num);
@@ -224,20 +209,12 @@ public class UserProductController {
 		mv.setViewName("purchase");
 		return mv;
 	}
-	
-	/**
-	 * 주문화면에서 우편번호 가져오기
-	 * */
-	@RequestMapping("getPostcode")
-	public void getPostcode() {
-		
-	}
-	
+	*/
 	/**
 	 * 상품 상세보기에서 purchase 클릭했을 때
 	 * */
-	@RequestMapping("purchase")
-	public ModelAndView purchase(int productNo, int producerNo, int quantity, int price, HttpSession session) {
+	@RequestMapping("purchaseAop")
+	public ModelAndView purchaseAop(HttpServletRequest request, int productNo, int producerNo, int quantity, int price, HttpSession session) {
 		System.out.println("purchase");
 		Map<String, Object> map = null;
 		ModelAndView mv = new ModelAndView();
@@ -258,7 +235,6 @@ public class UserProductController {
 		int totalPrice = quantity * price;
 		mv.addObject("totalPrice", totalPrice);
 		mv.addObject("quantity", quantity);
-		
 		return mv;
 	}
 	
@@ -268,20 +244,14 @@ public class UserProductController {
 	@RequestMapping("purchaseCart")
 	public ModelAndView purchaseCart(CartProductDTO cartProduct, int totalPrice, HttpSession session) {
 		System.out.println("purchaseCart");
-
+		System.out.println(totalPrice);
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = null;
-		
 		String email = (String)session.getAttribute("email");
 		map = service.purchaseCart(cartProduct, email);
-		
-		
-		
 		List<ProductDTO> productList = (List<ProductDTO>)map.get("productList");
 		List<Integer> numList = (List<Integer>)map.get("numList");
 		int mileage = (Integer)map.get("mileage");
-		
-		
 		mv.addObject("productList", productList);
 		mv.addObject("mileage", mileage);
 		mv.addObject("numList", numList);
@@ -289,36 +259,6 @@ public class UserProductController {
 		mv.setViewName("order/orderCardCart");
 		
 		return mv;
-		/*Map<String, Object> map = null;
-		ModelAndView mv = new ModelAndView();
-		
-		String[] arr = info.split(",");
-		List<Integer> list = new ArrayList<Integer>();
-		List<Integer> productNoList = new ArrayList<Integer>();
-		List<Integer> numList = new ArrayList<Integer>();
-		String email = (String)session.getAttribute("email");
-		for(int i = 0 ; i < arr.length ; i++) {
-			list.add(Integer.parseInt(arr[i]));
-		}
-		for(int i = 0 ; i < list.size() ; i++) {
-			if(i % 2 == 0) {
-				productNoList.add(list.get(i));
-			}else {
-				numList.add(list.get(i));
-			}
-		}
-		List<ProductDTO> productDTOList = null;
-		map = service.purchaseCart(productNoList, email);
-		
-		productDTOList = (List<ProductDTO>)map.get("productDTOList");
-		int mileage = (Integer)map.get("mileage");
-		
-		mv.addObject("productList", productDTOList);
-		mv.addObject("numList", numList);
-		mv.addObject("totalPrice", totalPrice);
-		mv.addObject("mileage", mileage);
-		mv.setViewName("order/orderCardCart");
-		return mv;*/
 	}
 	
 	/**
@@ -328,12 +268,9 @@ public class UserProductController {
 	public ModelAndView pay(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO, PurchaseProductDTO purchaseProductDTO, 
 			HttpSession session) {
 		System.out.println("pay");
-		//System.out.println("discount : "+purchaseDTO.getDiscount());
 		String email = (String)session.getAttribute("email");
-
 		// purchaseDTO 세팅
 		purchaseDTO.setEmail(email);
-		
 		// purchaseOrderDTO 세팅
 		purchaseOrderDTO.setEmail(email);
 		String phone = purchaseOrderDTO.getPhone().replace(',', '-');
@@ -341,14 +278,10 @@ public class UserProductController {
 		// purchaseProductDTO 세팅
 		// 통합 주소
 		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
-		
-		
 		int result = service.pay(purchaseDTO, purchaseOrderDTO, purchaseProductDTO);
 		purchaseDTO.setNo(result);
-
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("result", result);
-		
 		mv.addObject("purchase", purchaseDTO);
 		mv.addObject("purchaseOrder", purchaseOrderDTO);
 		mv.addObject("purchaseProduct", purchaseProductDTO);
@@ -358,7 +291,7 @@ public class UserProductController {
 	}
 	
 	/**
-	 * 장바구니에 저장된 상품들을 결제할 때
+	 * 장바구니에서 구매하기를 누른 상품들을 결제할 때
 	 * */
 	@RequestMapping("payCart")
 	public ModelAndView payCart(PurchaseDTO purchaseDTO, PurchaseOrderDTO purchaseOrderDTO,
@@ -368,6 +301,10 @@ public class UserProductController {
 		String email = (String)session.getAttribute("email");
 		purchaseDTO.setEmail(email);
 		purchaseOrderDTO.setEmail(email);
+		
+		String phone = purchaseOrderDTO.getPhone().replace(',', '-');
+		purchaseOrderDTO.setPhone(phone);
+		
 		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
 		int result = service.payCart(purchaseDTO, purchaseOrderDTO, purchaseProductListDTO);
 		purchaseDTO.setNo(result);
@@ -387,7 +324,6 @@ public class UserProductController {
 		 * 카드, 실시간, 휴대폰은 바로 결제가 완료된 상태(state_no = 2) 이므로
 		 * 이를 수정해줘야함
 		 * */
-		
 		int result = service.setPurchaseStateNo(no);
 	}
 	
@@ -395,10 +331,10 @@ public class UserProductController {
 	public void paySendSms(@RequestParam String name, @RequestParam String phone, @RequestParam String bankNum,
 	
 		@RequestParam String bankName, @RequestParam String bankHolder){
-		String api_key = "NCS58573A4F7EE6C";
-        String api_secret = "B1BAFF5BE67B7DA379FB7F71821038F4";
+		String api_key = "NCS5858E6CD5BBE0";
+        String api_secret = "D8DF0FFFB9647A8AE4A87BF4EEA6E62A";
 
-       
+        System.out.println("phone:번호 : "+ phone);
         Message coolsms = new Message(api_key, api_secret);
 
         String str=name+"님 결제 되었습니다.\n"+bankName+" " + bankNum+" " + bankHolder + "로 입금 부탁드립니다.";
@@ -406,7 +342,7 @@ public class UserProductController {
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", phone);
-        params.put("from", "01043236137");
+        params.put("from", "01050958468");
         params.put("type", "SMS");
         params.put("text", str);
       
@@ -418,7 +354,17 @@ public class UserProductController {
           System.out.println(e.getMessage());
           System.out.println(e.getCode());
         }
-
+	}
+	
+	/**
+	 * 무통장 거래의 경우 가상계좌를 발급 받고나서 ajax로 바로 마일리지 차감
+	 * 이 외의 경우 결제 후 state를 바꾸는 과정에서 마일리지 차감을 동시에 진행함
+	 * */
+	@RequestMapping("reduceMileage")
+	public void reduceMileage(int useMileage, HttpSession session) {
+		System.out.println("reduceMileage");
+		String email = (String)session.getAttribute("email");
+		int result = service.reduceMileage(useMileage, email);
 	}
 	
 	/**
@@ -426,24 +372,15 @@ public class UserProductController {
 	 * */
 	@RequestMapping("search")
 	public ModelAndView search(String keyword) {
-		/**
-		 * 1. 뷰로부터 전달된 keyword를 dao로 전달하여 product 테이블의 product_name에
-		 * keyword가 포함되는 모든 상품들의 dto를 담은 list를 modelandview에 저장하고
-		 * 이를 뷰에 반환한다.
-		 * */
-		
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> list = null;
 		list = service.search(keyword);
-		
 		mv.addObject("list", list);
 		mv.setViewName("shop/searchProduct"); // 검색 결과를 뿌려줄 뷰
-		
 		return mv;
 	}
 	
 	// 패키지
-	
 	/**
 	 * package 메뉴바를 눌렀을 때 9개 리스트 뿌려주기
 	 * */
@@ -465,10 +402,10 @@ public class UserProductController {
 	 * 패키지DTO
 	 * */
 	@RequestMapping("showPackageDetail")
-	public ModelAndView showPackageDetail() {
+	public ModelAndView showPackageDetail(int productNo) {
 		System.out.println("showPackageDetail 메소드");
 		ModelAndView mv = new ModelAndView();
-		Map<String, Object> map = service.getPackageDetail();
+		Map<String, Object> map = service.getPackageDetail(productNo);
 		ProductDTO productDTO = (ProductDTO)map.get("productDTO");
 		List<ProductDTO> list = (List<ProductDTO>)map.get("list");
 		mv.addObject("packageProduct", productDTO);

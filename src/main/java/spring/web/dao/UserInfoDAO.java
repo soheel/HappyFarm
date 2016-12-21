@@ -33,7 +33,7 @@ public interface UserInfoDAO {
 	/**
 	 * 계정찾기(pwd)
 	 * */
-	String searchPwd(String code);
+	String searchPwd(String email);
 	
 	/**
 	 * 로그인하기
@@ -195,5 +195,11 @@ public interface UserInfoDAO {
 	List<MemberDTO> getmyPageMileage6(String email);
 	List<MemberDTO> getmyPageMileage12(String email);
 	List<MemberDTO> getmyPageMileageAll(String email);
+	
+	
+	/**
+	 * 추천받은 회원의 마일리지 500원 증가시키기
+	 * */
+	int modifyRecommandedMember(String email);
 	
 }

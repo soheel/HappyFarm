@@ -57,8 +57,8 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 계정찾기(pwd)
 	 */
 	@Override
-	public String searchPwd(String code) {
-		return sqlSession.selectOne("userInfoMapper.searchPwd", code);
+	public String searchPwd(String email) {
+		return sqlSession.selectOne("userInfoMapper.searchPwd", email);
 	}
 
 	/**
@@ -386,6 +386,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public List<InfomationDTO> infoLoading() {
 		return sqlSession.selectList("userEtcMapper.infoLoading", null, new RowBounds(0, 6));
+	}
+
+	@Override
+	public int modifyRecommandedMember(String email) {
+		return sqlSession.update("userInfoMapper.modifyRecommandedMember", email);
 	}
 
 }

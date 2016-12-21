@@ -22,16 +22,19 @@
 								<div class="col-md-1"></div>
 								<div class="col-md-10">
 									<h2>Find Profile</h2>
-									<form class="find-profile id">
+									<form class="find-profile id" >
 										<div class="form-row form-row-wide">
 											<label for="find_id">
 												아이디 찾기
 												<span class="required">*</span>
 											</label>
-											<input type="text" class="input-text" name="email" id="reg_email" value="" placeholder="NAME" />
-											<input type="text" class="input-text" name="phone" id="reg_phone" value="" placeholder="PHONE NUMBER" />
+											<input type="text" class="input-text" name="name" id="name" value="" placeholder="NAME" />
+											<input type="text" class="input-text" name="phone" id="phone" value="" placeholder="PHONE NUMBER" />
 										</div>
 										<input id = "searchIdButton" type="button" class="button" name="register" value="Find Account" />
+									
+										<div id = "searchIdBox" style = "width:100%; margin-top : 30px; text-align:center;"></div>
+	
 									</form>
 
 									<form class="find-profile pw">
@@ -40,7 +43,7 @@
 												비밀번호 찾기
 												<span class="required">*</span>
 											</label>
-											<input type="email" class="input-text" name="email" id="reg_email" value="" placeholder="EMAIL" />
+											<input type="email" class="input-text" name="email" id="email" placeholder="EMAIL" />
 										</div>
 										<input id = "searchPwdButton" type="button" class="button" name="register" value="Find Account" />
 										

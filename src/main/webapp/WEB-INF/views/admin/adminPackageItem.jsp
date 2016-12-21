@@ -24,11 +24,11 @@
 								<td class="product-price"><span style="font-weight: bold;">${packagelist.productDTO.name }</span>
 									<span value="${packagelist.packageNo }"
 									style="color: pink; cursor: pointer;"
-									name="modifyButtonProduct" data-toggle="modal"
+									name="modifyButtonPackage" data-toggle="modal"
 									data-target="#update">[수정]</span> <span
 									value="${packagelist.packageNo }"
 									style="color: pink; cursor: pointer;"
-									name="deleteButtonProduct">[삭제]</span></td>
+									name="deleteButtonPackage">[삭제]</span></td>
 								<td class="product-producer"><span class="amount">${packagelist.productDTO.price }</span>
 								</td>
 								<td class="product-producer">
@@ -82,11 +82,11 @@
 									<div class="form-row form-row-wide">
 										<label for="reg_password"> 상품검색(이름) <span class="required">*</span>
 										</label> <input type="text" class="input-text" name="search"
-											id="search" /><input type = "button" value = "검색" name = "productSearch">
+											/><input type = "button" value = "검색" name = "productSearch">
 											<div id = "searchResult"></div>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="reg_password"> 상품 <span class="required">*</span>
+										<label for="reg_password"> 상품(클릭시 삭제) <span class="required">*</span>
 										</label>
 										<div id = "select_product"></div>
 									</div>
@@ -107,7 +107,7 @@
 <!-- update Modal -->
 <div class="modal fade" id="update" role="dialog">
 	<div class="modal-dialog">
-		<form action="" method="">
+		<form action="<c:url value='/manageController/packageModifyManage'/>" method = "post" enctype="multipart/form-data">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
@@ -131,22 +131,26 @@
 									</div>
 									<div class="form-row form-row-wide">
 										<label for="package_unit"> 사진 <span class="required">*</span>
-										</label> <input type="file" name="photo" id="photo" />
+										</label> <input type="file" name="file"/>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="package_photo"> 설명 <span class="required">*</span>
-										</label> <input type="text" class="input-text" name="content"
-											id="content" />
+										<label for="package_unit"> 설명 이미지 <span class="required">*</span>
+										</label> <input type="file" name="file"/>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="reg_password"> 상품검색 <span class="required">*</span>
-										</label> <input type="text" class="input-text" name="search"
-											id="search" />
+										<label for="reg_password"> 상품검색(이름) <span class="required">*</span>
+										</label> <input type="text" class="input-text" name="search2"
+											/><input type = "button" value = "검색" name = "productSearch2">
+											<div id = "searchResult2"></div>
 									</div>
 									<div class="form-row form-row-wide">
-										<label for="reg_password"> 상품 <span class="required">*</span>
-										</label> <input type="text" class="input-text" name="item" id="item" />
+										<label for="reg_password"> 상품(클릭시 삭제) <span class="required">*</span>
+										</label>
+										<div id = "select_product2"></div>
 									</div>
+									<input type = "hidden" name = "no">
+									<input type = "hidden" name = "profile">
+									<input type = "hidden" name = "desc">
 								</div>
 								<div class="col-md-1"></div>
 							</div>

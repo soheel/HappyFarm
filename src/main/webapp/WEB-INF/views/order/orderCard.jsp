@@ -17,7 +17,7 @@
 	<div class="commerce single-product noo-shop-main">
 		<div class="container">
 			<div class="row">
-				<form action = "<c:url value = '/userProductController/pay'/>" method = "post">
+				<form action = "<c:url value = '/userProductController/pay'/>" method = "post" onSubmit='return orderCheck()'>
 				<!-- 상품 하나하나 -->
 					<div class="col-md-12 order_check_border">
 						<div class="col-md-2">
@@ -37,7 +37,7 @@
 							</p>
 							<p>
 							<!-- PurchaseDTO의 price -->
-							<input type = "hidden" name = "price" value = "${totalPrice}">
+							<input type = "hidden" id = "totalPrice" name = "price" value = "${totalPrice}">
 								총 금액 : <span class="order_check_total">${totalPrice} (배송비 2500원이 포함된 금액입니다.)</span>
 							</p>
 						</div>
@@ -64,7 +64,7 @@
 						</p>
 						<p>
 						<!-- PurchaseOrderDTO의 name -->
-							수취인 : <span class="addr_check_name"> <input type="text"
+							수취인 : <span class="addr_check_name"> <input id = "addressee" type="text"
 								name="name">
 							</span>
 						</p>
@@ -87,8 +87,8 @@
 							<select name = "phone">
 							<option>010</option><option>011</option><option>016</option>
 							<option>017</option><option>018</option><option>019</option>
-							</select> - <input size = "5" type="text" name="phone">
-								- <input size = "5" type="text" name="phone">
+							</select> - <input size = "5" type="text" name="phone" id = "phone1">
+								- <input size = "5" type="text" name="phone" id = "phone2">
 							</span>
 						</p>
 						<p>
@@ -117,18 +117,20 @@
 					
 					<div class="col-md-12 payment_check_border">
 						<p>
-							<span class="payment_title">&lt;마일리지&gt;</span>
+							<span class="payment_title">&lt;기부포인트&gt;</span>
 						</p>
 						<p>
-							보유 마일리지 : <span value='${mileage}'><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
+							<input type = "hidden" value = "${mileage}" id = "hiddenMileage"/>
+							보유 기부포인트 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
 							<!-- PurchaseDTO의 discount -->
-							마일리지 사용 : <input id = "useMileage" name="discount" type ="number" size = "8"><span>(1000원 단위로 사용이 가능합니다.)</span>
+							기부포인트 사용 : <input id = "useMileage" name="discount" type ="number" value = "0" size = "8"><span>(1000원 이상부터 사용이 가능합니다.)</span><br>
+							<span>[결제 금액의 20% 까지만 기부포인트로 결제 가능합니다.]</span>
 						</p>
 					</div>
 
 					<div class="col-md-12">
 						<div class="col-md-6 mileage_check_border">
-						<h3>총 금액의 5%인<br> <span class="amount"></span><fmt:formatNumber value="${totalPrice * 0.05 }" pattern="#,###"/> 원이 기부됩니다</h3>
+						<h3>총 금액의 5% 인<br> <span class="amount"></span><fmt:formatNumber value="${totalPrice * 0.05 }" pattern="#,###"/> 원이 기부됩니다</h3>
 						</div>
 						<div class="col-md-6 final_check_border">
 							<p>

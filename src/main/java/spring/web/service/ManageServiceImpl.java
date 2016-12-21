@@ -16,6 +16,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -39,7 +40,19 @@ public class ManageServiceImpl implements ManageService {
 	public int productRegisterManage(ProductDTO productDTO) {
 		return manageDao.productRegisterManage(productDTO);
 	}
-
+	@Override
+	public int productNoFind(String name) {
+		return manageDao.productNoFind(name);
+	}
+	
+	/**
+	 * 개별상품관리 등록(유기농 인증 번호 )
+	 * */
+	@Override
+	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO) {
+		return manageDao.productCertiRegisterManage(productCertificationDTO);
+	}
+	
 	/**
 	 * 개별상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 해당하는 제품의 정보를 select한다.
 	 * 
@@ -83,8 +96,21 @@ public class ManageServiceImpl implements ManageService {
 	
 	/**세트 상품 등록*/
 	@Override
-	public int packageRegisterManage(Map<String, Object> packageRegister) {
-		return manageDao.packageRegisterManage(packageRegister);
+	public int packageRegisterManage(PackageDTO packageDTO, List<Integer> list) {
+		int result = manageDao.packageRegisterManage(packageDTO);
+		if(result >= 1) {
+			int recentPackageNo = manageDao.getRecentPackageNo();
+			System.out.println("recentPackageNo : " + recentPackageNo);
+			
+			for(int productNo : list) {
+				int result2 = manageDao.packageProductRegisterManage(recentPackageNo, productNo);
+				
+				if(result2 < 1) {
+					return 0;
+				}
+			}
+		}
+		return 1;
 	}
 	
 	
@@ -96,29 +122,27 @@ public class ManageServiceImpl implements ManageService {
 	public List<ProductDTO> packageSearchProduct(String productname) {
 		return manageDao.packageSearchProduct(productname);
 	}
-	/**
-	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	 */
-	/*@Override
-	public ProductDTO packageInfoMangage(int packagePk) {
-		return manageDao.packageInfoMangage(packagePk);
-	}*/
-	
-	@Override
-	public ProductDTO packageInfoMangage(String productno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 
 	/**
 	 * 세트상품관리 수정
-	 * 수정폼을 div로 띄워줌
 	 * */
 	@Override
-	public int packageModifyManage(Map<String, Object> modifyinfo) {
-		return manageDao.packageModifyManage(modifyinfo);
+	public int packageModifyManage(ProductDTO product, String products) {
+		// 1. update product
+		int resultUpdate = manageDao.packageModifyManage(product);
+		// 2. delete package
+		int resultDelete = manageDao.packageModifyDeleteManage(product.getNo());
+		// 3. insert package
+		String[] str = products.split(",");
+		for(String s : str) {
+			int i = Integer.parseInt(s);
+			int resultInsert = manageDao.packageModifyInsertManage(product.getNo(), i);
+			if(resultInsert < 1) {
+				return 0;
+			}
+		}
+		return 1;
 	}
 	/**
 	 * 세트상품관리 삭제
@@ -325,4 +349,15 @@ public class ManageServiceImpl implements ManageService {
 	public List<HashMap<String, String>> getSalesProduct() {
 		return manageDao.getSalesProduct();
 	}
+
+	@Override
+	public Map<String, Object> packageModifyShowManage(int no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		PackageDTO packageDTO = manageDao.getPackageByPackageNo(no);
+		List<Integer> productList = manageDao.getPackageProductNo(no);
+		map.put("package", packageDTO);
+		map.put("productList", productList);
+		return map;
+	}
+	
 }

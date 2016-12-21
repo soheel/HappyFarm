@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!doctype html>
 <html lang="en-US">
@@ -67,18 +68,62 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#useMileage").keyup(function(){
-				//alert(11);
-				var discount = $("#useMileage").val();
-				//alert(discount);
-				var point = $("#amount").attr("value");
-				//alert(point)
-				var total= point-discount;
-				$("#amount").html(total);
-			});
-		});
-	</script>
 	
+		$(document).ready(function(){
+			
+			/* 마일리지 적은만큼 최종 결제금액 수정하기 */
+			$("#useMileage").keyup(function(){
+				var discount = $("#useMileage").val();
+				var point = $("#totalPrice").val();
+				var total= point-parseInt(discount);
+				var result = numberWithCommas(total) + " 원";
+				$("#amount").html(result);
+				
+				if(discount > parseInt(point)) {
+					$("#amount").html(0);
+				}
+			});
+		})
+		
+		function orderCheck() {
+			var myMileage = parseInt(document.getElementById("hiddenMileage").value);
+			
+			// 마일리지 체크
+			if(document.getElementById("useMileage").value != 0) {
+				if(document.getElementById("useMileage").value < 1000 ||
+						document.getElementById("useMileage").value > myMileage ) {
+					alert("사용가능한 마일리지를 입력하세요")
+					return false;
+				}
+				var totalPrice = parseInt(document.getElementById("totalPrice").value);
+				if(document.getElementById("useMileage").value > totalPrice * 0.2) {
+					alert("총 금액의 20% 까지만 기부 포인트로 결제하실 수 있습니다.")
+					return false;
+				}
+			}
+			
+			// 수취인 체크 (addressee)
+			if(document.getElementById("addressee").value == "") {
+				alert("수취인을 입력하세요")
+				return false;
+			}
+			
+			// 주소 체크(sample6_postcode, sample6_address, sample6_address2)
+			if(document.getElementById("sample6_postcode").value == "" || document.getElementById("sample6_address").value == "" ||
+					document.getElementById("sample6_address2").value == "") {
+				alert("주소를 빠짐없이 입력하세요");
+				return false;
+			}
+			
+			// 연락처 체크(phone1, phone2)
+			if(document.getElementById("phone1").value == "" || document.getElementById("phone2").value == "") {
+				alert("연락처를 입력하세요");
+				return false;
+			}
+			
+			return true;
+		}
+		
+	</script>
 </body>
 </html>
