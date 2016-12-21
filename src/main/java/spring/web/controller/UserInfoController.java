@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import oracle.net.aso.s;
 import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
+import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.MemberRequestDTO;
 import spring.web.dto.ProducerDTO;
@@ -41,7 +42,10 @@ public class UserInfoController {
 	 * 로그인을 클릭하면 로그인 창으로 이동
 	 * */
 	@RequestMapping("loginPage")
-	public String loginPage() {
+	public String loginPage(HttpSession session) {
+		if(session.getAttribute("email") != null) {
+			return "redirect:mainLoading";
+		}
 		return "login/login";
 	}
 	
@@ -61,7 +65,6 @@ public class UserInfoController {
 		 * -> ModelAndView에 담아서 메인화면 이동
 		 * */
 		ModelAndView mv = new ModelAndView();
-
 		return mv;
 	}
 	
@@ -158,65 +161,34 @@ public class UserInfoController {
 	
 	/**
 	 * 로그인
-	 * 만약 아이디가 admin이면 관리자 페이지 로딩
+	 * @throws Exception 
 	 * */
 	@RequestMapping("login")
-	public ModelAndView login(MemberDTO memberDto, HttpSession session) {
-		/**
-		 * 로그인하기 - 본인의 아이디나 비밀번호를 입력한 후
-		 * db에 존재하면 해당 아이디를 리턴해옴
-		 * 존재하지 않을 경우 errorPage로 이동
-		 * 
-		 * 존재할 경우
-		 * -> 아이디가 'admin'일 경우 ,admin-main page로 이동
-		 *    일반 회원일 경우, user-main page로 이동
-		 * */
-		
+	public String login(HttpServletRequest request, MemberDTO memberDto, HttpSession session) throws Exception {
 		System.out.println("UserInfoController의 login 메소드");
-		ModelAndView mv = new ModelAndView();
 		MemberDTO result = userService.login(memberDto);
-		
-		if(result!=null){
-			if(memberDto.getEmail().equals("admin")){
-				/**
-				 * 관리자 메인창으로 이동
-				 *	ModelAndView의 setViewName으로 이동페이지 지정
-				 **/
-				mv.setViewName("admin/admin");
-				session.setAttribute("email", memberDto.getEmail());
-				return mv;
-				
-			}else{
-				System.out.println("login 메소드 else");
-				//user메인 창으로 이동
-				/**
-				 * user-main page : 생산자에 대한 정보 , 인기 상품 3개에 대한 정보, 
-				 * 기부정보(저번달 총 모금액,이번달 총 모금액)
-				 * 해당 user에 대한 정보를 session에 저장해서
-				 * ModelAndView에 저장한 후 view로 이동
-				 */
-				Map<String, Object> map = userService.userMainLoading();
-				mv.setViewName("main/index");
-				
-				List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
-				System.out.println(list.get(0).getName());
-				List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
-				System.out.println(list2.get(0).getName());
-				int price = (Integer)map.get("previousMonthDonationPrice");
-				System.out.println(price);
-				
-				mv.addObject("bestProduct", list);
-				mv.addObject("bestProducer", list2);
-				mv.addObject("donationPrice", price);
-				
-				// session 추가하기
-				session.setAttribute("email", memberDto.getEmail());
-				mv.setViewName("main/index");
-			}
+		if(result == null) {
+			request.setAttribute("errorMsg", "회원 정보를 다시 입력해 주세요");
+			throw new Exception();
 		}
-		return mv;
+		session.setAttribute("email", result.getEmail());
+		return "redirect:loginResult";
 	}
 	
+	/**
+	 * 로그인 후 잠시 거쳐갈 메소드
+	 * */
+	@RequestMapping("loginResult")
+	public String loginResult(HttpSession session) {
+		System.out.println("loginResult");
+		String email = (String)session.getAttribute("email");
+		if(email.equals("admin")) {
+			return "redirect:adminPage";
+		}else {
+			return "redirect:mainLoading";
+		}
+	}
+
 	/**
 	 * 로그아웃
 	 * */
@@ -248,20 +220,15 @@ public class UserInfoController {
 	public ModelAndView mainLoading() {
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = userService.userMainLoading();
-		mv.setViewName("main/index");
-		
 		List<ProductDTO> list = (List<ProductDTO>)map.get("bestProduct");
-		//System.out.println("bestProduce list의 size : " + list.size());
-		//System.out.println(list.get(0).getName());
 		List<ProducerDTO> list2 = (List<ProducerDTO>)map.get("bestProducer");
-		//System.out.println(list2.get(0).getName());
 		int price = (Integer)map.get("previousMonthDonationPrice");
-		//System.out.println(price);
-		
+		List<InfomationDTO> infoList = (List<InfomationDTO>)map.get("infoList");
 		mv.addObject("bestProduct", list);
 		mv.addObject("bestProducer", list2);
+		mv.addObject("infoList",infoList);
 		mv.addObject("donationPrice", price);
-		
+		mv.setViewName("main/index");
 		return mv;
 	}
 	
@@ -270,14 +237,8 @@ public class UserInfoController {
 	  * */
 	@RequestMapping("idCheck")
 	public ResponseEntity<Boolean> idCheck(String email) {
-		/**
-		 * 회원이 회원가입을 할 때, 아이디 중복확인
-		 * 해당 아이디가 존재할 경우 ResponseEntity<boolean> -> true
-		 * 해당 아이디가 존재하지 않을 경우 ResponseEntity<boolean> -> false
-		 * */
 		boolean exist = userService.checkId(email);
 		ResponseEntity<Boolean> result = new ResponseEntity<Boolean>(exist, HttpStatus.OK);
-		
 		return result;
 	}
 	
