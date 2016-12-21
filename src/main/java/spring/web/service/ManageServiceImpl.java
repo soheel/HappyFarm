@@ -100,10 +100,17 @@ public class ManageServiceImpl implements ManageService {
 	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
 	 * 해당하는 제품의 정보를 select한다.
 	 */
-	@Override
+	/*@Override
 	public ProductDTO packageInfoMangage(int packagePk) {
 		return manageDao.packageInfoMangage(packagePk);
+	}*/
+	
+	@Override
+	public ProductDTO packageInfoMangage(String productno) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 
 	/**
 	 * 세트상품관리 수정

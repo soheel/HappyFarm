@@ -309,10 +309,10 @@ public class ManageController {
 		 */
 		
 		//수정폼에서 상품 검색하기 위해서 필요한 메소드
-		ProductDTO searchlist = packageSearchProduct(name);
+		//ProductDTO searchlist = packageSearchProduct(name);
 		
 		modifyinfo.put("productDTO", productDTO);
-		modifyinfo.put("searchlist", searchlist);
+		//modifyinfo.put("searchlist", searchlist);
 		
 		int result = manageService.packageModifyManage(modifyinfo);
 		

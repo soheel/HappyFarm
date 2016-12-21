@@ -1,5 +1,8 @@
 package spring.web.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,8 +10,10 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -577,16 +582,22 @@ public class UserInfoController {
 		 * 리턴받은 값을 바로 view로 보내준다.
 		 * */
 		String email = (String)session.getAttribute("email");
-		Map<String, Object> map = userService.myPageQna(email);
-		List<QnaDTO> qnaList= (List<QnaDTO>)map.get("QnaList");
-		String answer = (String)map.get("answer");
-		
+		List<QnaDTO> list = userService.myPageQna(email);
+		System.out.println(list.size());
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("qnaList", qnaList);
-		mv.addObject("answer", answer);
+		mv.addObject("list", list);
 		mv.setViewName("account/myInfoQNA");
-		
 		return mv;
+	}
+	
+	@RequestMapping(value="showAnswerByNo", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String showAnswerByNo(int no) throws UnsupportedEncodingException{
+		
+		System.out.println("no :"+no);
+		String answer = userService.getAnswerByNo(no);
+		System.out.println("answer :"+answer);
+		return answer;
 	}
 	
 	
