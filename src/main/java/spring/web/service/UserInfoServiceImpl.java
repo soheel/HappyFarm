@@ -25,7 +25,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Autowired
 	private UserInfoDAO userInfoDao;
 	
-	
 	/**
 	 * 회원가입
 	 * */

@@ -229,8 +229,7 @@ public class UserInfoController {
 		 * (관리자일 경우도 user의 main페이지로 이동)
 		 * */
 		session.invalidate();
-		
-		return "redirect:mainLoading";
+		return "redirect:loginPage";
 	}
 	
 	/**
