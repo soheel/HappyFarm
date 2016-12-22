@@ -169,7 +169,7 @@
 				/* 장바구니 추가 */
 				$(document).on("click", "#addToCart",function() {
 					$.ajax({
-						url : "<c:url value='/userProductController/addCartAop'/>",
+						url : "<c:url value='/userProductController/addCart'/>",
 						type : "post",
 						data : "productNo=" + $("#product_no").val() + "&num=" + $("#product_num").val(),
 						dataType : "text",
@@ -190,6 +190,7 @@
 				
 				/* 장바구니추가(direct) */
 				$(document).on("click", "#addToCartDirect",function() {
+					alert(1);
 					$.ajax({
 						url : "<c:url value='/userProductController/addCartDirect'/>",
 						type : "post",

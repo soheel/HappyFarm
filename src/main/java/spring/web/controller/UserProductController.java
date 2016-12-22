@@ -178,7 +178,7 @@ public class UserProductController {
 		 * 1. 현재 상품에 관한 상품번호를 인수로 받는다.
 		 * 2. 회원의 아이디에 해당하는 cart 테이블에 해당 상품을 insert한다. (개수는 1)
 		 * */
-		System.out.println("addCartDirectAop");
+		System.out.println("addCartDirect");
 		int result=0;
 		String email = (String)session.getAttribute("email");
 		cart.setEmail(email);

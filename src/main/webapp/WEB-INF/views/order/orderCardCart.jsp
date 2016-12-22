@@ -21,7 +21,7 @@
 				
 				<c:forEach items="${productList}" var="product" varStatus="status">
 					<!-- 상품 하나하나 -->
-						<div class="col-md-12 order_check_border">
+						<div class="col-md-12 order_check_border box_shadow">
 							<div class="col-md-2">
 								<img src="<c:url value = '/resources/img/product/'/>${product.profile}">
 							</div>
@@ -46,7 +46,7 @@
 				</c:forEach>
 				
 
-					<div class="col-md-12 addr_check_border">
+					<div class="col-md-12 addr_check_border box_shadow">
 						<p>
 							<span class="addr_check_title">&lt;배송지 정보 입력&gt;</span>
 						</p>
@@ -86,7 +86,7 @@
 						</p>
 					</div>
 
-					<div class="col-md-12 payment_check_border">
+					<div class="col-md-12 payment_check_border box_shadow">
 						<p>
 							<span class="payment_title">&lt;결제 정보 입력&gt;</span>
 						</p>
@@ -103,7 +103,7 @@
 						</p>
 					</div>
 					
-					<div class="col-md-12 payment_check_border">
+					<div class="col-md-12 payment_check_border box_shadow">
 						<p>
 							<span class="payment_title">&lt;기부포인트&gt;</span>
 						</p>
@@ -111,16 +111,16 @@
 							<input type = "hidden" value = "${mileage}" id = "hiddenMileage"/>
 							보유 기부포인트 : <span><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
 							<!-- PurchaseDTO의 discount -->
-							기부포인트 사용 : <input id = "useMileage" name="discount" type = "number" value = "0" size = "8"><span>(1000원 이상부터 사용이 가능합니다.)</span><br>
-							<span>[결제 금액의 20% 까지만 기부포인트로 결제 가능합니다.]</span>
+							기부포인트 사용 : <input id = "useMileage" name="discount" type = "number" value = "0" size = "8"><span class = "mileage_desc">(1000원 이상부터 사용이 가능합니다.)</span><br>
+							<span class = "mileage_desc">[결제 금액의 20% 까지만 기부포인트로 결제 가능합니다.]</span>
 						</p>
 					</div>
 
 					<div class="col-md-12">
-						<div class="col-md-6 mileage_check_border">
+						<div class="col-md-6 mileage_check_border order_final_info">
 						<h3>총 금액의 5%인<br> <span class="amount"></span><fmt:formatNumber value="${totalPrice * 0.05 }" pattern="#,###"/> 원이 기부됩니다</h3>
 						</div>
-						<div class="col-md-6 final_check_border">
+						<div class="col-md-6 final_check_border box_shadow order_final_info">
 							<p>
 								<input type = "hidden" id = "totalPrice" name = "price" value = "${totalPrice}">
 								최종 결제 금액 <h3><span id = "amount" class="amount"><fmt:formatNumber value="${totalPrice }" pattern="#,###" /> 원</span></h3>

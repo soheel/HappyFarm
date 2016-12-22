@@ -62,6 +62,7 @@
 													<div class="noo-action" id="addToCartDirect">
 														<input type = "button" value="Add to cart" class="single_add_to_cart_button button">
 													</div>
+													<input type="hidden" value="${list.no }">
 												</div>
 											</div>
 										</div>
