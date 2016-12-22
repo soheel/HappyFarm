@@ -35,6 +35,8 @@ public interface UserEtcService {
 	 * @return
 	 */
 	List<QnaDTO> qnaLoading();
+	
+	String answerQna(int no);
 
 	/**
 	 * 행사 정보 로딩
@@ -74,7 +76,40 @@ public interface UserEtcService {
 	 */
 	
 	/**
+	 * 행사 덧글 입력
+	 * @param comment
+	 * @param communityNo
+	 * @return
+	 */
+	int communityReply(String comment, int communityNo, String email);
+	
+	/**
+	 * 행사 덧글 삭제
+	 * @param no
+	 * @return
+	 */
+	int communityReplyDelete(int no);
+	
+	/**
+	 * admin 행사 덧글 입력
+	 * @param no
+	 * @param comment
+	 * @param communityNo
+	 * @return
+	 */
+	int communityReplyInsert(int no, String comment, int communityNo, String email);
+	
+	/**
+	 * 행사 덧글 수정
+	 * @param no
+	 * @param comment
+	 * @return
+	 */
+	int communityReplyUpdate(int no, String comment);
+	
+	/**
 	 * 기부단체정보
 	 * */
 	DonationOrgDTO donationLoading2();
+
 }
