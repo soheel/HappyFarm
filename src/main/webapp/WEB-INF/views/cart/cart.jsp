@@ -53,7 +53,7 @@
 										<a href="shop-detail.html">${product.name} </a> 
 									</td>
 									<td class="product-price">
-										<span class="amount">${product.price}</span> 
+										<span class="amount"><fmt:formatNumber value = '${product.price}'/></span> 
 									</td>
 									<td class="product-quantity">
 										<div class="quantity">
@@ -62,7 +62,7 @@
 										</div>
 									</td>
 									<td class="product-subtotal">
-										<span class="amount">${product.cartDto.num * product.price}</span> 
+										<span class="amount"><fmt:formatNumber value = '${product.cartDto.num * product.price}'/></span> 
 									</td>
 									<td class="product-remove">
 										<a href="<c:url value='/userInfoController/myCartDelete?name='/>${product.name}" id = "cart_remove" class="remove">&times;</a>
@@ -76,7 +76,7 @@
 										<div class="cart-action">
 											<p>
 												<input type = "hidden" name = "totalPrice" value = "${totalPrice }">
-												<label>총 금액 : <span id = "totalPrice"><c:url value='${totalPrice}'/></span></label>
+												<label>총 금액 : <span id = "totalPrice"><fmt:formatNumber value='${totalPrice}'/></span>원</label>
 											</p>
 											<input id = "selectOrder" type="submit" class="button" name="update_cart" value="선택상품주문"/>
 										</div>

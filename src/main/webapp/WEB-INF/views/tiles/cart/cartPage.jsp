@@ -68,21 +68,21 @@
 	<script type="text/javascript">
 	$(function() {
 		var num = 0;
-		var totalPrice = $("#totalPrice").text();
+		var totalPrice = uncomma($("#totalPrice").text());
 
 		/* 물건 개수를 수정할 때마다 가격 변경 */
 		$(".quantity input[type=number]").change(function() {
 			num = $(this).next().val(); /* 처음 저장한 개수 */
-			var price = $(this).parent().parent().prev().children().text(); /* 상품의 개당 가격 */
-			var changedNum = $(this).val() - num;
+			var price = uncomma($(this).parent().parent().prev().children().text()); /* 상품의 개당 가격 */
+			var changedNum = parseInt($(this).val()) - parseInt(num);
 			$(this).next().val(parseInt(num) + parseInt(changedNum));
-			var totalPrice = $("#totalPrice").text();
-			$(this).parent().parent().next().children().text($(this).val() * $(this).parent().parent().prev().children().text());
+			var totalPrice = uncomma($("#totalPrice").text());
+			$(this).parent().parent().next().children().text(numberWithCommas(parseInt($(this).val()) * uncomma($(this).parent().parent().prev().children().text())));
 			/* 변경될 때마다 totalPrice 변경해주기 */
 			/* var chagnedtotalPrice = $("#totalPrice").text() + (changedNum * price);
 			changedPrice를 $("#totalPrice")에 넣어주기 */
-			$("#totalPrice").text((parseInt(totalPrice) + (changedNum * price)));
-			$("input[name=totalPrice]").val((parseInt(totalPrice) + (changedNum * price)));
+			$("#totalPrice").text(numberWithCommas(parseInt(totalPrice) + (changedNum * price)));
+			$("input[name=totalPrice]").val(numberWithCommas(parseInt(totalPrice) + (changedNum * price)));
 		});
 		
 		/* 상품별 체크박스 */

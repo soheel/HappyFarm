@@ -190,7 +190,6 @@
 				
 				/* 장바구니추가(direct) */
 				$(document).on("click", "#addToCartDirect",function() {
-					alert(1);
 					$.ajax({
 						url : "<c:url value='/userProductController/addCartDirect'/>",
 						type : "post",
@@ -256,9 +255,16 @@
 			            }
 			        }).open();
 			    }
-			
+
+			/* 숫자 3자리마다 콤마 찍기 */
 			function numberWithCommas(x) {
 			    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			
+			//콤마풀기
+			function uncomma(str) {
+			    str = String(str);
+			    return parseInt(str.replace(/[^\d]+/g, ''));
 			}
 			
 			
