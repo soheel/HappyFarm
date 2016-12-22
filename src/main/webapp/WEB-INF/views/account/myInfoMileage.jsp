@@ -70,8 +70,8 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>사용 날짜</th>
-			<th>적립 내역</th>
+			<th>적립 날짜</th>
+			<th>적립 금액</th>
 			<th>적립 사유 </th>
 		</tr>
 	</thead>

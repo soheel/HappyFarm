@@ -19,7 +19,7 @@
 							<div class="col-sm-12">
 								<div class="noo-product-grid-wrap commerce product-style">
 									<div class="noo-sh-title">
-										<h2>진행중인 모임들</h2>
+										<h2>진행중인 행사들</h2>
 										<p>각 생산자들이 주최하고있는 모임에 참여하세요!</p>
 									</div>
 									<div class="noo-product-grid products row product-grid noo-grid-4">
@@ -49,7 +49,7 @@
 								  
 								<div class="noo-product-grid-wrap commerce product-style">  
 									<div class="noo-sh-title">  
-									<h2>진행완료된 모임들</h2>  
+									<h2>진행완료된 행사들</h2>  
 								</div>  
 								<div class="noo-product-grid products row product-grid noo-grid-4">  
 									<c:forEach items="${communityPastList}" var="past">  
