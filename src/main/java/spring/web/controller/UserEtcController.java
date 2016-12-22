@@ -138,7 +138,7 @@ public class UserEtcController {
 	 * */
 	@RequestMapping("qnaWrite")
 	@ResponseBody
-	public int qnaWrite(HttpServletRequest request, String desc) throws Exception{
+	public int qnaWrite(HttpServletRequest request, String desc) throws Throwable{
 		/**
 		 * 1.Q&A write폼에서 등록을 누르면 정보를 받아와서
 		 * 2.정보를 insert한 후 
@@ -148,16 +148,19 @@ public class UserEtcController {
 		HttpSession session = request.getSession();
 		String email = (String)session.getAttribute("email");
 		
+		if(email==null){
+			//throw new Exception("로그인 후 이용 가능합니다.");
+			//email="로그인필요";
+			email = " ";
+		}
+		
 		QnaDTO qnaDto = new QnaDTO();
 		qnaDto.setDesc(desc);
 		qnaDto.setEmail(email);
 		
 		int result = userEtcService.registerQnA(qnaDto);
 		System.out.println("result = "+result);
-		if(result==0){
-			throw new Exception();
-		}
-		
+	
 		return result;
 		
 	}
