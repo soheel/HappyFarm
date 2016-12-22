@@ -159,7 +159,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-default">수정</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button id = "modify_close" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</form>

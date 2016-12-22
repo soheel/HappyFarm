@@ -14,6 +14,7 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 
 public interface ManageService {
@@ -236,9 +237,20 @@ public interface ManageService {
 	 * */
 	List<HashMap<String, String>> getSalesProduct();
 
+	/**
+	 * 주문관리
+	 * */
+	Map<String, List<PurchaseDTO>> getPurchaseOrder();
 	
-
+	/**
+	 * 주문관리
+	 * 입금확인된 구매내역의 상태를 결제완료로 변경
+	 * */
+	int depositCompleteModify(int purchaseNo);
 	
-	
-	
+	/**
+	 * 주문관리
+	 * 환불/반품/교환 신청된 구매내역의 상태를 완료로 변경
+	 * */
+	int etcCompleteModify(int purchaseNo);
 }

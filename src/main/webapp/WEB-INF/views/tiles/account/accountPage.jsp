@@ -51,10 +51,10 @@
 						<li class="dropdown">
 							<a href="<c:url value="/account/shopping"/>" class="dropdown-toggle" data-toggle="dropdown">쇼핑내역<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown-header">원하는 메뉴를 선택해주세요.</li>
-								<li><a href="<c:url value="/userInfoController/myPageOrderList"/>">주문 / 배송 조회</a></li>
-								<li><a href="<c:url value="/userInfoController/myPageCancelList"/>">취소 / 반품 / 교환</a></li>
-								<li><a href='<c:url value="/userInfoController/myPageRefundList"/>'>환불내역</a></li>
+								<li class="dropdown-header">원하시는 메뉴를 선택해주세요.</li>
+								<li><a href="<c:url value="/userInfoController/myPageOrderList"/>"> 주문 / 배송  </a></li>
+								<li><a href="<c:url value="/userInfoController/myPageCancelList"/>"> 반품 / 교환 </a></li>
+								<li><a href='<c:url value="/userInfoController/myPageRefundList"/>'> 환불 </a></li>
 							</ul>
 						</li>
 						<li>
@@ -101,10 +101,10 @@
 			<div class="col-lg-3"></div>
 	    	<div class="col-lg-6 col-centered">
 				<div class="form-row form-row-wide dialog">
-					<form class="find-profile order" method="post">
-						<input type="radio" name="type" value="refund" class="refundBtn">환불
-						<input type="radio" name="type" value="return" class="refundBtn">반품
-						<input type="radio" name="type" value="change" class="refundBtn">교환
+					<form class="find-profile order" method="post">	
+						<input type="radio" name="type" value="refund" class="refundBtn">환불 신청 
+						<input type="radio" name="type" value="return" class="refundBtn">반품 신청 
+						<input type="radio" name="type" value="change" class="refundBtn">교환 신청 
 						<br>
 						<label for="find_id">
 						사유
@@ -185,10 +185,10 @@
 		           data:"no="+no,
 		           success:(function(result){
 		        	   if(result==1){
-							alert("삭제성공");
+							alert("목록에서 주문이 삭제되었습니다.");
 							location.href="<c:url value='/userInfoController/searchOrderList'/>";
 						}else{
-							alert("삭제실패");
+							alert("삭제되지 않았습니다. 다시 시도해주시기 바랍니다.");
 						}
 		           }),
 		           error: function(err){
@@ -202,7 +202,7 @@
 		   	
 		   	$(document).on("click","#refundCheckBtn", function(){
 		   		var no = $(this).attr("value");
-		   		
+		   		//alert(no);
 		   		$("#requsetChange").click(function(){
 				   		 var state = $(".refundBtn:checked").val();
 				   		//alert(state); 
@@ -219,10 +219,10 @@
 		           data:"no="+no+"&state="+state+"&desc="+desc+"&pwd="+pwd,
 		           success:(function(result){
 		        	   if(result==1){
-							alert("성공");
+							//alert("성공");
 							location.href="<c:url value='/userInfoController/myPageOrderList'/>";
 						}else{
-							alert("실패");
+							//alert("실패");
 						}
 		           })
 		  			})

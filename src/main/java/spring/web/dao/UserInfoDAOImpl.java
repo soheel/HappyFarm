@@ -200,7 +200,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 주문/배송 조회에서 주문취소 버튼 클릭했을 때 해당 목록 삭제
 	 */
 	public int deleteOrderProduct(int no) {
-		
 		return sqlSession.delete("userInfoMapper.deleteOrderList", no);
 	};
 	

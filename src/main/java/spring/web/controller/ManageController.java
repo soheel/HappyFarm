@@ -36,6 +36,7 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.ManageService;
 
@@ -235,7 +236,6 @@ public class ManageController {
 		 * * 정보 관련 :  package테이블의 package_name, 세트 가격은 product에 있는 price, 포함상품은package_product에 있는 product_no를 다 찾는다.
 		 */
 		List<PackageDTO> packagelist = manageService.packageManage();
-		System.out.println(packagelist.size() + "!!!");
 		List<String> packageProductList = new ArrayList<String>();
 		String products = "";
 		for(PackageDTO packageDTO : packagelist) {
@@ -974,4 +974,48 @@ public class ManageController {
 		}
 		return "forward:donationOrgManage";
 	}
+	
+	/**
+	 * 주문관리 눌렀을 경우
+	 * 주문상태가 '주문완료'인 주문 내역만 가져온다.
+	 * */
+	@RequestMapping("orderManage")
+	public ModelAndView orderManage() {
+		System.out.println("orderManage");
+		Map<String, List<PurchaseDTO>> map = manageService.getPurchaseOrder();
+		List<PurchaseDTO> orderCompleteList = (List<PurchaseDTO>)map.get("orderCompleteList");
+		List<PurchaseDTO> payCompleteList = (List<PurchaseDTO>)map.get("payCompleteList");
+		List<PurchaseDTO> etcAskList = (List<PurchaseDTO>)map.get("etcAskList");
+		List<PurchaseDTO> etcCompleteList = (List<PurchaseDTO>)map.get("etcCompleteList");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("orderCompleteList", orderCompleteList);
+		mv.addObject("payCompleteList", payCompleteList);
+		mv.addObject("etcAskList", etcAskList);
+		mv.addObject("etcCompleteList", etcCompleteList);
+		mv.setViewName("admin/adminOrder");
+		return mv;
+	}
+	
+	/**
+	 * 주문관리에서 입금을 확인한 후 주문완료상태에서 결제완료 상태로 변경
+	 * */
+	@RequestMapping("orderDepositModifyManage")
+	@ResponseBody
+	public int orderDepositModifyManage(int purchaseNo) {
+		System.out.println("orderDepositModifyManage");
+		int result = manageService.depositCompleteModify(purchaseNo);
+		return result;
+	}
+	
+	/**
+	 * 주문관리에서 환불/반품/교환 신청상태에서 완료 상태로 변경
+	 * */
+	@RequestMapping("orderEtcModifyManage")
+	@ResponseBody
+	public int orderEtcModifyManage(int purchaseNo) {
+		System.out.println("orderEtcModifyManage");
+		int result = manageService.etcCompleteModify(purchaseNo);
+		return result;
+	}
+	
 }

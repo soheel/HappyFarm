@@ -36,6 +36,44 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public Map<String, Object> communityDetail(int no) {
 		return userEtcDao.communityDetail(no);
 	}
+	
+	/**
+	 * 모임 덧글 작성
+	 */
+	@Override
+	public int communityReply(String content, int communityNo, String email) {
+		CommunityCommentDTO dto = new CommunityCommentDTO(content, communityNo, email);
+		return userEtcDao.communityReply(dto);
+	}
+	
+	/**
+	 * 모임 덧글 삭제
+	 */
+	@Override
+	public int communityReplyDelete(int no) {
+		return userEtcDao.communityReplyDelete(no);
+	}
+	
+	
+	/**
+	 * 모임 덧글 추가
+	 */
+	@Override
+	public int communityReplyInsert(int no, String content, int comunityNo, String email) {
+		CommunityCommentDTO dto = new CommunityCommentDTO(no, content, comunityNo, email);
+		return userEtcDao.communityReplyInsert(dto);
+	}
+	
+	/**
+	 * 모임 덧글 수정
+	 */
+	@Override
+	public int communityReplyUpdate(int no, String content) {
+		CommunityCommentDTO dto = new CommunityCommentDTO(no, content);
+		return userEtcDao.communityReplyUpdate(dto);
+	}
+
+	
 	/**
 	 * Q&A 등록
 	 */
@@ -114,6 +152,4 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public DonationOrgDTO donationLoading2() {
 		return userEtcDao.donationLoading2();
 	}
-	
-
 }

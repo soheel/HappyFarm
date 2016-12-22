@@ -67,6 +67,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#qnaRegisterBtn").click(function(){
+				
 				var comment = $("#comment").val();
 				//alert(s);
 				//alert(11)
@@ -77,7 +78,9 @@
 			           data:"desc="+comment,
 			           success:(function(result){
 			        	   // $("#a111").html(result);
-			        	   alert(result);
+			        	   if(result==0){
+			        		   location.href="<c:url value='/error/errorPage' />";
+			        	   }
 			        	   location.href="<c:url value='/userEtcController/qnaLoading' />";
 			           }),
 			           error: function(err){

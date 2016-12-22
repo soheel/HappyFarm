@@ -337,10 +337,14 @@ purchase_state_name varchar2(18) not null
 삽입
 insert into purchase_state values(purchase_state_no.nextval, '주문완료');
 insert into purchase_state values(purchase_state_no.nextval, '결제완료');
-insert into purchase_state values(purchase_state_no.nextval, '환불');
-insert into purchase_state values(purchase_state_no.nextval, '반품');
-insert into purchase_state values(purchase_state_no.nextval, '교환');
-insert into purchase_state values(purchase_state_no.nextval, '취소');
+insert into purchase_state values(purchase_state_no.nextval, '환불신청');
+insert into purchase_state values(purchase_state_no.nextval, '반품신청');
+insert into purchase_state values(purchase_state_no.nextval, '교환신청');
+insert into purchase_state values(purchase_state_no.nextval, '취소신청');
+insert into purchase_state values(purchase_state_no.nextval, '환불완료');
+insert into purchase_state values(purchase_state_no.nextval, '반품완료');
+insert into purchase_state values(purchase_state_no.nextval, '교환완료');
+insert into purchase_state values(purchase_state_no.nextval, '취소완료');
 
 -- purchase 테이블--------------------------------------------------------------
 drop table purchase;
@@ -500,8 +504,12 @@ community_comment_no number(5) primary key,
 community_comment_register date,
 community_comment_content varchar2(300),
 community_no number(5) references community(community_no) on delete cascade,
-member_email varchar2(50) references member(member_email) on delete cascade
-community_comment_parent number(5) references community(community_no) on delete cascade
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
+member_email varchar2(50) references member(member_email) on delete cascade,
+community_comment_parent number(5) references community_comment(community_comment_no) on delete cascade
 )
 
 삽입
@@ -573,12 +581,6 @@ member_email varchar2(50) references member(member_email) on delete cascade
 
 -- test
 
-select * from product;
-select * from package;
-select * from member;
+select * from purchase
 
-select distinct k.package_no, p.product_name, p.product_price
-from package k, product p
-where p.product_no = k.package_no
-
-update member set member_mileage = member_mileage-500 where member_email = '박용우'
+update purchase set purchase_state_no = 3 where purchase_no = 24

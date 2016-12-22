@@ -474,14 +474,14 @@ public class UserInfoController {
 		int lastResult = 0;
 		String name=null;
 		if(state.equals("refund")){
-			name="환불";
+			name="환불신청";
 		}else if(state.equals("return")){
-			name="반품";
+			name="반품신청";
 		}else if(state.equals("change")){
-			name="교환";
+			name="교환신청";
 		}
 		int stateNo = userService.getStateNo(name);
-		
+		System.out.println(stateNo+"!!!!!!!!!!!!!!!!!1555555");
 		String email = userService.checkPwd(pwd);
 		if(email==null){
 			throw new Exception("비밀번호가 일치하지 않습니다.");

@@ -237,7 +237,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pc.purchase_date,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name
 		from member m, purchase pc, product pdt, purchase_product pp, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pp.product_no=pdt.product_no and
-			pdt.producer_no=pdc.producer_no and m.member_email=#{email}
+			pdt.producer_no=pdc.producer_no and pc.purchase_state_no=1 and m.member_email=#{email}
 	</select>
 
 
@@ -276,15 +276,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	<!-- 취소/반품/교환 내역 조회 -->
+	<!-- 반품/교환 내역 조회 -->
 
 	<!-- 3개월 -->
 	<select id="getMyPageCancerList3" resultMap="memberDtoJoin" parameterType="String">
 		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
-			pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no &gt;3 and
-			pc.purchase_date between (select sysdate -90 m_day from dual) and sysdate
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no in(4,5,7,8) and
+		pc.purchase_date between (select sysdate -180 m_day from dual) and sysdate
 	</select>
 	
 	<!-- 6개월 -->
@@ -292,7 +292,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
-		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no &gt;3 and
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no in(4,5,7,8) and
 		pc.purchase_date between (select sysdate -180 m_day from dual) and sysdate
 	</select>
 	
@@ -301,7 +301,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
-			pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no &gt;3 and
+			pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no in(4,5,7,8) and
 			pc.purchase_date between (select sysdate -365 m_day from dual) and sysdate
 	</select>
 	
@@ -311,44 +311,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and
 			pc.purchase_state_no=ps.purchase_state_no and pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and
-			m.member_email=#{email} and ps.purchase_state_no &gt;3
+			m.member_email=#{email} and ps.purchase_state_no in(4,5,7,8)
 	</select>
 
 	<!-- 환불내역 -->
 	
 	<!-- 3개월 -->
-	<select id="getMyPageRefundList3" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
+	<select id="getMyPageRefundList3" resultMap="memberDtoJoin" parameterType="String">	
+    select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
-		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3 and
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no in(3,6) and
 		pc.purchase_date between (select sysdate -90 m_day from dual) and sysdate
 	</select>
 	
 	<!-- 6개월 -->
 	<select id="getMyPageRefundList6" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
-		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3 and
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no in(3,6) and
 		pc.purchase_date between (select sysdate -180 m_day from dual) and sysdate
 	</select>
 	
 	<!-- 1년 -->
 	<select id="getMyPageRefundList12" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
-		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3 and
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no in(3,6) and
 		pc.purchase_date between (select sysdate -365 m_day from dual) and sysdate
 	</select>
 	
 	<!-- 전체 -->
 	<select id="getMyPageRefundListAll" resultMap="memberDtoJoin" parameterType="String">
-		select pc.purchase_date,pc.purchase_no,pdt.product_name,pc.purchase_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
+		select pc.purchase_date,pc.purchase_no,pdt.product_name,pdt.product_price,pp.purchase_product_num,pdc.producer_name,ps.purchase_state_name
 		from member m, purchase pc , purchase_product pp, purchase_state ps, product pdt, producer pdc
 		where m.member_email=pc.member_email and pc.purchase_no=pp.purchase_no and pc.purchase_state_no=ps.purchase_state_no and
-		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.PURCHASE_STATE_NO=3
+		pp.product_no=pdt.product_no and pdt.producer_no=pdc.producer_no and m.member_email=#{email} and ps.purchase_state_no in(3,6)
 	</select>
 	
 	<!-- 내정보- 마일리지 관리 -->
