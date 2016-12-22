@@ -101,7 +101,7 @@ public class ManageServiceImpl implements ManageService {
 	 * 해당하는 제품의 정보를 select한다.
 	 */
 	@Override
-	public ProductDTO packageInfoMangage(int packagePk) {
+	public ProductDTO packageInfoManage(int packagePk) {
 		return manageDao.packageInfoMangage(packagePk);
 	}
 
@@ -317,5 +317,11 @@ public class ManageServiceImpl implements ManageService {
 	@Override
 	public List<HashMap<String, String>> getSalesProduct() {
 		return manageDao.getSalesProduct();
+	}
+
+	@Override
+	public ProductDTO packageInfoMangage(String productno) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

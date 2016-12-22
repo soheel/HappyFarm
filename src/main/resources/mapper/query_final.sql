@@ -497,7 +497,8 @@ community_comment_no number(5) primary key,
 community_comment_register date,
 community_comment_content varchar2(300),
 community_no number(5) references community(community_no) on delete cascade,
-member_email varchar2(50) references member(member_email) on delete cascade
+member_email varchar2(50) references member(member_email) on delete cascade,
+community_comment_parent number(5) references community_comment(community_comment_no) on delete cascade
 )
 
 »ðÀÔ

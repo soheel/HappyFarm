@@ -20,6 +20,7 @@
 		<result column="community_comment_content" property="content"/>
 		<result column="community_no" property="communityNo"/>
 		<result column="member_email" property="email" />
+		<result column="community_comment_parent" property="parentNo"/>
 </resultMap>
 
 <resultMap type="qnaDTO" id="qnaResultMap">
@@ -92,13 +93,33 @@
 </select>
 
 <!-- 2-2. 화면 밑에는 댓글에 해당하는 댓글 내용이 다 출력되어진다. -->
-<select id="getCommunityComment" resultMap="communityResultMap" parameterType="int">
-  select community_comment_register,community_comment_content,member_email 
-  from community_comment,community 
-  where community.community_no=#{value} and community.community_no = community_comment.community_no 
+<select id="getCommunityComment" resultMap="communityCommentDTO" parameterType="int">
+  select community_comment_no, community_comment_register, community_comment_content, 
+  community_no, member_email, community_comment_parent from community_comment
+  where community_no = #{value}
+  order by community_comment_no
 </select>
-
 <!-- 2-3. 1-1을 다시 불러온다 -->
+
+<!-- 2-4 덧글 삭제 -->
+<delete id="communityReplyDelete" parameterType="int">
+	delete from community_comment where community_comment_no = #{value} or community_comment_parent = #{value}
+</delete>
+
+<!-- 2-5 admin 덧글 등록 -->
+<insert id="communityReplyInsert" parameterType="communityCommentDTO">
+	insert into community_comment values(community_comment_no.nextval, sysdate, #{content}, #{communityNo}, #{email}, #{no})
+</insert>
+
+<!-- 2.6 덧글 수정 -->
+<update id="communityReplyUpdate" parameterType="communityCommentDTO">
+	update community_comment set community_comment_content = #{content} where community_comment_no = #{no}
+</update>
+
+<!-- 2.7 기본 덧글 등록 -->
+<insert id="communityReply" parameterType="communityCommentDTO">
+	insert into community_comment values(community_comment_no.nextval, sysdate, #{content}, #{communityNo}, #{email}, null)
+</insert>
 
 <!-- 3. Q&A게시판 클리하면 Q&A목록 불러오기-->
 <!-- 3.1 Q&A에 있는 목록을 다 가져온다. -->

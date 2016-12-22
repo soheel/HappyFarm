@@ -26,7 +26,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<tiles:insertAttribute name="header" />
+			<tiles:insertAttribute name="header"/>
 		</div>
 
 		<div id="content">
@@ -53,6 +53,7 @@
 		</div>
 	</div>
 	
+	
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>bootstrap.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery-migrate.min.js'></script>
@@ -78,5 +79,6 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.ui.touch-punch.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
+	<script type="text/javascript" src='<c:url value="/resources/js/"/>communityReply.js'></script>
 </body>
 </html>
