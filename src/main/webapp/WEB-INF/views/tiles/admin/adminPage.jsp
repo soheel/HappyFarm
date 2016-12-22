@@ -48,7 +48,7 @@
 				<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
 					<ul class="nav sidebar-nav">
 						<li class="sidebar-brand">
-							<a href='<c:url value="/admin"/>'>
+							<a href='<c:url value="/userInfoController/adminPage"/>'>
 								Admin Page
 							</a>
 						</li>
@@ -83,6 +83,9 @@
 						</li>
 						<li>
 							<a href="<c:url value="/manageController/qnaManage"/>">Q&A 관리</a>
+						</li>
+						<li>
+							<a href="<c:url value="/manageController/orderManage"/>">주문 관리</a>
 						</li>
 					</ul>
 				</nav>
@@ -591,6 +594,11 @@ $(function(){
 		}
 	})
 
+	
+	/* 엑셀 다운로드 */
+	$("#download_excel").click(function() {
+		location.href = "<c:url value = '/excel/exceldown'/>";
+	})
 }) 
 </script>
 </html>

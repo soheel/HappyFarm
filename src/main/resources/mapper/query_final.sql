@@ -340,11 +340,9 @@ insert into purchase_state values(purchase_state_no.nextval, '결제완료');
 insert into purchase_state values(purchase_state_no.nextval, '환불신청');
 insert into purchase_state values(purchase_state_no.nextval, '반품신청');
 insert into purchase_state values(purchase_state_no.nextval, '교환신청');
-insert into purchase_state values(purchase_state_no.nextval, '취소신청');
 insert into purchase_state values(purchase_state_no.nextval, '환불완료');
 insert into purchase_state values(purchase_state_no.nextval, '반품완료');
 insert into purchase_state values(purchase_state_no.nextval, '교환완료');
-insert into purchase_state values(purchase_state_no.nextval, '취소완료');
 
 -- purchase 테이블--------------------------------------------------------------
 drop table purchase;

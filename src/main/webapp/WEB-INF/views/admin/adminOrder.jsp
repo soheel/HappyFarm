@@ -4,6 +4,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="commerce commerce-page commerce-cart noo-shop-main">
 							<h3 class="widget-title">주문 관리</h3>
+							<div>
+							<form action="<c:url value = '/excel/exceldown'/>" type = "method">
+							<c:forEach items="${payCompleteList}" var="payCompleteList" varStatus="state">
+								<input type ="hidden" name = "list[${state.index}].no" value = "${payCompleteList.no }">
+								<input type ="hidden" name = "list[${state.index}].email" value = "${payCompleteList.email }">
+								<input type ="hidden" name = "list[${state.index}].price" value = "${payCompleteList.price }">
+								<input type ="hidden" name = "list[${state.index}].state" value = "${payCompleteList.stateNo }">
+								<input type ="hidden" name = "list[${state.index}].method" value = "${payCompleteList.method }">
+								<input type ="hidden" name = "list[${state.index}].date" value = "${payCompleteList.date }">
+								<input type ="hidden" name = "list[${state.index}].name" value = "${payCompleteList.purchaseOrderDto.name }">
+								<input type ="hidden" name = "list[${state.index}].addr" value = "${payCompleteList.purchaseOrderDto.addr }">
+								<input type ="hidden" name = "list[${state.index}].phone" value = "${payCompleteList.purchaseOrderDto.phone }">
+							</c:forEach>
+								<input type = "submit" value = "주문내역 다운로드(Excel)">
+							</form>
+							</div>
+							
 							<div id = "accordion">
 								<!-- 결제완료된 목록 -->
 								<h3>결제 완료</h3>
@@ -256,4 +273,6 @@
 								</div>
 							</div>
 					</div>
+					
+					
 	
