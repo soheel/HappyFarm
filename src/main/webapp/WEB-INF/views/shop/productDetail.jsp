@@ -1,30 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-			<section class="noo-page-heading eff heading-2">
-				<div class="container">
-					<div class="noo-heading-content">
-						<h1 class="page-title eff">Shop Detail</h1>
-						<div class="noo-page-breadcrumb eff">
-							<a href="./" class="home">Organici</a>/<span>Shop Detail</span>
-						</div>
-					</div>
-				</div>
-			</section>
-			<div class="main">
-				<div class="commerce single-product noo-shop-main">
-					<div class="container">
-						<div class="row">
-							<div class="noo-main col-md-9">
-								<div class="product">
-									<div class="single-inner">
-										<div class="images">
-											<div class="product-simple-image">
-												<a href="<c:url value="/resources/images/"/>product/product_405x515.jpg" data-rel="prettyPhoto">
-													<img width="300" height="381" src="<c:url value="/resources/img/product/"/>${product.profile}" alt="" />
-												</a>
+<section class="noo-page-heading eff heading-2">
+	<div class="container">
+		<div class="noo-heading-content">
+			<h1 class="page-title eff">Shop Detail</h1>
+			<div class="noo-page-breadcrumb eff">
+				<a href="./" class="home">Organici</a>/<span>Shop Detail</span>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="main">
+	<div class="commerce single-product noo-shop-main">
+		<div class="container">
+			<div class="row">
+				<div class="noo-main col-md-9">
+					<div class="product">
+						<div class="single-inner">
+							<div class="images">
+								<div class="product-simple-image">
+									<a
+										href="<c:url value="/resources/images/"/>product/product_405x515.jpg"
+										data-rel="prettyPhoto"> <img width="300" height="381"
+										src="<c:url value="/resources/img/product/"/>${product.profile}"
+										alt="" />
+									</a>
 								</div>
 							</div>
 							<div class="summary entry-summary">
@@ -56,20 +59,14 @@
 
 							</div>
 						</div>
-		
-					<div class="commerce-tabs">
-						<ul class="nav nav-tabs tabs">
-					    	<li class="active">
-					    		<a data-toggle="tab" href="#tab-1">Product</a>
-					    	</li>
-					    	<li>
-					    		<a data-toggle="tab" href="#tab-2">Reviews</a>
-					    	</li>
-					    	<li>
-					    		<a data-toggle="tab" href="#tab-3">Producer</a>
-					    	</li>
-					  	</ul>
-						<div class="tab-content">
+						<div class="commerce-tabs">
+							<ul class="nav nav-tabs tabs">
+								<li class="active"><a data-toggle="tab" href="#tab-1">Product</a>
+								</li>
+								<li><a data-toggle="tab" href="#tab-2">Reviews</a></li>
+								<li><a data-toggle="tab" href="#tab-3">Producer</a></li>
+							</ul>
+							<div class="tab-content">
 						
 							<div class="tab-pane fade in active" id="tab-1">
 								<div class="row">
@@ -92,7 +89,8 @@
 													</dl>
 												</li>
 											</c:forEach>	
-											</ul>
+										</ul>
+											</div>
 										</div>
 									</div>
 									<img alt=""
