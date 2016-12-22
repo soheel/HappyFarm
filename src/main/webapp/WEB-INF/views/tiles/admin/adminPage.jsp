@@ -27,6 +27,8 @@
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>adminQna.css' type='text/css' media='all' />
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>dialogCenter.css' type='text/css' media='all' />
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body>
 	<div class="noo-spinner">
@@ -136,6 +138,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminShopItem.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminQna.js"></script>
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 </body>
 <script type="text/javascript">
@@ -154,7 +157,18 @@ $(function(){
 		$(document).ready(function(){
 		    $('#productManageTable').DataTable();
 		    $('#producerManageTable').DataTable();
+		    $('#payCompleteListTable').DataTable();
+		    $('#orderCompleteListTable').DataTable();
+		    $('#etcAskListTable').DataTable();
+		    $('#etcCompleteListTable').DataTable();
 		});
+	
+	/* accordion */
+	$( "#accordion" ).accordion({
+      collapsible: true,
+      heightStyle: "content"
+    });
+	
 	
 	/* 생산자 정보 관리 */
 	/* 해당 생산자의 정보 삭제 */
@@ -462,8 +476,8 @@ $(function(){
         	arr2[arr2.length] = parstInt(selectProduct);
     	}
     })
-   
-    $("#certification_Info").change(function(){
+
+     $("#certification_Info").change(function(){
     	   var selectCertiVal = $(this).val(); 
     	   $("#certificationNo").val(selectCertiVal)
     })
@@ -515,7 +529,60 @@ $(function(){
 	$(document).on("click", ".selected", function() {
 		$(this).remove();
 	})
-    
+	
+	/* *************************************************************************** */
+	
+	/* 주문관리 */
+	/* 주문완료에서 결제완료로 상태 변경하기 */
+	$("span[name=deposit_complete]").click(function() {
+		var state = confirm("고객으로부터 입금이 확인되었다면 '확인'버튼을 클릭하세요");
+		if(state) {
+			$.ajax({
+				url : "<c:url value = '/manageController/orderDepositModifyManage'/>",
+				type : "post",
+				data : "purchaseNo=" + $(this).attr("value"),
+				dataType : "text",
+				success : function(result) {
+					if(result >= 1) {
+						alert('해당 주문이 "결제완료" 상태로 변경되었습니다.');
+						location.href = "<c:url value = '/manageController/orderManage'/>"
+					}else {
+						alert("상태 변경에 실패하였습니다.");
+					}
+				},
+				error : function(err) {
+					alert("상태 변경에 실패하였습니다.");
+				}
+			})
+		}else {
+		}
+		
+	})
+	
+	/* 환불/반품/교환 신청상태에서 완료상태로 변경하기 */
+	$("span[name=etc_complete]").click(function() {
+		var state = confirm("해당 주문의 요청상태를 '신청' 에서 '완료'로 변경하시겠습니까?");
+		if(state) {
+			$.ajax({
+				url : "<c:url value = '/manageController/orderEtcModifyManage'/>",
+				type : "post",
+				data : "purchaseNo=" + $(this).attr("value"),
+				dataType : "text",
+				success : function(result) {
+					if(result >= 1) {
+						alert('해당 주문의 요청상태를 "완료"로 변경하였습니다.');
+						location.href = "<c:url value = '/manageController/orderManage'/>"
+					}else {
+						alert("상태 변경에 실패하였습니다.");
+					}
+				},
+				error : function(err) {
+					alert("상태 변경에 실패하였습니다.");
+				}
+			})
+		}else {
+		}
+	})
 }) 
 </script>
 </html>

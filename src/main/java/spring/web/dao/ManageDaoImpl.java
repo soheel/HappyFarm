@@ -18,6 +18,7 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 
 @Repository
@@ -267,6 +268,36 @@ public class ManageDaoImpl implements ManageDao {
 		map.put("packageNo", packageNo);
 		map.put("productNo", productNo);
 		return sqlsession.insert("manageMapper.packageModifyInsertManage", map);
+	}
+
+	@Override
+	public List<PurchaseDTO> getPurchaseOrderState1() {
+		return sqlsession.selectList("manageMapper.getPurchaseOrderState1");
+	}
+
+	@Override
+	public List<PurchaseDTO> getPurchaseOrderState2() {
+		return sqlsession.selectList("manageMapper.getPurchaseOrderState2");
+	}
+
+	@Override
+	public List<PurchaseDTO> getPurchaseOrderState345() {
+		return sqlsession.selectList("manageMapper.getPurchaseOrderState345");
+	}
+
+	@Override
+	public List<PurchaseDTO> getPurchaseOrderState678() {
+		return sqlsession.selectList("manageMapper.getPurchaseOrderState678");
+	}
+
+	@Override
+	public int depositCompleteModify(int purchaseNo) {
+		return sqlsession.update("manageMapper.depositCompleteModify", purchaseNo);
+	}
+
+	@Override
+	public int etcCompleteModify(int purchaseNo) {
+		return sqlsession.update("manageMapper.etcCompleteModify", purchaseNo);
 	}
 	
 }

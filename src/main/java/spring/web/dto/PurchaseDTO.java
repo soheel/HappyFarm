@@ -16,6 +16,7 @@ public class PurchaseDTO {
 	//purchase state dto»ý¼º
 	private PurchaseStateDTO purchaseStateDto;
 	private List<PurchaseProductDTO> purchaseProductDto;
+	private PurchaseOrderDTO purchaseOrderDto;
 
 	public PurchaseDTO() {}
 
@@ -111,6 +112,12 @@ public class PurchaseDTO {
 		this.memberDto = memberDto;
 	}
 	
+	public PurchaseOrderDTO getPurchaseOrderDto() {
+		return purchaseOrderDto;
+	}
 	
+	public void setPurchaseOrderDto(PurchaseOrderDTO purchaseOrderDto) {
+		this.purchaseOrderDto = purchaseOrderDto;
+	}
 
 }

@@ -36,14 +36,19 @@
 					<div class="admin-btn admin-color-dimgray">회원 관리</div>
 				</a>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<a href="<c:url value="/manageController/communityManage"/>">
 					<div class="admin-btn admin-color-mediumorchid">Community 관리</div>
 				</a>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<a href="<c:url value="/manageController/qnaManage"/>">
 					<div class="admin-btn admin-color-greenyellow">Q&A 관리</div>
+				</a>
+			</div>
+			<div class="col-md-4">
+				<a href="<c:url value="/manageController/orderManage"/>">
+					<div class="admin-btn admin-color-greenyellow">주문 관리</div>
 				</a>
 			</div>
 		</div>

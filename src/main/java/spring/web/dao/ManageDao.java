@@ -14,6 +14,7 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 
 public interface ManageDao {
@@ -249,6 +250,39 @@ public interface ManageDao {
 	 * */
 	PackageDTO getPackageByPackageNo(int no);
 	
+	/**
+	 * 주문관리
+	 * 주문완료인 주문 내역만 가져오기
+	 * */
+	List<PurchaseDTO> getPurchaseOrderState1();
 	
+	/**
+	 * 주문관리
+	 * 결제완료인 주문 내역만 가져오기
+	 * */
+	List<PurchaseDTO> getPurchaseOrderState2();
 	
+	/**
+	 * 주문관리
+	 * 환불/반품/교환/취소 신청상태인 주문 내역만 가져오기
+	 * */
+	List<PurchaseDTO> getPurchaseOrderState345();
+
+	/**
+	 * 주문관리
+	 * 환불/반품/교환/취소 완료상태인 주문 내역만 가져오기
+	 * */
+	List<PurchaseDTO> getPurchaseOrderState678();
+	
+	/**
+	 * 주문관리
+	 * 입금확인된 구매내역의 상태를 결제완료로 변경
+	 * */
+	int depositCompleteModify(int purchaseNo);
+	
+	/**
+	 * 주문관리
+	 * 환불/반품/교환 신청된 구매내역의 상태를 완료로 변경
+	 * */
+	int etcCompleteModify(int purchaseNo);
 }

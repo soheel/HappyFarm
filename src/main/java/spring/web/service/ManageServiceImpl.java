@@ -19,6 +19,7 @@ import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
 
 @Service
@@ -364,9 +365,31 @@ public class ManageServiceImpl implements ManageService {
 		map.put("productList", productList);
 		return map;
 	}
-	
 
-	
+	@Override
+	public Map<String, List<PurchaseDTO>> getPurchaseOrder() {
+		Map<String, List<PurchaseDTO>> map = new HashMap<String, List<PurchaseDTO>>();
+		List<PurchaseDTO> orderCompleteList = manageDao.getPurchaseOrderState1();
+		List<PurchaseDTO> payCompleteList = manageDao.getPurchaseOrderState2();
+		List<PurchaseDTO> etcAskList = manageDao.getPurchaseOrderState345();
+		List<PurchaseDTO> etcCompleteList = manageDao.getPurchaseOrderState678();
+		
+		map.put("orderCompleteList", orderCompleteList);
+		map.put("payCompleteList", payCompleteList);
+		map.put("etcAskList", etcAskList);
+		map.put("etcCompleteList", etcCompleteList);
+		return map;
+	}
 
+	@Override
+	public int depositCompleteModify(int purchaseNo) {
+		return manageDao.depositCompleteModify(purchaseNo);
+	}
+
+	@Override
+	public int etcCompleteModify(int purchaseNo) {
+		return manageDao.etcCompleteModify(purchaseNo);
+	}
+	
 	
 }
