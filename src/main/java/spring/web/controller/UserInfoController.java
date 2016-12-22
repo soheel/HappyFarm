@@ -28,6 +28,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.MemberRequestDTO;
+import spring.web.dto.MileageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -647,9 +648,12 @@ public class UserInfoController {
 		}
 		List<MemberDTO> usedMileage = (List<MemberDTO>)map.get("usedMileage");
 		
+		List<MileageDTO> saveMileageList = userService.saveMileage(email);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("recommand", recommand);
 		mv.addObject("usedMileage", usedMileage);
+		mv.addObject("saveMileageList", saveMileageList);
 		mv.addObject("extra", extra);
 		mv.setViewName("account/myInfoMileage");
 		

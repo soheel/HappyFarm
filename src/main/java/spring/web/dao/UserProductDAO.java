@@ -149,4 +149,8 @@ public interface UserProductDAO {
 	 * 구매 후 마일리지 차감
 	 * */
 	int reduceMileage(int useMileage, String email);
+	/**
+	 * 구매 후 마일리지 적립
+	 * */
+	int saveMileage(int saveMileage, String email);
 }

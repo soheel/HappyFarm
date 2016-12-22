@@ -203,4 +203,18 @@ update purchase set purchase_state_no where purchase_no = #{value}
 update member set member_mileage = member_mileage-#{useMileage} where member_email = #{email}
 </update>
 
+<!-- 마일리지 테이블에 내역 추가 -->
+<insert id="reduceMileageList2" parameterType="map">
+	insert into mileage values(mileage_no.nextval, sysdate, #{useMileage}, '사용', #{email})
+</insert>
+
+<!-- 구매 후 마일리지 적립 -->
+<update id="saveMileage" parameterType="map">
+update member set member_mileage = member_mileage+#{saveMileage} where member_email = #{email}
+</update>
+
+<!-- 마일리지 테이블에 내역 추가 -->
+<insert id="saveMileageList2" parameterType="map">
+</insert>
+
 </mapper>

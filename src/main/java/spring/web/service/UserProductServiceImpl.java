@@ -244,4 +244,11 @@ public class UserProductServiceImpl implements UserProductService{
 	public int reduceMileage(int useMileage, String email) {
 		return userProductDAO.reduceMileage(useMileage, email);
 	}
+
+	@Override
+	public int saveMileage(int saveMileage, String email) {
+		return userProductDAO.saveMileage(saveMileage, email);
+	}
+
+	
 }

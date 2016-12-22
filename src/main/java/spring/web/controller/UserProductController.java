@@ -279,6 +279,7 @@ public class UserProductController {
 		// 통합 주소
 		String addr = purchaseOrderDTO.getAddr() + " " + purchaseOrderDTO.getDetailAddr();
 		int result = service.pay(purchaseDTO, purchaseOrderDTO, purchaseProductDTO);
+		
 		purchaseDTO.setNo(result);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("result", result);
@@ -365,6 +366,13 @@ public class UserProductController {
 		System.out.println("reduceMileage");
 		String email = (String)session.getAttribute("email");
 		int result = service.reduceMileage(useMileage, email);
+	}
+	
+	@RequestMapping("saveMileage")
+	public void saveMileage(int saveMileage, HttpSession session) {
+		System.out.println("saveMileage : " + saveMileage);
+		String email = (String)session.getAttribute("email");
+		int result = service.saveMileage(saveMileage, email);
 	}
 	
 	/**

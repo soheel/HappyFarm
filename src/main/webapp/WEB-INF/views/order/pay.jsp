@@ -7,6 +7,7 @@
 	<input id = "no" type = "hidden" value = "${purchase.no}" />
 	<input id = "method" type = "hidden" value = "${purchase.method }" />
 	<input id = "amount" type = "hidden" value = "${purchase.price - purchase.discount }"/>
+	<input id = "totalPrice" type = "hidden" value = "${purchase.price}"/>
 	<input id = "email" type = "hidden" value = "${purchase.email }"/>
 	<input id = "name" type = "hidden" value = "${purchaseOrder.name }"/>
 	<input id = "phone" type = "hidden" value = "${purchaseOrder.phone }"/>
@@ -51,12 +52,16 @@
 		var no = document.getElementById("no").value;
 		var method = document.getElementById("method").value;
 		var amount = document.getElementById("amount").value;
+		var totalPrice = document.getElementById("totalPrice").value;
 		var email = document.getElementById("email").value;
 		var name = document.getElementById("name").value;
 		var phone = document.getElementById("phone").value;
 		var addr = document.getElementById("addr").value;
 		var postCode = document.getElementById("postCode").value;
+		var useMileage = document.getElementById("useMileage").value;
 		
+		
+			
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp88265207'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
@@ -95,7 +100,7 @@
 						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
 							 "bankName" : bankName, "bankHolder" : bankHolder}
 					 })
-					 
+					
 					 /*
 					 결제 완료 후 마일리지 차감
 					 및 결제함으로써 마일리지 적립
@@ -105,7 +110,17 @@
 						type : "post",
 						data : "useMileage=" + document.getElementById("useMileage").value
 					 })
-					
+					 
+					  /*
+						마일리지 적립
+					 */
+					 $.ajax({
+						url : "<c:url value = '/userProductController/saveMileage'/>",
+						type : "post",
+						data : "saveMileage=" + (totalPrice*0.05)
+					 })
+					 
+
 		        	msg += '<p>가상계좌 입금 계좌번호 : ' + rsp.vbank_num + '</p>';
 		        	msg += '<p>가상계좌 은행명 : ' + rsp.vbank_name + '</p>';
 		        	msg += '<p>가상계좌 예금주 : ' + rsp.vbank_holder + '</p>';

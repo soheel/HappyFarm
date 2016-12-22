@@ -148,6 +148,18 @@ public class UserProductDAOImpl implements UserProductDAO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("useMileage", useMileage);
 		map.put("email", email);
+		sqlSession.insert("UserProductMapper.reduceMileageList2",map);
+		
 		return sqlSession.update("UserProductMapper.reduceMileage", map);
+	}
+
+	@Override
+	public int saveMileage(int saveMileage, String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("saveMileage", saveMileage);
+		map.put("email", email);
+		sqlSession.insert("UserProductMapper.saveMileageList2",map);
+		
+		return sqlSession.update("UserProductMapper.saveMileage", map);
 	}
 }

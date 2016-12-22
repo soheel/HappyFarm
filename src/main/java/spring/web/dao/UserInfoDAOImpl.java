@@ -14,6 +14,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.MemberRequestDTO;
+import spring.web.dto.MileageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -33,7 +34,13 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		if(memberDto.getRecommand().equals("")) {
 			return sqlSession.insert("userInfoMapper.registerMemberRecommand", memberDto);
 		}
-		return sqlSession.insert("userInfoMapper.registerMember", memberDto);
+		int result1= sqlSession.insert("userInfoMapper.registerMember", memberDto);
+		
+		int result2= sqlSession.insert("userInfoMapper.addMileageList1",memberDto);
+		
+		int result3= sqlSession.update("userInfoMapper.addMemberMileage1",memberDto);
+		
+		return result3;
 	}
 
 	/**
@@ -98,6 +105,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		return map;
 	}
 
+	@Override
+	public List<MileageDTO> saveMileage(String email) {
+		return sqlSession.selectList("userInfoMapper.saveMileage", email);
+
+	}
+	
 	/**
 	 * MyPage의 쇼핑내역을 누를경우 바로 주문/배송조회가 이루어지면서 회원의 3개월간 주문조회 내역을 purchase테이블에서
 	 * 가져와서 view에 뿌려줌
@@ -392,5 +405,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	public int modifyRecommandedMember(String email) {
 		return sqlSession.update("userInfoMapper.modifyRecommandedMember", email);
 	}
+
+	
 
 }

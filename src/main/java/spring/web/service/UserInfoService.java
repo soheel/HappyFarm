@@ -7,6 +7,7 @@ import spring.web.dto.DonationDTO;
 import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.MemberRequestDTO;
+import spring.web.dto.MileageDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
 import spring.web.dto.QnaDTO;
@@ -117,6 +118,7 @@ public interface UserInfoService {
 	 * 내정보 - 마일리지 눌렀을 때
 	 * */
 	Map<String, Object> myPageMileage(String email);
+	List<MileageDTO> saveMileage(String email);
 	
 	/**
 	 * 내정보 - 장바구니
@@ -157,5 +159,7 @@ public interface UserInfoService {
 	List<MemberDTO> getmyPageMileage6(String email);
 	List<MemberDTO> getmyPageMileage12(String email);
 	List<MemberDTO> getmyPageMileageAll(String email);
+
+
 	
 }

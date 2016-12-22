@@ -140,10 +140,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 	</resultMap>
 
+	<resultMap type="mileageDTO" id="mileageResultMap">
+		<id column="mileage_no" property="mileageNo"/>
+		<result column="mileage_date" property="mileageDate"/>
+		<result column="mileage_price" property="mileagePrice"/>
+		<result column="mileage_state" property="mileageState"/>
+		<result column="member_email" property="email"/>
+	</resultMap>
+
+
 	<!-- 회원가입 기부업체 번호는 어떻게 처리하지? 우선은 1로 직접입력 처리 -->
 	<insert id="registerMember" parameterType="memberDTO">
 		insert into member values(#{email},#{pwd},#{name},#{phone},sysdate,0,#{recommand},1)
 	</insert>
+	
+	<!-- 회원가입 recommand에게 마일리지 적립 한다. (마일리지 테이블에 기록)-->
+	<insert id="addMileageList1" parameterType="memberDTO">
+		insert into mileage values(mileage_no.nextval, sysdate, 500, '추천인등록', #{recommand})
+	</insert>
+	
+	<!-- 사용자 테이블에 마일리지 내역 더해준다. -->
+	<update id="addMemberMileage1" parameterType="memberDTO">
+		update member set member_mileage= #{mileage}+500 where member_email = #{recommand}
+	</update>
 	
 	<!-- 회원가입시 추천인을 입력하지 않은 경우 -->
 	<insert id="registerMemberRecommand" parameterType="memberDTO">
@@ -338,6 +357,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMyPageRecommander" resultType="String" parameterType="String">
 	   select member_email from member where member_recommand=#{email}
 	</select>
+	
+	<select id="saveMileage" parameterType="String" resultMap="mileageResultMap">
+	</select>
+	
 	
 	<!-- 마일리지 사용내역 조회 -->
 	

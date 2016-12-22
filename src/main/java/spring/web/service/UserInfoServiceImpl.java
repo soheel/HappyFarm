@@ -14,6 +14,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.MemberRequestDTO;
+import spring.web.dto.MileageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -35,9 +36,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 			return 0;
 		}
 		
-		if(memberDto.getRecommand() != "") {
+		/*if(memberDto.getRecommand() != "") {
 			result = userInfoDao.modifyRecommandedMember(memberDto.getRecommand());
-		}
+		}*/
 		return result;
 	}
 	
@@ -88,6 +89,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public Map<String, Object> myPageLoading(String email) {
 		return userInfoDao.myPageLoading(email);
 	}
+	
+	@Override
+	public List<MileageDTO> saveMileage(String email) {
+		return userInfoDao.saveMileage(email);
+	}
+	
 	
 	/**
 	 * 회원 메인 페이지로 이동할 때 필요한 정보들
@@ -319,6 +326,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public Map<String,Object> myPageMileage(String email) {
 		return userInfoDao.myPageMileage(email);
 	}
+
+	
 	 
 	
 }

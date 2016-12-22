@@ -29,7 +29,7 @@
 				</c:if>
 	</table>
 </div>
-<h2>point 사용 이력</h2>
+<h2>point 사용 내역</h2>
 <table class="table">
 	<thead>
 		<tr>
@@ -60,6 +60,38 @@
 							</tr>
 						</c:forEach>
 					</c:forEach>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+	</tbody>
+</table>
+
+<h2>point 적립 내역</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>사용 날짜</th>
+			<th>적립 내역</th>
+			<th>적립 사유 </th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:choose>
+			<c:when test="${empty saveMileageList}">
+				<tr>
+					<td>현재 사용내역이 없습니다.</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${saveMileageList}" var="saveMileage">
+							<tr>
+								<td>  
+								<fmt:parseDate value="${saveMileage.mileageDate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+								<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
+								</td>  
+								<td>${saveMileage.mileagePrice}</td>
+								<td>${saveMileage.mileageState}</td>
+							</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>

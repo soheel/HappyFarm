@@ -8,6 +8,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.MemberRequestDTO;
+import spring.web.dto.MileageDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.PurchaseDTO;
@@ -94,7 +95,7 @@ public interface UserInfoDAO {
 	 * 마이페이지 메인 정보 로딩
 	 * */
 	Map<String, Object> myPageLoading(String email); 
-	
+	List<MileageDTO> saveMileage(String email);
 	/**
 	 * MyPage의 쇼핑내역을 누를경우
 	 * 바로 주문/배송조회가 이루어지면서
@@ -201,5 +202,7 @@ public interface UserInfoDAO {
 	 * 추천받은 회원의 마일리지 500원 증가시키기
 	 * */
 	int modifyRecommandedMember(String email);
+
+
 	
 }

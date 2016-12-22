@@ -70,7 +70,12 @@ public interface UserProductService {
 	int setPurchaseStateNo(int no);
 
 	/**
-	 * 구매 후 마일리지 차감
+	 * 구매 후 마일리지 차감(사용내역 추가 / 마일리지 내역 감소)
 	 * */
 	int reduceMileage(int useMileage, String email);
+
+	/**
+	 * 구매 후 마일리지 적립(사용내역 적립 / 마일리지 내역 적립)
+	 * */
+	public int saveMileage(int saveMileage, String email);
 }

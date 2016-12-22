@@ -556,6 +556,21 @@ insert into information values(information_no.nextval, '5월의 제철식품 오디', 'o
 insert into information values(information_no.nextval, '친환경 포도의 품질 & 기준', 'podo.png', sysdate, 'podo_2.png');
 insert into information values(information_no.nextval, '양파의 영양분 & 효능', 'yangpa.png', sysdate, 'yangpa_2.png');
 
+-- mileage 테이블-----------------------------------------------------------
+drop table mileage;
+select * from mileage;
+시퀀스
+drop sequence mileage_no;
+create sequence mileage_no;
+
+create table mileage (
+mileage_no number(5) primary key,
+mileage_date date not null,
+mileage_price number(10) not null,
+mileage_state varchar2(20) not null,
+member_email varchar2(50) references member(member_email) on delete cascade
+)
+
 -- test
 
 select * from product;
