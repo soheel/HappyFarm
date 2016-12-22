@@ -507,7 +507,7 @@ community_comment_parent number(5) references community_comment(community_commen
 )
 
 삽입
-insert into community_comment values(community_comment_no.nextval, sysdate, '참여하고싶어요', 1, '박용우');
+insert into community_comment values(community_comment_no.nextval, sysdate, '참여하고싶어요', 1, '박용우',null);
 
 -- qna 테이블-------------------------------------------------------------------
 drop table qna;
