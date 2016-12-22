@@ -75,13 +75,18 @@
 											<div class="name">
 												해당 상품의 유기농 인증 정보 
 											</div>
-			
 										</div>
 										<div class="product_detail">
 											<ul>
+											<!--
+												product_img : 이미지 나옴
+												product_info : 이미지에 대한 정보 표시
+											 -->
 											<c:forEach items="${productCerti}" var="certi">
-												<li>
+												<li class="product_img">
 													<img src='<c:url value="/resources/img/certification/${certi.certificationDTO.image}"/>' alt="agricultural produce">
+												</li>
+												<li class="product_info">
 													<dl>
 														<dt> 유기농 고유 번호 : ${certi.no}</dt>
 														<dd> ${certi.certificationDTO.name} (제${certi.certificationNo}호)</dd>

@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+@font-face {
+    font-family: 'Airways';
+    src: url(../font/Airways.ttf) format('truetype');
+}

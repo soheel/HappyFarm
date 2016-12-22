@@ -7713,11 +7713,11 @@ div.products-sh-title h4 {
 }
 
 .noo-short-intro h4 {
-    font-size: 34px;
+    font-size: 25px;
     color: #ffffff;
-    line-height: 55px;
+    line-height: 45px;
     margin: 0;
-    padding: 0 0 20px 0;
+    padding: 15px 0 25px 0;
 }
 
 .noo-short-intro h2 {
@@ -7744,7 +7744,7 @@ div.products-sh-title h4 {
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    left: 45%;
+    left: 57%;
     top: 0;
     text-align: center;
     font-size: 28px;
@@ -10988,6 +10988,8 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 
 .product-masonry img {
     width: 100%;
+    height:380px;
+    overflow: hidden;
 }
 
 .product-masonry:hover {
@@ -17340,6 +17342,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 
 
 
+
 /**
 	shop Page
 **/
@@ -17371,6 +17374,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 .product_detail_header div{
 	display: block;
 	text-align: center;
+	font-size: 22px;
 }
 
 .product_detail ul{
@@ -17381,7 +17385,12 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 
 .product_detail ul li{
 	position:relative;
-	padding-left: 36px;
+	display:block;
+	float:left;
+}
+
+.product_detail ul li.product_info{
+	padding-left: 25px;
 }
 
 .product_detail ul li dt{
@@ -17400,6 +17409,11 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 	width:100%;
 }
 
+.product_img img{
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+/**
 .certification_form .cetication_title{
 	background-color: #e6e6e6;
 	padding: 7px 15px;
@@ -17421,6 +17435,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 #addToCartDirect .single_add_to_cart_button{
 	width:100%;
 }
+**/
 
 
 

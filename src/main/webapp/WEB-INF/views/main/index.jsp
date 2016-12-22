@@ -57,11 +57,9 @@
 				<div class="noo-traslate-product col-sm-12 col-md-6">
 					<div class="pt-5">
 						<div class="noo-short-intro">
-							<h4>Special fruits</h4>
-							<h2>organici store</h2>
-							<div class="price">
-								<span>- Only -</span> $99.00
-							</div>
+							<h4>Special Agricultural Products</h4>
+							<h2>Happy Farm</h2>
+							<div class="price"></div>
 						</div>
 					</div>
 				</div>
@@ -137,17 +135,13 @@
 			<!-- info 하나하나 -->
 			<c:forEach items="${infoList }" var="infoList">
 				<div class="product-masonry">
-					<img style="padding: 10px 80px;" width="644" height="380"
-						src="<c:url value="/resources/img/info/"/>${infoList.profile}"
-						alt="" />
+					<img src="<c:url value="/resources/img/info/"/>index_${infoList.profile}" alt="" />
 					<div class="noo-link">
 						<div class="noo-product-table">
 							<div class="noo-product-table-cell">
 								<h4>${infoList.name}</h4>
 								<p>
-									<a
-										href="<c:url value='/userEtcController/infoDetail?no=${infoList.no}'/>">자세히
-										보기&hellip;</a>
+									<a href="<c:url value='/userEtcController/infoDetail?no=${infoList.no}'/>">자세히 보기&hellip;</a>
 								</p>
 							</div>
 						</div>
