@@ -87,6 +87,11 @@ public class UserEtcDaoImpl implements UserEtcDao {
 		// 추가한다.
 		return sqlsession.insert("userEtcMapper.registerQnA", qnaDto);
 	}
+	
+	@Override
+	public String answerQna(int no) {
+		return sqlsession.selectOne("userEtcMapper.getAnswerByNo", no);
+	}
 
 	@Override
 	public List<QnaDTO> qnaLoading() {

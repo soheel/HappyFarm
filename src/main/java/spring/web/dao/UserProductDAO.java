@@ -97,12 +97,12 @@ public interface UserProductDAO {
 	/**
 	 * 패키지 상품 상세보기
 	 * */
-	ProductDTO getPackageDetail();
+	ProductDTO getPackageDetail(int productNo);
 	
 	/**
 	 * 패키지 상품 내에 포함되어 있는 상품들 띄워주기
 	 * */
-	List<ProductDTO> getPackageInnerProductList();
+	List<ProductDTO> getPackageInnerProductList(int productNo);
 	
 	/**
 	 * search(String keyword)
@@ -144,8 +144,9 @@ public interface UserProductDAO {
 	 * 카드, 실시간, 휴대폰 결제시 purchase_state_no 바꾸기
 	 * */
 	int setPurchaseStateNo(int no);
-
 	
-
-	
+	/**
+	 * 구매 후 마일리지 차감
+	 * */
+	int reduceMileage(int useMileage, String email);
 }

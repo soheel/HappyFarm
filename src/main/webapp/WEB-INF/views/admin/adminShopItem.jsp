@@ -14,7 +14,7 @@
 												<th class="product-name">상품이름</th>
 												<th class="product-price">상품가격</th>
 												<th class="product-no">카테고리</th>
-												<th class="product-producer">생산자</th>
+												<th class="product-producer">생산자</th>			
 											</tr>
 										</thead>
 										<tbody>
@@ -38,6 +38,7 @@
 												<td class="product-producer">
 													${productlist.producerDto.name }
 												</td>
+												
 											</tr>
 										
 											</c:forEach>
@@ -141,8 +142,33 @@
 															<label for="reg_password">
 																생산자번호
 																<span class="required">*</span>
+																<select id="producer_Info">
+																	<c:forEach items="${producerlist}" var="producer">
+																	<option value="${producer.no}">${producer.name} (생산자 번호 ${producer.no})</option>
+																	</c:forEach>
+																</select>
 															</label>
-															<input type="text" class="input-text" name="producerNo" id="reg_phone" />
+															<input type="text" class="input-text" name="producerNo" id="reg_producerNo"/>
+														</div>
+														
+														<div class="form-row form-row-wide">
+															<label for="reg_certification">
+																유기농 인증 번호
+																<span class="required">*</span>
+															</label>
+															<input type="text" class="input-text" name="no" id="reg_proCertificationno" />
+														</div>
+														
+														<div class="form-row form-row-wide">
+															<label for="reg_certification_kind">
+																인증 분류 / 인증 번호
+															</label>
+															<input type="hidden" name="certificationNo" id="certificationNo"/>
+															<select id="certification_Info">
+																	<c:forEach items="${certificationList}" var="certi">
+																	<option value="${certi.no}">${certi.name} (${certi.no})</option>
+																	</c:forEach>
+															</select>
 														</div>
 														
 													</div>
@@ -255,9 +281,15 @@
 															<label for="reg_password">
 																생산자번호
 																<span class="required">*</span>
+																<select id="producer_Info2">
+																	<c:forEach items="${producerlist}" var="producer">
+																	<option value="${producer.no}">${producer.name} (생산자 번호 ${producer.no})</option>
+																	</c:forEach>
+																</select>
 															</label>
-															<input type="text" class="input-text" name="producerNo" id="producer_no" />
+															<input type="text" class="input-text" name="producerNo" id="reg_producerNo2"/>
 														</div>
+														
 													</div>
 													<div class="col-md-1"></div>
 												</div>

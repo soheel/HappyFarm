@@ -177,6 +177,7 @@ $(function(){
 			}
 		})
 	})
+	
 	/* 해당회원의 정보 수정 */
 	$("span[name=modifyButton]").click(function() {
 		var producerNo = $(this).attr("value");
@@ -221,7 +222,7 @@ $(function(){
 	/* *************************************************************************** */
 	
 	/* 상품 정보 관리 */
-	/* 해당 상품 등록 */
+	/* 해당 상품 삭제 */
 	$("span[name=deleteButtonProduct]").click(function() {
 		var productNo = $(this).attr("value");
 		$.ajax({
@@ -343,7 +344,6 @@ $(function(){
 			data : "no=" + communityNo,
 			dataType : "json",
 			success : function(result) {
-				alert(result.desc);
 				$("input[name=no]").val(result.no);
 				$("input[name=name]").val(result.name);
 				$("input[name=producerNo]").val(result.producerDTO.no);
@@ -360,6 +360,13 @@ $(function(){
 	/* *************************************************************************** */
 	
 	/* 패키지 상품 관리 */
+	
+	/* 등록 폼 초기화 */
+	$("input[name=insert]").click(function() {
+		$("input[name=name]").val("");
+		$("input[name=price]").val("");
+	})
+	
 	/* 패키지 상품 등록시 개별 상품 검색 */
     $("input[name=productSearch]").click(function() {
     	var productName = $("input[name=search]").val();
@@ -382,20 +389,132 @@ $(function(){
     	})
     })
     
+    /* 패키지 상품 수정시 개별 상품 검색 */
+    $("input[name=productSearch2]").click(function() {
+    	var productName = $("input[name=search2]").val();
+    	
+    	$.ajax({
+    		url : "<c:url value='/manageController/packageSearchProduct'/>",
+			type : "post",
+			data : "name=" + productName,
+			dataType : "json",
+			success : function(result) {
+				var content = "";
+				$.each(result, function(index, item) {
+					content += "<span style='cursor:pointer' class = 'test2' value='" + item.no + "'>" + item.name + " (상품번호 : " + item.no + ")</span><br>";
+				})
+				$("#searchResult2").html(content);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+    	})
+    })
+    
+    /* 패키지 상품 삭제 */
+    $("span[name=deleteButtonPackage]").click(function() {
+		var packageNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/productDeleteManage'/>",
+			type : "post",
+			data : "no=" + packageNo,
+			dataType : "text",
+			success : function(result) {
+				if(result >= 1) {
+					alert(packageNo + ' 번 패키지 상품 정보 삭제 완료');
+					location.href = "<c:url value='/manageController/packageManage'/>"
+				}
+			},
+			error : function(err) {
+				alert("해당 패키지 상품정보 삭제 실패");
+			}
+		})
+	})
+    
+    /* 패키지 상품에 포함될 개별 상품들 선택 */
     var arr = new Array();
     $(document).on("click", ".test", function() {
     	var selectProduct = $(this).attr('value');
     	
-    	if(arr.indexOf(selectProduct) != -1) {
+    	if(arr.indexOf(parseInt(selectProduct)) != -1) {
     		alert("이미 등록하신 상품입니다.");
     	}else {
     		alert(selectProduct + '번 상품이 추가되었습니다.');
     		var content = "";
-        	content += "<input type = 'text' readonly name='products' value='" + selectProduct + "'/>";
+        	content += "<input class = 'selected' type = 'text' readonly name='products' value='" + selectProduct + "'/>";
         	$("#select_product").append(content);
-        	arr[arr.length] = selectProduct;
+        	arr[arr.length] = parseInt(selectProduct);
     	}
     })
+    
+    /* 패키지 상품에 포함될 개별 상품들 선택 (수정폼) */
+    var arr2 = new Array();
+    $(document).on("click", ".test2", function() {
+    	var selectProduct = $(this).attr('value');
+    	
+    	if(arr2.indexOf(parseInt(selectProduct)) != -1) {
+    		alert("이미 등록하신 상품입니다.");
+    	}else {
+    		alert(selectProduct + '번 상품이 추가되었습니다.');
+    		var content = "";
+        	content += "<input class = 'selected' type = 'text' readonly name='products' value='" + selectProduct + "'/>";
+        	$("#select_product2").append(content);
+        	arr2[arr2.length] = parstInt(selectProduct);
+    	}
+    })
+   
+    $("#certification_Info").change(function(){
+    	   var selectCertiVal = $(this).val(); 
+    	   $("#certificationNo").val(selectCertiVal)
+    })
+    
+    /* 생산자 select누르면 값 넣어주기 */
+    $("#producer_Info").change(function(){
+    	   var selectProducerVal = $(this).val(); 
+    	   $("#reg_producerNo").val(selectProducerVal)
+    })
+    
+    /* 생산자 select누르면 값 넣어주기 */
+    $("#producer_Info2").change(function(){
+    	   var selectProducerVal2 = $(this).val(); 
+    	   $("#reg_producerNo2").val(selectProducerVal2)
+    })
+    
+    
+    /* 해당 패키지 상품 수정 불러오기 */
+    /* 커뮤니티 수정 */
+	$("span[name=modifyButtonPackage]").click(function() {
+		var productNo = $(this).attr("value");
+		$.ajax({
+			url : "<c:url value='/manageController/packageModifyShowManage'/>",
+			type : "post",
+			data : "no=" + productNo,
+			dataType : "json",
+			success : function(result) {
+				$("input[name=no]").val(result.package.packageNo);
+				$("input[name=name]").val(result.package.productDTO.name);
+				$("input[name=price]").val(result.package.productDTO.price);
+				$("input[name=profile]").val(result.package.productDTO.profile);
+				$("input[name=desc]").val(result.package.productDTO.desc);
+				var content = "";
+				$.each(result.productList, function(index, item) {
+					content += "<input class = 'selected' type = 'text' readonly name='products' value='" + item + "'/>";
+					if(arr2.indexOf(item) == -1) {
+						arr2[arr2.length] = parseInt(item);
+					}
+				})
+	        	$("#select_product2").html(content);
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	})
+	
+	/* 패키지 상품 내의 개별 상품을 검색하여 추가했는데 다시 삭제하고 싶을 때*/
+	$(document).on("click", ".selected", function() {
+		$(this).remove();
+	})
     
 }) 
 </script>

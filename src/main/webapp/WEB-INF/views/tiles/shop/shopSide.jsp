@@ -68,10 +68,11 @@
 				<img src='<c:url value="/resources/images/"/>Not_Select_aGricultural_Produce.jpg' alt="agricultural produce" data-toggle="modal" data-target="#certification" id="certi">
 			</div>
 		</div>
-		
-		<div>
+			
+		<div style="margin: 25px 25px 15px 0px; padding: 20px; font-weight: bold; text-decoration:underline">
 			<a href="http://www.enviagro.go.kr/portal/info/Info_certifi_spe.do" target="_blank"> 유기농 인증 정보 검색하러 가기</a>
 		</div>
+		
 	</div>
 </div>
 </div>
@@ -101,32 +102,12 @@
 					<div class="row">
 						<div class="certification_form">
 							<div class="cetication_content">
-								<table class="table">
-									<c:forEach items="${productCerti}" var="certi">
-									<tr>
-										<td rowspan="3"><img src='<c:url value="/resources/img/certification/${certi.certificationDTO.image}"/>' alt="agricultural produce"></td>
-										<td><h3>번호 </h3> ${certi.certificationNo}
-										</td>
-									</tr>
-									
-									<tr>
-										<td>
-										<h3>이름</h3> ${certi.certificationDTO.name}
-										</td>
-									</tr>
-									
-									<tr>
-										<td><h3>설명</h3> ${certi.certificationDTO.desc}</td>
-								
-									</tr>
-									</c:forEach>
-								</table>
+								<img src='<c:url value="/resources/img/certification/certificationKind.jpg"/>' alt="agricultural produce" width="400" height="600">
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-default">확인</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>

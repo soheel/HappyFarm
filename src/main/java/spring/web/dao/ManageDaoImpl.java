@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -15,6 +16,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 
@@ -37,10 +39,26 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
+	public int productNoFind(String name) {
+		return sqlsession.selectOne("manageMapper.productNoFind",name);
+	}
+	
+	@Override
+	public List<CertificationDTO> selectCertification() {
+		return sqlsession.selectList("manageMapper.selectCertification");
+	}
+
+	
+	@Override
+	public int productCertiRegisterManage(ProductCertificationDTO productCertificationDTO) {
+		return sqlsession.insert("manageMapper.productCertiRegisterManage",productCertificationDTO);
+	}
+	
+	@Override
 	public int productModifyManage(ProductDTO productDTO) {
 		return sqlsession.update("manageMapper.productModifyManage",productDTO);
 	}
-
+	
 	@Override
 	public int productDeleteManage(int no) {
 		return sqlsession.delete("manageMapper.productDeleteManage",no);
@@ -48,21 +66,18 @@ public class ManageDaoImpl implements ManageDao {
 
 	@Override
 	public List<PackageDTO> packageManage() {
-		return sqlsession.selectList("manageMapper.packageManage");
+		List<PackageDTO> list = sqlsession.selectList("manageMapper.packageManage");
+		return list;
 	}
 
 	@Override
-	public List<String> packageShowManage(int packagePk) {
-		return sqlsession.selectList("manageMapper.packageShowManage",packagePk);
-		
+	public List<String> packageShowManage(int packageNo) {
+		return sqlsession.selectList("manageMapper.packageShowManage",packageNo);
 	}
 
 	@Override
-	public int packageRegisterManage(Map<String, Object> packageRegister) {
-		int result1=sqlsession.insert("manageMapper.packageRegisterManage",packageRegister);
-		int result2=sqlsession.insert("manageMapper.packageRegisterPackage",packageRegister);
-		int result3=sqlsession.insert("manageMapper.packageRegisterPackageProduct",packageRegister);
-		return result3;
+	public int packageRegisterManage(PackageDTO packageDTO) {
+		return sqlsession.insert("manageMapper.packageRegisterManage", packageDTO.getProductDTO());
 	}
 	
 	@Override
@@ -76,13 +91,7 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int packageModifyManage(Map<String, Object> modifyinfo) {
-		return 0;
-	}
-	
-	@Override
 	public int packageDeleteManage(String name) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -218,4 +227,46 @@ public class ManageDaoImpl implements ManageDao {
 	public List<HashMap<String, String>> getSalesProduct() {
 		return sqlsession.selectList("manageMapper.getSalesProduct");
 	}
+
+	@Override
+	public int getRecentPackageNo() {
+		return sqlsession.selectOne("manageMapper.getRecentPackageNo");
+	}
+
+	@Override
+	public int packageProductRegisterManage(int packageNo, int productNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("packageNo", packageNo);
+		map.put("productNo", productNo);
+		return sqlsession.insert("manageMapper.packageProductRegisterManage", map);
+	}
+
+	@Override
+	public List<Integer> getPackageProductNo(int no) {
+		return sqlsession.selectList("manageMapper.getPackageProductNo", no);
+	}
+
+	@Override
+	public PackageDTO getPackageByPackageNo(int no) {
+		return sqlsession.selectOne("manageMapper.getPackageByPackageNo", no);
+	}
+
+	@Override
+	public int packageModifyManage(ProductDTO product) {
+		return sqlsession.update("manageMapper.packageModifyManage", product);
+	}
+
+	@Override
+	public int packageModifyDeleteManage(int packageNo) {
+		return sqlsession.delete("manageMapper.packageModifyDeleteManage", packageNo);
+	}
+
+	@Override
+	public int packageModifyInsertManage(int packageNo, int productNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("packageNo", packageNo);
+		map.put("productNo", productNo);
+		return sqlsession.insert("manageMapper.packageModifyInsertManage", map);
+	}
+	
 }

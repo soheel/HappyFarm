@@ -15,7 +15,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-5 error_content">
 				<p>error</p>
-				<p>이런 길을 잘못 찾아오신 것 같은데요..</p>
+				<p>${errorMsg}</p>
 				<input type="button" onclick="window.history.back()" value="뒤로가기">
 			</div>
 			<div class="col-md-5 error_img">

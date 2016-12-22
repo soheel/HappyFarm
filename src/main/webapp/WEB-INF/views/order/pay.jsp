@@ -12,7 +12,8 @@
 	<input id = "phone" type = "hidden" value = "${purchaseOrder.phone }"/>
 	<input id = "addr" type = "hidden" value = "${addr }"/>
 	<input id = "postCode" type = "hidden" value = "${purchaseOrder.postCode }"/>
-	
+	<input id = "originalPrice" type = "hidden" value = "${purchase.price }"/>
+	<input id = "useMileage" type = "hidden" value = "${purchase.discount }"/>
 	
 	<section class="noo-page-heading eff heading-6">
 	<div class="container">
@@ -25,15 +26,15 @@
 	</div>
 </section>
 <div class="main">
-	<div class="commerce single-product noo-shop-main">
+	<div class="commerce single-product noo-shop-main ">
 		<div class="container">
 			<div class="row">
 				<form>
-					<div class="col-md-12 order_check_border order_check_content" id = "show_pay_complete">
+					<div class="col-md-12 order_check_border order_check_content box_shadow" id = "show_pay_complete">
 							
 					</div>
 
-					<div class="col-md-12 addr_check_border" id = "show_pay_complete2">
+					<div class="col-md-12 addr_check_border box_shadow" id = "show_pay_complete2">
 						
 					</div>
 
@@ -71,7 +72,7 @@
 		    buyer_postcode : postCode,
 		}, function(rsp) {
 		    if ( rsp.success ) { // 결제 승인 or 가상계좌 발급 성공
-		        var msg = '결제가 완료되었습니다.<br><hr>';
+		        var msg = '<span class="seller_check_title">결제가 완료되었습니다.</span><br><hr>';
 		        msg += '<p>결제 금액 : ' + rsp.paid_amount + '</p>';
 		        msg += '<p>구매상품 번호 : ' + no + '</p>';
 		        
@@ -87,19 +88,30 @@
 		        	var bankHolder = rsp.vbank_holder;
 		        	var bank
 		        	
-		        	 $.ajax({
+		        	/* 결제 완료 후 문자 전송 */
+		        	$.ajax({
 						 url:"<c:url value = '/userProductController/paySendSms'/>",
 						 type : "post",
 						 data : { "name" : name, "phone" : phone, "bankNum" : bankNum,
 							 "bankName" : bankName, "bankHolder" : bankHolder}
 					 })
-			         
+					 
+					 /*
+					 결제 완료 후 마일리지 차감
+					 및 결제함으로써 마일리지 적립
+					 */
+					 $.ajax({
+						url : "<c:url value = '/userProductController/reduceMileage'/>",
+						type : "post",
+						data : "useMileage=" + document.getElementById("useMileage").value
+					 })
+					
 		        	msg += '<p>가상계좌 입금 계좌번호 : ' + rsp.vbank_num + '</p>';
 		        	msg += '<p>가상계좌 은행명 : ' + rsp.vbank_name + '</p>';
 		        	msg += '<p>가상계좌 예금주 : ' + rsp.vbank_holder + '</p>';
 		        	msg += '<p>가상계좌 입금기한 : ' + rsp.vbank_date + '</p>';
 		        	
-		        	var msg2 = '<배송지 정보 확인><br>';
+		        	var msg2 = "<span class = 'addr_check_title'><배송지 정보 확인></span><br>";
 		        	msg2 += '<p>수취인 : ' + name + '</p>';
 		        	msg2 += '<p>주소 : ' + addr + '</p>';
 		        	msg2 += '<p>연락처 : ' + phone + '</p>';

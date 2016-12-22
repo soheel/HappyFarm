@@ -3,7 +3,7 @@ package spring.web.dto;
 import java.util.List;
 
 public class PackageDTO {
-	private int no;
+	private int pk;
 	private int packageNo;
 	private int productNo;
 	
@@ -12,20 +12,19 @@ public class PackageDTO {
 	
 	public PackageDTO() {}
 
-	public PackageDTO(int no, int packageNo, int productNo, List<ProductDTO> productlist) {
+	public PackageDTO(int pk, int packageNo, int productNo) {
 		super();
-		this.no = no;
+		this.pk = pk;
 		this.packageNo = packageNo;
 		this.productNo = productNo;
-		this.productlist = productlist;
 	}
 
-	public int getNo() {
-		return no;
+	public int getPk() {
+		return pk;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public void setPk(int pk) {
+		this.pk = pk;
 	}
 
 	public int getPackageNo() {

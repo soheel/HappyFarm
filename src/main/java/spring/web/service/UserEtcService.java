@@ -35,6 +35,8 @@ public interface UserEtcService {
 	 * @return
 	 */
 	List<QnaDTO> qnaLoading();
+	
+	String answerQna(int no);
 
 	/**
 	 * 행사 정보 로딩

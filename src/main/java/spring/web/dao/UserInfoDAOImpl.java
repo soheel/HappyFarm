@@ -57,8 +57,8 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	 * 계정찾기(pwd)
 	 */
 	@Override
-	public String searchPwd(String code) {
-		return sqlSession.selectOne("userInfoMapper.searchPwd", code);
+	public String searchPwd(String email) {
+		return sqlSession.selectOne("userInfoMapper.searchPwd", email);
 	}
 
 	/**
@@ -221,31 +221,24 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		return sqlSession.update("userInfoMapper.updateByRequest", purchaseDto);
 	}
 	
+	
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 */
 	@Override
-	public Map<String, Object> myPageQna(String email) {
+	public List<QnaDTO> myPageQna(String email) {
 		List<QnaDTO> QnaList =  sqlSession.selectList("userInfoMapper.getMyPageQnaList", email);
-		String answer = null;
-		
-			for(QnaDTO dto : QnaList){
-				String answerState = dto.getAnswerState();
-				if(answerState.equals("Y")){
-					int no = dto.getNo();
-					System.out.println("no = "+no);
-					answer =  sqlSession.selectOne("userInfoMapper.getQnaAnswer", no);
-					System.out.println("answer : "+answer);
-				}
-			}
-			
-		Map<String, Object>	map = new HashMap<String, Object>();
-		map.put("QnaList", QnaList);
-		map.put("answer", answer);
-		
-		return map;
+		return QnaList;
 	}
-
+	
+	/**
+	 * qna번호에 해당하는 qna가져오기
+	 * */
+	public String getAnswerByNo(int no) {
+		String answer = sqlSession.selectOne("userInfoMapper.getQnaAnswer", no);
+		System.out.println("dao answer :"+answer);
+		return answer;
+	};
 	/**
 	 * 내정보 - 기부페이지 눌렀을 때
 	 */
@@ -392,6 +385,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public List<InfomationDTO> infoLoading() {
 		return sqlSession.selectList("userEtcMapper.infoLoading", null, new RowBounds(0, 6));
+	}
+
+	@Override
+	public int modifyRecommandedMember(String email) {
+		return sqlSession.update("userInfoMapper.modifyRecommandedMember", email);
 	}
 
 }

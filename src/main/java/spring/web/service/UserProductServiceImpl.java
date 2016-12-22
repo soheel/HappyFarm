@@ -145,15 +145,15 @@ public class UserProductServiceImpl implements UserProductService{
 	}
 
 	@Override
-	public Map<String, Object> getPackageDetail() {
+	public Map<String, Object> getPackageDetail(int productNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 패키지 상품 상세보기
-		ProductDTO productDTO = userProductDAO.getPackageDetail();
+		ProductDTO productDTO = userProductDAO.getPackageDetail(productNo);
 		map.put("productDTO", productDTO);
 		System.out.println(productDTO.getName());
 		System.out.println(productDTO.getProducerNo());
 		// 패키지 상품 내에있는 상품 리스트 가져오기
-		List<ProductDTO> list = userProductDAO.getPackageInnerProductList();
+		List<ProductDTO> list = userProductDAO.getPackageInnerProductList(productNo);
 		map.put("list", list);
 		
 		return map;
@@ -200,6 +200,9 @@ public class UserProductServiceImpl implements UserProductService{
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		List<Integer> numList = new ArrayList<Integer>();
 		for(CartDTO cart : cartProductDTO.getList()) {
+			if(cart.getNum() == 0) {
+				continue;
+			}
 			ProductDTO productDTO = userProductDAO.getProductByProductNo(cart.getProductNo());
 			productList.add(productDTO);
 			numList.add(cart.getNum());
@@ -237,6 +240,8 @@ public class UserProductServiceImpl implements UserProductService{
 		return result;
 	}
 
-	
-
+	@Override
+	public int reduceMileage(int useMileage, String email) {
+		return userProductDAO.reduceMileage(useMileage, email);
+	}
 }

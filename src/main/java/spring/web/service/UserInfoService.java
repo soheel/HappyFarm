@@ -31,7 +31,7 @@ public interface UserInfoService {
 	/**
 	 * 계정찾기(pwd)
 	 * */
-	String searchPwd(String code);
+	String searchPwd(String email);
 	
 	/**
 	 * 로그인하기
@@ -95,8 +95,8 @@ public interface UserInfoService {
 	/**
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 * */
-	Map<String, Object> myPageQna(String email);
-	
+	List<QnaDTO> myPageQna(String email);
+	String getAnswerByNo(int no);
 	
 	/**
 	 * 내정보 - 기부버튼 눌렀을 때

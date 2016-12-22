@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import spring.web.dto.CertificationDTO;
 import spring.web.dto.CommunityCommentDTO;
 import spring.web.dto.CommunityDTO;
 import spring.web.dto.DonationDTO;
@@ -33,6 +34,7 @@ import spring.web.dto.DonationOrgDTO;
 import spring.web.dto.MemberDTO;
 import spring.web.dto.PackageDTO;
 import spring.web.dto.ProducerDTO;
+import spring.web.dto.ProductCertificationDTO;
 import spring.web.dto.ProductDTO;
 import spring.web.dto.QnaDTO;
 import spring.web.service.ManageService;
@@ -58,8 +60,20 @@ public class ManageController {
 		 */
 		System.out.println("productManage");
 		List<ProductDTO> productlist = manageService.selectAllProduct();
+		
+		Map<String, Object> map = manageService.selectAllProducer();
+		
+		List<ProducerDTO> producerlist = (List<ProducerDTO>)map.get("producerList");
+		
+		//모든 인증마크 종류 불러오기.
+		List<CertificationDTO> certificationList = manageService.selectCertification();
+				
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productlist", productlist);
+		mv.addObject("producerlist", producerlist);
+		mv.addObject("certificationList", certificationList);
+		
 		mv.setViewName("admin/adminShopItem");
 		return mv;
 	}
@@ -69,7 +83,7 @@ public class ManageController {
 	 * 등록폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productRegisterManage")
-	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
+	public String productRegisterManage(HttpServletRequest request, ProductDTO productDTO, ProductCertificationDTO productCertificationDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 productDTO 정보를 모두 받아, 
@@ -99,6 +113,15 @@ public class ManageController {
 			e.printStackTrace();
 		}
 		int result = manageService.productRegisterManage(productDTO);
+		
+		
+		//이름에 해당하는 번호 찾기
+		int productNo = manageService.productNoFind(productDTO.getName());
+		
+		productCertificationDTO.setProductNo(productNo);
+		System.out.println("상품 번호 : " + productNo);
+		int result2 = manageService.productCertiRegisterManage(productCertificationDTO);
+		
 		return "forward:productManage";
 	}
 	
@@ -107,7 +130,7 @@ public class ManageController {
 	 * 수정폼을 div로 띄워줌
 	 * */
 	@RequestMapping("productModifyManage")
-	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
+	public String productModifyManage(HttpServletRequest request, ProductDTO productDTO, ProductCertificationDTO productCertificationDTO, HttpSession session, MultipartHttpServletRequest multipartRequest) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 수정한다.
@@ -166,6 +189,7 @@ public class ManageController {
 		}
 		
 		int result = manageService.productModifyManage(productDTO);
+		
 		return "forward:productManage";
 	}
 	
@@ -211,6 +235,7 @@ public class ManageController {
 		 * * 정보 관련 :  package테이블의 package_name, 세트 가격은 product에 있는 price, 포함상품은package_product에 있는 product_no를 다 찾는다.
 		 */
 		List<PackageDTO> packagelist = manageService.packageManage();
+		System.out.println(packagelist.size() + "!!!");
 		List<String> packageProductList = new ArrayList<String>();
 		String products = "";
 		for(PackageDTO packageDTO : packagelist) {
@@ -227,16 +252,6 @@ public class ManageController {
 		mv.setViewName("admin/adminPackageItem");  
 		return mv;
 	}
-	
-	/**
-	 * 세트상품 상세정보 packagename을 인수로 받는다.
-	 * 해당 세트상품이 포함하고 있는 개별상품을 보여주기
-	 * (새창)
-	 * */
-	@RequestMapping("packageShowManage")
-	public ModelAndView packageShowManage(String name) {
-		return null;
-	}
 
 	/**
 	 * 세트상품관리 등록
@@ -244,7 +259,6 @@ public class ManageController {
 	 * */
 	@RequestMapping("packageRegisterManage")
 	public String packageRegisterManage(HttpServletRequest request, PackageDTO packageDTO, ProductDTO productDTO, MultipartHttpServletRequest multipartRequest, HttpSession session, String products) {
-		Map<String, Object> packageRegister = new HashMap<String, Object>();
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
@@ -253,11 +267,46 @@ public class ManageController {
 		 * 밑에 상품이 productDTO들이 insert된다.
 		 */
 		System.out.println("packageRegisterManage");
-		System.out.println(products);
-		System.out.println(productDTO.getName());
-		System.out.println(productDTO.getPrice());
-		//int result = manageService.packageRegisterManage(packageRegister);
-		return "forward:packageproduct";
+		List<MultipartFile> fileList =  multipartRequest.getFiles("file");
+		List<Integer> productsNoList = new ArrayList<Integer>();
+		String[] strArr = products.split(",");
+		for(String s : strArr) {
+			productsNoList.add(Integer.parseInt(s));
+		}
+		System.out.println("productsNoList size : " + productsNoList.size());
+		
+		packageDTO.setProductDTO(productDTO);
+		
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		productDTO.setProfile(profile);
+		productDTO.setDesc(desc);
+		
+		if(profile.equals("") || desc.equals("")) {
+			return "forward:packageManage";
+		}
+		
+		// 파일 업로드
+		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
+		try {
+			File profileSaveFile = new File(saveDir + "/" + profile);
+			if(profileSaveFile.exists()) {
+				profile = profile + "_" + System.currentTimeMillis();
+			}
+			productDTO.setProfile(profile);
+			File descSaveFile = new File(saveDir + "/" + desc);
+			if(descSaveFile.exists()) {
+				desc = desc + "_" + System.currentTimeMillis();
+			}
+			productDTO.setDesc(desc);
+			
+			fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int result = manageService.packageRegisterManage(packageDTO, productsNoList);
+		return "forward:packageManage";
 	}
 	
 	/**
@@ -275,20 +324,16 @@ public class ManageController {
 		return list;
 	}
 	
-	//div태그이므로, 할 필요 없을 것이다. 정보 저장되어 있기 떄문에
-	/** div에 정보를 불러와서 ...productno를 받는다.
-	 * //수정폼에서 product에 해당하는 productname에 해당하는 제품 dto에 대한 정보를 받아 오기 위해 필요한 메소드		
-		ProductDTO product = manageService.selectByPackageName(productDTO)
-	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
-	 * 해당하는 제품의 정보를 select한다.
-	
-	@RequestMapping("packageInfoMangage")
-	public ProductDTO packageInfoMangage(String no){
-		ProductDTO product = null;
-		product = manageService.packageInfoMangage(no);
-		
-		return product;
-	} */
+	/**
+	 * 패키지 상품을 수정할 때, 기존의 정보를 수정폼에 뿌려준다.
+	 * */
+	@RequestMapping("packageModifyShowManage")
+	@ResponseBody
+	public Map<String, Object> packageModifyShowManage(int no) {
+		System.out.println("packageModifyShowManage");
+		Map<String, Object> map = manageService.packageModifyShowManage(no);
+		return map;
+	}
 	
 	/**
 	 * 세트상품관리 수정 (productname을 인수로 받음)
@@ -296,31 +341,52 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("packageModifyManage")
-	public String packageModifyManage(ProductDTO productDTO, String name) {
-		
-		Map<String, Object> modifyinfo = new HashMap<String, Object>();
-		/**
-		 * 패키지 이름을 누르고 수정을 누르면 등록폼과 같은 div가 띄어진다.
-		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
-		 * 가격,사진,설명 : product테이블에 있는 price, profile, desc
-		 * 상품검색 : product_name에 일치하는 product를 찾아준다
-		 * 밑에 상품이 productDTO들이 modify된다.
-		 * 그 다음 div태그가 사라지고 다시 productManage 개별상품관리를 보는 쪽으로 넘어간다.
-		 */
-		
-		//수정폼에서 상품 검색하기 위해서 필요한 메소드
-		ProductDTO searchlist = packageSearchProduct(name);
-		
-		modifyinfo.put("productDTO", productDTO);
-		modifyinfo.put("searchlist", searchlist);
-		
-		int result = manageService.packageModifyManage(modifyinfo);
-		
-		if(result==0){
-			//request.setAttribute("errorMsg", "수정되지 않았습니다.");
-			
+	public String packageModifyManage(HttpServletRequest request, ProductDTO productDTO, String products, MultipartHttpServletRequest multipartRequest, HttpSession session) {
+		System.out.println("packageModifyManage");
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String profile = fileList.get(0).getOriginalFilename();
+		String desc = fileList.get(1).getOriginalFilename();
+		String saveDir = session.getServletContext().getRealPath("/resources/img/product");
+
+		try {
+			if(profile.equals("") && desc.equals("")) {
+				
+			}else if(profile.equals("")) { // profile만 수정하지 않은 경우
+				File descFile = new File(saveDir + "/" + desc);
+				if(descFile.exists()) {
+					desc = desc + "_" + System.currentTimeMillis();
+				}
+				productDTO.setDesc(desc);
+				fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+			}else if(desc.equals("")) {
+				File profileFile = new File(saveDir + "/" + profile);
+				if(profileFile.exists()) {
+					profile = profile + "_" + System.currentTimeMillis();
+				}
+				productDTO.setProfile(profile);
+				fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			}else {
+				File descFile = new File(saveDir + "/" + desc);
+				if(descFile.exists()) {
+					desc = desc + "_" + System.currentTimeMillis();
+				}
+				productDTO.setDesc(desc);
+				fileList.get(1).transferTo(new File(saveDir + "/" + desc));
+				
+				File profileFile = new File(saveDir + "/" + profile);
+				if(profileFile.exists()) {
+					profile = profile + "_" + System.currentTimeMillis();
+				}
+				productDTO.setProfile(profile);
+				fileList.get(0).transferTo(new File(saveDir + "/" + profile));
+			}
+			int result = manageService.packageModifyManage(productDTO, products);
+		}catch(Exception e){
+			e.printStackTrace();
+
 		}
-		return "forward:packageproduct";
+
+		return "forward:packageManage";
 	}
 	
 	/**
@@ -438,15 +504,15 @@ public class ManageController {
 	@RequestMapping("producerSendMessage")
 	public String producerSendMessage(@RequestParam String phone, @RequestParam String adminMessage){
 		
-		String api_key = " NCS58438B39BFA5E";
-        String api_secret = "0146B928483C7BC3FBD71788007A3DF0";
+		String api_key = "NCS5858E6CD5BBE0";
+        String api_secret = "D8DF0FFFB9647A8AE4A87BF4EEA6E62A";
        
         Message coolsms = new Message(api_key, api_secret);
 
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", phone);
-        params.put("from", "01090786137");
+        params.put("from", "01050958468");
         params.put("type", "SMS");
         params.put("text", adminMessage);
       

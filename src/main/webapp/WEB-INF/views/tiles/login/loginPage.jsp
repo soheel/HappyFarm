@@ -159,7 +159,7 @@
 			$.ajax({
 				url : "<c:url value = '/userInfoController/searchId'/>",
 				type : "post",
-				data : "email=" + $("#reg_email").val() + "&phone=" + $("#reg_phone").val(),
+				data : "name=" + $("#name").val() + "&phone=" + $("#phone").val(),
 				dataType : "text",
 				success : function(result) {
 					$("#searchIdBox").text("Email : " + result);
@@ -170,6 +170,21 @@
 			})
 		})
 		
+		/* 비밀번호 찾기 */
+		$("#searchPwdButton").click(function() {
+			$.ajax({
+				url : "<c:url value = '/userInfoController/searchPwd'/>",
+				type : "post",
+				data : "email=" + $("#email").val(),
+				dataType : "text",
+				success : function(result) {
+					$("#searchIdBox").text("비밀번호는 " + result +"입니다.");
+				},
+				error : function(err) {
+					alert("존재하지 않는 회원입니다.");
+				}
+			})
+		})
 		
 	});
 	</script>

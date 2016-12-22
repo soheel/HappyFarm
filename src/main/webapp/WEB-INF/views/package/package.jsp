@@ -44,7 +44,7 @@
 							<div class="masonry-item noo-product-column col-md-4 col-sm-6 product">
 									<div class="noo-product-inner">
 										<div class="noo-product-thumbnail">
-											<a href='<c:url value="/userProductController/showPackageDetail?"/>${list.no}'>
+											<a href='<c:url value="/userProductController/showPackageDetail?productNo="/>${list.no}'>
 												<img width="600" height="760" src="<c:url value="/resources/img/product/"/>${list.profile}" alt="" />
 											</a>
 											<div class="noo-rating">

@@ -124,7 +124,7 @@
 <!-- 3. Q&A게시판 클리하면 Q&A목록 불러오기-->
 <!-- 3.1 Q&A에 있는 목록을 다 가져온다. -->
 <select id="qnaLoading" resultMap="qnaResultMap">
-	select * from qna where answer_state is not null order by qna_no desc	
+	select * from qna where qna_parent is null order by qna_register_date desc	
 </select>
 <select id="getAnswerByNo" parameterType="int" resultType="String">
 	select qna_desc from qna where qna_parent=#{no}

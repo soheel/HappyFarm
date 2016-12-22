@@ -25,13 +25,20 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Autowired
 	private UserInfoDAO userInfoDao;
 	
-	
 	/**
 	 * 회원가입
 	 * */
 	@Override
 	public int registerMember(MemberDTO memberDto) {
-		return userInfoDao.registerMember(memberDto);
+		int result = userInfoDao.registerMember(memberDto);
+		if(result < 1) {
+			return 0;
+		}
+		
+		if(memberDto.getRecommand() != "") {
+			result = userInfoDao.modifyRecommandedMember(memberDto.getRecommand());
+		}
+		return result;
 	}
 	
 	/**
@@ -54,8 +61,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 계정찾기(pwd)
 	 * */
 	@Override
-	public String searchPwd(String code) {
-		return userInfoDao.searchPwd(code);
+	public String searchPwd(String email) {
+		return userInfoDao.searchPwd(email);
 	}
 	
 	/**
@@ -177,10 +184,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * 해당 회원에 해당하는 qna 정보 가져오기
 	 * */
 	@Override
-	public Map<String, Object> myPageQna(String email) {
+	public List<QnaDTO> myPageQna(String email) {
 		return userInfoDao.myPageQna(email);
 	}
 	
+	@Override
+	public String getAnswerByNo(int no) {
+		
+		String answer = userInfoDao.getAnswerByNo(no);
+		System.out.println("service answer :"+answer);
+		return answer;
+	}
 	
 	/**
 	 * 내정보 - 기부페이지 눌렀을 때

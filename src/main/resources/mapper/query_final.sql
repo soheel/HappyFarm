@@ -254,7 +254,9 @@ insert into product values(product_no.nextval, '태양초햇건고추', 4000, null, '태
 insert into product values(product_no.nextval, '파프리카', 4500, null, '붉은파프리카',4.3, '1입', 3, 19);
 
 
-insert into product values(100, '패키지상품', 100000, 'hospitalset.png', 'hospitalset_1.jpg', 3.7,'바구니', null, null);
+insert into product values(product_no.nextval, '패키지상품', 100000, 'hospitalset.png', 'hospitalset_1.jpg', 3.7,'바구니', null, null);
+
+delete product where product_no >= 52
 
 -- package 테이블---------------------------------------------------------------
 drop table package;
@@ -270,9 +272,9 @@ product_no number(5) references product(product_no) on delete cascade
 )
 
 삽입
-insert into package values(package_no.nextval, 100, 1);
-insert into package values(package_no.nextval, 100, 2);
-insert into package values(package_no.nextval, 100, 3);
+insert into package values(package_no.nextval, 52, 1);
+insert into package values(package_no.nextval, 52, 2);
+insert into package values(package_no.nextval, 52, 3);
 
 delete package where package_pk > 0
 
@@ -473,6 +475,7 @@ community_desc varchar2(100),
 community_register_date date,
 community_state number(1) not null,
 community_producer_no number(5) references producer(producer_no) on delete cascade
+
 )
 
 삽입
@@ -497,8 +500,13 @@ community_comment_no number(5) primary key,
 community_comment_register date,
 community_comment_content varchar2(300),
 community_no number(5) references community(community_no) on delete cascade,
+<<<<<<< HEAD
 member_email varchar2(50) references member(member_email) on delete cascade,
 community_comment_parent number(5) references community_comment(community_comment_no) on delete cascade
+=======
+member_email varchar2(50) references member(member_email) on delete cascade
+community_comment_parent number(5) references community(community_no) on delete cascade
+>>>>>>> origin/master
 )
 
 삽입
@@ -555,6 +563,12 @@ insert into information values(information_no.nextval, '양파의 영양분 & 효능', '
 
 -- test
 
-select product_no, product_name
-from product
-where product_name like '%패%'
+select * from product;
+select * from package;
+select * from member;
+
+select distinct k.package_no, p.product_name, p.product_price
+from package k, product p
+where p.product_no = k.package_no
+
+update member set member_mileage = member_mileage-500 where member_email = '박용우'

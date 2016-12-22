@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
+
 <!doctype html>
 <html lang="en-US">
 <head>
@@ -223,14 +224,49 @@
 						}else{
 							alert("실패");
 						}
-		           })/* ,
-		           error: function(err){
-		              alert("err :" + err);
-		           } */
+		           })
 		  			})
 		   		}) 
 		   	});
-		 })
+		 	
+		 $(document).on("click","#showAnswerByNumber", function(){
+			 
+			 var number = $(".my_info_qna_table tr").index($(this).parent().parent())+1;
+			var no = $(this).attr("value");
+			//alert(no);
+			var q = $(this).parent().text();
+			//alert(q);
+			var $tr = $(this).next('tr');
+			
+			$.ajax({
+		         url:"showAnswerByNo",
+		           type:"post",
+		           dataType:"text",
+		           data:"no="+no,
+		           success:(function(result){
+		        		   //alert(result);
+							var s = "<td colspan='3'>"+result+"</td>";
+							var t = "<td colspan='3'>답글이 등록되지 않았습니다.</td>"
+							
+							if(q=='Y'){ 
+								$(".my_info_qna_table tbody tr:nth-child("+number+")").children().remove();
+								$(".my_info_qna_table tbody tr:nth-child("+number+")").append(s);
+						 	}else{
+								$(".my_info_qna_table tbody tr:nth-child("+number+")").children().remove();
+						 		$(".my_info_qna_table tbody tr:nth-child("+number+")").append(t);
+							} 
+		           		})
+		  			}) 
+		  		if($(".my_info_qna_table tbody tr:nth-child("+number+")").is(":hidden")){
+		  			$(".my_info_qna_table tbody tr:nth-child("+number+")").slideDown();
+		  		}else{
+		  			
+		  			$(".my_info_qna_table tbody tr:nth-child("+number+")").slideUp();
+		  		}	
+		  			
+				 })
+				 
+		 });
 </script>
 </body>
 </html>
