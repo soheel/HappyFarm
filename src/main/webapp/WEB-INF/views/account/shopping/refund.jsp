@@ -14,6 +14,7 @@
 			<th>주문상품정보</th>
 			<th>상품금액(수량)</th>
 			<th>생산자</th>
+			<th>현 상태</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -35,6 +36,7 @@
          		<td>${purchaseProductDto.productDto.name}</td>
          		<td>${purchaseProductDto.productDto.price}(${purchaseProductDto.productNum})</td>
          		<td>${purchaseProductDto.productDto.producerDto.name}</td> 
+         		<td>${purchaseDto.purchaseStateDto.name} </td>
 				</c:forEach> 
 			</tr>
 			</c:forEach>

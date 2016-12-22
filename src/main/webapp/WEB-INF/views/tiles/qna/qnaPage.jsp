@@ -67,6 +67,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#qnaRegisterBtn").click(function(){
+				
 				var comment = $("#comment").val();
 				//alert(s);
 				//alert(11)

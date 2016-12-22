@@ -202,7 +202,7 @@
 		   	
 		   	$(document).on("click","#refundCheckBtn", function(){
 		   		var no = $(this).attr("value");
-		   		
+		   		alert(no);
 		   		$("#requsetChange").click(function(){
 				   		 var state = $(".refundBtn:checked").val();
 				   		//alert(state); 
