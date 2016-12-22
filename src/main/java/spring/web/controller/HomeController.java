@@ -10,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.web.dto.CommunityCommentDTO;
+import spring.web.dto.CommunityDTO;
 import spring.web.dto.InfomationDTO;
 import spring.web.dto.ProducerDTO;
 import spring.web.dto.ProductDTO;
+import spring.web.service.UserEtcService;
 import spring.web.service.UserInfoService;
 
 /**
@@ -40,5 +43,4 @@ public class HomeController {
 		session.setAttribute("donationPrice", price);
 		return mv;
 	}
-	
 }

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<h2>취소/반품/교환</h2>
+<h2>반품/교환 내역</h2>
 	<input type="button" value="전체" name="id" class="searchReturnList">
 	<input type="button" value="3개월" name="three_month" class="searchReturnList">
 	<input type="button" value="6개월" name="six_month" class="searchReturnList">

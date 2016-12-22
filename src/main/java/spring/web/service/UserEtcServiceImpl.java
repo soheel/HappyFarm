@@ -36,12 +36,55 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public Map<String, Object> communityDetail(int no) {
 		return userEtcDao.communityDetail(no);
 	}
+	
+	/**
+	 * ¸ðÀÓ µ¡±Û ÀÛ¼º
+	 */
+	@Override
+	public int communityReply(String content, int communityNo, String email) {
+		CommunityCommentDTO dto = new CommunityCommentDTO(content, communityNo, email);
+		return userEtcDao.communityReply(dto);
+	}
+	
+	/**
+	 * ¸ðÀÓ µ¡±Û »èÁ¦
+	 */
+	@Override
+	public int communityReplyDelete(int no) {
+		return userEtcDao.communityReplyDelete(no);
+	}
+	
+	
+	/**
+	 * ¸ðÀÓ µ¡±Û Ãß°¡
+	 */
+	@Override
+	public int communityReplyInsert(int no, String content, int comunityNo, String email) {
+		CommunityCommentDTO dto = new CommunityCommentDTO(no, content, comunityNo, email);
+		return userEtcDao.communityReplyInsert(dto);
+	}
+	
+	/**
+	 * ¸ðÀÓ µ¡±Û ¼öÁ¤
+	 */
+	@Override
+	public int communityReplyUpdate(int no, String content) {
+		CommunityCommentDTO dto = new CommunityCommentDTO(no, content);
+		return userEtcDao.communityReplyUpdate(dto);
+	}
+
+	
 	/**
 	 * Q&A µî·Ï
 	 */
 	@Override
 	public int registerQnA(QnaDTO qnaDto) {
 		return userEtcDao.registerQnA(qnaDto);
+	}
+	
+	@Override
+	public String answerQna(int no) {
+		return userEtcDao.answerQna(no);
 	}
 	/**
 	 * Q&A µî·ÏÆûÀÌ ¶ß°í + ¸ñ·Ï 
@@ -109,6 +152,4 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public DonationOrgDTO donationLoading2() {
 		return userEtcDao.donationLoading2();
 	}
-	
-
 }

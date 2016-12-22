@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<h2>주문/배송 조회</h2>
+<h2>주문/배송 내역</h2>
 
 
 
@@ -27,9 +27,11 @@
 	<tbody>
 	<c:choose>
 	<c:when test="${empty list}">
+	<tr>
 	<td colspan='6'>
 		 <p align="center"><b><span style="font-size:9pt;">구매 내역이 없습니다.</span></b></p>
 	</td>
+	</tr>
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${list}" var="memberDto">

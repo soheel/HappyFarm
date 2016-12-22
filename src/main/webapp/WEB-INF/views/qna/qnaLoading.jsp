@@ -38,32 +38,22 @@
 					<div class="panel-group" id="accordion">
     					
     					<c:forEach items="${qnaList}" var="qna" varStatus="status">
-    					
+    					<form id="formmmmm">
     					<div class="panel panel-info">
       						<div class="panel-heading">
         						<h4 class="panel-title">
-          							<a data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}">${qna.desc}</a>
+        							<input type='hidden' id='qnaNo111' value='${qna.no}'>
+        							<input type='hidden' id='qnaState' value='${qna.answerState}'>
+          							<a  id='a111' data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}">${qna.desc}</a>
         						</h4>
-      						</div>
-      						<c:choose>
-      							<c:when test="${qna.answerState eq'N'}">
+      						</div>	
       								<div id="collapse${status.count}" class="panel-collapse collapse">
-      									<div class="panel-body">답변이 달려있지 않습니다.</div>
-      								</div>
-      							</c:when>
-      							<c:otherwise>
-      							<c:forEach items="${answerList}" var="answer" >
-      							<c:if test="${answerList}">
-      								<div id="collapse${status.count}" class="panel-collapse collapse">
-        								<div class="panel-body">${state.index}</div>
-      								</div>
-      								</c:if>
-      								</c:forEach>
-      							</c:otherwise>
-      						</c:choose>
-      						
+        								<div id='classAnswer' class="panel-body"></div>
+      								</div>			
+      								
     					</div>
     					
+						</form>
     					</c:forEach>
     					
   					</div> 

@@ -31,19 +31,19 @@
 												비밀번호
 												<span class="required">*</span>
 											</label>
-											<input type="password" class="input-text" name="pwd" id="reg_name" value="${memberDto.pwd}"/>
+											<input type="password" class="input-text" name="pwd" id="reg_name" value=""/>
 											
 											<label for="find_pw_re">
 												비밀번호 확인
 												<span class="required">*</span>
 											</label>
-											<input type="password" class="input-text" name="pwdCheck" id="reg_name" value="${memberDto.pwd}"/>
+											<input type="password" class="input-text" name="pwdCheck" id="reg_name" value=""/>
 											
 											<label for="find_phone">
 												연락처
 												<span class="required">*</span>
 											</label>
-											<input type="text" class="input-text" name="phone" id="reg_name" value="${memberDto.phone}"/>
+											<input type="text" class="input-text" name="phone" id="reg_name" value=""/>
 											
 										</div>
 										<input type="submit" class="button" name="register" value="수정하기" />
