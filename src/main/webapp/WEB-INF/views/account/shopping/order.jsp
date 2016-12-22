@@ -27,9 +27,11 @@
 	<tbody>
 	<c:choose>
 	<c:when test="${empty list}">
+	<tr>
 	<td colspan='6'>
 		 <p align="center"><b><span style="font-size:9pt;">구매 내역이 없습니다.</span></b></p>
 	</td>
+	</tr>
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${list}" var="memberDto">

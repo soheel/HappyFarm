@@ -5,25 +5,26 @@
 <h4 class="modal-title">Q&amp;A</h4>
 <div class="panel-group">
 
-	<c:forEach items="${qnalist}" var="qna">
+	<c:forEach items="${qnalist}" var="qna" varStatus="state">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="panel-title">
-					<span> <input type="checkbox" name=""> <a
-						data-toggle="collapse" href="#collapse1" class="question">${qna.desc}</a>
+					<span> <input type="checkbox" name="checkAnswer"> <a
+						data-toggle="collapse" href="#collapse${state.index}" class="question">${qna.desc}</a>
 					</span>
 				</div>
 			</div>
-			<div id="collapse1" class="panel-collapse collapse">
-				<form action="" method="">
+				<form action="<c:url value='/manageController/qnaRegisterManage' />" method="post">
+			<div id="collapse${state.index}" class="panel-collapse collapse">
 					<div class="panel-body">
-						<textarea></textarea>
+					<input type='hidden' id='no' value='${qna.no}'>
+						<textarea id='desc'></textarea>
 					</div>
 					<div class="panel-footer">
-						<input type="submit" name="" value="등록">
+						<input type="submit" id="registerAnswer" value="등록">
 					</div>
-				</form>
 			</div>
+				</form>
 		</div>
 	</c:forEach>
 
