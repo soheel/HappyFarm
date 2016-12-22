@@ -76,18 +76,39 @@
 			           dataType:"text",
 			           data:"desc="+comment,
 			           success:(function(result){
-			        	  /*  
-			   				$("input[name=no]").val(result.desc);
-			   				$("input[name=name]").val(result.name);
-			   				$("input[name=addr]").val(result.addr);
-			   				$("input[name=phone]").val(result.phone);
-			   				$("input[name=profile]").val(result.profile); */
+			        	   // $("#a111").html(result);
+			        	   alert(result);
+			        	   location.href="<c:url value='/userEtcController/qnaLoading' />";
 			           }),
 			           error: function(err){
 			              alert("err :" + err)
 			           } 
 			      
 			      	})  
+			});
+			
+			$(document).on("click","#a111",function(){
+				var form= $(this).parent().parent().parent();
+				var no = $(form).find("#qnaNo111").val();
+				var str = '답글이 등록되지 않았습니다.';
+				//alert(no);
+				var state = $(form).find("#qnaState").val();
+				var answer =$(form).find("#classAnswer");
+				//	alert(state)
+				   $.ajax({
+			         url:"getAnswerQna",
+			           type:"post",
+			           dataType:"text",
+			           data:"no="+no,
+			           success:(function(result){
+			        	   if(state=='N'){
+			        		   $(answer).text(str);
+			        	   }else{
+			        		   $(answer).text(result);
+			        	   }
+			           })	
+			      	})     
+				
 			});
 		});
 	</script>

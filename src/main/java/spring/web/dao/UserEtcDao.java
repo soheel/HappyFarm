@@ -21,6 +21,8 @@ public interface UserEtcDao {
 	int registerQnA(QnaDTO qnaDto);
 
 	List<QnaDTO> qnaLoading();
+	
+	String answerQna(int no);
 
 	List<InfomationDTO> infoLoading();
 

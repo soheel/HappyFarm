@@ -43,6 +43,11 @@ public class UserEtcServiceImpl implements UserEtcService{
 	public int registerQnA(QnaDTO qnaDto) {
 		return userEtcDao.registerQnA(qnaDto);
 	}
+	
+	@Override
+	public String answerQna(int no) {
+		return userEtcDao.answerQna(no);
+	}
 	/**
 	 * Q&A µî·ÏÆûÀÌ ¶ß°í + ¸ñ·Ï 
 	 * @return

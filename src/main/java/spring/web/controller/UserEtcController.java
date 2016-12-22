@@ -121,11 +121,24 @@ public class UserEtcController {
 	}
 	
 	/**
+	 * 답글 찾아오기
+	 * */
+	@RequestMapping(value="getAnswerQna", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getAnswerQna(int no){
+		System.out.println("no는???"+no);
+		
+		String answer = userEtcService.answerQna(no);
+		
+		return answer;
+	}
+	
+	/**
 	 * Q&A 글쓰기
 	 * */
 	@RequestMapping("qnaWrite")
 	@ResponseBody
-	public String qnaWrite(HttpServletRequest request, String desc) throws Exception{
+	public int qnaWrite(HttpServletRequest request, String desc) throws Exception{
 		/**
 		 * 1.Q&A write폼에서 등록을 누르면 정보를 받아와서
 		 * 2.정보를 insert한 후 
@@ -145,7 +158,7 @@ public class UserEtcController {
 			throw new Exception();
 		}
 		
-		return "forward:qnaLoading";
+		return result;
 		
 	}
 	

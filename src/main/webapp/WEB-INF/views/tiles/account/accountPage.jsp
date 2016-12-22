@@ -224,10 +224,7 @@
 						}else{
 							alert("실패");
 						}
-		           })/* ,
-		           error: function(err){
-		              alert("err :" + err);
-		           } */
+		           })
 		  			})
 		   		}) 
 		   	});
@@ -236,7 +233,7 @@
 			 
 			 var number = $(".my_info_qna_table tr").index($(this).parent().parent())+1;
 			var no = $(this).attr("value");
-			alert(no);
+			//alert(no);
 			var q = $(this).parent().text();
 			//alert(q);
 			var $tr = $(this).next('tr');
@@ -247,7 +244,7 @@
 		           dataType:"text",
 		           data:"no="+no,
 		           success:(function(result){
-		        		   alert(result);
+		        		   //alert(result);
 							var s = "<td colspan='3'>"+result+"</td>";
 							var t = "<td colspan='3'>답글이 등록되지 않았습니다.</td>"
 							
