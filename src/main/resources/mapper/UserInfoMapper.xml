@@ -359,6 +359,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="saveMileage" parameterType="String" resultMap="mileageResultMap">
+		select mileage_date, mileage_price, mileage_state from mileage where mileage_state='구매 적립' or MILEAGE_STATE='추천인등록' and member_email='이소희' 
 	</select>
 	
 	

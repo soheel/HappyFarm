@@ -215,6 +215,7 @@ update member set member_mileage = member_mileage+#{saveMileage} where member_em
 
 <!-- 마일리지 테이블에 내역 추가 -->
 <insert id="saveMileageList2" parameterType="map">
+	insert into mileage values(mileage_no.nextval, sysdate, #{saveMileage}, '구매 적립', #{email})
 </insert>
 
 </mapper>
