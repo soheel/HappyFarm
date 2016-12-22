@@ -96,7 +96,7 @@ public interface UserEtcService {
 	 * @param comment
 	 * @param communityNo
 	 * @return
-	 */
+	 */ 
 	int communityReplyInsert(int no, String comment, int communityNo, String email);
 	
 	/**
@@ -104,7 +104,7 @@ public interface UserEtcService {
 	 * @param no
 	 * @param comment
 	 * @return
-	 */
+	 */ 
 	int communityReplyUpdate(int no, String comment);
 	
 	/**
