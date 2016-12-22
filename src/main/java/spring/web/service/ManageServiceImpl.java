@@ -127,7 +127,18 @@ public class ManageServiceImpl implements ManageService {
 	public List<ProductDTO> packageSearchProduct(String productname) {
 		return manageDao.packageSearchProduct(productname);
 	}
+<<<<<<< HEAD
+	/**
+	 * 세트상품관리 수정폼에서 정보를 빼기 위해서 필요한 메소드 
+	 * 해당하는 제품의 정보를 select한다.
+	 */
+	@Override
+	public ProductDTO packageInfoManage(int packagePk) {
+		return manageDao.packageInfoMangage(packagePk);
+	}
+=======
 
+>>>>>>> origin/master
 
 	/**
 	 * 세트상품관리 수정
@@ -356,6 +367,12 @@ public class ManageServiceImpl implements ManageService {
 	}
 
 	@Override
+<<<<<<< HEAD
+	public ProductDTO packageInfoMangage(String productno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+=======
 	public Map<String, Object> packageModifyShowManage(int no) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		PackageDTO packageDTO = manageDao.getPackageByPackageNo(no);
@@ -369,4 +386,5 @@ public class ManageServiceImpl implements ManageService {
 	
 
 	
+>>>>>>> origin/master
 }

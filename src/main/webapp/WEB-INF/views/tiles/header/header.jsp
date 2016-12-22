@@ -2,15 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>headerPage</title>
-
-</head>
-<body>
-	<div class="noo-spinner">
+<div class="noo-spinner">
 			<div class="spinner">
 				<div class="cube1"></div>
 				<div class="cube2"></div>
@@ -196,27 +188,6 @@
 										<li><a href="<c:url value="/userEtcController/infoLoading"/>">Info</a></li>
 										<li><a href="<c:url value="/userEtcController/qnaLoading"/>">Q&A</a></li>
 										<li><a href="<c:url value="/userEtcController/donationLoading"/>">Donate</a></li>
-										
-										<!-- 
-										<li class="menu-item-has-children">
-											<a href="blog.html">Blog</a>
-											<ul class="sub-menu">
-												<li class="menu-item-has-children">
-													<a href="blog-masonry.html">Blog Masonry</a>
-													<ul class="sub-menu">
-														<li><a href="blog-masonry-two-columns.html">2 Columns</a></li>
-														<li><a href="blog-masonry.html">3 Columns</a></li>
-														<li><a href="blog-masonry-four-columns.html">4 Columns</a></li>
-													</ul>
-												</li>
-												<li><a href="blog.html">Blog Listing</a></li>
-												<li><a href="blog-detail.html">Blog Single Default</a></li>
-												<li><a href="blog-detail-video.html">Blog Single Video</a></li>
-												<li><a href="blog-detail-audio.html">Blog Single SoundCloud</a></li>
-												<li><a href="blog-detail-slider.html">Blog Single Slider</a></li>
-											</ul>
-										</li>
-										 -->
 									</ul>
 								</nav>
 							</div>
@@ -234,7 +205,3 @@
 					</div>
 				</div>
 			</header>
-			
-			
-</body>
-</html>
