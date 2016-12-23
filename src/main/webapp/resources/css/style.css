@@ -4283,6 +4283,7 @@ ul.post_list_widget li a .post-date {
 
 .navbar-brand {
     line-height: 80px;
+    padding: 20px 15px;
     display: block;
 }
 
