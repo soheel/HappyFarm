@@ -65,6 +65,8 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>textarea-autoScroll.js'></script>
+	<script type='text/javascript' src='<c:url value="/resources/js/smoothscroll-for-websites-master/"/>SmoothScroll.js'></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#qnaRegisterBtn").click(function(){

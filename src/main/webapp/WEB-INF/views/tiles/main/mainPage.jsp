@@ -53,6 +53,6 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>owl.carousel.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jflickrfeed.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.magnific-popup.js'></script>
-	
+	<script type='text/javascript' src='<c:url value="/resources/js/smoothscroll-for-websites-master/"/>SmoothScroll.js'></script>
 </body>
 </html>

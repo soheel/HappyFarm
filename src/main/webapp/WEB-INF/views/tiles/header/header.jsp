@@ -38,10 +38,9 @@
 												<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
 											</c:otherwise>
 										</c:choose>
-											<a href="<c:url value='/userInfoController/logout'/>">&nbsp;|&nbsp;Logout</a>
+											&nbsp;|&nbsp;&nbsp;<a href="<c:url value='/userInfoController/logout'/>">Logout</a>
 									</c:otherwise>
 								</c:choose>
-								
 							</li>
 							<li>
 								<a href="<c:url value="/userInfoController/myCart"/>">
@@ -49,7 +48,6 @@
 										<i class="fa fa-shopping-cart"></i>
 									</span>
 								</a>
-								
 							</li>
 							<li>
 								<a href="#" class="fa fa-search noo-search" id="noo-search"></a>

@@ -143,7 +143,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminQna.js"></script>
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+	<script type='text/javascript' src='<c:url value="/resources/js/smoothscroll-for-websites-master/"/>SmoothScroll.js'></script>
 </body>
 <script type="text/javascript">
 $(function(){

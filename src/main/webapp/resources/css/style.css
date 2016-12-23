@@ -4017,7 +4017,7 @@ ul.post_list_widget li a .post-date {
 .noo-main-menu .navbar-nav li > a {
     text-transform: uppercase;
     line-height: 80px;
-    font-size: 16px;
+    font-size: 17px;
     padding: 0 20px;
     font-weight: 400;
     -webkit-transition: all 0.4s ease 0s;
@@ -4149,6 +4149,10 @@ ul.post_list_widget li a .post-date {
     -o-transition: all 0.2s linear 0s;
     transition: all 0.2s linear 0s;
     position: relative;
+}
+
+.noo-menu-option ul li:first-child a{
+	padding: 2px 14px;
 }
 
 .noo-menu-option ul li i{
@@ -5062,7 +5066,7 @@ ul.post_list_widget li a .post-date {
 
 .noo-header .menu-position .navbar-nav > li.noo_megamenu > .sub-menu > li > a {
     margin: 0 0 0;
-    font-size: 16px;
+    font-size: 18px;
     text-transform: uppercase;
     font-weight: 400;
     color: #212121;
@@ -5109,7 +5113,7 @@ ul.post_list_widget li a .post-date {
 
 .noo-header .menu-position .navbar-nav > li.noo_megamenu > .sub-menu > li .noo_megamenu_widget_area .widget-title {
     margin: 0 0 25px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     text-transform: uppercase;
     font-family: 'Lato', sans-serif;
@@ -5148,7 +5152,7 @@ ul.post_list_widget li a .post-date {
     text-transform: none;
     line-height: 30px;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .noo-header .menu-position .navbar-nav > li.noo_megamenu > .sub-menu > li .noo_megamenu_widget_area li a:hover {
@@ -5167,7 +5171,7 @@ ul.post_list_widget li a .post-date {
 }
 
 .noo-header .menu-position .navbar-nav > li.noo_megamenu > .sub-menu > li .noo_megamenu_widget_area li span.amount {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .noo-header .menu-position .navbar-nav > li.noo_megamenu > .sub-menu > li .noo_megamenu_widget_area li del {
@@ -10515,8 +10519,12 @@ article.format-video .blog-item .video-inner iframe {
 }
 
 .noo-sh-title h2 {
-    font-size: 40px;
+    font-size: 50px;
     margin: 0 0 20px;
+}
+
+.noo-sh-title p{
+	font-size:18px;
 }
 
 .noo-grid-4 .masonry-item {
@@ -17414,7 +17422,7 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 
-/**
+/*
 .certification_form .cetication_title{
 	background-color: #e6e6e6;
 	padding: 7px 15px;
@@ -17432,11 +17440,12 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 .certification_img, .certification_form_exit{
 	cursor:pointer;
 }
+*/
 
 #addToCartDirect .single_add_to_cart_button{
 	width:100%;
 }
-**/
+
 
 
 
