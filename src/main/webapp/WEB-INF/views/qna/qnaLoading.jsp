@@ -21,44 +21,51 @@
 				<div class="related products qna_board">
 					<form action="" method="post">
 						 <div class="form-group">
-  							<label for="comment">Question : </label>
- 							<textarea class="form-control qna-question-area" rows="1" id="comment" name="desc" style="resize: vertical"></textarea>
+						 	<input style = "border-radius : 5%; height : 30px;" type = "text" placeholder = "  제목을 입력하세요" id = "qnaTitle"><br><br>
+ 							<textarea class="form-control qna-question-area" rows="1" id="comment" name="desc" style="resize: vertical" placeholder = "내용을 입력하세요"></textarea>
+ 							<div style = "text-align : right;"></div>
  							<input type="button" class="btn btn-success" id="qnaRegisterBtn" value="등록"/>
 						</div>
 					</form>
 				</div>
 			</div>
 			
-			
 			<div class="last_content">
-				<div class="qna_title">
-					<span>Q&A 내역</span>
-				</div>
-				<div class="related products qna_board">
-					<div class="panel-group" id="accordion">
-    					
-    					<c:forEach items="${qnaList}" var="qna" varStatus="status">
-    					<form id="formmmmm">
-    					<div class="panel panel-info">
-      						<div class="panel-heading">
-        						<h4 class="panel-title">
-        							<input type='hidden' id='qnaNo111' value='${qna.no}'>
-        							<input type='hidden' id='qnaState' value='${qna.answerState}'>
-          							<a  id='a111' data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}">${qna.desc}</a>
-        						</h4>
-      						</div>	
-      								<div id="collapse${status.count}" class="panel-collapse collapse">
-        								<div id='classAnswer' class="panel-body"></div>
-      								</div>			
-      								
-    					</div>
-    					
-						</form>
-    					</c:forEach>
-    					
-  					</div> 
-				</div>
+				<table id = "qnaTable">
+					<thead>
+						<th width = "10%">글번호</th>
+						<th width = "70%">글제목</th>
+						<th width = "10%">작성자</th>
+						<th width = "10%">작성일</th>
+						<th width = "10%">답변여부</th>
+					</thead>
+					
+					<tbody>
+					<c:forEach items="${qnaList }"  var="list" varStatus="state">
+						 <tr class = "tr${state.index }">
+						 	<td>
+						 		${list.no }
+						 	</td>
+						 	<td>
+						 		<span id = "${state.index }" name = "qnaName" value = "${list.no }">${list.name }</span>
+						 		<input type = "hidden" value="${list.answerState }">
+						 	</td>
+						 	<td>
+						 		${list.email }
+						 	</td>
+						 	<td>
+						 		${list.registerdate }
+						 	</td>
+						 	<td>
+						 		${list.answerState }
+						 	</td>
+						 </tr>
+					</c:forEach>
+				</tbody>
+				</table>
+				<input type = "hidden" value = "${sessionScope.email }">
 			</div>
+			
 		</div>			
 	</div>
 	

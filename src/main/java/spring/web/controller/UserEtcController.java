@@ -42,9 +42,7 @@ public class UserEtcController {
 		 * community_profile사진 / commuinty_name, community_register_date를 보여준다.
 		 * 3. 6개의 진행행사 / 3개의 지난 행사를 뽑아주는 dao 두 개의 메소드와 (community_state 상태를 확인 한
 		 * 후) 페이지 기능 메소드가 필요.
-		 * 
 		 */
-
 		ModelAndView mv = new ModelAndView();
 		communitylist = userEtcService.communityLoading();
 		List<CommunityDTO> list1 = (List<CommunityDTO>) communitylist.get("communityIngList");
@@ -81,14 +79,11 @@ public class UserEtcController {
 		CommunityDTO community = (CommunityDTO) communityInfo.get("community");
 		List<CommunityDTO> commentList = (List<CommunityDTO>) communityInfo.get("commentList");
 		List<CommunityDTO> communityIngList = (List<CommunityDTO>) communityInfo.get("communityIngList");
-
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("community", community);
 		mv.addObject("commentList", commentList);
 		mv.addObject("communityIngList", communityIngList);
 		mv.setViewName("community/communityDetail");
-
-		System.out.println(community.getDesc() + "!!!");
 		return mv;
 	}
 
@@ -97,13 +92,10 @@ public class UserEtcController {
 	public int communityReply(String comment, int communityNo, HttpSession session) {
 
 		String email = (String) session.getAttribute("email");
-		System.out.println("comment :" + comment + ", communityNo : " + communityNo + ", email : " + email);
-
 		// 로그인이 안된 상태
 		if (email == null || email.equals("")) {
 			return 0;
 		}
-
 		return userEtcService.communityReply(comment, communityNo, email);
 	}
 
@@ -111,18 +103,15 @@ public class UserEtcController {
 	@ResponseBody
 	public int communityReplyInsert(int no, String comment, int communityNo, HttpSession session) {
 		String email = (String) session.getAttribute("email");
-
 		// 로그인이 안된 상태
 		if (email == null || email.equals("")) {
 			return 0;
 		}
-
 		return userEtcService.communityReplyInsert(no, comment, communityNo, email);
 	}
 
 	/**
 	 * 모임 덧글 수정
-	 * 
 	 * @param no
 	 * @param content
 	 * @return
@@ -131,12 +120,10 @@ public class UserEtcController {
 	@ResponseBody
 	public int communityReplyUpdate(int no, String comment, HttpSession session) {
 		String email = (String) session.getAttribute("email");
-
 		// 로그인이 안된 상태
 		if (email == null || email.equals("")) {
 			return 0;
 		}
-
 		return userEtcService.communityReplyUpdate(no, comment);
 	}
 
@@ -147,7 +134,6 @@ public class UserEtcController {
 	@ResponseBody
 	public int communityReplyDelete(int no, HttpSession session) {
 		String email = (String) session.getAttribute("email");
-
 		// 로그인이 안된 상태
 		if (email == null || email.equals("")) {
 			return 0;
@@ -167,9 +153,13 @@ public class UserEtcController {
 		 * 전체를 불러와서 페이징으로 처리한다. 3. ajax로 질문을 누르면 답변을 불러온다.
 		 * 
 		 */
+		System.out.println("qnaLoading");
 		List<QnaDTO> qnaList = userEtcService.qnaLoading();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("qnaList", qnaList);
+		for(QnaDTO qna : qnaList) {
+			System.out.println(qna.getName());
+		}
 		mv.setViewName("qna/qnaLoading");
 		return mv;
 	}
@@ -180,10 +170,7 @@ public class UserEtcController {
 	@RequestMapping(value="getAnswerQna", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getAnswerQna(int no){
-		System.out.println("no는???"+no);
-		
 		String answer = userEtcService.answerQna(no);
-		
 		return answer;
 	}
 	
@@ -192,29 +179,16 @@ public class UserEtcController {
 	 */
 	@RequestMapping("qnaWrite")
 	@ResponseBody
-
-	public int qnaWrite(HttpServletRequest request, String desc) throws Exception{
-
-		/**
-		 * 1.Q&A write폼에서 등록을 누르면 정보를 받아와서 2.정보를 insert한 후 3.Q&A 로딩하는 화면으로 이동한다.
-		 */
-		System.out.println(desc);
+	public int qnaWrite(HttpServletRequest request, String desc, String name) {
+		System.out.println("qnaWrite");
 		HttpSession session = request.getSession();
-
 		String email = (String) session.getAttribute("email");
-
 		QnaDTO qnaDto = new QnaDTO();
 		qnaDto.setDesc(desc);
 		qnaDto.setEmail(email);
-
+		qnaDto.setName(name);
 		int result = userEtcService.registerQnA(qnaDto);
-		System.out.println("result = " + result);
-		if (result == 0) {
-			throw new Exception();
-		}
-		
 		return result;
-		
 	}
 
 	// 정보
@@ -275,19 +249,15 @@ public class UserEtcController {
 		donationlist = userEtcService.donationLoading();
 		mv.addObject("donationlist", donationlist);
 		mv.setViewName("donate/donationLoading");
-
 		// 기부업체 로딩 작성해야함
 		DonationOrgDTO donationOrg = userEtcService.donationLoading2();
 		mv.addObject("donationOrg", donationOrg);
-
-		// System.out.println(donationOrg.getDesc());
 		return mv;
 	}
 
 	// 메인
 	/**
 	 * 생산자 상세보기 생산자 DTO, 지도
-	 * 
 	 * @return
 	 */
 	@RequestMapping("producerDetail")

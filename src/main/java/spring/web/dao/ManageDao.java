@@ -185,7 +185,12 @@ public interface ManageDao {
 	 * Q&A 답변 등록
 	 * @return 
 	 * */
-	int qnaRegisterManage(CommunityCommentDTO communitycommentDTO);
+	int qnaRegisterManage(QnaDTO qnaDTO);
+	
+	/**
+	 * Q&A 답변 등록 후, 질문글의 AnswerState 'Y'로 변경
+	 * */
+	int qnaModifyAnswerStateManage(int qnaNo);
 	
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
@@ -201,7 +206,7 @@ public interface ManageDao {
 	/**
 	 * Q&A 질문 삭제
 	 * */
-	int qnaDeleteManage(String communitycommentno);
+	int qnaDeleteManage(int no);
 	
 	/**
 	 * 기부업체 관리

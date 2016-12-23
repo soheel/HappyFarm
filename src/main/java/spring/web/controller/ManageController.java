@@ -800,10 +800,6 @@ public class ManageController {
 	 * */
 	@RequestMapping("qnaManage")
 	public ModelAndView qnaManage() {
-		/**
-		 * 1. Q&A관리를 누르면, 
-		 * 2. 전체 Q&A정보를 뽑는 dao 메소드/ 페이지 기능 메소드가 필요. 
-		 */
 		List<QnaDTO> qnalist = null;
 		ModelAndView mv = new ModelAndView();
 		qnalist = manageService.qnaManage();
@@ -821,22 +817,21 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("qnaRegisterManage")
-	public String qnaRegisterManage(CommunityCommentDTO communitycommentDTO) {
+	public String qnaRegisterManage(QnaDTO qnaDTO) {
 		/**
 		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
 		 * 2. 내용을 입력하고 등록을 입력하면, form에 있는 정보 communitycommentDTO 정보를 모두 받아, 
 		 * 3. community테이블에 추가한다(ajax)
 		 */
-		int result = manageService.qnaRegisterManage(communitycommentDTO);
-		if(result==0){
-			//request.setAttribute("errorMsg","삽입하지 못했습니다.");
-		}
+		System.out.println("qnaRegisterManage");
+		System.out.println(qnaDTO.getNo());
+		System.out.println(qnaDTO.getDesc());
+		int result = manageService.qnaRegisterManage(qnaDTO);
 		return "forward:qnaManage";
 	}
 	
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.(qnano)
-	 
 	public QnaDTO qnaInfoMangage(String no){
 		QnaDTO qna = null;
 		qna = manageService.qnaInfoMangage(no);
@@ -866,7 +861,7 @@ public class ManageController {
 	 * @return 
 	 * */
 	@RequestMapping("qnaDeleteManage")
-	public String qnaDeleteManage(String no) {
+	public String qnaDeleteManage(int no) {
 		/**
 		 * 특정 상품의 번호를 받아와 
 		 * 그 번호에 일치하는 정보를 삭제한다.

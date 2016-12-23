@@ -296,13 +296,18 @@ insert into community values (community_no.nextval, #{name}, #{profile}, #{desc}
 
 <!-- 15. Q&A정보를 다 불러온다. -->
 <select id="qnaManage" resultMap="qnaResultMap">
- 	select qna_name, qna_desc from qna
+ 	select qna_no, qna_name, qna_desc, qna_register_date from qna where answer_state = 'N' and member_email != 'admin'
  </select>
  
  <!-- 16. Q&A정보를 삽입한다. -->
  <insert id="qnaRegisterManage" parameterType="qnaDTO">
- 	insert into qna values (qna_no.nextval, #{name}, #{desc}, #{pwd}, #{registerdate}, #{email}, #{no})
+ 	insert into qna values (qna_no.nextval, #{name}, #{desc}, 'pwd', sysdate, 'admin', #{no}, #{no})
  </insert>
+ 
+ <!-- 16-1. 질문글의 답변상태를 'Y'로 변경 -->
+ <update id="qnaModifyAnswerStateManage" parameterType="integer">
+ update qna set answer_state = 'Y' where qna_no = #{value}
+ </update>
  
  <!-- 17. Q&A정보를 수정한다 -->
  <update id="qnaModifyManage" parameterType="qnaDTO">
@@ -311,7 +316,7 @@ insert into community values (community_no.nextval, #{name}, #{profile}, #{desc}
  </update>
  
  <!-- 18. Q&A정보 삭제한다. -->
-<delete id="qnaDeleteManage" parameterType="String">
+<delete id="qnaDeleteManage" parameterType="integer">
 	delete from qna where qna_no=#{value}
 </delete> 
  

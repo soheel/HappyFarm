@@ -164,8 +164,8 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int qnaRegisterManage(CommunityCommentDTO communitycommentDTO) {
-		return sqlsession.insert("manageMapper.qnaRegisterManage",communitycommentDTO);
+	public int qnaRegisterManage(QnaDTO qnaDTO) {
+		return sqlsession.insert("manageMapper.qnaRegisterManage",qnaDTO);
 	}
 
 	/*@Override
@@ -180,7 +180,7 @@ public class ManageDaoImpl implements ManageDao {
 	}
 
 	@Override
-	public int qnaDeleteManage(String no) {
+	public int qnaDeleteManage(int no) {
 		return sqlsession.update("manageMapper.qnaDeleteManage",no);
 	}
 
@@ -298,6 +298,11 @@ public class ManageDaoImpl implements ManageDao {
 	@Override
 	public int etcCompleteModify(int purchaseNo) {
 		return sqlsession.update("manageMapper.etcCompleteModify", purchaseNo);
+	}
+
+	@Override
+	public int qnaModifyAnswerStateManage(int qnaNo) {
+		return sqlsession.update("manageMapper.qnaModifyAnswerStateManage", qnaNo);
 	}
 	
 }

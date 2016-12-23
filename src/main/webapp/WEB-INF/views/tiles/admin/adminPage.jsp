@@ -534,18 +534,13 @@ $(function(){
 		$(this).remove();
 	})
 	
-
-	
-	/* *************************************************************************** */
-	/* Qna 답글 달기*/
-	
-
-	
 	/* *************************************************************************** */
 	
 	/* 주문관리 */
 	/* 주문완료에서 결제완료로 상태 변경하기 */
 	$("span[name=deposit_complete]").click(function() {
+		var price = $(this).next().val();
+		var email = $(this).next().next().val();
 		var state = confirm("고객으로부터 입금이 확인되었다면 '확인'버튼을 클릭하세요");
 		if(state) {
 			$.ajax({
@@ -556,6 +551,16 @@ $(function(){
 				success : function(result) {
 					if(result >= 1) {
 						alert('해당 주문이 "결제완료" 상태로 변경되었습니다.');
+						
+					 /*
+						마일리지 적립
+					 */
+					 $.ajax({
+						url : "<c:url value = '/userProductController/saveMileage'/>",
+						type : "post",
+						data : "saveMileage=" + (price*0.05) + "&email=" + email
+					 })
+						
 						location.href = "<c:url value = '/manageController/orderManage'/>"
 					}else {
 						alert("상태 변경에 실패하였습니다.");

@@ -3066,7 +3066,6 @@ img {
 
 #comments ol li .comment-wrap .comment-block,
 #comments ul li .comment-wrap .comment-block {
-    padding-left: 100px;
     position: relative;
 }
 
