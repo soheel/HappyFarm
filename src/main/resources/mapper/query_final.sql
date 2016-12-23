@@ -535,6 +535,10 @@ insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '프리미엄 맞나�
 insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '이게뭔가요?', '123', sysdate, '박태흠',3,'N');
 insert into qna values(qna_no.nextval, 'admin', '답변입니다!', 'amdin', sysdate, '관리자', 1, 'N');
 insert into qna values(qna_no.nextval, 'admin', '답변입니다!', 'admin', sysdate, 'admin', 1, null)
+insert into qna values(qna_no.nextval, 'admin', '답변입니다다!', 'admin', sysdate, 'admin', 8, null)
+
+update qna set answer_state = 'Y' where qna_no = 1
+delete qna where qna_name = 'undefined'
 
 -- information 테이블-----------------------------------------------------------
 drop table information;
@@ -577,4 +581,6 @@ member_email varchar2(50) references member(member_email) on delete cascade
 )
 
 -- test
-select * from qna where qna_parent is null order by qna_register_date desc	
+select * from qna where qna_parent is null order by qna_register_date desc
+
+ 	select qna_no, qna_name, qna_desc, qna_register_date from qna where answer_state = 'N' and member_email != 'admin'

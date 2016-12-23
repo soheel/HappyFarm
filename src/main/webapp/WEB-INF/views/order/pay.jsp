@@ -110,16 +110,6 @@
 						type : "post",
 						data : "useMileage=" + document.getElementById("useMileage").value
 					 })
-					 
-					  /*
-						마일리지 적립
-					 */
-					 $.ajax({
-						url : "<c:url value = '/userProductController/saveMileage'/>",
-						type : "post",
-						data : "saveMileage=" + (totalPrice*0.05)
-					 })
-					 
 
 		        	msg += '<p>가상계좌 입금 계좌번호 : ' + rsp.vbank_num + '</p>';
 		        	msg += '<p>가상계좌 은행명 : ' + rsp.vbank_name + '</p>';

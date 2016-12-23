@@ -23,6 +23,7 @@
 	<link rel='stylesheet' href='<c:url value="/resources/css/"/>style.css' type='text/css' media='all'/>
 	<link rel='stylesheet' href='<c:url value="/resources/css/"/>custom.css' type='text/css' media='all'/>
 	<link rel="stylesheet" href='<c:url value="/resources/css/"/>magnific-popup.css' type='text/css' media='all' />
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
 </head>
 <body>
 	<div id="container">
@@ -65,28 +66,37 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>textarea-autoScroll.js'></script>
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
 			
+			/* 테이블 페이징 */
+			/* Data Table */
+				$(document).ready(function(){
+				    $('#qnaTable').DataTable();
+				});
+			
 			/* 글 등록 */
 			$("#qnaRegisterBtn").click(function(){
+				
+				if($("#email").val() == null) {
+					alert("로그인 후 이용가능합니다.");
+					return ;
+				}
+				
 				if($("input[name=name]").val() == "") {
 					alert("제목을 입력하세요!");
-					return ;
-				}else if($("input[name=pwd]").val() == "") {
-					alert("비밀번호를 입력하세요!");
 					return ;
 				}
 				
 				var comment = $("#comment").val();
-				var pwd = $("#qnaPassword").val();
 				var name = $("#qnaTitle").val();
 				 $.ajax({
-			         url:"qnaWrite",
+			         url:"<c:url value='/userEtcController/qnaWrite'/>",
 			           type:"post",
 			           dataType:"text",
-			           data:"desc="+ comment + "&pwd=" + pwd + "&name=" + name,
+			           data:"desc="+ comment + "&name=" + name,
 			           success:(function(result){
 			        	   if(result==0){
 			        		   alert("글 등록에 실패하였습니다.");
@@ -98,33 +108,18 @@
 			           } 
 			      })  
 			});
-			
-			$(document).on("click","#a111",function(){
-				var form= $(this).parent().parent().parent();
-				var no = $(form).find("#qnaNo111").val();
-				var str = '답글이 등록되지 않았습니다.';
-				//alert(no);
-				var state = $(form).find("#qnaState").val();
-				var answer =$(form).find("#classAnswer");
-				//	alert(state)
-				   $.ajax({
-			         url:"getAnswerQna",
-			           type:"post",
-			           dataType:"text",
-			           data:"no="+no,
-			           success:(function(result){
-			        	   if(state=='N'){
-			        		   $(answer).text(str);
-			        	   }else{
-			        		   $(answer).text(result);
-			        	   }
-			           })	
-			      	})     
-				
-			});
-			
+			var e = true;
 			/* 글 상세보기 */
 			$("span[name=qnaName]").toggle(function() {
+				var id = ".tr" + $(this).attr("id");
+				if($(this).next().val() == 'N') {
+					alert("답변이 존재하지 않습니다!!!");
+					e = false;
+					return ;
+				}else {
+					e = true;
+				}
+				
 				$.ajax({
 					url : "<c:url value ='/userEtcController/getAnswerQna'/>",
 					type : "post",
@@ -134,17 +129,32 @@
 						if(result == "") {
 							alert("답변이 존재하지 않습니다.");
 						}else {
-							var answer = "<tr><td colspan = '4'>" + result + "</td></tr>";
-							$(this).after(answer);
+							var answer = "<tr class = '" + "'><td colspan = '4'>" + result + "</td></tr>";
+							$(id).after(answer);
+							e = true;
 						}
-						
 					},
 					error : function(err) {
 						alert("err : " +  err);						
 					}
 				})
 			}, function() {
-				alert(1);
+				if(e){
+					if($(this).next().val() == 'Y'){
+						$(this).parent().parent().next().remove();	
+					}else {
+						alert("답변이 존재하지 않습니다!!!");
+					}
+					
+				}else {
+					if($(this).next().val() == 'Y') {
+						$(this).parent().parent().next().remove();
+						e = true;
+					}else{
+						alert("답변이 존재하지 않습니다.");
+					}
+				}
+				
 			})
 		});
 	</script>

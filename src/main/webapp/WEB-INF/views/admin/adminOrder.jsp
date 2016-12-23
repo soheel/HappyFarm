@@ -111,6 +111,8 @@
 												</td>
 												<td class="product-job">
 													주문완료<br><span value = "${orderCompleteList.no }" name = "deposit_complete" style = 'color : pink; cursor : pointer;'>[입금확인]</span>
+													<input type = "hidden" value = "${orderCompleteList.price}">
+													<input type = "hidden" value = "${orderCompleteList.email }">
 												</td>
 												<td class="product-name">
 													${orderCompleteList.method}

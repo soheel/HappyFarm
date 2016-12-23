@@ -31,9 +31,6 @@
 														<c:if test="${comment.parentNo == null}">
 															<li class="comment">
 																<div class="comment-wrap">
-																	<div class="comment-img">
-																		<img alt='' src='http://placehold.it/100x100' height='80' width='80' />
-																	</div>
 																	<article class="comment-block">
 																		<input type="hidden" name="no" value="${comment.no}">
 																		<header class="comment-header">

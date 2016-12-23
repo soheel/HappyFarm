@@ -369,9 +369,7 @@ public class UserProductController {
 	}
 	
 	@RequestMapping("saveMileage")
-	public void saveMileage(int saveMileage, HttpSession session) {
-		System.out.println("saveMileage : " + saveMileage);
-		String email = (String)session.getAttribute("email");
+	public void saveMileage(int saveMileage, String email) {
 		int result = service.saveMileage(saveMileage, email);
 	}
 	

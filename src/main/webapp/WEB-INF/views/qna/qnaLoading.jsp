@@ -23,7 +23,7 @@
 						 <div class="form-group">
 						 	<input style = "border-radius : 5%; height : 30px;" type = "text" placeholder = "  제목을 입력하세요" id = "qnaTitle"><br><br>
  							<textarea class="form-control qna-question-area" rows="1" id="comment" name="desc" style="resize: vertical" placeholder = "내용을 입력하세요"></textarea>
- 							<div style = "text-align : right;">비밀번호 : <input type = "password"  placeholder = "*******" id = "qnaPassword" name = "pwd"></div>
+ 							<div style = "text-align : right;"></div>
  							<input type="button" class="btn btn-success" id="qnaRegisterBtn" value="등록"/>
 						</div>
 					</form>
@@ -37,16 +37,18 @@
 						<th width = "70%">글제목</th>
 						<th width = "10%">작성자</th>
 						<th width = "10%">작성일</th>
+						<th width = "10%">답변여부</th>
 					</thead>
 					
 					<tbody>
-					<c:forEach items="${qnaList }"  var="list">
-						 <tr>
+					<c:forEach items="${qnaList }"  var="list" varStatus="state">
+						 <tr class = "tr${state.index }">
 						 	<td>
 						 		${list.no }
 						 	</td>
 						 	<td>
-						 		<span name = "qnaName" value = "${list.no }">${list.name }</span>
+						 		<span id = "${state.index }" name = "qnaName" value = "${list.no }">${list.name }</span>
+						 		<input type = "hidden" value="${list.answerState }">
 						 	</td>
 						 	<td>
 						 		${list.email }
@@ -54,10 +56,14 @@
 						 	<td>
 						 		${list.registerdate }
 						 	</td>
+						 	<td>
+						 		${list.answerState }
+						 	</td>
 						 </tr>
 					</c:forEach>
 				</tbody>
 				</table>
+				<input type = "hidden" value = "${sessionScope.email }">
 			</div>
 			
 		</div>			

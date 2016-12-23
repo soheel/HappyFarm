@@ -279,8 +279,13 @@ public class ManageServiceImpl implements ManageService {
 	 * @return 
 	 * */
 	@Override
-	public int qnaRegisterManage(CommunityCommentDTO communitycommentDTO) {
-		return manageDao.qnaRegisterManage(communitycommentDTO);
+	public int qnaRegisterManage(QnaDTO qnaDTO) {
+		int result = manageDao.qnaRegisterManage(qnaDTO );
+		if(result < 1) {
+			return 0;
+		}
+		result = manageDao.qnaModifyAnswerStateManage(qnaDTO.getNo());
+		return result;
 	}
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
@@ -300,8 +305,8 @@ public class ManageServiceImpl implements ManageService {
 	 * Q&A 질문 삭제
 	 * */
 	@Override
-	public int qnaDeleteManage(String communitycommentno) {
-		return manageDao.qnaDeleteManage(communitycommentno);
+	public int qnaDeleteManage(int no) {
+		return manageDao.qnaDeleteManage(no);
 	}
 	/**
 	 * 기부업체 관리

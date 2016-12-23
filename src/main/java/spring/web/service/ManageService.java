@@ -180,7 +180,7 @@ public interface ManageService {
 	 * Q&A 답변 등록
 	 * @return 
 	 * */
-	public int qnaRegisterManage(CommunityCommentDTO communitycommentDTO);
+	public int qnaRegisterManage(QnaDTO qnaDTO);
 	
 	/**
 	 * 질문관리 수정을 위해 해당 질문에 대한 정보를 불러와서 폼에 보여준다.
@@ -193,7 +193,7 @@ public interface ManageService {
 	/**
 	 * Q&A 질문 삭제
 	 * */
-	public int qnaDeleteManage(String communitycommentno);
+	public int qnaDeleteManage(int no);
 	
 	/**
 	 * 기부업체 관리
