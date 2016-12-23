@@ -11,24 +11,6 @@
 				<input type="submit" value="Search"/>
 			</form>
 		</div>
-					
-		<div class="widget commerce widget_price_filter">
-			<h3 class="widget-title">Filter by price</h3>
-			<form>
-				<div class="price_slider_wrapper">
-					<div class="price_slider" style="display:none;"></div>
-						<div class="price_slider_amount">
-							<input type="text" id="min_price" name="min_price" value="" data-min="0" placeholder="Min price"/>
-							<input type="text" id="max_price" name="max_price" value="" data-max="15" placeholder="Max price"/>
-							<button type="submit" class="button">Filter</button>
-							<div class="price_label" style="display:none;">
-								Price: <span class="from"></span> &mdash; <span class="to"></span>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
 		<div class="widget commerce widget_products">
 			<h3 class="widget-title">Certification mark</h3>
 			<div>

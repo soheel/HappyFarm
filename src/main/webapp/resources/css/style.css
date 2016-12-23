@@ -4151,7 +4151,7 @@ ul.post_list_widget li a .post-date {
 }
 
 .noo-menu-option ul li:first-child a{
-	padding: 2px 14px;
+	padding: 2px 5px;
 }
 
 .noo-menu-option ul li i{
@@ -17420,26 +17420,6 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 .product_img img{
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
-
-/*
-.certification_form .cetication_title{
-	background-color: #e6e6e6;
-	padding: 7px 15px;
-}
-
-.certification_form .cetication_title .certification_form_exit{
-	display:block;
-	float: right;
-}
-
-.certification_form .cetication_content{
-	padding: 10px 15px;
-}
-
-.certification_img, .certification_form_exit{
-	cursor:pointer;
-}
-*/
 
 #addToCartDirect .single_add_to_cart_button{
 	width:100%;

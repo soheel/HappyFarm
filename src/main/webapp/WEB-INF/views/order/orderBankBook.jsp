@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<section class="noo-page-heading eff heading-6">
+<section class="noo-page-heading eff">
 	<div class="container">
 		<div class="noo-heading-content">
 			<h1 class="page-title eff">Shop Detail</h1>

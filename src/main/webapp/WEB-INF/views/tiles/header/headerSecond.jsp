@@ -35,7 +35,6 @@
 									</a>
 									<ul>
 										<li class="menu-item fly-right">
-<<<<<<< HEAD
 											<a href='<c:url value="/account"/>'>
 												<i class="fa fa-user"></i>
 												<c:choose>
@@ -48,25 +47,6 @@
 												</c:otherwise>
 											</c:choose>
 											</a>
-=======
-											<span><i class="fa fa-user"></i></span>
-								<c:choose>
-									<c:when test="${sessionScope.email == null }">
-										<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
-									</c:when>
-									<c:otherwise>
-										<c:choose>
-											<c:when test="${sessionScope.email == 'admin' }">
-												<a href="<c:url value='/userInfoController/adminPage'/>">ManagePage</a>
-											</c:when>
-											<c:otherwise>
-												<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
-											</c:otherwise>
-										</c:choose>
-											<a href="<c:url value='/userInfoController/logout'/>">&nbsp;|&nbsp;Logout</a>
-									</c:otherwise>
-								</c:choose>
->>>>>>> origin/master
 										</li>
 										<li class="menu-item noo-menu-item-cart minicart">
 											<a class="cart-button" href='<c:url value="/userInfoController/myCart"/>'>

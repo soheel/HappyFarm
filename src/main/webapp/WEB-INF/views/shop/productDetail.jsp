@@ -22,11 +22,8 @@
 						<div class="single-inner">
 							<div class="images">
 								<div class="product-simple-image">
-									<a
-										href="<c:url value="/resources/images/"/>product/product_405x515.jpg"
-										data-rel="prettyPhoto"> <img width="300" height="381"
-										src="<c:url value="/resources/img/product/"/>${product.profile}"
-										alt="" />
+									<a href="<c:url value="/resources/images/"/>product/product_405x515.jpg" data-rel="prettyPhoto"> 
+										<img width="300" height="381" src="<c:url value="/resources/img/product/"/>${product.profile}" alt="" />
 									</a>
 								</div>
 							</div>
