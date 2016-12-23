@@ -167,9 +167,13 @@ public class UserEtcController {
 		 * 전체를 불러와서 페이징으로 처리한다. 3. ajax로 질문을 누르면 답변을 불러온다.
 		 * 
 		 */
+		System.out.println("qnaLoading");
 		List<QnaDTO> qnaList = userEtcService.qnaLoading();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("qnaList", qnaList);
+		for(QnaDTO qna : qnaList) {
+			System.out.println(qna.getName());
+		}
 		mv.setViewName("qna/qnaLoading");
 		return mv;
 	}
@@ -180,10 +184,7 @@ public class UserEtcController {
 	@RequestMapping(value="getAnswerQna", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getAnswerQna(int no){
-		System.out.println("no는???"+no);
-		
 		String answer = userEtcService.answerQna(no);
-		
 		return answer;
 	}
 	
@@ -193,28 +194,16 @@ public class UserEtcController {
 	@RequestMapping("qnaWrite")
 	@ResponseBody
 
-	public int qnaWrite(HttpServletRequest request, String desc) throws Exception{
-
-		/**
-		 * 1.Q&A write폼에서 등록을 누르면 정보를 받아와서 2.정보를 insert한 후 3.Q&A 로딩하는 화면으로 이동한다.
-		 */
-		System.out.println(desc);
+	public int qnaWrite(HttpServletRequest request, String desc, String pwd, String name) {
 		HttpSession session = request.getSession();
-
 		String email = (String) session.getAttribute("email");
-
 		QnaDTO qnaDto = new QnaDTO();
 		qnaDto.setDesc(desc);
+		qnaDto.setPwd(pwd);		
 		qnaDto.setEmail(email);
-
+		qnaDto.setName(name);
 		int result = userEtcService.registerQnA(qnaDto);
-		System.out.println("result = " + result);
-		if (result == 0) {
-			throw new Exception();
-		}
-		
 		return result;
-		
 	}
 
 	// 정보

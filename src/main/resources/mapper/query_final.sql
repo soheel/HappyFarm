@@ -515,7 +515,7 @@ select * from qna;
 시퀀스
 drop sequence qna_no;
 create sequence qna_no;
-select * from qna order by product_no desc	
+
 create table qna (
 qna_no number(5) primary key,
 qna_name varchar2(100) not null,
@@ -523,15 +523,18 @@ qna_desc varchar2(1000) not null,
 qna_pwd varchar2(10) not null,
 qna_register_date date,
 member_email varchar2(50) references member(member_email) on delete cascade,
-qna_parent number(5) references qna(qna_no) on delete cascade
+qna_parent number(5) references qna(qna_no) on delete cascade,
+answer_state varchar2(6)
 )
 
 alter table qna add answer_state varchar2(6)
 
 삽입
-insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '12월 3일에 주문했는데 아직까지 배송 준비중인데 언제 배송되나요', '123', sysdate, '박용우', 1);
+insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '12월 3일에 주문했는데 아직까지 배송 준비중인데 언제 배송되나요', '123', sysdate, '박용우', null, 'N');
 insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '프리미엄 맞나요?', '123', sysdate, '이소희',2,'Y');
 insert into qna values(qna_no.nextval, '배송날짜 문의드립니다~', '이게뭔가요?', '123', sysdate, '박태흠',3,'N');
+insert into qna values(qna_no.nextval, 'admin', '답변입니다!', 'amdin', sysdate, '관리자', 1, 'N');
+insert into qna values(qna_no.nextval, 'admin', '답변입니다!', 'admin', sysdate, 'admin', 1, null)
 
 -- information 테이블-----------------------------------------------------------
 drop table information;
@@ -574,7 +577,4 @@ member_email varchar2(50) references member(member_email) on delete cascade
 )
 
 -- test
-
-select * from purchase
-
-update purchase set purchase_state_no = 3 where purchase_no = 24
+select * from qna where qna_parent is null order by qna_register_date desc	

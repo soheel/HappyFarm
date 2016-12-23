@@ -66,29 +66,37 @@
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>textarea-autoScroll.js'></script>
 	<script type="text/javascript">
+	
 		$(document).ready(function(){
+			
+			/* 글 등록 */
 			$("#qnaRegisterBtn").click(function(){
+				if($("input[name=name]").val() == "") {
+					alert("제목을 입력하세요!");
+					return ;
+				}else if($("input[name=pwd]").val() == "") {
+					alert("비밀번호를 입력하세요!");
+					return ;
+				}
 				
 				var comment = $("#comment").val();
-				//alert(s);
-				//alert(11)
+				var pwd = $("#qnaPassword").val();
+				var name = $("#qnaTitle").val();
 				 $.ajax({
 			         url:"qnaWrite",
 			           type:"post",
 			           dataType:"text",
-			           data:"desc="+comment,
+			           data:"desc="+ comment + "&pwd=" + pwd + "&name=" + name,
 			           success:(function(result){
-			        	   // $("#a111").html(result);
 			        	   if(result==0){
-			        		   location.href="<c:url value='/error/errorPage' />";
+			        		   alert("글 등록에 실패하였습니다.");
 			        	   }
-			        	   location.href="<c:url value='/userEtcController/qnaLoading' />";
+			        	   location.href="<c:url value='/userEtcController/qnaLoading'/>";
 			           }),
 			           error: function(err){
 			              alert("err :" + err)
 			           } 
-			      
-			      	})  
+			      })  
 			});
 			
 			$(document).on("click","#a111",function(){
@@ -114,6 +122,30 @@
 			      	})     
 				
 			});
+			
+			/* 글 상세보기 */
+			$("span[name=qnaName]").toggle(function() {
+				$.ajax({
+					url : "<c:url value ='/userEtcController/getAnswerQna'/>",
+					type : "post",
+					data : "no=" + $(this).attr("value"),
+					dataType : "text",
+					success : function(result) {
+						if(result == "") {
+							alert("답변이 존재하지 않습니다.");
+						}else {
+							var answer = "<tr><td colspan = '4'>" + result + "</td></tr>";
+							$(this).after(answer);
+						}
+						
+					},
+					error : function(err) {
+						alert("err : " +  err);						
+					}
+				})
+			}, function() {
+				alert(1);
+			})
 		});
 	</script>
 </body>

@@ -10,25 +10,10 @@ public class QnaDTO {
 	private int qnaParent;
 	private String answerState;
 	private String answer;
-	
-	public String getAnswer() {
-		return answer;
-	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-	
+
 	private MemberDTO memberDto;
 	private QnaDTO qnaDto;
-	
-	public QnaDTO getQnaDto() {
-		return qnaDto;
-	}
-	
-	public void setQnaDto(QnaDTO qnaDto) {
-		this.qnaDto = qnaDto;
-	}
-	
+
 	public QnaDTO() {
 		super();
 	}
@@ -56,8 +41,6 @@ public class QnaDTO {
 		this.qnaParent = qnaParent;
 		this.answerState = answerState;
 	}
-
-
 
 	public void setMemberDto(MemberDTO memberDto) {
 		this.memberDto = memberDto;
@@ -117,6 +100,23 @@ public class QnaDTO {
 
 	public void setQnaParent(int qnaParent) {
 		this.qnaParent = qnaParent;
+	}
+	
+	
+	public QnaDTO getQnaDto() {
+		return qnaDto;
+	}
+	
+	public void setQnaDto(QnaDTO qnaDto) {
+		this.qnaDto = qnaDto;
+	}
+	
+	
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 	
 }
