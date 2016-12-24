@@ -2,21 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-					<div class="container profile_view">
+					<div class="container profile_view commerce-cart">
 						<div class="row">
 							<div class="noo-main col-md-12">
 								<h3 class="widget-title">Community 관리</h3>
 								<div class="row">	
 									<table class="shop_table cart">
 										<tr>
-											<th>커뮤니티 No</th>
+											<th class="table_small tc">No</th>
 											<th>이름</th>
-											<th>진행상태(1:진행중/ 2:진행완료)</th>
-											<th>주최자</th> 
+											<th class="table_small tc">주최자</th> 
+											<th class="table_small tc">진행상태</th>
 										</tr>
 										<c:forEach items="${communitylist}" var="community">
 											<tr>
-												<td>
+												<td class="tc">
 													${community.no }
 												</td>
 												<td>
@@ -24,11 +24,14 @@
 													<span value = "${community.no }" style = "color : pink; cursor : pointer;" name = "modifyButtonCommunity" data-toggle="modal" data-target="#update">[수정]</span>
 													<span value = "${community.no }" style = "color : pink; cursor : pointer;" name = "deleteButtonCommunity">[삭제]</span>
 												</td>
-												<td>
-													${community.state }
-												</td>
-												<td>
+												<td class="table_small tc">
 													${community.producerDTO.name }
+												</td>
+												<td class="tc">
+													<c:choose>
+														<c:when test="${community.state == 1}">진행중</c:when>
+														<c:when test="${community.state == 2}">진행완료</c:when>												
+													</c:choose>
 												</td>
 											</tr>
 										</c:forEach>

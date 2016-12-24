@@ -19,14 +19,16 @@
 			<div class="row">
 				<form action = "<c:url value = '/userProductController/pay'/>" method = "post" onSubmit='return orderCheck()'>
 				<!-- 상품 하나하나 -->
-					<div class="col-md-12 order_check_border box_shadow">
-						<div class="col-md-2">
-							<img src="<c:url value = '/resources/img/product/'/>${product.profile}">
-						</div>
-						<div class="col-md-10 order_check_content">
+					<div class="col-md-12 order_check_border order_content">
+						<div class="order_title">
 							<p>
 								<span class="order_check_title">&lt;주문상품 확인&gt;</span>
 							</p>
+						</div>
+						<div class="col-md-3">
+							<img src="<c:url value = '/resources/img/product/'/>${product.profile}">
+						</div>
+						<div class="col-md-9 order_check_content">
 							<p>
 							<input name = "productNo" type = "hidden" value="${product.no}">
 								상품 이름 :<span class="order_check_name"> ${product.name}</span>
@@ -43,10 +45,12 @@
 						</div>
 					</div>
 
-					<div class="col-md-12 seller_check_border box_shadow">
-						<p>
-							<span  class="seller_check_title">&lt;판매자 정보&gt;</span>
-						</p>
+					<div class="col-md-12 seller_check_border order_content">
+						<div class="order_title">
+							<p>
+								<span  class="seller_check_title">&lt;판매자 정보&gt;</span>
+							</p>
+						</div>
 						<p>
 							이름 : <span class="seller_check_name">${producer.name}</span>
 						</p>
@@ -58,10 +62,12 @@
 						</p>
 					</div>
 
-					<div class="col-md-12 addr_check_border box_shadow">
-						<p>
-							<span class="addr_check_title">&lt;배송지 정보 입력&gt;</span>
-						</p>
+					<div class="col-md-12 addr_check_border order_content">
+						<div class="order_title">
+							<p>
+								<span class="addr_check_title">&lt;배송지 정보 입력&gt;</span>
+							</p>
+						</div>
 						<p>
 						<!-- PurchaseOrderDTO의 name -->
 							수취인 : <span class="addr_check_name"> <input id = "addressee" type="text"
@@ -98,10 +104,12 @@
 						</p>
 					</div>
 
-					<div class="col-md-12 payment_check_border box_shadow">
-						<p>
-							<span class="payment_title">&lt;결제 정보 입력&gt;</span>
-						</p>
+					<div class="col-md-12 payment_check_border order_content">
+						<div class="order_title">
+							<p>
+								<span class="payment_title">&lt;결제 정보 입력&gt;</span>
+							</p>
+						</div>
 						<p>
 						<!-- PurchaseDTO의 method -->
 							결제방식선택 : <span class="payment_count">
@@ -115,10 +123,12 @@
 						</p>
 					</div>
 					
-					<div class="col-md-12 payment_check_border box_shadow">
-						<p>
-							<span class="payment_title">&lt;기부포인트&gt;</span>
-						</p>
+					<div class="col-md-12 payment_check_border order_content">
+						<div class="order_title">
+							<p>
+								<span class="payment_title">&lt;기부포인트&gt;</span>
+							</p>
+						</div>
 						<p>
 							<input type = "hidden" value = "${mileage}" id = "hiddenMileage"/>
 							보유 기부포인트 : <span class = "my_mileage"><fmt:formatNumber value="${mileage}" pattern="#,###"/></span><br>
@@ -132,7 +142,7 @@
 						<div class="col-md-6 mileage_check_border order_final_info">
 						<h3>총 금액의 5% 인<br> <span class="amount"></span><fmt:formatNumber value="${totalPrice * 0.05 }" pattern="#,###"/> 원이 기부됩니다</h3>
 						</div>
-						<div class="col-md-6 final_check_border box_shadow order_final_info">
+						<div class="col-md-6 final_check_border order_final_info">
 							<p>
 								최종 결제 금액 <h3><span id = "amount" class="amount" value='${totalPrice}'><fmt:formatNumber value="${totalPrice}" pattern="#,###" /> 원</span></h3>
 							</p>

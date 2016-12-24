@@ -10,12 +10,12 @@
 									<table id = "producerManageTable" class="shop_table cart">
 										<thead>
 											<tr>
-												<th class="product-name">이름</th>
-												<th class="product-area">주소</th>
-												<th class="product-age">연락처</th>
-												<th class="product-job">등록날짜</th>
-												<th class="product-name">평점</th>
-												<th class="product-name">문자보내기</th>
+												<th class="table_small">이름</th>
+												<th class="table_medium">주소</th>
+												<th class="table_small tc">연락처</th>
+												<th class="table_small tc">등록날짜</th>
+												<th class="table_small tc">평점</th>
+												<th class="table_small tc">문자보내기</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -23,30 +23,30 @@
 											<tr class="cart_item">
 												<td class="product-name">
 													<span style = "font-weight : bold;">${producer.name}</span> 
-													<span value = "${producer.no }" style = "color : pink; cursor : pointer;" name = "modifyButton" data-toggle="modal" data-target="#update">[수정]</span>
-													<span value = "${producer.no }" style = "color : pink; cursor : pointer;" name = "deleteButton">[삭제]</span>
+													<span value = "${producer.no }" style = "color : hotpink; cursor : pointer;" name = "modifyButton" data-toggle="modal" data-target="#update">[수정]</span>
+													<span value = "${producer.no }" style = "color : hotpink; cursor : pointer;" name = "deleteButton">[삭제]</span>
 												</td>
 												<td class="product-area">
 													<span class="amount">${producer.addr}</span> 
 												</td>
-												<td class="product-age">
-													<span class="amount">${producer.phone}</span> 
+												<td class="product-age tc">
+													<span class="amount tc">${producer.phone}</span> 
 												</td>
-												<td class="product-job">
+												<td class="product-job tc">
 													<span class="amount">  
 													<fmt:parseDate value="${producer.registerDate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
 													<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
 													</span> 
-												</td>
-												<td class="product-name">
+									 			</td>
+												<td class="tc">
 													<div class="noo-rating">
 														<div class="star-rating">
 															<span style="width:${evalList[state.index] * 20}%"></span>
 														</div>
 													</div>
 												</td>
-												<td class="product-name">
-													<span value = "${producer.no }" style = "padding-left : 50px;color : pink; cursor : pointer;" name = "sendButton" data-toggle="modal" data-target="#sendMessage">[전송]</span>
+												<td class="tc">
+													<span value = "${producer.no }" style = "color : hotpink; cursor : pointer;" name = "sendButton" data-toggle="modal" data-target="#sendMessage">[전송]</span>
 												</td>
 											</tr>
 											</c:forEach>

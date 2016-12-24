@@ -10,18 +10,18 @@
 				<table class="shop_table cart">
 					<thead>
 						<tr>
-							<th class="product-name">상품No</th>
-							<th class="product-price">세트상품 이름</th>
-							<th class="product-producer">세트상품 가격</th>
-							<th class="product-producer">포함 상품</th>
+							<th class="table_small tc">상품No</th>
+							<th class="table_large">세트상품 이름</th>
+							<th class="table_small tc">가격</th>
+							<th class="table_large">포함 상품</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${packagelist}" var="packagelist"
 							varStatus="state">
 							<tr class="cart_item">
-								<td class="product-name">${packagelist.packageNo }</td>
-								<td class="product-price"><span style="font-weight: bold;">${packagelist.productDTO.name }</span>
+								<td class="product-no tc">${packagelist.packageNo }</td>
+								<td class="product-name"><span style="font-weight: bold;">${packagelist.productDTO.name }</span>
 									<span value="${packagelist.packageNo }"
 									style="color: pink; cursor: pointer;"
 									name="modifyButtonPackage" data-toggle="modal"
@@ -29,9 +29,9 @@
 									value="${packagelist.packageNo }"
 									style="color: pink; cursor: pointer;"
 									name="deleteButtonPackage">[삭제]</span></td>
-								<td class="product-producer"><span class="amount">${packagelist.productDTO.price }</span>
+								<td class="product-price tc"><span class="amount">${packagelist.productDTO.price }</span>
 								</td>
-								<td class="product-producer">
+								<td class="product-items">
 									${packageProductList[state.index]}</td>
 							</tr>
 						</c:forEach>

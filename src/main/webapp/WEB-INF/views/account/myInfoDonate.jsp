@@ -36,9 +36,6 @@
 	</c:choose>
 	</tbody>
 </table>
-<div>
-	<ul>
-		<li>총 기부금액</li>
-		<li class="total-donate">${donationTotalInfo}</li>
-	</ul>
+<div class="donate_info">
+	총 기부금액 : ${donationTotalInfo}
 </div>

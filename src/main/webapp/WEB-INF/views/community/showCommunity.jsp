@@ -22,9 +22,9 @@
 									<h2>진행중인 행사들</h2>
 									<p>각 생산자들이 주최하고있는 모임에 참여하세요!</p>
 								</div>
-								<div class="noo-product-grid products row product-grid noo-grid-4">
+								<div class="noo-product-grid products row product-grid noo-grid-4 tc">
 									<c:forEach items="${communityIngList}" var="ing">
-										<div class="fruit organic-fruits masonry-item col-md-4 col-sm-6">
+										<div class="fruit organic-fruits masonry-item col-xs-4 clear inline-block">
 											<div class="noo-product-inner">
 												<div class="noo-product-thumbnail">
 													<a href="<c:url value="/userEtcController/communityDetail?no=${ing.no}"/>">
@@ -44,10 +44,8 @@
 									</c:forEach> 
 								</div>  
 							</div>  
-							  
-							<hr style="border: solid 2px gray;">  
 								  
-								<div class="noo-product-grid-wrap commerce product-style">  
+								<div class="noo-product-grid-wrap commerce product-style mt50 mb20">  
 									<div class="noo-sh-title">  
 									<h2>진행완료된 행사들</h2>  
 								</div>  

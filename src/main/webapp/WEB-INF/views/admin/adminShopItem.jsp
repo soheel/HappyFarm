@@ -10,32 +10,32 @@
 									<table id = "productManageTable" class="shop_table cart">
 										<thead>
 											<tr>
-												<th class="product-no">상품 No</th>
-												<th class="product-name">상품이름</th>
-												<th class="product-price">상품가격</th>
-												<th class="product-no">카테고리</th>
-												<th class="product-producer">생산자</th>			
+												<th class="table_small tc">상품 No</th>
+												<th>상품이름</th>
+												<th class="table_small tc">상품가격</th>
+												<th class="table_medium tc">카테고리</th>
+												<th class="table_small tc">생산자</th>			
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${productlist}" var="productlist">
 											
 											<tr class="cart_item">
-												<td class="product-no">
+												<td class="product-no tc">
 													${productlist.no }
 												</td>
-												<td class="product-name">
+												<td>
 													<span style = "font-weight : bold;">${productlist.name}</span>
 													<span value = "${productlist.no }" style = "color : pink; cursor : pointer;" name = "modifyButtonProduct" data-toggle="modal" data-target="#update">[수정]</span>
 													<span value = "${productlist.no }" style = "color : pink; cursor : pointer;" name = "deleteButtonProduct">[삭제]</span>
 												</td>
-												<td class="product-price">
+												<td class="tc">
 													<span class="amount"><fmt:formatNumber value = '${productlist.price}' pattern='#,### 원'/></span> 
 												</td>
-												<td class="product-producer">
+												<td class="tc">
 													[${productlist.subCategoryDto.categoryDto.name }] / [${productlist.subCategoryDto.name}]
 												</td>
-												<td class="product-producer">
+												<td class="tc">
 													${productlist.producerDto.name }
 												</td>
 												

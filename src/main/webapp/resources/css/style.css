@@ -49,6 +49,12 @@
 /* 1. GLOBAL STYLING
 /* --------------------------------------------------------------------- */
 
+.clear	{clear: both; float:none;}
+.tc	{text-align:center;}
+.inline-block	{display:inline-block;}
+.mt50	{margin-top:50px;}
+.mb20	{margin-bottom:20px;}
+
 html {
     font-family: 'Nanum Gothic', serif;
     -ms-text-size-adjust: 100%;
@@ -10522,8 +10528,9 @@ article.format-video .blog-item .video-inner iframe {
 }
 
 .noo-sh-title h2 {
-    font-size: 50px;
+    font-size: 38px;
     margin: 0 0 20px;
+    color: #525252;
 }
 
 .noo-sh-title p{
@@ -17574,4 +17581,8 @@ div.product-style2 .product-grid .noo-product-inner:hover .noo-product-title .no
 	background: #fff;
 	min-height:670px;
 	padding:30px;
+}
+
+.profile_table{
+	
 }

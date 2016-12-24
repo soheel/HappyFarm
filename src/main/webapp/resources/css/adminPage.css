@@ -1,3 +1,8 @@
+#adminMain{
+	position: relative;
+	z-index: 20;
+}
+
 .admin-btn{
 	width:99%;
 	height:190px;
@@ -6,6 +11,7 @@
 	line-height:190px;
 	text-align: center;
 	border-radius: 10px;
+	border : 2px solid #fff;
 	margin-bottom: 30px;
 	cursor:pointer;
 }
@@ -45,6 +51,17 @@
 	transition: 0.2s;
 }
 
+.commerce-cart table.cart th{
+	font-size:16px;
+}
+
+.table_small	{width:10%;}
+.table_medium	{width:20%;}
+.table_large	{width:40%;}
+.tc	{text-align:center;}
+.tc .noo-rating		{width:5.4em; float:none; display:inline-block; }	
+.tc .star-rating	{float:none;}
+
 #adminMain div.admin-color-royalblue:hover{
 	background-color: #2b618f;
 }
@@ -71,4 +88,9 @@
 
 #adminMain div.admin-color-mediumorchid:hover{
 	background-color: #a82c8f;
+}
+
+#productManageTable_info,
+#productManageTable_length{
+	display:none;
 }

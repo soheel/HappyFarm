@@ -10,23 +10,23 @@
 									<table class="shop_table cart">
 										<thead>
 											<tr>
-												<th class="product-name">기부업체</th>
-												<th class="product-phone">연락처</th>
-												<th class="product-addr">주소</th>
-												<th class="product-content">설명</th>
+												<th class="product-name table_small tc">기부업체</th>
+												<th class="product-addr table_medium">주소</th>
+												<th class="product-phone table_small tc">연락처</th>
+												<th class="product-content table_large">설명</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${donationlist}" var="donation"> 
 											<tr class="cart_item">
-												<td class="product-name">
+												<td class="product-name tc">
 													${donation.name}
-												</td>
-												<td class="product-phone">
-													<span class="amount">${donation.phone}</span> 
 												</td>
 												<td class="product-area">
 													<span class="amount">${donation.addr}</span> 
+												</td>
+												<td class="product-phone tc">
+													<span class="amount">${donation.phone}</span> 
 												</td>
 												<td class="product-content">
 													<span class="amount">${donation.desc}</span> 

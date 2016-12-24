@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<h2>환불 내역</h2>
+<h2 class="order_title">환불 내역</h2>
 <input type="button" value="전체" name="id" class="searchRefundList">
 <input type="button" value="3개월" name="three_month" class="searchRefundList">
 <input type="button" value="6개월" name="six_month" class="searchRefundList"> 

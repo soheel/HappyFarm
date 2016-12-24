@@ -1,60 +1,34 @@
-.order_check_border{
-	border: 1px solid gray;
+.order_check_border, .seller_check_border, .addr_check_border,
+	.payment_check_border, .mileage_check_border, .final_check_border {
 	padding: 15px 0px;
-	margin:10px 0px;
+	margin: 10px 0px;
 }
 
-.seller_check_border{
-	border: 1px solid gray;
-	padding: 15px 0px;
-	margin:10px 0px;
-}
-
-.addr_check_border{
-	border: 1px solid gray;
-	padding: 15px 0px;
-	margin:10px 0px;
-}
-
-.payment_check_border{
-	border: 1px solid gray;
-	padding: 15px 0px;
-	margin:10px 0px;
-}
-
-.mileage_check_border{
-	padding: 15px 0px;
-	margin:10px 0px;	
-}
-
-.final_check_border{
-	border: 1px solid gray;
-	padding: 15px 0px;
-	margin:10px 0px;
-}
-
-.box_shadow {
-	border : 0.6px outset gray;
-	box-shadow : 5px 5px;
-}
-
-.order_check_title, .seller_check_title, .addr_check_title, .payment_title {
-	font-weight : bold;
-	color : black;
-	font-size : 14pt;
+.order_check_title, .seller_check_title, .addr_check_title,
+	.payment_title {
+	font-weight: bold;
+	color: black;
+	font-size: 14pt;
 }
 
 .mileage_desc {
-	font-weight : bold;
-	color : pink;
+	font-weight: bold;
+	color: pink;
 }
 
 .my_mileage {
-	font-size : 12pt;
-	font-weight : bold;
-	color : black;
+	font-size: 12pt;
+	font-weight: bold;
+	color: black;
 }
 
 .order_final_info {
-	text-align : center ;
+	text-align: center;
+}
+
+.order_title {
+	background-color: #ed6a5a;
+	color: #fff;
+	line-height:42px;
+	padding-left:15px;
 }
