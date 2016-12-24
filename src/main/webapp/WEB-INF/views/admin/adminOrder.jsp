@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<div class="commerce commerce-page commerce-cart noo-shop-main">
+<div class="commerce commerce-page commerce-cart">
+	<div class="container profile_view">
 							<h3 class="widget-title">주문 관리</h3>
 							<div>
 							<form action="<c:url value = '/excel/exceldown'/>" type = "method">
@@ -274,6 +275,7 @@
 									</table>
 								</div>
 							</div>
+						</div>
 					</div>
 					
 					

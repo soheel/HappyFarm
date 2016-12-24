@@ -18,24 +18,6 @@
 				<div class="container">
 					<div class="row">
 						<div class="noo-main col-md-9">
-							<div class="noo-catalog">
-								<p class="commerce-result-count">Showing 1&ndash;9 of 18 results</p>
-								<div class="product-style-control pull-right">
-									<span class="noo-list"><a href="shop-list.html"><i class="fa fa-th-list"></i></a></span>
-									<span class="noo-grid active"><i class="fa fa-th-large"></i></span>
-								</div>
-								<form class="commerce-ordering">
-									<select name="orderby" class="orderby">
-										<option value="" selected='selected'>Default sorting</option>
-										<option value="">Sort by popularity</option>
-										<option value="">Sort by average rating</option>
-										<option value="">Sort by newness</option>
-										<option value="">Sort by price: low to high</option>
-									</select>
-								</form>
-							</div>
-							
-							
 							<!-- 여기부터 농산묻 리스트 불러오는 곳 -->
 							<div class="products row product-grid">
 							
@@ -55,7 +37,7 @@
 										</div>
 										<div class="noo-product-title">
 											<input id = "product_no" type = "hidden" value = "${list.no }">
-											<h3><a href="<c:url value="/package/detail"/>">${list.name }</a></h3>
+											<h3><a href="<c:url value="/userProductController/showPackageDetail?productNo="/>${list.no}">${list.name }</a></h3>
 											<span class="price"><span class="amount"><fmt:formatNumber value = '${list.price }' pattern = '#,###'/> 원</span></span>
 											<div class="noo-product-action">
 												<div class="noo-action">

@@ -12,39 +12,55 @@
 				</div>
 			</div>
 	</section>
-	
-	<div class="container">
-		<div class="table-responsive donate_table"> 
-			<h3>기부 현황</h3>        
-	  		<table class="table">
-	  			<tr>
-	  				<th>기부금액</th>
-	  				<th>기부날짜</th>
-	  			</tr>
-	  			
-	  			<c:forEach items="${requestScope.donationlist }" var="list">
-	  				<tr>
-	  					<td><fmt:formatNumber value="${list.price }"/></td>
-	  					<td>  
-  						<fmt:parseDate value="${list.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
-						<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
-  						</td>  
-
-	  				</tr>
-	  			</c:forEach>
-	  			
-	  		</table>
-	  		<a href="<c:url value='/userInfoController/myPageDonation'/>"><input type="button" class="btn btn-success" value="나의 기부 현황" id="GoMyDonation"/></a>
+	<div class=" commerce">
+		<div class="container">
+			<div class="first_content">
+				<div class="donate_title">
+						<span>기부 현황</span>
+				</div>
+				<div class="table-responsive donate_table">
+			  		<table class="table">
+			  			<thead>
+			  				<tr>
+				  				<th>기부금액</th>
+				  				<th>기부날짜</th>
+			  				</tr>
+			  			</thead>
+			  			
+			  			<c:forEach items="${requestScope.donationlist }" var="list">
+			  				<tr>
+			  					<td><fmt:formatNumber value="${list.price }"/></td>
+			  					<td>  
+		  						<fmt:parseDate value="${list.date}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>  
+								<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>  
+		  						</td>  
+		
+			  				</tr>
+			  			</c:forEach>
+			  		</table>
+			  		<input type="button" class="button" value="나의 기부 현황" id="GoMyDonation"/>
+			  		<a href="<c:url value='/userInfoController/myPageDonation'/>"></a>
+			  	</div>
+			</div>
+			<div class="donate_title">
+				<span>기부 업체</span>
+			</div>
+			<div class="related products donate_board">
+				<table>
+					<tr>
+						<td class="donate_board_img">
+							<a href = "http://www.unicef.or.kr/" target="blank">
+								<img alt="" src="<c:url value='/resources/img/donation_org/'/>${donationOrg.profile}">
+							</a>
+						</td>
+						
+						<td class="donate_board_content">
+							${donationOrg.desc }
+						</td>
+					</tr>
+				</table>		
+			</div>
 	  	</div>
-	  	
-	  	<h3>기부 업체</h3>
-	  	<div class="related products qna_board">
-			<a href = "http://www.unicef.or.kr/" target="blank">
-				<img alt="" src="<c:url value='/resources/img/donation_org/'/>${donationOrg.profile}">
-			</a>
-			<br><br>
-			<h6>${donationOrg.desc }</h6>
-		</div>
   	</div>
 	
 	

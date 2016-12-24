@@ -65,16 +65,8 @@
 						<li>
 							<a href="<c:url value="/manageController/donationOrgManage"/>">기부 업체 관리</a>
 						</li>
-						<li class="dropdown">
-                  			<a href="<c:url value="/manageController/salesManage"/>" class="dropdown-toggle" data-toggle="dropdown">매출 관리&nbsp;<span class="caret"></span></a>
-                  			<ul class="dropdown-menu" role="menu">
-                  				<!-- 
-                    			<li class="dropdown-header">Dropdown heading</li>
-                    			 -->
-                    			<li><a href='<c:url value="/admin/sales/total"/>'>총 매출</a></li>
-                    			<li><a href="<c:url value="/admin/sales/month"/>">월별 매출</a></li>
-                    			<li><a href="<c:url value="/admin/sales/fame"/>">인기순</a></li>
-                  			</ul>
+						<li>
+                  			<a href="<c:url value="/manageController/salesManage"/>">매출 관리</a>
                 		</li>
 						<li>
 							<a href="<c:url value="/manageController/memberManage"/>">회원 관리</a>
@@ -99,10 +91,8 @@
 						<span class="hamb-middle"></span>
 						<span class="hamb-bottom"></span>
 					</button>
-					<div class="container">
-						<!-- page Content 내용 영역 -->
-						<tiles:insertAttribute name="content"/>
-					</div>
+					<!-- page Content 내용 영역 -->
+					<tiles:insertAttribute name="content"/>
 				</div>
 				<!-- /#page-content-wrapper -->
 
@@ -115,7 +105,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<div class="profile_background"></div>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>bootstrap.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery-migrate.min.js'></script>
@@ -143,6 +133,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>adminQna.js"></script>
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type='text/javascript' src='<c:url value="/resources/js/"/>profilePageBackground.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/smoothscroll-for-websites-master/"/>SmoothScroll.js'></script>
 </body>
 <script type="text/javascript">

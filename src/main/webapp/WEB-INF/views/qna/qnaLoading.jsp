@@ -13,60 +13,70 @@
 	</section>
 	
 	<div class="main">
-		<div class="container">
-			<div class="first_content">
-				<div class="qna_title">
-					<span>Q&A</span>
-				</div>
-				<div class="related products qna_board">
-					<form action="" method="post">
-						 <div class="form-group">
-						 	<input style = "border-radius : 5%; height : 30px;" type = "text" placeholder = "  제목을 입력하세요" id = "qnaTitle"><br><br>
- 							<textarea class="form-control qna-question-area" rows="1" id="comment" name="desc" style="resize: vertical" placeholder = "내용을 입력하세요"></textarea>
- 							<div style = "text-align : right;"></div>
- 							<input type="button" class="btn btn-success" id="qnaRegisterBtn" value="등록"/>
-						</div>
-					</form>
-				</div>
+		<div class="commerce">
+			<div class="container">
+				<div class="first_content">
+					<div class="qna_title">
+						<span>Q&A</span>
+					</div>
+					<div class="related products qna_board">
+						<form action="" method="post">
+							 <div class="form-row">
+							 	<label>
+									제목 :
+								</label>
+							 	<input type="text" placeholder="제목을 입력하세요" id="qnaTitle" class="input-text">
+							 </div>
+							 	
+							 <div class="form-row">
+							 	<label>
+									내용 :
+								</label>
+	 							<textarea class="form-control qna-question-area" rows="1" id="comment" name="desc" style="resize: vertical" placeholder = "내용을 입력하세요"></textarea>
+	 						</div>
+	 						<div style = "text-align : right;"></div>
+	 						<input type="button" class="button" id="qnaRegisterBtn" value="등록"/>
+						</form>
+					</div>
+				
+					<div class="last_content">
+						<table id = "qnaTable">
+							<thead>
+								<th width = "10%">글번호</th>
+								<th width = "70%">글제목</th>
+								<th width = "10%">작성자</th>
+								<th width = "10%">작성일</th>
+								<th width = "10%">답변여부</th>
+							</thead>
+							
+							<tbody>
+							<c:forEach items="${qnaList }"  var="list" varStatus="state">
+								 <tr class = "tr${state.index }">
+								 	<td>
+								 		${list.no }
+								 	</td>
+								 	<td>
+								 		<span id = "${state.index }" name = "qnaName" value = "${list.no }">${list.name }</span>
+								 		<input type = "hidden" value="${list.answerState }">
+								 	</td>
+								 	<td>
+								 		${list.email }
+								 	</td>
+								 	<td>
+								 		${list.registerdate }
+								 	</td>
+								 	<td>
+								 		${list.answerState }
+								 	</td>
+								 </tr>
+							</c:forEach>
+						</tbody>
+						</table>
+						<input type = "hidden" value = "${sessionScope.email }">
+					</div>
+				</div>			
 			</div>
-			
-			<div class="last_content">
-				<table id = "qnaTable">
-					<thead>
-						<th width = "10%">글번호</th>
-						<th width = "70%">글제목</th>
-						<th width = "10%">작성자</th>
-						<th width = "10%">작성일</th>
-						<th width = "10%">답변여부</th>
-					</thead>
-					
-					<tbody>
-					<c:forEach items="${qnaList }"  var="list" varStatus="state">
-						 <tr class = "tr${state.index }">
-						 	<td>
-						 		${list.no }
-						 	</td>
-						 	<td>
-						 		<span id = "${state.index }" name = "qnaName" value = "${list.no }">${list.name }</span>
-						 		<input type = "hidden" value="${list.answerState }">
-						 	</td>
-						 	<td>
-						 		${list.email }
-						 	</td>
-						 	<td>
-						 		${list.registerdate }
-						 	</td>
-						 	<td>
-						 		${list.answerState }
-						 	</td>
-						 </tr>
-					</c:forEach>
-				</tbody>
-				</table>
-				<input type = "hidden" value = "${sessionScope.email }">
-			</div>
-			
-		</div>			
+		</div>
 	</div>
 	
 	<div class="noo-footer-shop-now">

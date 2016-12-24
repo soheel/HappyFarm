@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<div class="commerce commerce-page commerce-cart noo-shop-main">
-						<div class="container">
+<div class="commerce commerce-page commerce-cart">
+						<div class="container profile_view">
 							<h3 class="widget-title">회원 관리</h3>
 							<div class="row">
 								<div class="noo-main col-md-12">

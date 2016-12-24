@@ -38,14 +38,21 @@
 											<a href='<c:url value="/account"/>'>
 												<i class="fa fa-user"></i>
 												<c:choose>
-												<c:when test="${sessionScope.email == null }">
-													<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
-												</c:when>
-												<c:otherwise>
-													<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
-													<a href="<c:url value='/userInfoController/logout'/>">Logout</a>
-												</c:otherwise>
-											</c:choose>
+													<c:when test="${sessionScope.email == null }">
+														<a href="<c:url value='/userInfoController/loginPage'/>">Login</a>
+													</c:when>
+													<c:otherwise>
+														<c:choose>
+															<c:when test="${sessionScope.email == 'admin' }">
+																<a href="<c:url value='/userInfoController/adminPage'/>">ManagePage</a>
+															</c:when>
+															<c:otherwise>
+																<a href="<c:url value='/userInfoController/myPageLoading'/>">My Account</a>
+															</c:otherwise>
+														</c:choose>
+															&nbsp;|&nbsp;&nbsp;<a href="<c:url value='/userInfoController/logout'/>">Logout</a>
+													</c:otherwise>
+												</c:choose>
 											</a>
 										</li>
 										<li class="menu-item noo-menu-item-cart minicart">

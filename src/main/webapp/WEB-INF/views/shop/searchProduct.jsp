@@ -17,16 +17,12 @@
 			<div class="commerce noo-shop-main">
 				<div class="container">
 					<div class="row">
-						<div class="noo-main col-md-9">
-							<div class="noo-catalog">
-								<p class="commerce-result-count">Showing 1&ndash;9 of 18 results</p>
-									<span class="noo-grid active"><i class="fa fa-th-large"></i></span>
-							</div>							
+						<div class="noo-main col-md-9">					
 							<!-- 여기부터 농산물 리스트 불러오는 곳 -->
 							
 							<c:set var="i" value="0" />
 							<c:set var="j" value="3" />
-								<div class="products row product-grid">	
+								<div class="products row product-grid shop_table">	
 								<table id="item_list">
 								<thead><th></th><th></th><th></th></thead>
 								<tbody>
@@ -52,7 +48,7 @@
 												<div class="noo-product-title">
 													<!-- 농산물 이름 --> 
 													<input id = "product_no" type = "hidden" value = "${list.no}">
-													<h3><a href="<c:url value="/shop/detail"/>">${list.name}</a></h3>
+													<h3><a href="<c:url value="/userProductController/showProductDetail?productNo=${list.no}"/>">${list.name}</a></h3>
 													<!-- 농산물 가격 -->
 													<span class="price"><span class="amount"><fmt:formatNumber value = '${list.price}' pattern = '#,###'/></span> 원</span>
 													<div class="noo-product-action">

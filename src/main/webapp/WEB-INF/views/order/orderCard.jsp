@@ -14,7 +14,7 @@
 	</div>
 </section>
 <div class="main">
-	<div class="commerce single-product noo-shop-main">
+	<div class="commerce single-product">
 		<div class="container">
 			<div class="row">
 				<form action = "<c:url value = '/userProductController/pay'/>" method = "post" onSubmit='return orderCheck()'>

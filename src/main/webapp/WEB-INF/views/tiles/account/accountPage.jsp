@@ -81,8 +81,8 @@
 						<span class="hamb-middle"></span>
 						<span class="hamb-bottom"></span>
 					</button>
-					<div class="container">
-						<!-- 사용자 내역 -->
+					<!-- 사용자 내역 -->
+					<div class="container profile_view">
 						<tiles:insertAttribute name="content"/>
 					</div>
 				</div>
@@ -129,6 +129,7 @@
 	    	<div class="col-lg-3"></div>
 		</div>
 	</div>
+	<div class="profile_background"></div>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>bootstrap.min.js'></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>jquery-migrate.min.js'></script>
@@ -154,6 +155,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/"/>myAccount.js"></script>
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	<script type='text/javascript' src='<c:url value="/resources/js/smoothscroll-for-websites-master/"/>SmoothScroll.js'></script>
+	<script type='text/javascript' src='<c:url value="/resources/js/"/>profilePageBackground.js'></script>
 	<script type="text/javascript">
 	//버튼의 value값에 따라 결과 나누기
 	$(document).ready(function(){
