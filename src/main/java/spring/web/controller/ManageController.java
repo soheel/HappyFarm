@@ -259,13 +259,6 @@ public class ManageController {
 	 * */
 	@RequestMapping("packageRegisterManage")
 	public String packageRegisterManage(HttpServletRequest request, PackageDTO packageDTO, ProductDTO productDTO, MultipartHttpServletRequest multipartRequest, HttpSession session, String products) {
-		/**
-		 * 1. 등록을 누르면 jsp에 있는 div가 보여진다.
-		 * 2. 입력할 정보 : 이름 (product테이블에 있는 package_name)
-		 * 가격,사진,설명 : product테이블에 있는 price, profile, desc
-		 * 상품검색 : product_name에 일치하는 product를 찾아준다
-		 * 밑에 상품이 productDTO들이 insert된다.
-		 */
 		System.out.println("packageRegisterManage");
 		List<MultipartFile> fileList =  multipartRequest.getFiles("file");
 		List<Integer> productsNoList = new ArrayList<Integer>();
@@ -276,6 +269,7 @@ public class ManageController {
 		System.out.println("productsNoList size : " + productsNoList.size());
 		
 		packageDTO.setProductDTO(productDTO);
+		System.out.println(productDTO.getNo() + "!!!");
 		
 		String profile = fileList.get(0).getOriginalFilename();
 		String desc = fileList.get(1).getOriginalFilename();
