@@ -72,12 +72,6 @@ member_recommand varchar2(50) references member(member_email) on delete cascade,
 donation_org_no number(5) references donation_org(donation_org_no) on delete cascade
 )
 
-insert into member values('¹Ú¿ë¿ì', '123', '¹Ú¿ë¿ì', '010', sysdate, 10000, null, 1);
-insert into member values('±èÅÂÈ£', '123', '±èÅÂÈ£', '011', sysdate, 8000, null, 1);
-insert into member values('ÀÌ¼ÒÈñ', '123', 'ÀÌ¼ÒÈñ', '012', sysdate, 9000, null, 1);
-insert into member values('¹ÚÅÂÈì', '123', '¹ÚÅÂÈì', '013', sysdate, 2000, null, 1);
-insert into member values('±è³ª¸®', '123', '±è³ª¸®', '014', sysdate, 12000, null, 1);
-insert into member values('ÀÓ±Ù¹¬', '123', 'ÀÓ±Ù¹¬', '015', sysdate, 100000, null, 1);
 insert into member values('admin', '123', '°ü¸®ÀÚ', '000', sysdate, 0, null, 1);
 
 -- producer Å×ÀÌºí--------------------------------------------------------------
@@ -265,6 +259,9 @@ select * from package;
 drop sequence package_no;
 create sequence package_no;
 
+select * from product;
+delete product where product_no > 43
+
 create table package (
 package_pk number(5) primary key,
 package_no number(5) references product(product_no) on delete cascade,
@@ -272,7 +269,7 @@ product_no number(5) references product(product_no) on delete cascade
 )
 
 »ğÀÔ
-insert into package values(package_no.nextval, 52, 1);
+insert into package values(package_no.nextval, 4, 1);
 insert into package values(package_no.nextval, 52, 2);
 insert into package values(package_no.nextval, 52, 3);
 
@@ -364,24 +361,24 @@ member_email varchar2(50) references member(member_email) on delete cascade
 »ğÀÔ
 insert into purchase values(purchase_no.nextval, sysdate, 45600, 'card', 0, 2, '¹Ú¿ë¿ì');
 insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '¹ÚÅÂÈì');
-insert into purchase values(purchase_no.nextval, '20160101', 15000, 'card', 0, 2, 'ÀÌ¼ÒÈñ');
-insert into purchase values(purchase_no.nextval, '20160201', 20000, 'card', 0, 2, 'ÀÓ±Ù¹¬');
-insert into purchase values(purchase_no.nextval, '20160301', 5000, 'card', 0, 2, '±è³ª¸®');
-insert into purchase values(purchase_no.nextval, '20160401', 30000, 'card', 0, 2, '±èÅÂÈ£');
-insert into purchase values(purchase_no.nextval, '20160501', 9000, 'card', 0, 2, '¹ÚÅÂÈì');
-insert into purchase values(purchase_no.nextval, '20160601', 80000, 'card', 0, 2, '¹ÚÅÂÈì');
-insert into purchase values(purchase_no.nextval, '20160701', 50000, 'card', 0, 2, '¹Ú¿ë¿ì');
-insert into purchase values(purchase_no.nextval, '20160801', 10000, 'card', 0, 2, 'ÀÌ¼ÒÈñ');
-insert into purchase values(purchase_no.nextval, '20160901', 120000, 'card', 0, 2, '±èÅÂÈ£');
-insert into purchase values(purchase_no.nextval, '20161001', 35000, 'card', 0, 2, 'ÀÓ±Ù¹¬');
-insert into purchase values(purchase_no.nextval, '20161101', 10000, 'card', 0, 2, 'ÀÓ±Ù¹¬');
-insert into purchase values(purchase_no.nextval, '20160301', 70000, 'card', 0, 2, '±è³ª¸®');
-insert into purchase values(purchase_no.nextval, '20160801', 20000, 'card', 0, 2, '¹ÚÅÂÈì');
-insert into purchase values(purchase_no.nextval, '20160501', 8000, 'card', 0, 2, '±è³ª¸®');
-insert into purchase values(purchase_no.nextval, '20161101', 10000, 'card', 0, 2, '¹Ú¿ë¿ì');
-insert into purchase values(purchase_no.nextval, '20160101', 20000, 'card', 0, 2, '¹Ú¿ë¿ì');
-insert into purchase values(purchase_no.nextval, '20160301', 20000, 'card', 0, 2, '±èÅÂÈ£');
-insert into purchase values(purchase_no.nextval, '20160301', 100000, 'card', 0, 2, 'ÀÌ¼ÒÈñ');
+insert into purchase values(purchase_no.nextval, '20160101', 15000, 'card', 0, 2, 'apple@naver.com');
+insert into purchase values(purchase_no.nextval, '20160201', 20000, 'card', 0, 2, 'banana@daum.net');
+insert into purchase values(purchase_no.nextval, '20160301', 5000, 'card', 0, 2, 'grape@daum.net');
+insert into purchase values(purchase_no.nextval, '20160401', 30000, 'card', 0, 2, 'mango@naver.com');
+insert into purchase values(purchase_no.nextval, '20160501', 9000, 'card', 0, 2, 'melon@naver.com');
+insert into purchase values(purchase_no.nextval, '20160601', 80000, 'card', 0, 2, 'orange@naver.com');
+insert into purchase values(purchase_no.nextval, '20160701', 50000, 'card', 0, 2, 'peach@hotmail.com');
+insert into purchase values(purchase_no.nextval, '20160801', 10000, 'card', 0, 2, 'pineapple@daum.net');
+insert into purchase values(purchase_no.nextval, '20160901', 120000, 'card', 0, 2, 'pineapple@daum.net');
+insert into purchase values(purchase_no.nextval, '20161001', 35000, 'card', 0, 2, 'orange@naver.com');
+insert into purchase values(purchase_no.nextval, '20161101', 10000, 'card', 0, 2, 'pineapple@daum.net');
+insert into purchase values(purchase_no.nextval, '20160301', 70000, 'card', 0, 2, 'orange@naver.com');
+insert into purchase values(purchase_no.nextval, '20160801', 20000, 'card', 0, 2, 'banana@daum.net');
+insert into purchase values(purchase_no.nextval, '20160501', 8000, 'card', 0, 2, 'banana@daum.net');
+insert into purchase values(purchase_no.nextval, '20161101', 10000, 'card', 0, 2, 'grape@daum.net');
+insert into purchase values(purchase_no.nextval, '20160101', 20000, 'card', 0, 2, 'grape@daum.net');
+insert into purchase values(purchase_no.nextval, '20160301', 20000, 'card', 0, 2, 'orange@naver.com');
+insert into purchase values(purchase_no.nextval, '20160301', 100000, 'card', 0, 2, 'peach@hotmail.com');
 
 
 delete purchase
@@ -400,7 +397,7 @@ purchase_order_phone varchar2(15) not null
 )
 
 »ğÀÔ
-insert into purchase_order values(1, '¹Ú¿ë¿ì', '¼ö¿ø', 'ÆÈ´Ş±¸', 15152, 'naver.com', '010');
+insert into purchase_order values(2, '¹Ú¿ë¿ì', '°æ±âµµ ¼ö¿ø½Ã ÆÈ´Ş±¸', '1¹øÁö', 15152, 'apple@naver.com', '010-1291-3222');
 insert into purchase_order values(2, '¹ÚÅÂÈì', '¼ö¿ø', 'Àå¾È±¸', 15152, 'google.com', '010');
 
 -- purchase_product Å×ÀÌºí------------------------------------------------------
@@ -581,6 +578,7 @@ member_email varchar2(50) references member(member_email) on delete cascade
 )
 
 -- test
-select * from qna where qna_parent is null order by qna_register_date desc
 
- 	select qna_no, qna_name, qna_desc, qna_register_date from qna where answer_state = 'N' and member_email != 'admin'
+select purchase_product.product_no 
+from purchase, purchase_product
+where purchase.purchase_no = purchase_product.purchase_no and purchase.purchase_state_no = 2 and purchase.member_email = 'grape@daum.net' order by purchase.purchase_date desc
