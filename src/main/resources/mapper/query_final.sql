@@ -359,8 +359,6 @@ member_email varchar2(50) references member(member_email) on delete cascade
 )
 
 »ğÀÔ
-insert into purchase values(purchase_no.nextval, sysdate, 45600, 'card', 0, 2, '¹Ú¿ë¿ì');
-insert into purchase values(purchase_no.nextval, sysdate, 50000, 'card', 0, 2, '¹ÚÅÂÈì');
 insert into purchase values(purchase_no.nextval, '20160101', 15000, 'card', 0, 2, 'apple@naver.com');
 insert into purchase values(purchase_no.nextval, '20160201', 20000, 'card', 0, 2, 'banana@daum.net');
 insert into purchase values(purchase_no.nextval, '20160301', 5000, 'card', 0, 2, 'grape@daum.net');
