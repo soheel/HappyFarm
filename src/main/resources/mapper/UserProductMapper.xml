@@ -118,7 +118,7 @@ where certification.certification_no = product_certification.certification_no an
 <select id="getProducerByProductNo" resultMap="producerResultMap" parameterType="integer">
 select r.producer_no, r.producer_name, r.producer_addr, r.producer_phone, r.producer_register_date, r.producer_profile
 from product t join producer r
-on t.producer_no = r.producer_no and t.producer_no = #{value} and t.product_no = #{value}
+on t.producer_no = r.producer_no and t.product_no = #{value}
 </select>
 
 <!-- 생산자번호(producerNo)로 Producer DTO 가져오기 -->

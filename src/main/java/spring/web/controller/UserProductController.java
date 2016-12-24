@@ -85,6 +85,9 @@ public class UserProductController {
 		ModelAndView mv = new ModelAndView();
 		list = service.showMenuListLoading(categoryNo);
 		System.out.println(list.size() + " : list의 size");
+		for(ProductDTO product : list) {
+			System.out.println(product.getProducerNo());
+		}
 		mv.addObject("list", list);
 		mv.setViewName("shop/searchProduct");
 		return mv;
@@ -105,6 +108,8 @@ public class UserProductController {
 		 * 
 		 * + CertificationDTO, ProductCommentDTO도 필요
 		 * */
+		System.out.println("showProductDetail");
+		System.out.println(productNo);
 		Map<String, Object> map = service.showProductDetail(productNo);
 		ModelAndView mv = new ModelAndView();
 		ProductDTO product = (ProductDTO)map.get("product");
@@ -112,6 +117,7 @@ public class UserProductController {
 		List<CertificationDTO> certificationList = (List<CertificationDTO>)map.get("certification");
 		ProducerDTO producer = (ProducerDTO)map.get("producer");
 		String categoryName = (String)map.get("categoryName");
+		System.out.println(producer + "!!");
 		/**
 		 * 상품을 눌렀을 때 인증마크 폼 띄어주기
 		 */

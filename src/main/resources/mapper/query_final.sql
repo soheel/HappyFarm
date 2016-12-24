@@ -179,7 +179,7 @@ category_subcategory_no number(5) references category_subcategory(category_subca
 삽입
 insert into product values(product_no.nextval, '청도반시 감말랭이', 14800, 'fruit_persimmon_drypersimmon.jpg', 'fruit_persimmon_drypersimmon_1.jpg', 3.7, '800g', 1, 4);
 insert into product values(product_no.nextval, '마이스터 감귤', 11800, 'fruit_mandarinhanrabong_mandarin.jpg', 'fruit_mandarinhanrabong_mandarin_1.jpg', 4.0, '20kg', 2, 5);
-insert into product values(product_no.nextval, '제주 노지감귤', 19000, 'fruit_mandarinhanrabong_nozimandarin.jpg', 'fruit_mandarinhanrabong_nozimandarin_1.jpg', 4.6, '20kg', 3, 5);
+insert into product values(3, '제주 노지감귤', 19000, 'fruit_mandarinhanrabong_nozimandarin.jpg', 'fruit_mandarinhanrabong_nozimandarin_1.jpg', 4.6, '20kg', 3, 5);
 insert into product values(product_no.nextval, '황금향', 38000, 'fruit_mandarinhanrabong_goldmandarin.jpg', 'fruit_mandarinhanrabong_goldmandarin_1.jpg', 3.9, '20kg', 4, 5);
 insert into product values(product_no.nextval, '견과믹스', 8000, 'fruit_nut_mixmut.jpg', 'fruit_nut_mixmut_1.jpg', 3.0, '1kg', 5, 8);
 insert into product values(product_no.nextval, '건조블루베리', 18000, 'fruit_strawberryblueberry_blueberry.jpg', 'fruit_strawberryblueberry_blueberry_1.jpg', 3.0, '600g', 6, 2);
