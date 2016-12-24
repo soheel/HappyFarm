@@ -165,7 +165,6 @@ $(function(){
 		    $('#orderCompleteListTable').DataTable();
 		    $('#etcAskListTable').DataTable();
 		    $('#etcCompleteListTable').DataTable();
-		    $('#user_table').DataTable();
 		});
 	
 	/* accordion */
