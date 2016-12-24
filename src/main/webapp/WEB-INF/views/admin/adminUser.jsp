@@ -7,7 +7,7 @@
 							<h3 class="widget-title">회원 관리</h3>
 							<div class="row">
 								<div class="noo-main col-md-12">
-									<table class="shop_table cart">
+									<table id = "user_table" class="shop_table cart">
 										<thead>
 											<tr>
 												<th class="product-id">아이디(Email)</th>
