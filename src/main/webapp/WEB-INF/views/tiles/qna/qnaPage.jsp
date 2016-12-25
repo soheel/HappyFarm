@@ -66,12 +66,8 @@
 	<script type='text/javascript' src='<c:url value="/resources/js/"/>price-slider.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>shop-categories-btn.js'></script>
 	<script type="text/javascript" src='<c:url value="/resources/js/"/>textarea-autoScroll.js'></script>
-<<<<<<< HEAD
 	<script type='text/javascript' src='<c:url value="/resources/js/smoothscroll-for-websites-master/"/>SmoothScroll.js'></script>
-	
-=======
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
->>>>>>> origin/master
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
@@ -84,7 +80,7 @@
 			
 			/* 글 등록 */
 			$("#qnaRegisterBtn").click(function(){
-				
+				alert($("#email").val());
 				if($("#email").val() == null) {
 					alert("로그인 후 이용가능합니다.");
 					return ;

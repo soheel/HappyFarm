@@ -85,7 +85,7 @@
 					<div class="row">
 						<div class="certification_form">
 							<div class="cetication_content">
-								<img src='<c:url value="/resources/img/certification/certificationKind.jpg"/>' alt="agricultural produce" width="600" height="600">
+								<img src='<c:url value="/resources/img/certification/certificationKind.png"/>' alt="agricultural produce" width="600" height="600">
 							</div>
 						</div>
 					</div>

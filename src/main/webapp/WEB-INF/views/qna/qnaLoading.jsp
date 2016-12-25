@@ -72,7 +72,7 @@
 							</c:forEach>
 						</tbody>
 						</table>
-						<input type = "hidden" value = "${sessionScope.email }">
+						<input type = "hidden" value = "${sessionScope.email }" id = "email">
 					</div>
 				</div>			
 			</div>

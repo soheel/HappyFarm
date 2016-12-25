@@ -581,6 +581,4 @@ member_email varchar2(50) references member(member_email) on delete cascade
 
 -- test
 
-select purchase_product.product_no 
-from purchase, purchase_product
-where purchase.purchase_no = purchase_product.purchase_no and purchase.purchase_state_no = 2 and purchase.member_email = 'grape@daum.net' order by purchase.purchase_date desc
+select * from mileage where (mileage_state='구매 적립' or MILEAGE_STATE='추천인등록') and member_email = 'mango@naver.com'
