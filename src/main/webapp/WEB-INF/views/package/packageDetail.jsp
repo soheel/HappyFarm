@@ -144,24 +144,20 @@
 								</div>
 								<div id="tab-review" class="tab-pane fade">
 									<div id="comments" class="comments-area">
-										<h2 class="comments-title">3 Comments</h2>
+										<h2 class="comments-title">2 Comments</h2>
 										<ol class="comments-list">
 											<li class="comment">
 												<div class="comment-wrap">
-													<div class="comment-img">
-														<img alt='' src='http://placehold.it/100x100' height='80'
-															width='80' />
-													</div>
+													
 													<article class="comment-block">
 														<header class="comment-header">
-															<cite class="comment-author"> admin </cite>
+															<cite class="comment-author"> dlarmsanr </cite>
 															<div class="comment-meta">
-																<span class="time"> 4 months ago </span>
+																<span class="time"> 2016-12-24 19:31:23 </span>
 															</div>
 														</header>
 														<div class="comment-content">
-															<p>fames ac turpis egestas. Ut non enim eleifend
-																felis pretium feugiat. Vivamus quis mi. Phasellus</p>
+															<p>이거 너무 맛있어서 다음에도 또 주문해서 먹을 것 같아요!</p>
 														</div>
 														<span class="comment-reply"> <a
 															class='comment-reply-link' href='#'><i
@@ -172,20 +168,16 @@
 												<ol class="children">
 													<li class="comment">
 														<div class="comment-wrap">
-															<div class="comment-img">
-																<img alt='' src='http://placehold.it/100x100'
-																	height='80' width='80' />
-															</div>
+															
 															<article class="comment-block">
 																<header class="comment-header">
 																	<cite class="comment-author"> admin </cite>
 																	<div class="comment-meta">
-																		<span class="time"> 4 months ago </span>
+																		<span class="time"> 2016-12-24 19:31:23 </span>
 																	</div>
 																</header>
 																<div class="comment-content">
-																	<p>fSames ac turpis egestas. Ut non enim eleifend
-																		felis pretium feugiat. Vivamus quis mi. Phasellus</p>
+																	<p>감사합니다!</p>
 																</div>
 																<span class="comment-reply"> <a
 																	class='comment-reply-link' href='#'><i
@@ -198,32 +190,6 @@
 												</ol>
 												<!-- .children -->
 											</li>
-											<!-- #comment-## -->
-											<li class="comment">
-												<div class="comment-wrap">
-													<div class="comment-img">
-														<img alt='' src='http://placehold.it/100x100' height='80'
-															width='80' />
-													</div>
-													<article class="comment-block">
-														<header class="comment-header">
-															<cite class="comment-author"> admin </cite>
-															<div class="comment-meta">
-																<span class="time"> 4 months ago </span>
-															</div>
-														</header>
-														<div class="comment-content">
-															<p>fames ac turpis egestas. Ut non enim eleifend
-																felis pretium feugiat. Vivamus quis mi. Phasellus</p>
-														</div>
-														<span class="comment-reply"> <a
-															class='comment-reply-link' href='#'><i
-																class="fa fa-reply"></i> Reply</a>
-														</span>
-													</article>
-												</div>
-											</li>
-											<!-- #comment-## -->
 										</ol>
 										<!-- /.comments-list -->
 										<div id="respond-wrap">
@@ -233,16 +199,6 @@
 												</h3>
 												<form class="comment-form">
 													<div class="row">
-														<div class="comment-form-author col-sm-6">
-															<input id="author" name="author" type="text"
-																placeholder="Enter Your Name*" class="form-control"
-																value="" size="30" />
-														</div>
-														<div class="comment-form-email col-sm-6">
-															<input id="email" name="email" type="text"
-																placeholder="Enter Your Email*" class="form-control"
-																value="" size="30" />
-														</div>
 														<div class="col-sm-12">
 															<div class="comment-form-comment">
 																<textarea class="form-control"

@@ -4,13 +4,6 @@
 	margin: 10px 0px;
 }
 
-.order_check_title, .seller_check_title, .addr_check_title,
-	.payment_title {
-	font-weight: bold;
-	color: black;
-	font-size: 14pt;
-}
-
 .mileage_desc {
 	font-weight: bold;
 	color: pink;
@@ -22,13 +15,63 @@
 	color: black;
 }
 
+.order_final{
+	border-top: 2px solid #79cba8;
+}
+
 .order_final_info {
 	text-align: center;
+	min-height: 150px;
+}
+
+.order_final_info .btn{
+	font-size:12px;
+	background:#79cba8;
+	border-radius:0;
+	color:#fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 0 20px;
+	height: 40px;
+	font-weight: 400;
+	transition:all 0.4s ease 0s;
+}
+
+.order_final_info .btn:hover{
+	background: #45b284;
+	color: #fff;
+}
+
+.order_final_info .payment_title{
+	font-size:25px;
+}
+
+.order_final_info #amount{
+	color:#ed6a5a;
+	font-weight: bold;
+	font-size:35px; 
 }
 
 .order_title {
-	background-color: #ed6a5a;
-	color: #fff;
+	background-color: #79cba8;
 	line-height:42px;
 	padding-left:15px;
+}
+
+.order_title p{
+	font-size:16px;
+	color: #fff;
+}
+
+.order_content .input-text{
+	height:40px;
+}
+
+.addr_check_addr input[type="button"]{
+	margin-top:10px;
+	float: right;
+}
+
+.addr_check_phone input[name="phone"]{
+	border: 1px solid #f4eede;
 }
