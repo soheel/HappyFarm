@@ -44,6 +44,8 @@ insert into donation_org values(donation_org_no.nextval, '유니세프','02-737-1004
 '1946년에 창립된 유엔기구로써 유니세프는 지속가능개발목표를 달성하기 위해 보건,식수와위생,영양,어린이보호 등 7가지 중점 사업분야를 정하고 여러 보호사업을 펼치고 있는 단체입니다.',
 'unicfLogo.jpg');
 
+update donation_org set donation_org_profile = 'unicfLogo.jpg';
+
 -- donation 테이블--------------------------------------------------------------
 drop table donation;
 select * from donation;
@@ -295,6 +297,8 @@ insert into certification values(certification_no.nextval, 'gap.png', 'GAP', '우
 insert into certification values(certification_no.nextval, 'joetanso.png', '저탄소', '저탄소를 배출하는 인증마크입니다.');
 insert into certification values(certification_no.nextval, 'munongyag.png', '무농약', '농약을 사용하지 않고 재배한 제품을 인증하는 마크입니다.');
 insert into certification values(certification_no.nextval, 'youginong.png', '유기농식품', '유기농 식품 인증마크입니다.');
+
+delete certification where certification_no > 0 
 
 -- product_certification 테이블-------------------------------------------------
 drop table product_certification;
