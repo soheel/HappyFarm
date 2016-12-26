@@ -365,7 +365,7 @@ member_email varchar2(50) references member(member_email) on delete cascade
 )
 
 삽입
-insert into purchase values(purchase_no.nextval, '20160101', 15000, 'card', 0, 2, 'apple@naver.com');
+insert into purchase values(purchase_no.nextval, '20160101', 15000, 'card', 0, 2, 'mango@naver.com');
 insert into purchase values(purchase_no.nextval, '20160201', 20000, 'card', 0, 2, 'banana@daum.net');
 insert into purchase values(purchase_no.nextval, '20160301', 5000, 'card', 0, 2, 'grape@daum.net');
 insert into purchase values(purchase_no.nextval, '20160401', 30000, 'card', 0, 2, 'mango@naver.com');
@@ -401,7 +401,7 @@ purchase_order_phone varchar2(15) not null
 )
 
 삽입
-insert into purchase_order values(2, '박용우', '경기도 수원시 팔달구', '1번지', 15152, 'apple@naver.com', '010-1291-3222');
+insert into purchase_order values(54, '박용우', '경기도 수원시 팔달구', '1번지', 15152, 'mango@naver.com', '010-1291-3222');
 insert into purchase_order values(2, '박태흠', '수원', '장안구', 15152, 'google.com', '010');
 
 -- purchase_product 테이블------------------------------------------------------
@@ -416,9 +416,11 @@ primary key(purchase_no, product_no)
 )
 
 삽입
-insert into purchase_product values(1, 1, 1);
-insert into purchase_product values(1, 2, 1);
-insert into purchase_product values(1, 3, 1);
+insert into purchase_product values(54, 5, 1);
+insert into purchase_product values(54, 10, 1);
+insert into purchase_product values(54, 15, 1);
+
+delete purchase_product where product_no <= 3 and purchase_no = 54
 
 insert into purchase_product values(2, 2, 1);
 insert into purchase_product values(1, 4, 1);

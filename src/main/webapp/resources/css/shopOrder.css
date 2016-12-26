@@ -1,77 +1,103 @@
 .order_check_border, .seller_check_border, .addr_check_border,
-	.payment_check_border, .mileage_check_border, .final_check_border {
-	padding: 15px 0px;
-	margin: 10px 0px;
+   .payment_check_border, .mileage_check_border, .final_check_border {
+   padding: 15px 0px;
+   margin: 10px 0px;
 }
 
 .mileage_desc {
-	font-weight: bold;
-	color: pink;
+   font-weight: bold;
+   color: pink;
 }
 
 .my_mileage {
-	font-size: 12pt;
-	font-weight: bold;
-	color: black;
+   font-size: 12pt;
+   font-weight: bold;
+   color: black;
 }
 
 .order_final{
-	border-top: 2px solid #79cba8;
+   border-top: 2px solid #79cba8;
 }
 
 .order_final_info {
-	text-align: center;
-	min-height: 150px;
+   text-align: center;
+   min-height: 150px;
 }
 
-.order_final_info .btn{
-	font-size:12px;
-	background:#79cba8;
-	border-radius:0;
-	color:#fff;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	padding: 0 20px;
-	height: 40px;
-	font-weight: 400;
-	transition:all 0.4s ease 0s;
+.order_final_info .btn,
+input.pay_button{
+   font-size:12px;
+   background:#79cba8;
+   border-radius:0;
+   color:#fff;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   padding: 0 20px;
+   height: 40px;
+   font-weight: 400;
+   transition:all 0.4s ease 0s;
+   border:none;
 }
 
-.order_final_info .btn:hover{
-	background: #45b284;
-	color: #fff;
+.order_final_info .btn:hover,
+input.pay_button:hover{
+   background: #45b284;
+   color: #fff;
 }
 
 .order_final_info .payment_title{
-	font-size:25px;
+   font-size:25px;
 }
 
 .order_final_info #amount{
-	color:#ed6a5a;
-	font-weight: bold;
-	font-size:35px; 
+   color:#ed6a5a;
+   font-weight: bold;
+   font-size:35px; 
 }
 
 .order_title {
-	background-color: #79cba8;
-	line-height:42px;
-	padding-left:15px;
+   background-color: #79cba8;
+   line-height:42px;
+   padding-left:15px;
 }
 
 .order_title p{
-	font-size:16px;
-	color: #fff;
+   font-size:16px;
+   color: #fff;
 }
 
 .order_content .input-text{
-	height:40px;
+   height:40px;
 }
 
 .addr_check_addr input[type="button"]{
-	margin-top:10px;
-	float: right;
+   margin-top:10px;
+   float: right;
 }
 
 .addr_check_phone input[name="phone"]{
-	border: 1px solid #f4eede;
+   border: 1px solid #f4eede;
+}
+
+label.pay_title{
+   font-size:42px;
+   text-align: center;
+}
+
+table.pay_table{
+   line-height:30px;
+}
+
+.pay_enlargement{
+   color:#7dd449;
+}
+
+.pay_button_space{
+   text-align: center;
+   padding-top: 10px;
+   padding-bottom:100px;
+}
+
+input.pay_button{
+   
 }

@@ -45,7 +45,7 @@ public class UserProductServiceImpl implements UserProductService{
 			list.add(userProductDAO.getProductByProductNo(i));
 			System.out.println(i + "~~~");
 		}
-		for(int i = 2; i <= 4 ; i++) {
+		for(int i = 5; i <= 7 ; i++) {
 			list.add(userProductDAO.getProductByProductNo(i));
 		}
 		for(Integer i : listRecentPurchase) {

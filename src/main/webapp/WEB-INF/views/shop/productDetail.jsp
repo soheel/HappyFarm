@@ -174,14 +174,16 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-3">
+									<div><div></div> <div></div></div>
 									<img style="width: 200px; height: 200px; margin: auto;" alt=""
 										src="<c:url value='/resources/img/producer/'/>${producer.profile}">
 									<p>생산자 이름 : ${producer.name }</p>
+									<p>생산자 연락처 : ${producer.phone}</p>
 									<p>
 										생산지 : <span id="producer_addr">${producer.addr}</span>
 									</p>
 									<div id="mapDiv" style="width: 500px; height: 400px;"></div>
-									<p>생산자 연락처 : ${producer.phone}</p>
+									
 
 								</div>
 							</div>

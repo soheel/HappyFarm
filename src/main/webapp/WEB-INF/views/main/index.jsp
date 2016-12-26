@@ -72,7 +72,7 @@
 				<div class="col-sm-12">
 					<div class="noo-product-grid-wrap commerce product-style">
 						<div class="noo-sh-title">
-							<h2>Our new products</h2>
+							<h2>Our Best products</h2>
 							<p>Maecenas tristique gravida odio, et sagi ttis justo
 								interdum porta. Duis et lacus mattis, tincidunt eronec dictum
 								non nulla.</p>
