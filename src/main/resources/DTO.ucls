@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.13" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="spring.web.dto.MemberRequestDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/MemberRequestDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="484" width="296" x="1938" y="418"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="spring.web.dto.QnaDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/QnaDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="664" width="344" x="1180" y="418"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="spring.web.dto.PackageProductDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PackageProductDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="226" x="419" y="2"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="spring.web.dto.PurchaseProductListDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PurchaseProductListDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="344" x="1573" y="1132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="spring.web.dto.MemberDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/MemberDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="718" width="367" x="1166" y="1132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="spring.web.dto.PurchaseOrderDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PurchaseOrderDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="520" width="389" x="1503" y="3334"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="spring.web.dto.ProducerDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/ProducerDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="484" width="316" x="777" y="3334"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="spring.web.dto.CommunityCommentDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/CommunityCommentDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="556" width="539" x="606" y="1890"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="spring.web.dto.PurchaseDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PurchaseDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="628" width="361" x="1503" y="2486"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="spring.web.dto.ExcelDownloadListDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/ExcelDownloadListDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="322" x="57" y="2"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="spring.web.dto.InfomationDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/InfomationDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="285" x="1188" y="2"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="spring.web.dto.ProductCertificationDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/ProductCertificationDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="266" x="176" y="3334"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="spring.web.dto.ProductCommentDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/ProductCommentDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="502" width="325" x="815" y="418"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="spring.web.dto.CategorySubcategoryDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/CategorySubcategoryDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="255" x="482" y="3334"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="spring.web.dto.CartProductDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/CartProductDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="216" x="685" y="2"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="spring.web.dto.ProductDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/ProductDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="267" y="2840"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="spring.web.dto.DonationDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/DonationDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="268" x="1904" y="2486"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="spring.web.dto.PackageDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PackageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="248" x="255" y="1890"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="spring.web.dto.DonationOrgDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/DonationOrgDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="466" width="336" x="1904" y="1890"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="spring.web.dto.PurchaseStateDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PurchaseStateDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="198" x="2063" y="3334"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="spring.web.dto.CertificationDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/CertificationDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="256" x="176" y="3894"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="spring.web.dto.CategoryDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/CategoryDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="164" x="482" y="3894"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="spring.web.dto.ExcelDownloadDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/ExcelDownloadDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="592" width="427" x="57" y="418"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="spring.web.dto.PurchaseProductDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PurchaseProductDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="234" x="1227" y="1890"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="spring.web.dto.CommunityDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/CommunityDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="556" width="411" x="586" y="1132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="spring.web.dto.CartDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/CartDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="251" x="524" y="418"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="spring.web.dto.MileageDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/MileageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="251" x="1761" y="2"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="spring.web.dto.PurchaseListDTO" project="HappyFarm" 
+    file="/HappyFarm/src/main/java/spring/web/dto/PurchaseListDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="272" x="1592" y="1890"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="29">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="30" name="purchaseStateDto"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="33" name="productCertificationDto"/>      
+      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="36" name="memberDto"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="39" name="packageDTO"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="42" name="donationDto"/>      
+      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <bendpoint x="224" y="1132"/>    
+    <bendpoint x="224" y="1890"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="45" name="productDto"/>      
+      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="48" name="purchaseOrderDto"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="51" name="purchaseProductDto"/>      
+      <multiplicity id="52" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="54" name="purchaseProductDto"/>      
+      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <bendpoint x="1196" y="1890"/>    
+    <bendpoint x="1196" y="2486"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="57" name="producerDto"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="60" name="certificationDTO"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="63" name="list"/>      
+      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <bendpoint x="2270" y="1132"/>    
+    <bendpoint x="2270" y="1890"/>    
+    <bendpoint x="2270" y="2486"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="66" name="purchaseStateDto"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="69" name="producerDto"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="72" name="list"/>      
+      <multiplicity id="73" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="75" name="productDto"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <bendpoint x="1175" y="1890"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="78" name="productDto"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="81" name="communityCommentDTO"/>      
+      <multiplicity id="82" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="84" name="memberDto"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="87" name="memberDto"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <bendpoint x="1491" y="1890"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="90" name="purchaseDto"/>      
+      <multiplicity id="91" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <bendpoint x="533" y="1890"/>    
+    <bendpoint x="533" y="1132"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="93" name="cartDto"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <bendpoint x="1947" y="1132"/>    
+    <bendpoint x="1561" y="1890"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="96" name="purchaseDto"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="99" name="productlist"/>      
+      <multiplicity id="100" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="102" name="memberDto"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="104">    
+    <bendpoint x="554" y="1132"/>    
+    <bendpoint x="554" y="1890"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="105" name="productDto"/>      
+      <multiplicity id="106" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="107">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="108" name="purchaseProductDto"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="110">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="111" name="donationOrgDto"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <bendpoint x="1512" y="1890"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="114" name="memberDto"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <bendpoint x="575" y="1890"/>    
+    <bendpoint x="672" y="2486"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="117" name="producerDTO"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="120" name="donationOrgDto"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="123" name="list"/>      
+      <multiplicity id="124" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="126" name="purchaseDto"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="129" name="productDTO"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="131">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="132" name="productDTO"/>      
+      <multiplicity id="133" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="135" name="purchaseList"/>      
+      <multiplicity id="136" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="137">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="138" name="categoryDto"/>      
+      <multiplicity id="139" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="140">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="141" name="purchaseDto"/>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="143">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="144" name="communityDto"/>      
+      <multiplicity id="145" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="146">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="147" name="subCategoryDto"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="149">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="150" name="memberDto"/>      
+      <multiplicity id="151" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="152">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="153" name="qnaDto"/>      
+      <multiplicity id="154" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

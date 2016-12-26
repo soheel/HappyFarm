@@ -376,6 +376,8 @@ public class UserProductController {
 	
 	@RequestMapping("saveMileage")
 	public void saveMileage(int saveMileage, String email) {
+		System.out.println("saveMileage");
+		System.out.println(saveMileage + "!!!");
 		int result = service.saveMileage(saveMileage, email);
 	}
 	

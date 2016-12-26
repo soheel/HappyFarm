@@ -550,7 +550,7 @@ $(function(){
 					 $.ajax({
 						url : "<c:url value = '/userProductController/saveMileage'/>",
 						type : "post",
-						data : "saveMileage=" + (price*0.05) + "&email=" + email
+						data : "saveMileage=" + (parseInt(price)*0.05) + "&email=" + email,
 					 })
 						
 						location.href = "<c:url value = '/manageController/orderManage'/>"

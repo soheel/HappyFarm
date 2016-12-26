@@ -76,6 +76,8 @@ donation_org_no number(5) references donation_org(donation_org_no) on delete cas
 
 insert into member values('admin', '123', '관리자', '000', sysdate, 0, null, 1);
 
+update member set member_mileage = 10000 where member_email = 'mango@naver.com'
+
 -- producer 테이블--------------------------------------------------------------
 drop table producer;
 select * from producer;
@@ -579,6 +581,18 @@ mileage_state varchar2(20) not null,
 member_email varchar2(50) references member(member_email) on delete cascade
 )
 
+
+select * from member_request
+create table member_request (
+member_request_no number(2) primary key,
+purchase_state_no number(1) references purchase_state(purchase_state_no) on delete cascade,
+member_request_desc varchar(200),
+purchase_no number(5)  references purchase(purchase_no) on delete cascade,
+member_email varchar2(15) not null  references member(member_email) on delete cascade
+)
+
 -- test
 
 select * from mileage where (mileage_state='구매 적립' or MILEAGE_STATE='추천인등록') and member_email = 'mango@naver.com'
+
+select mileage_date, mileage_price, mileage_state from mileage where (mileage_state='구매 적립' or MILEAGE_STATE='추천인등록') and member_email= 'apple@naver.com'

@@ -80,7 +80,6 @@
 			
 			/* 글 등록 */
 			$("#qnaRegisterBtn").click(function(){
-				alert($("#email").val());
 				if($("#email").val() == null) {
 					alert("로그인 후 이용가능합니다.");
 					return ;
